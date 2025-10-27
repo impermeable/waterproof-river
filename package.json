@@ -1,0 +1,109 @@
+{
+  "name": "waterproof-river",
+  "displayName": "Waterproof River",
+  "publisher": "waterproof-tue",
+  "license": "MIT",
+  "description": "Interactive AI assistant for Waterproof",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/impermeable/waterproof-river"
+  },
+  "version": "0.0.1",
+  "icon": "./media/drop.png",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Other",
+    "Education"
+  ],
+  "homepage": "https://impermeable.github.io/",
+  "activationEvents": [
+    "onChatParticipant:waterproof-tue.river",
+    "onCustomEditor:waterproofTue.waterproofEditor"
+  ],
+  "extensionDependencies": [
+    "waterproof-tue.waterproof"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "river.clearSuggestions",
+        "category": "River",
+        "title": "Clear suggestions added to the document by River"
+      }
+    ],
+    "chatParticipants": [
+      {
+        "id": "waterproof-tue.river",
+        "name": "River",
+        "fullName": "River",
+        "description": "Helps with Waterproof proofs",
+        "isSticky": true,
+        "commands": [
+          {
+            "name": "hint",
+            "description": "Provide a hint for the current proof"
+          },
+          {
+            "name": "syntaxHelp",
+            "description": "Check the syntax of a Waterproof document"
+          }
+        ]
+      }
+    ],
+    "languageModelTools": [
+      {
+        "name": "waterproof-tue_hint",
+        "modelDescription": "Generates a hint for the user based on the current proof state. This tool should be used when the user asks for a hint or guidance on how to proceed with their proof.",
+        "displayName": "Hint",
+        "toolReferenceName": "generateHint",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "waterproof-tue_syntax_check",
+        "modelDescription": "Analyzes the syntax errors in the current Waterproof document and provides feedback and suggestions on how to fix them. This tool should be used when the user asks about syntax errors or issues in their proof or in the file.",
+        "displayName": "Syntax Check",
+        "toolReferenceName": "checkSyntax",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.103.0",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "@vscode/vsce": "^3.6.2",
+    "esbuild": "^0.25.8",
+    "eslint": "^9.32.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@vscode/prompt-tsx": "^0.4.0-alpha.5"
+  }
+}
