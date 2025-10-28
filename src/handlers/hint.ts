@@ -29,7 +29,7 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
 
     stream.progress("Querying output of Waterproof 'Help.' command...");
     const help = await api.help();
-    const proofContext = api.proofContext("<context>THE USER CURSOR IS PLACED HERE</context>");
+    const proofContext = await api.proofContext("<context>THE USER CURSOR IS PLACED HERE</context>");
 
     const input = { ...goals, ...proofContext, helpOutput: help };
 
