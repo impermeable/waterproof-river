@@ -108,7 +108,7 @@ export async function handleSyntaxHelp(api: WaterproofAPI, collection: Diagnosti
     collection.set(doc.uri, diags);
     stream.markdown("\n---\n");
     stream.markdown("Suggestions have been added. Click the button below to clear them.");
-    stream.button({ command: "river.clearDiagnostics", title: "Clear Suggestions", tooltip: "Clear the suggestions added by River" });
+    stream.button({ command: "river.clearSuggestions", title: "Clear Suggestions", tooltip: "Clear the suggestions added by River" });
 
     return message;
 }
