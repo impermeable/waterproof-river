@@ -32,9 +32,6 @@ class RiverExtension implements Disposable {
 		stream: ChatResponseStream,
 		token: CancellationToken
 	) {
-		if (request.command === "test") {
-			await this.handleTest(request, context, stream, token);
-		}
 		if (request.command === "syntaxHelp") {
 			await handleSyntaxHelp(this.api, this.collection, request, context, stream, token);
 		}
@@ -88,7 +85,7 @@ class RiverExtension implements Disposable {
 			for await (const part of response.stream) {
 				if (part instanceof LanguageModelTextPart) {
 					const mdString = new MarkdownString(part.value);
-					mdString.isTrusted = {enabledCommands: ['river.clearDiagnostics']};
+					mdString.isTrusted = {enabledCommands: ['river.clearSuggestions']};
 					stream.markdown(mdString);
 					responseStr += part.value;
 				} else if (part instanceof LanguageModelToolCallPart) {

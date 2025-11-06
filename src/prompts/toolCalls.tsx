@@ -56,7 +56,7 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 	async render(_state: void, _sizing: PromptSizing) {
 		return (
 			<>
-				<UserMessage>
+				<AssistantMessage>
                     <RiverBasic/>
 					Instructions: <br />
 					- Be critical about the proof that the student is working on, it could be wrong or incomplete. <br/>
@@ -65,13 +65,13 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 					<RiverWorkflowHint/>
 					<RiverWorkflowErrors/>
 					- If none of the workflows applies you are in 'chat' mode and free to engage in conversation with the user about mathematics and Waterproof.
-				</UserMessage>
-				<UserMessage>
+				</AssistantMessage>
+				<AssistantMessage>
 					<Tag name="context-user-file">
 					The current file that the user is working on is: <br />
 					<PromptReferenceElement ref={ {value: this.props.currentFile.uri, id: "userCurrentFile" }} />
 					</Tag>
-				</UserMessage>
+				</AssistantMessage>
 				<DiagnosticElement diagnostics={this.props.diagnostics} document={this.props.currentFile} />
 				<History context={this.props.context} priority={10} />
 				<PromptReferences

@@ -1,9 +1,10 @@
 import { renderPrompt } from "@vscode/prompt-tsx";
-import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm } from "vscode";
+import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace } from "vscode";
 import { WaterproofAPI } from "../api";
 import { HintPromptRewordForChat, WaterproofHintPrompt } from "../prompts/hint";
 
-const maxAttempts = 3;
+// Get the max attempts from the vscode setting, if (for some reason) no such setting exists, then use 3 as a default.
+const maxAttempts = workspace.getConfiguration("waterproof").get<number>("hintGenerationMaxAttempts") ?? 3;
 
 export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null, context: ChatContext | null, _stream: ChatResponseStream | null, token: CancellationToken) {
     const stream = {

@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/impermeable/waterproof-river"
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "icon": "./media/drop.png",
   "engines": {
     "vscode": "^1.103.0"
@@ -27,6 +27,18 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": [
+      {
+        "title": "Waterproof River",
+        "properties": {
+          "waterproof.hintGenerationMaxAttempts": {
+            "type": "number",
+            "default": 3,
+            "description": "The maximum number of attempts the hint generation tool will make to produce a verified hint."
+          }
+        }
+      }
+    ],
     "commands": [
       {
         "command": "river.clearSuggestions",
