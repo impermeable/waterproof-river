@@ -1,7 +1,7 @@
 import { renderPrompt } from '@vscode/prompt-tsx';
 import { CancellationToken, chat, ChatContext, ChatParticipant, ChatRequest, ChatResponseStream, commands, DiagnosticCollection, Disposable, env, ExtensionContext, extensions, LanguageModelTextPart, LanguageModelToolCallPart, LanguageModelToolResult, languages, lm, MarkdownString, StatusBarAlignment, Uri, window } from 'vscode';
 import { WaterproofAPI } from './api';
-import { handleHelp, handleSyntaxHelp } from "./handlers";
+import { handleHelp, handleSyntaxHelp, handleToWaterproof } from "./handlers";
 import { ToolCallRound, ToolResultMetadata, ToolUserPrompt, TsxToolUserMetadata } from "./prompts/toolCalls";
 import { HintTool, SyntaxHelpTool } from "./tools";
 
@@ -37,7 +37,11 @@ class RiverExtension implements Disposable {
 		}
 		else if (request.command === "hint") {
 			await handleHelp(this.api, request, context, stream, token);
-		} else {
+		}
+		else if (request.command === "translateProof") {
+			await handleToWaterproof(this.api, request, context, stream, token);
+		}
+		else {
 			await this.handleTest(request, context, stream, token);
 		}
 

@@ -55,6 +55,10 @@
         "isSticky": true,
         "commands": [
           {
+            "name": "translateProof",
+            "description": "Translate a handwritten proof into Waterproof"
+          },
+          {
             "name": "hint",
             "description": "Provide a hint for the current proof"
           },
