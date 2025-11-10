@@ -31,10 +31,10 @@
       {
         "title": "Waterproof River",
         "properties": {
-          "waterproof.hintGenerationMaxAttempts": {
+          "waterproof.maxGenerationAttempts": {
             "type": "number",
             "default": 3,
-            "description": "The maximum number of attempts the hint generation tool will make to produce a verified hint."
+            "description": "The maximum number of attempts River will take to generate a suggestion that is verified by Waterproof. Each attempt requires the use of the selected LLM."
           }
         }
       }

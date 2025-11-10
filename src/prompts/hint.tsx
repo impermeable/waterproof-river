@@ -1,6 +1,7 @@
 import { BasePromptElementProps, PromptElement, PromptPiece, AssistantMessage, PromptElementProps, UserMessage } from "@vscode/prompt-tsx";
 import { RiverBasic } from "./riverBasic";
 import { Tag } from "./tag";
+import { PreviousMistakes } from "./previousMistakes";
 
 interface HintProps extends BasePromptElementProps {
     information: string;
@@ -37,7 +38,7 @@ export class WaterproofHintPrompt extends PromptElement<HintProps> {
             </Tag>
             Your task is to provide a hint to the student that nudges them in the right direction without giving away the full proof. The hint should be concise and focus on the next step the student should take. If the student is stuck, consider suggesting relevant Waterproof tactics or concepts that could help them progress.
             <br/>
-            <HintPromptPreviousMistakes previousSuggestions={this.props.previousSuggestions}/>
+            <PreviousMistakes previousSuggestions={this.props.previousSuggestions}/>
             <br/>
             Always encourage the student to think critically and explore different approaches to solving the problem. Remember, the goal is to guide them towards discovering the solution on their own.
             Your output will be your strategy for answering the question then a separator ({separator}), followed by a JSON object of type `hint: string, step: string, tutorial: string` where hint is a text based hint (allowed to contain markdown) and step is the next concrete step in the proof that you would take (a valid waterproof tactic containing no placeholders). Finally, tutorial includes a pointer to the relevant section in the tutorial that explains the Waterproof tactic used in the step.
@@ -55,36 +56,6 @@ export class WaterproofHintPrompt extends PromptElement<HintProps> {
         );
     }
 };
-
-interface PreviousMistakesProps extends BasePromptElementProps {
-    previousSuggestions: Array<{
-        suggestion: string,
-        error: string
-    }>
-};
-
-export class HintPromptPreviousMistakes extends PromptElement<PreviousMistakesProps> {
-    render(): PromptPiece {
-        if (this.props.previousSuggestions.length === 0) {
-            return (<></>);
-        }
-
-        return (
-            <>
-                Waterproof is able to verify the correctness of your suggestions by attempting to execute them. Here are some of your previous suggestions that resulted in errors:
-                { this.props.previousSuggestions.map((s, i) => (
-                    <Tag name="suggestion" metadata={[["index", (i+1).toString()]]}>
-                        <Tag name="yourOutput">{s.suggestion}</Tag>
-                        <Tag name="resultedInError">{s.error}</Tag>
-                    </Tag>
-                )) }
-                When providing a new hint, take these into account and try to suggest a different approach or tactic that avoids the same mistakes.
-            </>
-        )
-
-
-    }
-}
 
 export type HintPromptRewordForChatProps = PromptElementProps<{
     strategy: string;

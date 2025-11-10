@@ -1,11 +1,13 @@
 import { AssistantMessage, PromptElement, PromptElementProps } from "@vscode/prompt-tsx";
 import { RiverBasic } from "./riverBasic";
 import { Tag } from "./tag";
+import { PreviousMistakes } from "./previousMistakes";
 
 export type ToWaterproofProps = PromptElementProps<{
     goal: string;
     userProof: string;
     proofContext: {name: string; full: string; withCursorMarker: string;};
+    previousSuggestions: Array<{suggestion: string, error: string}>;
 }>;
 
 export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProps> {
@@ -38,7 +40,7 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
                         ∀ x ∈ ℝ, (∃ y {">"} 10, y {"<"} x) ⇒ 10 {"<"} x.
                     </Tag>
                     <Tag name="river-output">
-                        To introduce an arbitrary real number $a$ use the `Take` tactic.<br/>
+                        To introduce an arbitrary real number $x$ use the `Take` tactic.<br/>
                         To assume the premise of the assumption in the goal use `Assume`, you can give this assumption a label so you can refer back to it later in the proof.<br/>
                         Finally, use the assumption use the `Obtain` tactic to obtain the value of $y$ that will allow you to complete the proof.<br/>
                         -----<br/>
@@ -49,20 +51,25 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
                     </Tag>
                 </Tag>
 
-                Here is the input of the student and their current goal
+                Here is the handwritten proof that the student wants to translate into valid Waterproof
                 <Tag name="context-goal">
                     {this.props.goal}
                 </Tag>
-
+                And here is the goal that they are working on.
                 <Tag name="context-user-written-proof">
                     {this.props.userProof}
                 </Tag>
-
+                Finally, their current proof looks like:
                 {/** Abstract this away to a prompt element */}
                 <Tag name="context-user-proof">
                     The object below contains the name of the lemma the student is working on, and the current proof so far. withCursorMarker contains a variant of the full current proof that the student is working on, plus an indication of where the user has placed the cursor at the moment of asking you for help.
                     {JSON.stringify(this.props.proofContext)}
                 </Tag>
+
+                <br/>
+                <PreviousMistakes previousSuggestions={this.props.previousSuggestions}/>
+                <br/>
+                
 
                 </AssistantMessage>
             </>
