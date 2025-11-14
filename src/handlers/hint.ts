@@ -2,6 +2,7 @@ import { renderPrompt } from "@vscode/prompt-tsx";
 import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace } from "vscode";
 import { WaterproofAPI } from "../api";
 import { HintPromptRewordForChat, WaterproofHintPrompt } from "../prompts/hint";
+import { goalsOrError, helpOrError, proofContextOrError } from "../apiUtils";
 
 // Get the max attempts from the vscode setting, if (for some reason) no such setting exists, then use 3 as a default.
 const maxAttempts = workspace.getConfiguration("waterproof").get<number>("maxGenerationAttempts") ?? 3;
@@ -26,11 +27,11 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
     let attemptCounter = 0;
 
     stream.progress("Asking Waterproof what needs to be shown...");
-    const goals = await api.goals();
+    const goals = await goalsOrError(api);
 
     stream.progress("Querying output of Waterproof 'Help.' command...");
-    const help = await api.help();
-    const proofContext = await api.proofContext("<context>THE USER CURSOR IS PLACED HERE</context>");
+    const help = await helpOrError(api);
+    const proofContext = await proofContextOrError(api, "<context>THE USER CURSOR IS PLACED HERE</context>");
 
     const input = { ...goals, ...proofContext, helpOutput: help };
 
