@@ -12,7 +12,7 @@ import {
 	ToolMessage,
 	UserMessage
 } from '@vscode/prompt-tsx';
-import { ToolResult } from '@vscode/prompt-tsx/dist/base/promptElements';
+import { ToolResult } from '@vscode/prompt-tsx';
 import * as vscode from 'vscode';
 import { RiverBasic } from './riverBasic';
 import { DiagnosticElement } from './diagnostic';

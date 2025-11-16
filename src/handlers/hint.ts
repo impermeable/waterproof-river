@@ -2,7 +2,7 @@ import { renderPrompt } from "@vscode/prompt-tsx";
 import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace } from "vscode";
 import { WaterproofAPI } from "../api";
 import { HintPromptRewordForChat, WaterproofHintPrompt } from "../prompts/hint";
-import { goalsOrError, helpOrError, proofContextOrError } from "../apiUtils";
+import { execCommandOrError, goalsOrError, helpOrError, proofContextOrError } from "../apiUtils";
 
 // Get the max attempts from the vscode setting, if (for some reason) no such setting exists, then use 3 as a default.
 const maxAttempts = workspace.getConfiguration("waterproof").get<number>("hintGenerationMaxAttempts") ?? 3;
@@ -32,8 +32,17 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
     stream.progress("Querying output of Waterproof 'Help.' command...");
     const help = await helpOrError(api);
     const proofContext = await proofContextOrError(api, "<context>THE USER CURSOR IS PLACED HERE</context>");
+    stream.progress("Expanding definitions of statements...");
 
-    const input = { ...goals, ...proofContext, helpOutput: help };
+    const result = await execCommandOrError(api, "Fail Expand All.");
+    let definitionsToExpand: string;
+    if ("error" in result) {
+        definitionsToExpand = "No definitions to expand";
+    } else {
+        definitionsToExpand = result.feedback.filter(([n, _]) => n === 4).map(v => v[1]).join("\n");
+    }
+    
+    const input = { ...goals, ...proofContext, helpOutput: help, definitionsToExpand };
 
     const previousSuggestions: Array<{suggestion: string, error: string}> = [];
 

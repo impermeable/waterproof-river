@@ -18,6 +18,14 @@ export async function goalsOrError(api: WaterproofAPI) {
     }
 }
 
+export async function execCommandOrError(api: WaterproofAPI, cmd: string) {
+    try {
+        return (await api.execCommand(cmd));
+    } catch (err) {
+        return {error: `Execuing command '${cmd}' resulted in error ${err}`};
+    }
+}
+
 export async function proofContextOrError(api: WaterproofAPI, marker: string) {
     try {
         return (await api.proofContext(marker));
