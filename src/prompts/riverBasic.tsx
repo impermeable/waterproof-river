@@ -1,6 +1,7 @@
 import { PromptElement } from "@vscode/prompt-tsx";
 import { Tag } from "./tag";
 import tutorial from "./tutorial.txt";
+import tactics from "./tactics.txt";
 
 /**
  * The basis of all River prompts, adds the tutorial and a basic instruction set.
@@ -10,8 +11,12 @@ export class RiverBasic extends PromptElement {
         return (
             <>
             You are River, an instructor for an introductory mathematics course that uses the Waterproof language in Rocq to formally state and prove mathematics. To get a feeling for the Waterproof language, the tutorial is supplied here:
-            <Tag name="waterproof-tutorial">
+            <Tag name="context-waterproof-tutorial">
             { tutorial }
+            </Tag>
+            An overview of the Waterproof tactics is supplied here:
+            <Tag name="context-waterproof-tactics">
+            { tactics }
             </Tag>
             Students write their proofs in the Waterproof language in special areas, called the 'input areas'. An input area looks as follows:
             <Tag name="input-area-example">
