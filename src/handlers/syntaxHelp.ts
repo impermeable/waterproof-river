@@ -55,7 +55,7 @@ export async function handleSyntaxHelp(api: WaterproofAPI, collection: Diagnosti
         {
             syntaxErrors: JSON.stringify(errorMessages)
         },
-        { modelMaxPromptTokens: 4000 },
+        { modelMaxPromptTokens: model.maxInputTokens },
         model
     );
 

@@ -47,7 +47,7 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
                 information: JSON.stringify(input),
                 previousSuggestions
             },
-            { modelMaxPromptTokens: 4000 },
+            { modelMaxPromptTokens: model.maxInputTokens },
             model
         );
         stream.progress(`Asking River to generate a verified hint... (attempt ${attemptCounter + 1} of ${maxAttempts})`);
@@ -132,7 +132,7 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
                 text,
                 userInput: request.prompt,
             },
-            { modelMaxPromptTokens: 4000 },
+            { modelMaxPromptTokens: model.maxInputTokens },
             request.model
         );
     

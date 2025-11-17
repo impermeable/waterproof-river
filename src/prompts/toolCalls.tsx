@@ -95,7 +95,8 @@ export class RiverWorkflowHint extends PromptElement {
 				When the user asks for a hint or help with their current proof, follow this workflow:<br/>
 				1. Use the _hint tool. <br/>
 				2. This tool will return a hint that Waterproof has verified, or in the case that none could be found you will also be informed of that.<br/>
-				3. Output the contents of this hint as part of the current conversation with the student. Keep in mind that the student is learning, so you probably
+				3. Note that the student is not expected to look at the output of the tool, if you reference the output make sure that you talk about Waterproof.<br/>
+				4. Output the contents of this hint as part of the current conversation with the student. If you output any Waterproof tactics/snippets, make sure that they are nicely formatted as code. Keep in mind that the student is learning, so you probably
 				want to give an 'incomplete' hint instead of just outputting the solution.<br/>
 			</Tag>
 		)
