@@ -45,10 +45,10 @@ export class WaterproofHintPrompt extends PromptElement<HintProps> {
             Two example inputs and replies are given below:
             <br/>
             Input: {JSON.stringify(input1)} <br />
-            Output: {strategy1 + separator + JSON.stringify(output1)} <br />
+            Output: {strategy1 + "\n" + separator + "\n" + JSON.stringify(output1)} <br />
             <br/>
             Input: {JSON.stringify(input2)} <br />
-            Output: {strategy2 + separator + JSON.stringify(output2)} <br />
+            Output: {strategy2 + "\n" + separator + "\n" + JSON.stringify(output2)} <br />
             Strategize before answering, ensure your JSON is correctly formatted and the seperator is exactly as specified ({separator}).
             </AssistantMessage>
             </>
