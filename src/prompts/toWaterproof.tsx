@@ -25,6 +25,7 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
                 - If the proof is not finished after the last tactic that you translate from the user input, write a Waterproof comment (in between `(*` and `*)`) that clearly indicates where the student should continue their proof.<br/>
                 - You are **NOT** giving a hint or an answer only translating the student supplied proof into Waterproof. Therefore, you should focus on the user input.<br/>
                 - The goal is supplied here but you should **NOT** use this goal to attempt to solve the proof the student is working on or create a hint. Only translate the students proof<br/>
+                - Use Waterproof tactics only.<br/>
 
                 Start by outputting a description of how you got to the translated proof. This description should be clear to follow and indicate clearly how an idea for a proof should be translated into Waterproof.
                 If possible refer to parts of the output as done in the example.

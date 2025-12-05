@@ -27,7 +27,7 @@ River can help you with Waterproof by giving a hint or by fixing syntax errors.
   Please consider this in the way you are using River.
   In particular, we believe there's a lot of value in being stuck for a while on proving a mathematical statement.
 - When you want River's help, make sure your cursor is on the position you want help on.
-- To interact with River, you need to open the chat in vscode. You would need a GitHub account with [GitHub Copilot](https://github.com/features/copilot) activated. 
+- To interact with River, you need to open the chat in vscode. You would need a GitHub account with [GitHub Copilot](https://github.com/features/copilot) activated. Note that you can get free GitHub Copilot Pro via [GitHub education](https://github.com/education).
 - Note that River uses experimental AI technology and can, and will, make mistakes.
   Always think very critically about the information it provides. 
 
