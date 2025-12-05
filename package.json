@@ -55,6 +55,10 @@
         "isSticky": true,
         "commands": [
           {
+            "name": "question",
+            "description": "Ask a theory question"
+          },
+          {
             "name": "translateProof",
             "description": "Translate a handwritten proof into Waterproof"
           },
@@ -106,7 +110,8 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "install-extension": "npx vsce pack -o river-extension.vsix && code --install-extension river-extension.vsix --force"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
