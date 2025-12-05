@@ -63,7 +63,7 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
         const rStrings = result.join("").split("-----");
         if (rStrings.length < 2) {
             attemptCounter++;
-            previousSuggestions.push({suggestion: result.join(""), error: "Could not find separator ----- in response"});
+            previousSuggestions.push({suggestion: result.join(""), error: "Could not find separator ----- in response, the response should be your strategy followed by the separator and finally followed by a properly formatted JSON object"});
             continue;
         }
 
