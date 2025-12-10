@@ -1,9 +1,10 @@
 import { renderPrompt } from '@vscode/prompt-tsx';
-import { CancellationToken, chat, ChatContext, ChatParticipant, ChatRequest, ChatResponseStream, commands, DiagnosticCollection, Disposable, env, ExtensionContext, extensions, LanguageModelTextPart, LanguageModelToolCallPart, LanguageModelToolResult, languages, lm, MarkdownString, StatusBarAlignment, Uri, window } from 'vscode';
+import { CancellationToken, chat, ChatContext, ChatParticipant, ChatRequest, ChatResponseStream, commands, DiagnosticCollection, Disposable, ExtensionContext, extensions, LanguageModelTextPart, LanguageModelToolCallPart, LanguageModelToolResult, languages, lm, MarkdownString, StatusBarAlignment, ThemeColor, Uri, window } from 'vscode';
 import { WaterproofAPI } from './api';
 import { handleHelp, handleSyntaxHelp, handleToWaterproof } from "./handlers";
 import { ToolCallRound, ToolResultMetadata, ToolUserPrompt, TsxToolUserMetadata } from "./prompts/toolCalls";
 import { HintTool, SyntaxHelpTool } from "./tools";
+import { satisfies } from 'semver';
 
 
 class RiverExtension implements Disposable {
@@ -163,13 +164,34 @@ export function activate(context: ExtensionContext) {
 		throw new Error("Waterproof extension not found");
 	}
 
+	const debugChannel = window.createOutputChannel("Waterproof River");
+	context.subscriptions.push(debugChannel);
+
+	// Retrieve the version of the Waterproof vscode extension
+	const version = waterproofExtension.packageJSON["version"] as string;
+	const REQUIRED_WATERPROOF_VERSION = "=0.10.1";
+	debugChannel.appendLine(`Waterproof extension version: ${version} (required range: ${REQUIRED_WATERPROOF_VERSION})`);
+	const sat = satisfies(version, REQUIRED_WATERPROOF_VERSION);
+	
+	debugChannel.appendLine(`Waterproof version satisfies version requirement: ${sat ? 'yes' : 'no'}`);
+
+	if (!sat) {
+		window.showErrorMessage(`River expects a version of the Waterproof extension satisfying ${REQUIRED_WATERPROOF_VERSION}, but we found ${version} instead.\nSome functions may not work as expected!`);
+	}
+
 	const riverExtension = new RiverExtension(waterproofExtension.exports!, context);
 
 	context.subscriptions.push(riverExtension);
 
 	// Set message in the status bar
 	const statusBarItem = window.createStatusBarItem(StatusBarAlignment.Left, 20);
-	statusBarItem.text = 'River AI Assistant Active';
+	if (!sat) {
+		statusBarItem.text = '$(error) River AI Assistant Active';
+		statusBarItem.backgroundColor = new ThemeColor("statusBarItem.errorBackground");
+		statusBarItem.tooltip = "Version mismatch between the Waterproof and River extensions\nThe 'River' output may contain more information.";
+	} else {
+		statusBarItem.text = 'River AI Assistant Active';
+	}
 	statusBarItem.show();
 	context.subscriptions.push(statusBarItem);
 
