@@ -76,7 +76,7 @@
     "languageModelTools": [
       {
         "name": "waterproof-tue_hint",
-        "modelDescription": "Generates a hint for the user based on the current proof state. This tool should be used when the user asks for a hint or guidance on how to proceed with their proof.",
+        "modelDescription": "Generates a hint for the user based on the current proof state. This tool should be used when the user asks for a hint or guidance on how to proceed with their proof. Only use when the user explicitly asks for help with the next step or a hint.",
         "displayName": "Hint",
         "toolReferenceName": "generateHint",
         "canBeReferencedInPrompt": true,
@@ -90,6 +90,17 @@
         "modelDescription": "Analyzes the syntax errors in the current Waterproof document and provides feedback and suggestions on how to fix them. This tool should be used when the user asks about syntax errors or issues in their proof or in the file.",
         "displayName": "Syntax Check",
         "toolReferenceName": "checkSyntax",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "waterproof-tue_proof_context",
+        "modelDescription": "Returns the goals and proof script at the place of the user cursor. This tool should be used when the user mentions the current proof in a follow up question and the answer is dependent on the current proof state.",
+        "displayName": "Proof Context",
+        "toolReferenceName": "proofContext",
         "canBeReferencedInPrompt": true,
         "inputSchema": {
           "type": "object",

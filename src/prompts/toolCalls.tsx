@@ -42,6 +42,7 @@ export interface ToolCallRound {
 
 export interface ToolUserProps extends BasePromptElementProps {
 	currentFile: vscode.TextDocument;
+	versionDiffers: boolean;
 	diagnostics: vscode.Diagnostic[];
 	request: vscode.ChatRequest;
 	context: vscode.ChatContext;
@@ -64,14 +65,8 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 					<RiverWorkflowHint/>
 					<RiverWorkflowErrors/>
 					- If none of the workflows applies you are in 'chat' mode and free to engage in conversation with the user about mathematics and Waterproof.
+					{ this.props.versionDiffers && <> <br/>- Note that the file has changed since the last time you queried for the proof context. If you need an up to date proof context, use the proof context tool again.</> }
 				</AssistantMessage>
-				<AssistantMessage>
-					<Tag name="context-user-file">
-					The current file that the user is working on is: <br />
-					<PromptReferenceElement ref={ {value: this.props.currentFile.uri, id: "userCurrentFile" }} />
-					</Tag>
-				</AssistantMessage>
-				<History context={this.props.context} priority={10} />
 				<UserMessage>{this.props.request.prompt}</UserMessage>
 				<ToolCalls
 					toolCallRounds={this.props.toolCallRounds}

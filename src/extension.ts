@@ -3,13 +3,14 @@ import { CancellationToken, chat, ChatContext, ChatParticipant, ChatRequest, Cha
 import { WaterproofAPI } from './api';
 import { handleHelp, handleSyntaxHelp, handleToWaterproof } from "./handlers";
 import { ToolCallRound, ToolResultMetadata, ToolUserPrompt, TsxToolUserMetadata } from "./prompts/toolCalls";
-import { HintTool, SyntaxHelpTool } from "./tools";
+import { HintTool, ProofContextTool, SyntaxHelpTool } from "./tools";
 import { satisfies } from 'semver';
 
 
 class RiverExtension implements Disposable {
 
 	private riverChatParticipant: ChatParticipant;
+	private lastSeenVersion: number = 0;
 	public readonly collection: DiagnosticCollection;
 
 	constructor(private api: WaterproofAPI, context: ExtensionContext) {
@@ -55,14 +56,16 @@ class RiverExtension implements Disposable {
 			return;
 		}
 		const diagnostics = doc ? languages.getDiagnostics(doc.uri) : [];
-		
-		
+		const versionDiffers = this.lastSeenVersion !== doc.version;
+
+
 		// Tool calling prompt and loop modified from https://github.com/microsoft/vscode-extension-samples/tree/main/chat-sample
 
 		const result = await renderPrompt(
 			ToolUserPrompt,
 			{
 				currentFile: doc,
+				versionDiffers,
 				diagnostics,
 				context,
 				request,
@@ -75,6 +78,8 @@ class RiverExtension implements Disposable {
 			request.model);
 		let messages = result.messages;
 		
+		// Update the last seen version of the document
+		this.lastSeenVersion = doc.version;
 
 		const accumulatedToolResults: Record<string, LanguageModelToolResult> = {};
 		const toolCallRounds: ToolCallRound[] = [];
@@ -110,6 +115,7 @@ class RiverExtension implements Disposable {
 					{
 						currentFile: doc,
 						diagnostics,
+						versionDiffers,
 						context,
 						request,
 						toolCallRounds,
@@ -195,9 +201,12 @@ export function activate(context: ExtensionContext) {
 	statusBarItem.show();
 	context.subscriptions.push(statusBarItem);
 
+	const api = waterproofExtension.exports;
+
 	// Register tools
-	context.subscriptions.push(lm.registerTool("waterproof-tue_hint", new HintTool(waterproofExtension.exports)));
-	context.subscriptions.push(lm.registerTool("waterproof-tue_syntax_check", new SyntaxHelpTool(waterproofExtension.exports, riverExtension.collection)));
+	context.subscriptions.push(lm.registerTool("waterproof-tue_hint", new HintTool(api)));
+	context.subscriptions.push(lm.registerTool("waterproof-tue_syntax_check", new SyntaxHelpTool(api, riverExtension.collection)));
+	context.subscriptions.push(lm.registerTool("waterproof-tue_proof_context", new ProofContextTool(api)));
 }
 
 // This method is called when your extension is deactivated
