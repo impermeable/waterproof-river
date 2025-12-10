@@ -23,7 +23,7 @@ const output2 = { "hint": "You have assumed that for every ε > 0, x < ε. To sh
 export class WaterproofHintPrompt extends PromptElement<HintProps> {
     render(): PromptPiece {
         return (
-            <> 
+            <>
             <AssistantMessage>
             <RiverBasic/>
             You will receive a JSON object containing: <br/>
@@ -81,6 +81,33 @@ export class HintPromptRewordForChat extends PromptElement<HintPromptRewordForCh
 			If you use code in your answer stick to the Waterproof language.
 			<br/>
 			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ... ∈ ...` and engage with the student to come up with the missing pieces.
+			</AssistantMessage>
+			<UserMessage>
+				{this.props.userInput}
+			</UserMessage>
+			</>
+		);
+	}
+};
+
+export class HintPromptRewordForChat2 extends PromptElement<HintPromptRewordForChatProps> {
+    render(): PromptPiece {
+        return (
+			<> 
+			<AssistantMessage>
+			<RiverBasic/>
+			Previously, you came up with the following strategy:
+			<Tag name="strategy">
+			    {this.props.strategy}
+			</Tag>
+            And you generated the following hint:
+            <Tag name="generated-hint">
+			    {this.props.text}
+            </Tag>
+			Your task is to reformulate the hint to be more conversational and engaging, as if you were directly addressing a student. Or, in the case that you failed to generate a correct hint, explain that to the user. Make sure to maintain the original intent and clarity of the hint while enhancing its tone to be more supportive and encouraging.
+			If you use code in your answer stick to the Waterproof language.
+			<br/>
+			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ... ∈ ...` and instead of `Assume that a is positive` output `Assume that ...`. Do not tell the user to fill in the blanks.
 			</AssistantMessage>
 			<UserMessage>
 				{this.props.userInput}

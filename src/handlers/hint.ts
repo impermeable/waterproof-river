@@ -1,7 +1,7 @@
 import { renderPrompt } from "@vscode/prompt-tsx";
 import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace } from "vscode";
 import { WaterproofAPI } from "../api";
-import { HintPromptRewordForChat, WaterproofHintPrompt } from "../prompts/hint";
+import { HintPromptRewordForChat, HintPromptRewordForChat2, WaterproofHintPrompt } from "../prompts/hint";
 import { goalsOrError, helpOrError, proofContextOrError } from "../apiUtils";
 
 // Get the max attempts from the vscode setting, if (for some reason) no such setting exists, then use 3 as a default.
@@ -141,6 +141,21 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
             stream.markdown(f);
         }
     } else {
-        return text;
+        const m = await renderPrompt(
+            HintPromptRewordForChat2,
+            {
+                strategy,
+                text,
+                userInput: "",
+            },
+            { modelMaxPromptTokens: model.maxInputTokens },
+            model
+        );
+        const r = await model.sendRequest(m.messages, {}, token);
+        const parts = [];
+        for await (const f of r.text) {
+            parts.push(f);
+        }
+        return "Generated hint message:\n<context-hint-message>\n" + parts.join("") + "\nDo not fill in the blanks.\n</context-hint-message>";
     }
 }
