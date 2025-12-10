@@ -114,17 +114,22 @@
     "install-extension": "npx vsce pack -o river-extension.vsix && code --install-extension river-extension.vsix --force"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
+    "@types/semver": "^7.7.1",
     "@types/vscode": "^1.103.0",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
     "@vscode/vsce": "^3.6.2",
     "esbuild": "^0.25.8",
     "eslint": "^9.32.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "@vscode/prompt-tsx": "^0.4.0-alpha.5"
+    "@vscode/prompt-tsx": "^0.4.0-alpha.5",
+    "semver": "^7.7.3"
   }
 }

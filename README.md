@@ -38,6 +38,7 @@ River can help you with Waterproof by giving a hint or by fixing syntax errors.
 
 - `@River /hint` tells River that you want a hint.
 - `@River /syntaxHelp` directly tells River that you want help with the syntax.
+- `@River /translateProof` instructs River to translate the proof at the cursor into Waterproof syntax.
 
 ### 2. Freeform chat
 

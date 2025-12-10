@@ -2,6 +2,7 @@ import { renderPrompt } from "@vscode/prompt-tsx";
 import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace, CodeAction } from "vscode";
 import { WaterproofAPI } from "../api";
 import { WaterproofToWaterproofPrompt } from "../prompts/toWaterproof";
+import { extractProof } from "./util";
 
 // Get the max attempts from the vscode setting, if (for some reason) no such setting exists, then use 3 as a default.
 const maxAttempts = workspace.getConfiguration("waterproof").get<number>("maxGenerationAttempts") ?? 3;
@@ -16,8 +17,6 @@ export async function handleToWaterproof(api: WaterproofAPI, request: ChatReques
     stream.progress("Asking Waterproof what needs to be shown...");
     const goals = await api.goals();
 
-    // stream.progress("Translating student proof into Waterproof...");
-
     // Query the proof context.
     const proofContext = await api.proofContext("<context>THE USER CURSOR IS PLACED HERE</context>");
 
@@ -29,16 +28,18 @@ export async function handleToWaterproof(api: WaterproofAPI, request: ChatReques
     let description: string = "none";
     let codeSuggestion: string = "none";
 
+    const userProof = extractProof(proofContext.full);
+
     while (attemptCounter < maxAttempts) {
         const { messages } = await renderPrompt(
             WaterproofToWaterproofPrompt,
             {
                 goal: goals.currentGoal,
                 proofContext,
-                userProof: request.prompt,
+                userProof,
                 previousSuggestions
             },
-            { modelMaxPromptTokens: 4000 },
+            { modelMaxPromptTokens: request.model.maxInputTokens },
             model
         );
         stream.progress(`Asking River to translate your proof into Waterproof... (attempt ${attemptCounter + 1} of ${maxAttempts})`);
