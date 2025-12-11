@@ -62,7 +62,7 @@ export async function handleSyntaxHelp(api: WaterproofAPI, collection: Diagnosti
         model
     );
 
-    stream.progress("Asking River to analyze the syntax errors...");
+    stream.progress("Asking River to analyze the errors...");
     const resp = await model.sendRequest(messages, {}, token);
 
     let result: string = "";
@@ -109,7 +109,7 @@ export async function handleSyntaxHelp(api: WaterproofAPI, collection: Diagnosti
     }
 
     collection.set(doc.uri, diags);
-    stream.markdown("\n---\n");
+    stream.markdown("\n\n---\n");
     stream.markdown("Suggestions have been added. Click the button below to clear them.");
     stream.button({ command: "river.clearSuggestions", title: "Clear Suggestions", tooltip: "Clear the suggestions added by River" });
 

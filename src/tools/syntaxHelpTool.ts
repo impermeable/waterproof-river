@@ -16,12 +16,12 @@ export class SyntaxHelpTool implements LanguageModelTool<null> {
         _token: CancellationToken
     ) {
         const confirmationMessages = {
-            title: 'Allow River to analyze syntax errors?',
-            message: new MarkdownString("Allow River to analyze the syntax errors in the current document?"),
+            title: 'Allow River to analyze errors?',
+            message: new MarkdownString("Allow River to analyze the error(s) on the current line?"),
         };
 
         return {
-            invocationMessage: 'Result of syntax error analysis',
+            invocationMessage: 'Result of error analysis',
             confirmationMessages,
         };
     }
