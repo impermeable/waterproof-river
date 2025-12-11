@@ -80,8 +80,9 @@ export class HintPromptRewordForChat extends PromptElement<HintPromptRewordForCh
 			Your task is to reformulate the hint to be more conversational and engaging, as if you were directly addressing a student. Or, in the case that you failed to generate a correct hint, explain that to the user. Make sure to maintain the original intent and clarity of the hint while enhancing its tone to be more supportive and encouraging.
 			If you use code in your answer stick to the Waterproof language.
 			<br/>
-			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ... ∈ ...` and engage with the student to come up with the missing pieces.
-			</AssistantMessage>
+			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ….` and instead of `Assume that a is positive` output `Assume that ….`. Engage with the student to come up with the missing pieces. */}
+			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ...` and instead of `Assume that a is positive` output `Assume that ...`. Engage with the student to come up with the missing pieces.
+            </AssistantMessage>
 			<UserMessage>
 				{this.props.userInput}
 			</UserMessage>
@@ -107,10 +108,11 @@ export class HintPromptRewordForChat2 extends PromptElement<HintPromptRewordForC
 			Your task is to reformulate the hint to be more conversational and engaging, as if you were directly addressing a student. Or, in the case that you failed to generate a correct hint, explain that to the user. Make sure to maintain the original intent and clarity of the hint while enhancing its tone to be more supportive and encouraging.
 			If you use code in your answer stick to the Waterproof language.
 			<br/>
-			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ... ∈ ...` and instead of `Assume that a is positive` output `Assume that ...`. Do not tell the user to fill in the blanks.
+			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ….` and instead of `Assume that a is positive` output `Assume that ….`. Do not tell the user to fill in the blanks. */}
+			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ....` and instead of `Assume that a is positive` output `Assume that ....`. Do not tell the user to fill in the blanks.
 			</AssistantMessage>
 			<UserMessage>
-				{this.props.userInput}
+            {this.props.userInput}
 			</UserMessage>
 			</>
 		);

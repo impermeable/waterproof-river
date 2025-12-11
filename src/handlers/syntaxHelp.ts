@@ -84,7 +84,7 @@ export async function handleSyntaxHelp(api: WaterproofAPI, collection: Diagnosti
     try {
         json = JSON.parse(split[1].trim()) as Array<{ to: { char: number, line: number }, from: { char: number, line: number }, message: string, fixed: string }>;
     } catch (e) {
-        stream.markdown("River did not return a valid JSON response. Please try again.");
+        // stream.markdown("River did not return a valid JSON response. Please try again.");
     }
 
     const diags: Diagnostic[] = [];

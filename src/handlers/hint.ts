@@ -156,6 +156,6 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
         for await (const f of r.text) {
             parts.push(f);
         }
-        return "Generated hint message:\n<context-hint-message>\n" + parts.join("") + "\nDo not fill in the blanks.\n</context-hint-message>";
+        return "Generated hint message:\n<context-hint-message>\n" + parts.join("") + "\nThe student should fill in the blanks, not River.\n</context-hint-message>";
     }
 }
