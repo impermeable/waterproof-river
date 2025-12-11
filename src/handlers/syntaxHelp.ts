@@ -33,19 +33,22 @@ export async function handleSyntaxHelp(api: WaterproofAPI, collection: Diagnosti
         stream.markdown("Could not get the current document from Waterproof. Please make sure you have a Waterproof document open and try again.");
         return;
     }
-    const diagnostics = languages.getDiagnostics(doc.uri);
-    const errors = diagnostics.filter(d => d.severity === DiagnosticSeverity.Error && !d.message.includes("Attempt to save"));
-    if (errors.length === 0) {
-        stream.markdown("No syntax errors found in the current document.");
+
+    const pos = api.cursorPosition();
+    if (pos === undefined) {
+        stream.markdown("No cursor position");
         return;
     }
+    const diagnostics = languages.getDiagnostics(doc.uri).filter(d => d.range.contains(pos));
+    // const textRanges = diagnostics.map(v => doc.getText(v.range));
+    // stream.markdown(JSON.stringify({"diags": diagnostics, "text": textRanges}));
 
-    const errorMessages = errors.map(e => {
-        const line = doc.lineAt(e.range.end.line);
+    const errorMessages = diagnostics.map(d => {
+        const line = doc.lineAt(d.range.end.line);
         return {
-            "errorRange": e.range,
+            "errorRange": d.range,
             "lineRange": line.range,
-            "message": e.message,
+            "message": d.message,
             "line": line.text
         };
     });

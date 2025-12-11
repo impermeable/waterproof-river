@@ -1,4 +1,4 @@
-import { TextDocument } from "vscode";
+import { Position, TextDocument } from "vscode";
 
 export type WaterproofAPI = {
     goals: () => Promise<{currentGoal: string, hypotheses: Array<Hypothesis>, otherGoals: string[]}>;
@@ -9,7 +9,8 @@ export type WaterproofAPI = {
         full: string,
         withCursorMarker: string
     }>;
-    tryProof: (steps: string) => Promise<{finished: boolean, remainingGoals: string[]}>; 
+    tryProof: (steps: string) => Promise<{finished: boolean, remainingGoals: string[]}>;
+    cursorPosition: () => Position | undefined;
 }
 
 export type Hypothesis = {
