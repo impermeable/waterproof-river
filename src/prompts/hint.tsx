@@ -11,14 +11,42 @@ interface HintProps extends BasePromptElementProps {
     }>
 }
 
-const separator = "-----";
-const input1 = {"currentGoal":"∀ x ∈ ℝ, x + 3 = 3 + x","currentLemma":"∀ x ∈ ℝ,\n    x + 3 = 3 + x","helpOutput":"The goal is to show a 'for all'-statement (∀). Introduce an arbitrary variable in ℝ.\nHint, replace with: Take ... ∈ ....","userAttemptSoFar":"Lemma exercise_take :\n  ∀ x ∈ ℝ,\n    x + 3 = 3 + x.\nProof.\n```\n<input-area>\n```coq\n","context": "..." };
-const strategy1 = "The student is trying to prove a 'for all' statement. The appropriate next step is to introduce an arbitrary variable in ℝ using the 'Take' tactic. I will suggest the studen to use `Take ... ∈ ...` to introduce the variable.";
-const output1 = { "hint": "We need to prove the statement for all values of x in ℝ. We take some arbitrary x in ℝ and reason about that x. In Waterproof we do this using the `Take` tactic.", "step": "Take x ∈ ℝ." };
+// TODO: Should we keep the separator? Would it work better if we ask for all the output in the form of a JSON file?
 
-const input2 = {"currentGoal":"10 * x < 1","currentLemma":"∀ x ∈ ℝ,\n    (∀ ε > 0, x < ε) ⇒\n       x + 1/2 < 1","helpOutput":"You can use one of the ‘for all’-statements (∀):\n    (∀ ε > 0, x < ε)\nHint, replace with: Use ... := ... in ....","userAttemptSoFar":"Lemma example_use_for_all :\n  ∀ x ∈ ℝ,\n    (∀ ε > 0, x < ε) ⇒\n       x + 1/2 < 1.\nProof.\nTake x ∈ ℝ.\nAssume that (∀ ε > 0, x < ε) (i).\nUse ε := (1/2) in (i).\n* Indeed, (1 / 2 > 0).\n* It holds that  (x < 1 / 2).\n  We conclude that (x + 1/2 < 1).\nQed.\n```\n### Try it yourself\n```coq\nLemma exercise_use_for_all:\n  ∀ x ∈ ℝ,\n    (∀ ε > 0, x < ε) ⇒\n       10 * x < 1.\n\nProof.\n```\n<input-area>\n```coq\nTake x ∈ (ℝ).\nAssume that (∀ ε > 0, x < ε).\n","context": "..." };
-const strategy2 = "The student has assumed that for every ε > 0, x < ε. To show 10 * x < 1, they should use the for-all statement with a suitable value for ε that relates to their goal. In particular, they can choose ε := (1/10) to make 10 * x < 1 follow from x < ε.";
-const output2 = { "hint": "You have assumed that for every ε > 0, x < ε. To show 10 * x < 1, try to use the for-all statement with a suitable value for ε that relates to your goal. In particular, what value of ε can we choose that would make 10 * x < 1 follow from x < ε?", "step": "Use ε := (1/10) in (H)." };
+const separator = "-----";
+const input1 = {
+    currentGoal: "∀ x ∈ ℝ, x + 3 = 3 + x",
+    hypotheses: [],
+    otherGoals: [],
+    userAttemptSoFar:"Lemma exercise_take : ∀ x ∈ ℝ, x + 3 = 3 + x. Proof. Qed.",
+    withCursorMarker:"Lemma exercise_take : ∀ x ∈ ℝ, x + 3 = 3 + x. Proof. <context>THE USER CURSOR IS PLACED HERE</context> Qed.",
+    name: "exercise_take",
+    helpOutput: "The goal is to show a 'for all'-statement (∀). Introduce an arbitrary variable in ℝ.\nHint, replace with: Take ... ∈ ....",
+};
+const strategy1 = "The student is trying to prove a 'for all' statement. The next step should be to introduce an arbitrary variable in ℝ. In Waterproof this is done using the 'Take' tactic. A valid next step will `Take x ∈ ℝ.`";
+const output1 = {
+    step: "Take x ∈ ℝ."
+};
+
+// {"currentGoal":"10 * x < 1",
+// "hypotheses":[{"name":"x","content":"ℝ"},{"name":"_H","content":"x ∈ ℝ"},{"name":"i","content":"∀ ε > 0, x < ε"}],"otherGoals":[],
+const input2 = {
+    currentGoal: "10 * x < 1",
+    hyptotheses: [
+        { name: "x", content: "ℝ" },
+        { name: "_H", content: "x ∈ ℝ" },
+        { name: "i", content: "∀ ε > 0, x < ε"}
+    ],
+    otherGoals: [],
+    full: "Lemma exercise_use_for_all: ∀ x ∈ ℝ, (∀ ε > 0, x < ε) ⇒ 10 * x < 1. Proof. Take x ∈ ℝ. Assume that ∀ ε > 0, x < ε as (i). Qed. ",
+    withCursorMarker: "Lemma exercise_use_for_all: ∀ x ∈ ℝ, (∀ ε > 0, x < ε) ⇒ 10 * x < 1. Proof. Take x ∈ ℝ. Assume that ∀ ε > 0, x < ε as (i). <context>THE USER CURSOR IS PLACED HERE</context> Qed. ",
+    name: "exercise_use_for_all", 
+    helpOutput:"You can try to expand definitions or use alternative characterizations:\nYou can try to expand definitions or use alternative characterizations:\nYou can use one of the ‘for all’-statements (∀):\nYou can use one of the ‘for all’-statements (∀):\n    (∀ ε > 0, x < ε)\n    (∀ ε > 0, x < ε)\nHint, replace with: Use ... := ... in ....\nHint, replace with: Use ${0:x} := ${1:0} in ({2:i}).${3}"
+};
+const strategy2 = "The student has already assumed that for every ε > 0, x < ε and labeled it i. To show 10 * x < 1, they should use the for-all statement with a suitable value for ε that relates to the goal. In particular, choosing ε := 1/10 will work. The next step should use the `Use` tactic to make this choice for ε: `Use ε := 1/10 in (i).`";
+const output2 = {
+    step: "Use ε := (1/10) in (i)."
+};
 
 export class WaterproofHintPrompt extends PromptElement<HintProps> {
     render(): PromptPiece {
@@ -36,12 +64,11 @@ export class WaterproofHintPrompt extends PromptElement<HintProps> {
             <Tag name="jsonWithInformation">
             {this.props.information}
             </Tag>
-            Your task is to provide a hint to the student that nudges them in the right direction without giving away the full proof. The hint should be concise and focus on the next step the student should take. If the student is stuck, consider suggesting relevant Waterproof tactics or concepts that could help them progress.
+            Your task is to generate the next step in the proof. This usually means one sentence or waterproof tactic, but in some cases more than one tactic or sentence may be supplied. The step should be concise and use Waterproof tactics only.
             <br/>
             <PreviousMistakes previousSuggestions={this.props.previousSuggestions}/>
             <br/>
-            Always encourage the student to think critically and explore different approaches to solving the problem. Remember, the goal is to guide them towards discovering the solution on their own.
-            Your output will be your strategy for answering the question then a separator ({separator}), followed by a JSON object of type `hint: string, step: string, tutorial: string` where hint is a text based hint (allowed to contain markdown) and step is the next concrete step in the proof that you would take (a valid waterproof tactic containing no placeholders). Finally, tutorial includes a pointer to the relevant section in the tutorial that explains the Waterproof tactic used in the step.
+            Your output should be a strategy for generating the next step, followed by a separator of the form '{separator}'', followed by a JSON object of type `step: string, tutorial: string` where step is the next concrete step in the proof that you would take (a valid waterproof tactic containing no placeholders). Finally, tutorial includes a pointer to the relevant section in the tutorial that explains the Waterproof tactic used in the step.
             <br/>
             Two example inputs and replies are given below:
             <br/>
@@ -101,19 +128,56 @@ export class HintPromptRewordForChat2 extends PromptElement<HintPromptRewordForC
 			<Tag name="strategy">
 			    {this.props.strategy}
 			</Tag>
-            And you generated the following hint:
-            <Tag name="generated-hint">
+            And you generated the following next step:
+            <Tag name="generated-step">
 			    {this.props.text}
             </Tag>
-			Your task is to reformulate the hint to be more conversational and engaging, as if you were directly addressing a student. Or, in the case that you failed to generate a correct hint, explain that to the user. Make sure to maintain the original intent and clarity of the hint while enhancing its tone to be more supportive and encouraging.
-			If you use code in your answer stick to the Waterproof language.
+			{/* Your task is to reformulate the hint to be more conversational and engaging, as if you were directly addressing a student. Or, in the case that you failed to generate a correct hint, explain that to the user. Make sure to maintain the original intent and clarity of the hint while enhancing its tone to be more supportive and encouraging. */}
+			You are a socratic tutor, helping the student completing the proof. Based on the strategy that was formulated for the proof and the possibly verified next step please help the students in a socratic manner. You can help the student by asking the right questions.
+            {/* If you use code in your answer stick to the Waterproof language. */}
 			<br/>
-			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ….` and instead of `Assume that a is positive` output `Assume that ….`. Do not tell the user to fill in the blanks. */}
-			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ....` and instead of `Assume that a is positive` output `Assume that ....`. Do not tell the user to fill in the blanks.
+			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ….` and instead of `Assume that a is positive` output `Assume that ….`. */}
+			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ....` and instead of `Assume that a is positive` output `Assume that ....`. */}
 			</AssistantMessage>
 			<UserMessage>
             {this.props.userInput}
 			</UserMessage>
+            <UserMessage>
+            <Tag name="example-1">
+                <Tag name="strategy">
+                    {strategy1}
+                </Tag>
+                <Tag name="generated-hint">
+                    {`A valid next step was found that Waterproof accepted:\n\n\`\`\`\n ${output1.step}\n\`\`\``}
+                </Tag>
+                <Tag name="example-output">
+                    You are proving a 'for all'-statement. What do you need to do to start your proof in such a case?
+                    {/*                     
+                    The next step is to introduce an arbitrary value and show that the claim holds for that value.<br/>
+                    Use the `Take` tactic for this:<br/>
+                    ```<br/>
+                    Take … ∈ ….<br/>
+                    ```<br/>
+                    Try to find out what the dots should be replaced with. */}
+                </Tag>
+            </Tag>
+            <Tag name="example-2">
+                <Tag name="strategy">
+                    {strategy2}
+                </Tag>
+                <Tag name="generated-hint">
+                    {`A valid next step was found that Waterproof accepted:\n\n\`\`\`\n ${output2.step}\n\`\`\``}
+                </Tag>
+                <Tag name="example-output">
+                    Earlier in the proof you have already assumed that {"`∀ ε > 0, x < ε`"} (i.e. we can use `ε` to bound `x`) and labeled it `i`. This is a statement that starts with `∀`, about which you know, in the context of this proof, that it holds. What can you do to use this statement? 
+                    {/* you now need to show that {"`10 * x < 1`"}.<br/>
+                    Try to find a value for `ε` that, in combination with assumption `i`, gives the desired result. Once you have a value of `ε` you want to use, fill in the following skeleton:<br/>
+                    ```<br/>
+                    Use ε := … in (i).<br/>
+                    ```<br/> */}
+                </Tag>
+            </Tag>
+            </UserMessage>
 			</>
 		);
 	}

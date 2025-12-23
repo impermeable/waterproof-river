@@ -59,14 +59,34 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 				<AssistantMessage>
                     <RiverBasic/>
 					Instructions: <br />
-					- Be critical about the proof that the student is working on, it could be wrong or incomplete. <br/>
-					- Don't ask the user for confirmation to use tools, just use them. <br/>
-					- There are special workflows as described below, when you determine that you should follow any one of these, follow them precisely by going through all the steps in order!
-					<RiverWorkflowHint/>
-					<RiverWorkflowErrors/>
-					- If none of the workflows applies you are in 'chat' mode and free to engage in conversation with the user about mathematics and Waterproof.
+					- You are a socratic tutor that helps a student with their proof.<br/>
+					- You can guide the students with questions.<br/>
+					- The student's proof so far could be wrong or go in a wrong direction. In that case, it is good to address this first, again preferably with a question.<br/>
+					- In order to help, very often you will need to know the proof the student is working on. You can get this information with a tool call.<br/>
+					- It is okay to get progressively more helpful. Especially in the beginning, you can be brief (but of course still friendly!) When a student is repeatedly asking about the same point in a proof, you can progressively give better hints, give more details or specifically help with how you need to write something in Waterproof.<br/>
+					- You can use tools to get more information on the student proof, or to get an approved hint (which means that it is based on a next step in the proof about which we know it would compile in the Waterproof system). This hint is hopefully also already formulated in terms of a question. This question can then probably without much change be related to the student. <br/>
+					Below are some examples of hint and proof context tool outputs along with an example output for River.
+					<Tag name="examples">
+						<Tag name="example-output-hint-tool">
+						You are trying to prove a 'there exists' statement. What tactic can you use to pick a specific value that satisfies both {"$z > 10$"} and {"$z < 14$"}? What value might you choose for $z$?
+						</Tag>
+						<Tag name="example-output-proof-context-tool">
+						The student is currently working on 'exercise_choose'. So far the statement and proof looks as follows:{"<context-student-proof>"}
+						Lemma exercise_choose : {"∃ z > 10, z < 14"}. Proof. {"<context-cursor>"}USER CURSOR IS HERE{"</context-cursor>"} Qed. 
+						{"</context-student-proof>"}The goal at the cursor position is: "{"∃ z > 10, z < 14"}"The hypotheses for this goal are:
+						</Tag>
+						<Tag name="example-river-output">
+						You are trying to prove a 'there exists' statement. What do you need to do to embark on a proof of such a statement?
+						{/* Try to perform this step and see what condition you need on $z$. */}
+						</Tag>
+					</Tag>
+					{/* - There are special workflows as described below, when you determine that you should follow any one of these, follow them precisely by going through all the steps in order! */}
+					{/* <RiverWorkflowHint/> */}
+					{/* <RiverWorkflowErrors/> */}
+					{/* - If none of the workflows applies you are in 'chat' mode and free to engage in conversation with the user about mathematics and Waterproof. */}
 					{ this.props.versionDiffers && <> <br/>- Note that the file has changed since the last time you queried for the proof context. If you need an up to date proof context, use the proof context tool again.</> }
 				</AssistantMessage>
+				<History context={this.props.context} priority={10} />
 				<UserMessage>{this.props.request.prompt}</UserMessage>
 				<ToolCalls
 					toolCallRounds={this.props.toolCallRounds}
@@ -77,19 +97,18 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 	}
 }
 
-export class RiverWorkflowHint extends PromptElement {
-	async render() {
-		return (
-			<Tag name='workflow-hint'>
-				When the user asks for a hint or help with their current proof, follow this workflow:<br/>
-				1. Use the _hint tool. <br/>
-				2. This tool will return a hint that Waterproof has verified and written in a form suitable for showing to the student. Alternatively, in the case that River was unable to create a verified hint you will be informed as well.<br/>
-				3. Output the contents of the hint as part of the current conversation with the student.<br/>
-				   If you output any Waterproof tactics/snippets, make sure that they are nicely formatted as code.<br/>
-			</Tag>
-		)
-	}
-}
+// export class RiverWorkflowHint extends PromptElement {
+// 	async render() {
+// 		return (
+// 			<Tag name='workflow-hint'>
+// 				When the user asks for a hint or help with their current proof, follow this workflow:<br/>
+// 				1. Use the _hint tool. <br/>
+// 				2. Relate the message of the hint back to the student.<br/>
+// 				   {/* If you output any Waterproof tactics/snippets, make sure that they are nicely formatted as code.<br/> */}
+// 			</Tag>
+// 		)
+// 	}
+// }
 
 export class RiverWorkflowErrors extends PromptElement {
 	async render() {

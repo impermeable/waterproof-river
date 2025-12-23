@@ -1,0 +1,226 @@
+\subsection{Directly proving ``for all" statements}
+
+If you want to directly (i.e.~without a contradiction argument) show a statement such as
+\[
+\begin{split}
+	&\foralltext {a \in A},\\
+	& \quad \dots
+\end{split}
+\]
+you need to do the following.
+You first need to introduce (i.e. define) the variable $a \in A$ by writing something like
+\[
+\text{Let } a \in A.\phantom{y}
+\]
+or
+\[
+\text{Take } a \in A \text{ arbitrary}.
+\]
+Next, you continue to prove the indented block on the next line.
+
+In our example, we encounter this situation twice: in
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \dots
+\end{split}
+\]
+and in
+\[
+\begin{split}
+&\foralltext n \geq n_0,\\
+&\quad \dots
+\end{split}
+\]
+
+
+
+For the statement 
+\[
+\begin{split}
+&\text{for all } \epsilon > 0,\\
+&\quad \textellipsis
+\end{split}
+\]
+this comes down to writing 
+\[
+\text{Let } \epsilon > 0.
+\]
+\subsection{Directly proving ``there exists" statements}
+
+If you want to directly (i.e.~without using a contradiction argument) show a statement of the form
+\[
+\begin{split}
+& \existstext {b \in B},\\
+&\quad \textellipsis
+\end{split}
+\]
+you need to take the following {\bf two steps}.
+ 
+{\bf First} you need to make a choice for $b$, e.g.~by writing
+\[
+\text{Choose } b := \textellipsis
+\]
+
+{\bf Second}, you need to verify that really $b \in B$.
+If this is straightforward, you can just write
+\[
+\text{Indeed, } b \in B.
+\]
+But sometimes, it is more complicated than that, and you need some derivation, after which you can close off that derivation with for instance
+\[
+\text{We conclude that } b \in B.
+\]
+After showing that $b \in B$, you continue to show the indented statement $(\textellipsis)$ with that choice of $b$.
+
+In our example we encounter this situation with
+\[
+\text{there exists } n_0 \in \mathbb{N} \text{ such that } \{ \dots \}
+\]
+We could for instance write:
+\[
+\begin{split}
+&\text{Choose } n_0 := 10.\\
+&\text{Indeed, } n_0 \in \mathbb{N}.
+\end{split}
+\]
+and then continue with the proof of the block $\{ \dots \}$, with now $n_0$ fixed as $10$. 
+Making choices is hard. With a bad choice, you won't be able to prove whatever is inside the block $\{ \dots \}$. In many of the proofs that you will write, this is probably the step that requires the most thinking, the most creativity. 
+
+\subsection{Using a ``for all" statement}
+
+There is a big difference between \emph{proving} and \emph{using} a ``for all" statement.
+Suppose now you want to \emph{use} a ``for all" statement
+\begin{mcodenumbered}\label{eq:forall-to-use}
+	\begin{split}
+		&\foralltext a \in A,\\
+		&\quad \textellipsis
+	\end{split}
+\end{mcodenumbered}
+What you then need to do comes in {\bf three} steps.
+
+{\bf First}, you can write
+\[
+	\text{Use } a := \_\_ \ \text{ in (\ref{eq:forall-to-use})}.
+\]
+{\bf Second}, you need to verify that your choice of $a$ is really in $A$.
+If this is obvious you can just write
+\[
+	\quad \text{Indeed, } a \in A.
+\]
+Otherwise, you can insert a longer proof here, that you can close with
+\[
+	\quad \text{We conclude that } a \in A.
+\]
+{\bf Third}, and finally, it is important to state the new fact that you have derived.
+\[
+	\text{It holds that } \textellipsis
+\]
+
+In the context of our running example, a fact called the Archimedean property can be relevant.
+It says that for all $x \in \mathbb{R}$, there exists $k \in \mathbb{N}$ s.t. $x < k$.
+
+In our proof, we could therefore state
+\begin{mcodenumbered}\label{eq:result-archimedean-to-use}
+\begin{split}
+	&\text{By the Archimedean property it holds that}\\
+	&\quad \foralltext x \in \mathbb{R},\\
+	&\quad\quad \existstext k \in \mathbb{N},\\
+	&\quad\quad\quad x < k.
+\end{split}
+\end{mcodenumbered}
+Note that for now we only focus on the ``for all" part of this statement.
+We can use this part now by writing
+\begin{mcodenumbered}\label{eq:result-after-picking-in-archimedean}
+\begin{split}
+	&\text{Use } x := 15 \text{ in (\ref{eq:result-archimedean-to-use})}.\\
+	&\quad \text{Indeed, } 15 \in \mathbb{R}.\\
+	&\text{It holds that } \existstext k \in \mathbb{N}, x < k.
+\end{split}
+\end{mcodenumbered}
+
+Note the similarities with when you want to \emph{prove} a there-exists statement.
+Besides the similarity in form of these statements, there's also a similarity in that this is
+usually a difficult step.
+Finding a good value for $x$ can be difficult.
+
+\subsection{Using a ``there exists" statement}
+
+Now we will describe what we can do to \emph{use} a ``there exists" statement.
+Suppose you know, or have already shown,
+\begin{mcodenumbered}\label{eq:exists-to-use}
+	\begin{split}
+		&\text{It holds that } \\
+		&\quad \existstext a \in A,\\
+		&\quad\quad \textellipsis.
+	\end{split}
+\end{mcodenumbered}
+Then you can \emph{use} this statement by writing
+\[
+	\text{Obtain } a \in A \text{ according to (\ref{eq:exists-to-use})}.
+\]
+Or, if (\ref{eq:exists-to-use}) it is the directly preceding statement, you can just write
+\[
+	\text{Obtain such an } a \in A.
+\]
+
+Returning to our example, after writing (\ref{eq:result-after-picking-in-archimedean}) we can continue by writing
+\[
+	\text{Obtain such an } k \in \mathbb{N}.
+\]
+
+\subsection{Brief summary of using and proving $\forall$ and $\exists$}
+
+Using and proving forall and there-exists staments are closely related.
+The differences can seem subtle, but they are very important.
+Together with the similarities, they can help seeing the connections between the proof actions, 
+and can structure the overall picture.
+For this reason, we have made a brief summary of the four different options in a square table.
+
+\begin{tabular}{lp{0.4\textwidth}p{0.4\textwidth}}
+  & When you want to prove it: & When you know it's true and you want to use it: \\
+$\forall a \in A, \textellipsis$ &
+\begin{minipage}{0.4\textwidth}
+	\[
+		\begin{split}
+			&\\
+			&\text{Let } a \in A.\\
+			&\text{\emph{Continue proving }} \textellipsis\\
+			&\\
+		\end{split}
+	\]
+\end{minipage}
+ &
+\begin{minipage}{0.4\textwidth}
+	\[
+		\begin{split}
+			&\\
+			&\text{Use } a := \_\_ \ \text{ in } (*).\\
+			&\quad \text{Indeed, } \_\_ \in A. \\
+			&\text{It holds that } \textellipsis.
+		\end{split}
+	\]
+\end{minipage}\\
+ $\exists a \in A, \textellipsis$ &
+ \begin{minipage}{0.4\textwidth}
+ 	\[
+ 		\begin{split}
+ 			&\\
+ 			&\text{Choose } a := \_\_ \ .\\
+ 			&\quad \text{Indeed, } a \in A. \\
+ 			&\text{\emph{Continue proving } } \textellipsis
+ 		\end{split}
+ 	\]
+ \end{minipage}
+ &
+ \begin{minipage}{0.4\textwidth}
+ 	\[
+ 		\begin{split}
+ 			&\\
+ 			&\text{Obtain such an } a \in A.\\
+ 			&\\
+ 			&\\
+ 		\end{split}
+ 	\]
+ \end{minipage}
+\end{tabular}

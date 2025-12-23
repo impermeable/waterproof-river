@@ -40,6 +40,8 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
     let rObj: { hint: string, step: string, tutorial: string } | null = null;
     let strategy: string = "null";
 
+    // console.log("information", JSON.stringify(input));
+
     while (attemptCounter < maxAttempts) {
         const { messages } = await renderPrompt(
             WaterproofHintPrompt,
@@ -83,9 +85,9 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
             continue;
         }
     
-        if (rObj.hint === undefined || rObj.step === undefined) {
+        if (rObj.step === undefined) {
             attemptCounter++;
-            previousSuggestions.push({suggestion: rObj.step, error: "Missing one of the required fields (hint or step) in the JSON response"});
+            previousSuggestions.push({suggestion: rObj.step, error: "Missing 'step: string' field in the JSON response. 'step: string' should be the next step in the proof."});
             continue;
         }
 
@@ -118,15 +120,14 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
     
     // If we reach here, the step was successfully executed or we ran out of attempts
     if (rObj === null || strategy === null || attemptCounter >= maxAttempts) {
-        text = "No valid hint could be found that Waterproof would accept.";
+        text = "No valid next step could be found that Waterproof would accept.";
     } else {
-        text = "A valid hint was found that Waterproof accepted. Here are the details in form of a JSON expression:\n\n";
-        text += JSON.stringify(rObj);
+        text = `A valid next step was found that Waterproof accepted:\n\n\`\`\`\n ${rObj.step}\n\`\`\``;
     }
 
     if (usedViaCommand && request !== null && context !== null && _stream !== null) {
         const m = await renderPrompt(
-            HintPromptRewordForChat,
+            HintPromptRewordForChat2,
             {
                 strategy,
                 text,
@@ -156,6 +157,6 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
         for await (const f of r.text) {
             parts.push(f);
         }
-        return "Generated hint message:\n<context-hint-message>\n" + parts.join("") + "\nThe student should fill in the blanks, not River.\n</context-hint-message>";
+        return parts.join("");
     }
 }
