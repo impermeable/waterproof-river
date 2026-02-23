@@ -1,13 +1,13 @@
 import { renderPrompt } from "@vscode/prompt-tsx";
-import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace, CodeAction } from "vscode";
+import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace, Diagnostic, DiagnosticCollection, DiagnosticSeverity, Range } from "vscode";
 import { WaterproofAPI } from "../api";
 import { WaterproofToWaterproofPrompt } from "../prompts/toWaterproof";
 import { extractProof } from "./util";
 
-// Get the max attempts from the vscode setting, if (for some reason) no such setting exists, then use 3 as a default.
-const maxAttempts = workspace.getConfiguration("waterproof").get<number>("maxGenerationAttempts") ?? 3;
 
-export async function handleToWaterproof(api: WaterproofAPI, request: ChatRequest, context: ChatContext, stream: ChatResponseStream, token: CancellationToken) {
+export async function handleToWaterproof(api: WaterproofAPI, collection: DiagnosticCollection, request: ChatRequest, context: ChatContext, stream: ChatResponseStream, token: CancellationToken) {
+    // Get the max attempts from the vscode setting, if (for some reason) no such setting exists, then use 3 as a default.
+    const maxAttempts = workspace.getConfiguration("waterproof").get<number>("maxGenerationAttempts") ?? 3;
 
     // TODO: Hardcoded model in the case that we are not executing via a command
     const model: LanguageModelChat = (request !== null && request.model !== undefined) ? request.model : (await lm.selectChatModels({id: "gpt-4.1"}))[0];
@@ -52,7 +52,7 @@ export async function handleToWaterproof(api: WaterproofAPI, request: ChatReques
         }
 
         const responseParts = result.join("").split("-----").map(v => v.trim());
-        
+
         // We expect the model to generate a textual description as well as the Waterproof translation of the proof
         if (responseParts.length < 2) {
             attemptCounter++;
@@ -74,11 +74,39 @@ export async function handleToWaterproof(api: WaterproofAPI, request: ChatReques
         let verificationFailed = false;
         let error = "";
         codeSuggestion = responseParts[1];
+        const doc = api.currentDocument();
+        
         try {
-            verification = await api.tryProof(codeSuggestion);
+            const cursorPos = api.cursorPosition();
+            if (cursorPos === undefined) {
+                throw new Error("Could not obtain cursor position from Waterproof, cannot verify the generated code suggestion");
+            }
+            const proofContext = await api.proofContext("");
+            
+            const proofStart = doc.offsetAt(proofContext.proofRange.start);
+            // TODO: Due to the fact that a syntax error can create an error on the `Proof.` line, we place the cursor on this `Proof.` node.
+            // THIS ASSUME THAT THERE IS A `Proof.` IN THE STATEMENT, WHICH MIGHT NOT ALWAYS BE THE CASE.
+            const pos = doc.positionAt(proofStart-1);
+            verification = await api.tryProof(codeSuggestion, pos);
+
+            // Add diagnostics message in the editor
+            const diags: Diagnostic[] = [];
+            diags.push({
+                range: new Range(pos, proofContext.proofRange.end),
+                message: "River suggests the following translation of your proof idea:",
+                severity: DiagnosticSeverity.Information,
+                source: "River AI Assistant",
+            });
+            diags.push({
+                range: new Range(pos, proofContext.proofRange.end),
+                message: "Hint, replace with: " + codeSuggestion,
+                severity: DiagnosticSeverity.Hint,
+                source: "River AI Assistant",
+            });
+            collection.set(doc.uri, diags);
         } catch(error_) {
             verificationFailed = true;
-            error = `Waterproof failed to verify the snippet you produced. Got the following error: "${error_}"`;
+            error = `Waterproof failed to verify the snippet. Got the following error: "${error_}"`;
         }
 
         if (verificationFailed) {
@@ -104,5 +132,6 @@ export async function handleToWaterproof(api: WaterproofAPI, request: ChatReques
         stream.markdown("```\n");
         stream.markdown(codeSuggestion);
         stream.markdown("\n```");
+        stream.button({command: "river.clearSuggestions", title: "Clear suggestions", tooltip: "Clear the suggestions added by River"});
     }
 }

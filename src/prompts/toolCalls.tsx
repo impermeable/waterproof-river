@@ -10,9 +10,9 @@ import {
 	PromptSizing,
 	ToolCall,
 	ToolMessage,
+	ToolResult,
 	UserMessage
 } from '@vscode/prompt-tsx';
-import { ToolResult } from '@vscode/prompt-tsx/dist/base/promptElements';
 import * as vscode from 'vscode';
 import { RiverBasic } from './riverBasic';
 import { Tag } from './tag';
@@ -56,7 +56,7 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 	async render(_state: void, _sizing: PromptSizing) {
 		return (
 			<>
-				<AssistantMessage>
+				<UserMessage>
                     <RiverBasic/>
 					Instructions: <br />
 					- You are a socratic tutor that helps a student with their proof.<br/>
@@ -85,7 +85,7 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 					{/* <RiverWorkflowErrors/> */}
 					{/* - If none of the workflows applies you are in 'chat' mode and free to engage in conversation with the user about mathematics and Waterproof. */}
 					{ this.props.versionDiffers && <> <br/>- Note that the file has changed since the last time you queried for the proof context. If you need an up to date proof context, use the proof context tool again.</> }
-				</AssistantMessage>
+				</UserMessage>
 				<History context={this.props.context} priority={10} />
 				<UserMessage>{this.props.request.prompt}</UserMessage>
 				<ToolCalls

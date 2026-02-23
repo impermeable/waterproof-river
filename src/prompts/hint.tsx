@@ -1,4 +1,4 @@
-import { BasePromptElementProps, PromptElement, PromptPiece, AssistantMessage, PromptElementProps, UserMessage } from "@vscode/prompt-tsx";
+import { BasePromptElementProps, PromptElement, PromptPiece, PromptElementProps, UserMessage } from "@vscode/prompt-tsx";
 import { RiverBasic } from "./riverBasic";
 import { Tag } from "./tag";
 import { PreviousMistakes } from "./previousMistakes";
@@ -52,7 +52,7 @@ export class WaterproofHintPrompt extends PromptElement<HintProps> {
     render(): PromptPiece {
         return (
             <>
-            <AssistantMessage>
+            <UserMessage>
             <RiverBasic/>
             You will receive a JSON object containing: <br/>
             - `currentGoal`: The goal that Rocq is asking the student to show at the point of the cursor. <br/>
@@ -78,7 +78,7 @@ export class WaterproofHintPrompt extends PromptElement<HintProps> {
             Input: {JSON.stringify(input2)} <br />
             Output: {strategy2 + "\n" + separator + "\n" + JSON.stringify(output2)} <br />
             Strategize before answering, ensure your JSON is correctly formatted and the seperator is exactly as specified ({separator}).
-            </AssistantMessage>
+            </UserMessage>
             </>
         );
     }
@@ -94,7 +94,7 @@ export class HintPromptRewordForChat extends PromptElement<HintPromptRewordForCh
     render(): PromptPiece {
         return (
 			<> 
-			<AssistantMessage>
+			<UserMessage>
 			<RiverBasic/>
 			Previously, you came up with the following strategy:
 			<Tag name="strategy">
@@ -107,11 +107,11 @@ export class HintPromptRewordForChat extends PromptElement<HintPromptRewordForCh
 			Your task is to reformulate the hint to be more conversational and engaging, as if you were directly addressing a student. Or, in the case that you failed to generate a correct hint, explain that to the user. Make sure to maintain the original intent and clarity of the hint while enhancing its tone to be more supportive and encouraging.
 			If you use code in your answer stick to the Waterproof language.
 			<br/>
-			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ….` and instead of `Assume that a is positive` output `Assume that ….`. Engage with the student to come up with the missing pieces. */}
 			Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ` output `Take ...` and instead of `Assume that a is positive` output `Assume that ...`. Engage with the student to come up with the missing pieces.
-            </AssistantMessage>
-			<UserMessage>
-				{this.props.userInput}
+            
+            <Tag name="context-user-message">
+                {this.props.userInput}
+            </Tag>
 			</UserMessage>
 			</>
 		);
@@ -122,7 +122,7 @@ export class HintPromptRewordForChat2 extends PromptElement<HintPromptRewordForC
     render(): PromptPiece {
         return (
 			<> 
-			<AssistantMessage>
+			<UserMessage>
 			<RiverBasic/>
 			Previously, you came up with the following strategy:
 			<Tag name="strategy">
@@ -132,17 +132,12 @@ export class HintPromptRewordForChat2 extends PromptElement<HintPromptRewordForC
             <Tag name="generated-step">
 			    {this.props.text}
             </Tag>
-			{/* Your task is to reformulate the hint to be more conversational and engaging, as if you were directly addressing a student. Or, in the case that you failed to generate a correct hint, explain that to the user. Make sure to maintain the original intent and clarity of the hint while enhancing its tone to be more supportive and encouraging. */}
 			You are a socratic tutor, helping the student completing the proof. Based on the strategy that was formulated for the proof and the possibly verified next step please help the students in a socratic manner. You can help the student by asking the right questions.
-            {/* If you use code in your answer stick to the Waterproof language. */}
 			<br/>
-			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ….` and instead of `Assume that a is positive` output `Assume that ….`. */}
-			{/* Your output should be the reformulated hint only including possible code snippets. You are encouraged to not give full tactics, only 'skeletons' where the user should fill in the details. Example: instead of `Take x ∈ ℝ.` output `Take ....` and instead of `Assume that a is positive` output `Assume that ....`. */}
-			</AssistantMessage>
-			<UserMessage>
-            {this.props.userInput}
-			</UserMessage>
-            <UserMessage>
+			<Tag name="context-user-message">
+                {this.props.userInput}
+            </Tag>
+            What follows are some example generated strategies together with the expected generated hints and outputs.
             <Tag name="example-1">
                 <Tag name="strategy">
                     {strategy1}
@@ -152,13 +147,6 @@ export class HintPromptRewordForChat2 extends PromptElement<HintPromptRewordForC
                 </Tag>
                 <Tag name="example-output">
                     You are proving a 'for all'-statement. What do you need to do to start your proof in such a case?
-                    {/*                     
-                    The next step is to introduce an arbitrary value and show that the claim holds for that value.<br/>
-                    Use the `Take` tactic for this:<br/>
-                    ```<br/>
-                    Take … ∈ ….<br/>
-                    ```<br/>
-                    Try to find out what the dots should be replaced with. */}
                 </Tag>
             </Tag>
             <Tag name="example-2">
@@ -170,11 +158,6 @@ export class HintPromptRewordForChat2 extends PromptElement<HintPromptRewordForC
                 </Tag>
                 <Tag name="example-output">
                     Earlier in the proof you have already assumed that {"`∀ ε > 0, x < ε`"} (i.e. we can use `ε` to bound `x`) and labeled it `i`. This is a statement that starts with `∀`, about which you know, in the context of this proof, that it holds. What can you do to use this statement? 
-                    {/* you now need to show that {"`10 * x < 1`"}.<br/>
-                    Try to find a value for `ε` that, in combination with assumption `i`, gives the desired result. Once you have a value of `ε` you want to use, fill in the following skeleton:<br/>
-                    ```<br/>
-                    Use ε := … in (i).<br/>
-                    ```<br/> */}
                 </Tag>
             </Tag>
             </UserMessage>

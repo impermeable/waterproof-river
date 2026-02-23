@@ -55,10 +55,6 @@
         "isSticky": true,
         "commands": [
           {
-            "name": "question",
-            "description": "Ask a theory question"
-          },
-          {
             "name": "translateProof",
             "description": "Translate a handwritten proof into Waterproof"
           },
@@ -95,13 +91,28 @@
           "type": "object",
           "properties": {}
         }
+      },
+      {
+        "name": "waterproof-tue_try_proof_step_at_cursor",
+        "modelDescription": "Executes a step in the proof (using Waterproof with Rocq) and returns the result of executing this step. This result will indicate whether the step could be executed and if the proof progressed or not. Use this tool if you are unsure about any Waterproof syntax or step, this tool will let you verify that what you are saying does make sense.",
+        "displayName": "Try Proof Step",
+        "toolReferenceName": "tryStep",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "step": {
+              "type": "string",
+              "description": "The step to try in the proof. Can be multiple steps if they are separated by a period (.)"
+            }
+          }
+        }
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "npm run typecheck && npm run lint && node esbuild.js",
-    "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
     "package": "npm run typecheck && npm run lint && node esbuild.js --production",
