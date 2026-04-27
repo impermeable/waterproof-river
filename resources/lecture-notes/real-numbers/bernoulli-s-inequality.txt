@@ -1,0 +1,35 @@
+You may recall that for all $a, b \in \mathbb{R}$, the power $(a+b)^n$ can be expanded using Newton's binomial coefficients
+\[
+(a + b)^n = \sum_{k=0}^n {n \choose k} a^k b^{n-k}
+\]
+
+If $a$ and $b$ are positive, we can get some useful inequalities by just leaving out some terms on the right hand side. We will use this technique repeatedly in the lecture notes.
+
+We can even get some inequalities if $b = 1$ and $a \geq -1$. One such inequality is Bernoulli's inequality.
+
+\begin{proposition}[Bernoulli's inequality]
+	For all $a \geq -1$, and all $n \in \mathbb{N}$,
+	\[
+	(1 + a)^n \geq 1 + n a.
+	\]
+\end{proposition}
+\begin{proof}
+	Let $a \geq -1$.
+	We prove Bernoulli's inequality by induction on $n$.
+	For $n = 0$, we have
+	\[
+	(1 + a)^0 = 1 \geq 1 = 1 + 0 \cdot a
+	\]
+	so the inequality holds.
+	
+	Suppose the inequality holds for $n = k$ for some $k \in \mathbb{N}$. 
+	Then we would like to show the inequality for $n = k + 1$. We find
+	\[
+	\begin{split}
+	(1 + a)^{k+1} &= (1 + a)^k (1 + a) \\
+	&\geq (1 + k a) (1 + a) \\
+	&= 1 + (k + 1) a + k a^2 \\
+	&\geq 1 + (k + 1) a.
+	\end{split}
+	\]	
+\end{proof}

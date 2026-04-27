@@ -1,0 +1,34 @@
+The next theorem tells us that differentiability in a point is a \emph{stronger} condition than continuity in a point: whenever a function is differentiable in a point, it is also continuous in that point.
+
+\begin{theorem}
+	Let $\Omega \subset V$ be open and suppose a function $f : D \to W$ is differentiable in a point $a \in \Omega$.
+	Then $f$ is continuous in $a$.
+\end{theorem}
+
+\begin{proof}
+	Suppose $f : \Omega \to W$ is differentiable in a point $a \in \Omega$.
+	Then there exists a $\delta > 0$ such that for all $x \in \Omega$, if $0 < \| x - a \|_V < \delta$, then
+	\[
+	\frac{\| \mathsf{Err}_a(x) \|_W }{\|x - a\|_V} < 1.
+	\]
+	Now let $y : \mathbb{N} \to \Omega$ be a sequence in $\Omega$ converging to $a$. 
+	Then, there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, 
+	\[
+	\| y_n - a \|_V < \delta.
+	\]
+	Choose such an $N \in \mathbb{N}$ and let $n \geq N$.
+	Then
+	\[
+	\|f(y_n) - f(a) - L_a(y_n - a) \|_W = \| \mathsf{Err}_a(y_n) \|_W < \| y_n - a \|_V.
+	\]
+	By the reverse triangle inequality (see Lemma \ref{le:reverse-triangle-ineq}), and by Proposition \ref{pr:alt-char-op-norm} we find
+	\[
+	\begin{split}
+		\| f(y_n) - f(a) \|_W 
+		&\leq \| y_n - a \|_V + \|L_a (y_n - a) \|_W\\
+		&\leq \|y_n - a\|_V + \|L_a \|_{V \to W} \|(y_n - a)\|_V\\
+		&= (1 + \|L_a\|_{V \to W}) \|y_n - a\|_V.
+	\end{split}
+	\]
+	It follows by Proposition \ref{pr:conv-iff-dist-to-0} and the squeeze theorem that the sequence $n \mapsto \|f(y_n) - f(a) \|_W$ converges to zero, and we conclude by Proposition \ref{pr:conv-iff-dist-to-0} that the sequence $(f(y_n))$ converges to $f(a)$.
+\end{proof}

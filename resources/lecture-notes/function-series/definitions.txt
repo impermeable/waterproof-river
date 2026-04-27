@@ -1,0 +1,14 @@
+Let $(X, \dist_X)$ be a metric space.
+Let $(f_n)$ be a sequence of functions from $\Omega \subset X$ to $\mathbb{R}$.
+
+We say that the function series
+\[
+\sum_{k=0}^\infty f_k
+\]
+converges \emph{pointwise} to a function $s : \Omega \to \mathbb{R}$ if the function sequence of partial sums
+\[
+S_n(x) := \sum_{k=0}^n f_k(x)
+\]
+converges \emph{pointwise} to the function $s : \Omega \to \mathbb{R}$.
+
+We say that the function series $\sum_{k=0}^\infty f_k$ converges to $s$ \emph{uniformly} if the sequence of partial sums converges to the function $s$ \emph{uniformly}.

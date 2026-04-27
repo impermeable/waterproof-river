@@ -1,0 +1,64 @@
+%\label{se:matrix-representation}
+%
+%We now briefly review \emph{matrix representations}, a concept from linear algebra.
+%Let $L : V \to W$ be a linear map between two finite-dimensional vector spaces with bases $v_1, \cdots, v_d$ and $w_1, \dots w_m$ respectively. Let $\Phi : V \to \mathbb{R}^d$ denote the coordinate map for the basis $v_1, \dots, v_d$ and let $\Psi : W \to \mathbb{R}^m$ denote the coordinate map for the basis $w_1, \dots, w_m$. Then the \emph{matrix (representation)} of $L$ with respect to these bases is the $m \times d$ matrix $M$ such that for all $i = 1, \dots, m$ and $j = 1, \dots d$, the element of $M$ in the $i$th row and $j$th column is
+%\[
+%(M)_{i j } = (P^i \circ \Psi) (L(v_j)) = (\Psi(L (v_j)) )_i = \Psi_i(L(v_j)),
+%\]
+%which in words means that $(M)_{ij}$ is the $i$th coordinate of the vector $L(v_j)$ expressed in the basis $w_1, \dots, w_m$. In other words, the $j$th column of $M$ is given by
+%\[
+%\Psi(L(v_j)).
+%\]
+%
+%The matrix $M$ is precisely that matrix such that for all $x \in \mathbb{R}^d$, with $y = M x$ it holds that
+%\[
+%L(x_1 v_1 + \cdots + x_d v_d ) = y_1 w_1 + \cdots + y_m w_m.
+%\]
+%In other words, for all $x \in \mathbb{R}^d$,
+%\[
+%\begin{split}
+%	\Psi \circ L \circ \Phi^{-1} (x)
+%	&=
+%	\Psi \circ L (x_1 v_1 + \cdots + x_d v_d)\\
+%	&= M x.
+%\end{split}
+%\]
+%
+%\begin{definition}[Jacobian with respect to bases]
+%	\label{de:jacobian-bases}
+%	We will call the matrix of the derivative $(Df)_a : V \to W$ the \emph{Jacobian} of $f$ (with respect to the bases $v_1, \dots, v_d$ and $w_1, \dots w_m$) in the point $a$, and we will denote it by $[Df]_a$.
+%\end{definition}
+%
+%As a preview, I'd already like to mention that if a function $f : \Omega \to W$ is differentiable in a point $a \in \Omega$, 
+%then you can easily find $[Df]_a$ with the rules of calculus: to determine $([Df]_a)_{i j}$, i.e. the element in the $i$th row and $j$th column, you first compute the coordinate representation of $f$, namely
+%\[
+%\bar{f} : \Phi(\Omega) \to \mathbb{R}^m
+%\]
+%defined by 
+%\[
+%\bar{f}(x) = \Psi \circ f \circ \Phi^{-1}(x).
+%\]
+%
+%Then you view $\bar{f}$ as a function of $x_j$ only, keeping the other $x_k$ for $k \neq j$, and take the derivative of the $i$th component of $\bar{f}$ with respect to $x_j$, which is denoted by
+%\[
+%\frac{\partial \bar{f}_i}{\partial x_j}
+%\]
+%and is called the partial derivative of $\bar{f}_i$ with respect to $x_j$. Then
+%\[
+%([Df]_{a})_{ij} = \frac{\partial \bar{f}_i}{\partial x_j}(\Phi(a)).
+%\]
+%Only later can we give a proper definition of the partial derivative.
+%
+%For instance, if
+%\[
+%\bar{f} (x_1, x_2) = \big(x_1^2 + x_2^3, x_1^4 + x_2^5 \big)
+%\]
+%then
+%\[
+%[Df]_{a} = \left( \begin{array}{cc}
+%	2b_1& 3 (b_2)^2\\
+%	4(b_1)^3&  5(b_2)^4\end{array}\right).
+%\]
+%where $b := \Phi(a)$.
+%
+%But this was just a preview. Before we can show this, we need computation rules such as the chain rule, the sum, product and quotient rules.

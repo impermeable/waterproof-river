@@ -1,0 +1,5 @@
+Beware that $(A \implies B)$ means ``if $A$ then $B$". Importantly, it {\bf does not mean} ``A holds therefore B holds". Because this goes wrong very often, I recommend to use
+\begin{mcode}
+	\text{if } \dots \text{ then } \dots
+\end{mcode}
+in your proof rather than implication symbols $\Rightarrow$ and $\Leftrightarrow$.

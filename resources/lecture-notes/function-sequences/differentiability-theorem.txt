@@ -1,0 +1,76 @@
+\begin{theorem}
+	\label{th:preservation-differentiability}
+Let $(f_n)$ be a sequence of functions from an open domain $\Omega$ in a vector space $V$ to $\mathbb{R}$ and suppose the sequence converges pointwise to a function $g : \Omega \to  \mathbb{R}$. Suppose moreover that the functions $f_n$ are continuously differentiable on $\Omega$ and suppose the sequence of functions $Df_n : \Omega \to \mathsf{Lin}(V, \mathbb{R})$ converges uniformly to a function $\Delta : \Omega \to \mathsf{Lin}(V, \mathbb{R})$. 
+Then the function $g$ is differentiable on $\Omega$ as well and 
+\[
+Dg = \Delta.
+\]
+\end{theorem}
+
+\begin{proof}
+To show that $g : \Omega \to \mathbb{R}$ is differentiable on $\Omega$, we need to show that for all $a \in \Omega$, the function $g$ is differentiable in $a$.
+
+Let $a \in \Omega$.
+
+Define the error function
+\[
+\mathsf{Err}_a^g(x) := g(x) - g(a) - \Delta_a (x - a).
+\]	
+We need to show that
+\[
+\lim_{x \to a } \frac{\left| \mathsf{Err}_a^g(x) \right|}{\|x - a\|_V } = 0.
+\]
+
+Let $\epsilon > 0$. 
+
+Because the functions $Df_n$ converge to $\Delta$ uniformly, the function $\Delta$ is continuous by Theorem \ref{th:preservation-continuity}. 
+Therefore, there exists a $\delta_0 > 0$, such that for all $z \in \Omega$, if $0 < \| z - a\|_V < \delta_0$ then
+\[
+\| \Delta_z - \Delta_a \|_{V \to \mathbb{R}} < \frac{\epsilon}{3}.
+\]
+
+Choose such a $\delta_0$.
+
+Choose $\delta := \delta_0$.
+
+Let $x \in \Omega$ and assume that $0 < \| x - a \|_V < \delta$.
+
+Moreover, since the functions $Df_n$ converge to $\Delta$ uniformly on $\Omega$, there exists an $N_0 \in \mathbb{N}$ such that for all $z \in \Omega$ and all $n \geq N_0$, 
+\[
+\| (Df_n)_z - \Delta_z \|_{V \to \mathbb{R}} < \frac{\epsilon}{3}.
+\]
+Now because the function sequence $(f_n)$ converges to $g$ pointwise, there exists an $N_1 \in \mathbb{N}$ such that for all $n \geq N_1$,
+\[
+|f_n(x) - g(x)| < \frac{\epsilon}{6} \| x - a \|_V.
+\]
+Similarly, there exists an $N_2 \in \mathbb{N}$ such that for all $n \geq N_2$,
+\[
+|f_n(a) - g(a)| < \frac{\epsilon}{6} \| x - a \|_V.
+\]
+Choose $N := \max(N_0, N_1, N_2)$. Then
+\[
+\begin{split}
+	| \mathsf{Err}_a^g(x) |
+	&= \left| g(x) - g(a) - \Delta_a (x - a) \right| \\
+	&\leq \left| f_N(x) - f_N(a) - \Delta_a (x - a) \right| + |f_N(x) - g(x)| + |f_N(a) - g(a)|\\
+	& < \left| f_N(x) - f_N(a) - \Delta_a(x-a) \right| + \frac{\epsilon}{3} \| x -  a \|_V.
+\end{split}
+\]
+By the Mean-Value Theorem, there exists a point $y$ on the line segment from $a$ to $x$ such that
+\[
+f_N(x) - f_N(a) = (Df_N)_{y} (x - a).
+\]
+Therefore
+\[
+\begin{split}
+| \mathsf{Err}_a^g(x) |&<\left| f_N(x) - f_N(a) - \Delta_a(x-a) \right| + \frac{\epsilon}{3} \| x -  a \|_V\\
+&= | (Df_N)_y (x - a) - \Delta_a (x-a) | + \frac{\epsilon}{3} \|x - a \|_V\\
+&= | ((Df_N)_y - \Delta_a)(x - a) | + \frac{\epsilon}{3} \| x - a \|_V \\
+&\leq \| (Df_N)_{y} - \Delta_a \|_{V \to \mathbb{R}} \|x - a \|_V + \frac{\epsilon}{3} \| x - a \|_V \\
+&\leq (\| (Df_N)_{y} - \Delta_y \|_{V \to \mathbb{R}} +  \|\Delta_y - \Delta_a \|_{V \to \mathbb{R}}) \|x - a \|_V 
++ \frac{\epsilon}{3} \| x - a \|_V \\
+&< \epsilon \| x - a \|_V
+\end{split}
+\]
+which is what we needed to show.
+\end{proof}

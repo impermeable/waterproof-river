@@ -1,0 +1,48 @@
+In this and the next section we will give some examples of sums and series taking values in the real line (or to be specific the normed vector space $(\mathbb{R}, | \cdot |)$).
+
+\begin{proposition}
+\label{pr:finite-geometric-series}
+Let $a \neq 1$ and $n \in \mathbb{N}$. Then
+\[
+\sum_{k=0}^n a^k = \frac{1 - a^{n + 1}}{1 - a}.
+\]	
+\end{proposition}
+\begin{proof}
+We consider
+\[
+\begin{split}
+(1-a) \sum_{k=0}^n a^k
+&= \sum_{k=0}^n a^k - a \sum_{k=0}^n a^k\\
+&= \sum_{k=0}^n a^k - \sum_{k=0}^n a^{k+1} \\
+&= \sum_{k=0}^n a^k - \sum_{k=1}^{n+1} a^k \\
+&= 1 - a^{n+1}.
+\end{split}
+\]	
+\end{proof}
+
+\begin{proposition}
+Let $a \in (-1, 1)$.
+Then the series
+\[
+\sum_{k=0}^\infty a^k
+\]
+is convergent and has the value
+\[
+\sum_{k=0}^\infty a^k = \frac{1}{1-a}.
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{pr:finite-geometric-series} it follows for the partial sums that
+\[
+S_n := \sum_{k=0}^n a^k = \frac{1-a^{n+1}}{1 - a}.
+\]
+Because 
+\[
+\lim_{n \to \infty} a^{n+1} = 0
+\]
+by index shift and Proposition \ref{pr:behavior-q-to-power-n}, we find with the limit laws that $\lim_{n \to \infty} S_n$ exists as well and equals
+\[
+\sum_{k=0}^\infty a^k := \lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{1 - a^{n+1}}{1 - a} = \frac{1}{1-a}.
+\]
+\end{proof}

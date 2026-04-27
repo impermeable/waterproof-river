@@ -1,0 +1,29 @@
+\begin{definition}
+Let $f: \Omega \to \mathbb{R}$ be a function from an open domain $\Omega$ in $(\mathbb{R}^d, \| \cdot\|_2)$ to $(\mathbb{R},| \cdot |)$ and suppose $f$ is differentiable in the point $a \in \Omega$. Then we call the vector 
+\[\arraycolsep=5pt
+\def \arraystretch{2.2}
+\nabla f (a) := \left(\begin{array}{c}
+\frac{\partial f}{\partial x_1}(a) \\
+\vdots\\
+\frac{\partial f}{\partial x_d}(a)
+\end{array}\right)
+\]	
+the \emph{gradient} of $f$ in the point $a$. 
+\end{definition}
+If a function $f: \Omega \to \mathbb{R}$ is differentiable in a point $a$, then the derivative $(Df)_a$ relates to the gradient $\nabla f(a)$ as follows.
+
+\begin{proposition}
+Let $f: \Omega \to \mathbb{R}$ be a function from an open domain $\Omega$ in $(\mathbb{R}^d, \| \cdot\|_2)$ to $(\mathbb{R},| \cdot |)$ and suppose $f$ is differentiable in the point $a$. Then for all $v \in \mathbb{R}^d$,
+\[
+(Df)_a (v) = (\nabla f(a), v) = (\nabla f(a))^T v = \sum_{i=1}^d \frac{\partial f}{\partial x_i} (a) v_i
+\]
+where $(\cdot, \cdot)$ denotes the standard inner product on $\mathbb{R}^d$.
+\end{proposition}
+
+\begin{proposition}
+	\label{pr:tangent-plane-gradient}
+Let $f : \Omega \to \mathbb{R}$ from an open domain $\Omega$ in $(\mathbb{R}^d, \| \cdot \|_2)$. Assume $f$ is differentiable in a point $a \in \Omega$ with $(D f)_a \neq 0$. Set $c := f(a)$. Then the tangent plane to the level set $f^{-1}(c)$ at $a$ is given by
+\[
+a + \{ x \in \mathbb{R}^d \ | \ (\nabla f(a) , x ) = 0 \}.
+\]
+\end{proposition}

@@ -1,0 +1,17 @@
+\begin{proposition}[Constant maps are differentiable]
+	Let $(V, \| \cdot \|_V)$ and $(W, \|\cdot\|_W)$ be two normed vector spaces. Let $b \in W$ and consider the constant function $f : V \to W$ given by $f(v) = b$ for all $v \in V$. Then $f$ is differentiable and for all $a \in V$, $(Df)_a = 0$, i.e. it is the (linear) function that maps every element to $0$.
+\end{proposition}
+
+We now give a first example of a differentiable functions: linear functions are always differentiable.
+
+\begin{proposition}[Linear maps are differentiable]
+	Let $A : V \to W$ be a linear map between the finite-dimensional normed vector spaces $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$. 
+	Then the function $A : V \to W$ is differentiable on $V$ and for every $a \in V$ the derivative $(DA)_a \in \mathsf{Lin}(V, W)$ is just equal to $A$. Hence, the derivative of $A$ is the constant function $DA : V \to \mathsf{Lin}(V, W)$ given by
+	\[
+	a \mapsto A.
+	\]
+\end{proposition}
+
+The proof of this proposition is the topic of Exercise \ref{ex:linear-maps-differentiable}.
+
+%

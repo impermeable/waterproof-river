@@ -1,0 +1,176 @@
+Before we can define closed sets in the next section (according to the standard definition), we first need to introduce \emph{open sets}. First let us recall the definition of an (open) ball $B(p, r)$ around a point $p$ with radius $r$ from definition \ref{de:open-ball}
+
+\[
+B(p, r) := \left\{ x \in X \ | \ \dist(x, p) < r \right\}.
+\]
+The reason for the parentheses around `open' is that yes, soon we will prove that this set is indeed open, however so far we have not defined what `open' really is! 
+
+Before we define what it means for a set to be open, we define when a point in a subset is an \emph{interior point}.
+
+\begin{definition}
+Let $(X, \dist)$ be a metric space and let $A$ be a subset of $X$.
+A point $a \in A$ is called an \emph{interior point} of $A$ if
+\[
+\begin{split}
+&\existstext r > 0,\\
+&\quad B(a, r) \subset A.
+\end{split}
+\]
+\end{definition}
+
+Open sets are subsets for which every point in the subset is an interior point.
+
+\begin{definition}
+Let $(X, \dist)$ be a metric space. We say that a subset $O \subset X$ is \emph{open} if every $x \in O$ is an interior point of $O$.
+\end{definition}
+
+Having defined what it means for a set to be open, we can now prove that the (open) ball is indeed open.
+
+\begin{proposition}
+	\label{pr:open-ball-open}
+Let $(X, \dist)$ be a metric space. The ball 
+\[
+B(p, r) := \{ x \in X \ | \ \dist(x, p ) < r \}
+\]
+is indeed open.
+\end{proposition}
+
+Before giving the proof of the proposition, I'd like to say the following. If by this point, you have the blue exercises and the best practices down, the proof of the proposition may come to you very easily. This is one of the reasons that I stress the best practices so much: whereas without them it may be difficult to even see where to start, with them the proof can be written down almost mechanically.
+
+If you still would have difficulties giving such a proof yourself, don't worry, it takes time to get used to proving mathematical statements. If you're still struggling with following the best practices, the proofs in this chapter may help you get further in your understanding. It is especially helpful to see if you can recognize the various components of the best practices in the proofs that are given.
+
+\begin{proof}
+	We need to show that every $x \in B(p,r)$ is an interior point.
+	
+	Let $x \in B(p, r)$. We need to show that $x$ is an interior point, i.e.~we need to show that there exists a $\rho > 0$ such that $B(x, \rho) \subset B(p, r)$. Judging from what we need to show, we now need to prepare ourselves for choosing such a $\rho > 0$.
+	
+	Since $x \in B(p, r)$, we know that $\dist(x, p) < r$. Then
+	\[
+	r - \dist(x, p) > 0.
+	\]
+	Choose $\rho := r - \dist(x, p) > 0$.
+	
+	We need to show that $B(x, \rho) \subset B(p, r)$. The standard proof of such a set inclusion is by showing that for all $z \in B(x, \rho)$ it holds that $z \in B(p, r)$. So let $z \in B(x, \rho)$. We need to show that $z \in B(p, r)$, i.e.~that $\dist(z, p) < r$.
+	
+	Because $z \in B(x, \rho)$, it holds that $\dist(z, x) < \rho$. It now follows by the triangle inequality that
+	\[
+	\begin{split}
+	\dist(z, p) &\leq \dist(z, x) + \dist(x, p) \\
+	&< \rho + \dist(x, p) \\
+	& = r - \dist(x, p) + \dist(x, p) = r.
+	\end{split}
+	\]
+	which was what we needed to show.
+\end{proof}
+
+The following proposition characterizes which intervals are open.
+
+\begin{proposition}[`Open' intervals are open]
+	Let $a, b \in \mathbb{R}$ with $a < b$. Then the intervals $(a, b)$, $(-\infty, b)$ and $(a, \infty)$ are all open subsets of $\mathbb{R}$ (i.e.~of the normed vector space $(\mathbb{R}, |\cdot |)$).
+\end{proposition}
+
+The second part of the proof gives another good example of a proof that shows that a set is open.
+
+\begin{proof}
+	Note that the interval $(a, b)$ is exactly equal to the (open) ball
+	\[
+	B\left(\frac{a+b}{2}, \frac{b - a}{2} \right) = \left\{ x \in \mathbb{R} \mid \left| x - \frac{a + b}{2} \right| < \frac{b - a}{2} \right\}.
+	\]
+	We therefore know that it is open by Proposition \ref{pr:open-ball-open}.
+	
+	Let us now prove that $(-\infty, b)$ is open. Let $x \in (-\infty, b)$. We need to show that $x$ is an interior point of $(-\infty, b)$. That is, we need to show that there exists an $r > 0$ such that $B(x, r) \subset (- \infty, b)$. Choose $r := b - x$, which is indeed strictly positive ($r > 0$) because $b > x$. We now need to show that $B(x, r) \subset (- \infty, b)$. Let $y \in B(x, r)$. Then $| y - x | < r$. In particular
+	\[
+	y < x + r \leq x + (b - x) = b
+	\]
+	so indeed $y \in (-\infty, b)$.
+	
+	In a similar way, we can prove that $(a, \infty)$ is open.
+\end{proof}
+
+\begin{proposition}
+	\label{pr:empty-full-open}
+	Let $(X, \dist)$ be a metric space. Then both the empty set $\emptyset$ and the set $X$ itself (both of these are subsets of $X$) are open.
+\end{proposition}
+
+\begin{proof}
+	We will first show that the empty set is open. The argument is a bit silly (yet logically correct). We argue by contradiction. Suppose there exists a point $x \in \emptyset$ such that $x$ is not an interior point of $X$. Then we have a contradiction, because the empty set has no elements.
+	
+	We will now show that $X$ is open. Let $x \in X$. We will show that $x$ is an interior point, i.e.~ we will show that there exists an $r >0$ such that $B(x, r) \subset X$.
+	
+	Choose $r := 1$. Then $B(x, r) = B(x, 1) \subset X$.
+\end{proof}
+
+The set of all interior points of a subset $A \subset X$ is called the \emph{interior} of the set $A$.
+
+\begin{definition}[The interior of a set]
+	Let $(X, \dist)$ be a metric space and let $A \subset X$ be a subset of $X$. Then the \emph{interior} of the set $A$, denoted by $\interior A$ is the set of all interior points of $A$, i.e.~ $\interior A$ is defined as
+	\[
+	\interior A := \{ x \in A \mid x \text{ is an interior point of } A \}.
+	\]
+\end{definition}
+
+\begin{example}
+The interior of the interval $[2, 5)$ (viewed as a subset of $(\mathbb{R}, | \cdot |)$, is the interval $(2, 5)$. 
+\end{example}
+\begin{proof}
+We already know that $(2, 5)$ is an open subset of $\mathbb{R}$. Therefore, for all $x \in (2, 5)$, there exists an $r > 0$ such that $B(x, r) \subset (2, 5)$. Since $(2, 5) \subset [2, 5)$, we can easily show that for all $x \in (2, 5)$ there exists an $r > 0$ such that $B(x, r) \subset [2, 5)$. We conclude that the interval $(2, 5)$ is at least contained in $\interior [2, 5)$.
+
+Since the interior of a set is by definition a subset of the set, the only other possible interior point is $2$.
+
+Now we will show that $2$ is not an interior point of the interval $[2, 5)$. We argue by contradiction. Suppose $2$ is an interior point. Then there exists an $r > 0$ such that $B(2, r) \subset [2, 5)$. Choose such an $r$. Then $y := (2 - r/2) \in B(2, r)$ but $y \notin [2, 5)$. This is a contradiction. Therefore $2$ is not an interior point of the interval $[2, 5)$.
+\end{proof}
+
+The interior of a set is always open.
+
+\begin{proposition}
+	Let $(X, \dist)$ be a metric space and let $A \subset X$. Then $\interior A$ is open.
+\end{proposition}
+
+At the end of this section we provide a few ways to create new open sets out of sets about which you already know that they are open.
+
+\subsection*{The union of open sets is always open}
+
+Unions of open sets are always open. You may recall that if $\mathcal{I}$ is some set, and if for every $\alpha \in \mathcal{I}$ we have a subset $A_\alpha \subset X$, then the union
+\[
+\bigcup_{\alpha \in \mathcal{I}} A_\alpha \subset X
+\]
+is defined as
+\[
+\bigcup_{\alpha \in \mathcal{I}} A_\alpha :=
+\{ x \in X \mid \text{there exists } \alpha \in \mathcal{I} \text{ such that } x \in A_\alpha \}.
+\]
+\begin{proposition}
+Let $(X, \dist)$ be a metric space, let $\mathcal{I}$ be some set and  assume that for every $\alpha \in \mathcal{I}$, we have a subset $O_\alpha \subset X$. Suppose moreover that for all $\alpha \in \mathcal{I}$, the set $O_\alpha$ is open. Then also the union
+\[
+\bigcup_{\alpha \in \mathcal{I}} O_\alpha
+\]
+is open.
+\end{proposition}
+
+\begin{example}
+	We already know that for every $n \in \mathbb{N}$, the interval $(2n, 2n+1)$ is an open subset of $(\mathbb{R}, | \cdot |)$. Therefore, (choosing $\mathcal{I} = \mathbb{N}$ and $O_\alpha = (2 \alpha, 2\alpha + 1)$ in the previous proposition,) we also know that the set
+    \[
+    \bigcup_{n \in \mathbb{N}} (2n, 2n +1)
+    \]
+    is an open subset of $(\mathbb{R}, | \cdot|)$ as well.
+\end{example}
+
+\subsection*{Finite intersections of open sets are open}
+
+\begin{proposition}
+Let $(X, \dist)$ be a metric space and let $O_1, \dots, O_N$ be open subsets of $X$. Then the intersection
+\[
+O_1 \cap \cdots \cap O_N
+\]	
+is also open.
+\end{proposition}
+
+\subsection*{Cartesian products of open sets}
+
+\begin{proposition}
+Let $O_1, \cdots, O_d$ be open subsets of $\mathbb{R}$. Then
+\[
+O_1 \times \cdots \times O_d (= \{(o_1, \cdots, o_d) \mid o_i \in O_i \})
+\]
+is an open subset of $(\mathbb{R}^d, \| \cdot \|_2)$.	
+\end{proposition}

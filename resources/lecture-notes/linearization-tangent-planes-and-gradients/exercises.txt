@@ -1,0 +1,87 @@
+\begin{orange_exercise}
+	\label{ex:dir-deriv-not-cont}
+Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+\[
+f((x_1, x_2)) :=
+\begin{cases}
+\frac{(x_2)^2}{x_1}&\text{if } x_1 \neq 0,\\
+0&\text{if } x_1 = 0.
+\end{cases}
+\]
+{
+	\renewcommand{\theenumi}{(\alph{enumi})}
+\begin{enumerate}
+\item Show that for all $v \in \mathbb{R}^2$, the directional derivative $(D_v f)_0$ (i.e.~the directional derivative at $0$ in the direction of $v$) exists and compute its value. 
+\item Show that $f$ is \emph{not} continuous in $0 \in \mathbb{R}^2$.
+\end{enumerate}
+}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:Jac-respect-basis}
+Let $f : \Omega \to W$ be differentiable in a point $a \in \Omega$ and let $v_1, \dots, v_d$ and $w_1, \dots, w_m$ be bases of $V$ and $W$ respectively. Show that the matrix (representation) $[Df]_a$ of $(Df)_a$ with respect to the bases $\{ v_j \}$ and $\{ w_i \}$ is a matrix $[b_{ij}]$ of which the element in the $i$th row and $j$th column equals 
+\[
+b_{ij} = (D_{v_j} (\Psi_i \circ f))_a
+\]
+where $\Psi_1, \dots, \Psi_m$ is the dual basis to $w_1, \dots, w_m$.
+
+{\bf Hint:} It may help to re-read Section \ref{se:matrix-representation} and to apply the Chain rule.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:compute-partial-deriv-and-grad}
+Consider the function $f : \mathbb{R}^3 \to \mathbb{R}$ given by
+\[
+f((x_1, x_2, x_3)) = \sin\big((x_1)^2 + (x_2)^3 + (\cos(x_3))^4 \big)
+\]	
+\begin{enumerate}
+		\renewcommand{\theenumi}{(\alph{enumi})}
+\item Prove that for all $a \in \mathbb{R}^3$ the partial derivatives
+\[
+\frac{\partial f}{\partial x_1}(a), \quad \frac{\partial f}{\partial x_2}(a), \quad \frac{\partial f}{\partial x_3}(a)
+\]
+exist and compute their values.
+\item Compute for every $a \in \mathbb{R}^3$, the gradient $\nabla f(a)$.
+\end{enumerate}
+\end{orange_exercise}
+
+\begin{restatable}{orange_exercise}{reRelIntersectTanPlane}
+	Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[
+	f(x_1, x_2) := (x_1)^2 + 4 (x_2)^2
+	\]
+	\begin{enumerate}
+		\renewcommand{\theenumi}{(\alph{enumi})}
+		\item Give the linearization of $f$ around the point $(2, 1)$.
+		\item Give an equation for the tangent plane $A \subset \mathbb{R}^3$ to the graph of $f$ at the point $(2, 1)$.
+		\item Give an equation for the tangent plane $L \subset \mathbb{R}^2$ (tangent line) to the level set $f^{-1}(8)$ at the point $(2, 1)$, using Definition \ref{de:tangent-plane-level-set}.
+		\item Verify that this tangent line $L$ corresponds to
+		\[
+		(2, 1) + \{x \in \mathbb{R}^2 \ | \ (\nabla f(2, 1), x) = 0 \}
+		\]
+		as should follow from Proposition \ref{pr:tangent-plane-gradient}.
+		\item Verify that the equation to the tangent plane to the level set $f^{-1}(8)$ at the point $(2, 1)$ is exactly the intersection of the tangent plane to the graph of $f$ at the point $(2, 1)$ and the horizontal plane at height $z = 8$, projected to the first two coordinates, more precisely verify that
+		\[
+		L = \{ (x_1, x_2) \in \mathbb{R}^2 | (x_1, x_2, 8) \in A \}
+		\]
+	\end{enumerate}
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reParamImplicitGradient}
+	Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[
+	f(x_1, x_2) := \exp(4 \sin(x_1) \cos(x_2))
+	\]
+	\begin{enumerate}
+		\renewcommand{\theenumi}{(\alph{enumi})}
+		\item Determine all points $a \in \mathbb{R}^2$ where the gradient of $f$, namely $\nabla f(a)$ vanishes.
+		\item Give the linearization of $f$ around the point $(\pi/6, \pi/3)$.
+		\item Give an equation for the tangent plane to the graph of $f$ at the point $(\pi/6, \pi/3)$.
+		\item Give an equation for the tangent plane $L$ (tangent line) to the level set $f^{-1}(e)$ at the point $(\pi/6, \pi/3)$.
+		\item Define $g : (\arcsin(1/4), \pi - \arcsin(1/4)) \to \mathbb{R}$ by 
+		\[
+		g(z) := \arccos\left( \frac{1}{4 \sin(z)} \right)
+		\]
+		Prove that the graph of $g$ is contained in the level set $f^{-1}(e)$, and that the tangent line to the graph of $g$ at the point $\pi/6$ corresponds to the tangent line $L$ to the level set $f^{-1}(e)$ at the point $(\pi/6, \pi/3)$.
+	\end{enumerate}
+\end{restatable}

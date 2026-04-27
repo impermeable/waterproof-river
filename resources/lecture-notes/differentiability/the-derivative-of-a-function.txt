@@ -1,0 +1,43 @@
+We now define differentiability in a point of a function of multiple variables.
+
+\begin{definition}[Differentiability in a point]
+	Let $(V, \|\cdot\|_V)$ and $(W, \|\cdot \|_W)$ be two (if you prefer, but not necessarily finite-dimensional) vector spaces. Let $\Omega \subset V$ be an open subset of $V$.
+	Let $f : \Omega \to W$ be a function and let $a \in \Omega$.
+	
+	We say that $f$ is differentiable in $a$ if there exists a bounded linear map $A_a: V \to W$ such that
+	\[
+	\lim_{x \to a} \frac{\| f(x) - (f(a) + A_a (x - a)) \|_W}{\|x - a \|_V} = 0.
+	\]
+	We call $A_a$ the derivative of $f$ in $a$, and instead of $A_a$ we often write $(Df)_a$.
+\end{definition}
+
+The above definition basically says that $f$ is differentiable in $a$ if it can, around $a$, be well approximated by an affine function, i.e. by the sum of a constant plus a linear map. If this is possible, then the approximation is called the linearization.
+
+\begin{definition}[Linearization]
+	Let $f : \Omega \to W$ be differentiable in a point $a \in \Omega$. Then the \emph{linearization} of $f$ is the function $L_{a} : V \to W$ given by
+	\[
+	L_a (x) = f(a) + (Df)_a(x - a)
+	\]
+\end{definition}
+
+If a function is differentiable in a point $a$, it is then well approximated by its linearization around $a$. To express this differently, we can define the error function around $a$ as the difference between $f(x)$ and its linearization. 
+
+\begin{definition}
+If a function $f : \Omega \to W$ is differentiable in a point $a \in \Omega$, we define the error function $\mathsf{Err}_a : \Omega \to W$ by
+\[
+\mathsf{Err}_a(x) := f(x) - (f(a) + (Df)_a (x - a)).
+\]
+\end{definition}
+
+By the definition of differentiability, the error function becomes very small as $x$ approaches $a$.
+
+\begin{proposition}
+Note that if $f$ is differentiable in $a$, it holds that
+\[
+\lim_{x \to a} \frac{\|\mathsf{Err}_a(x)\|_W}{\|x - a\|_V} = 0.
+\]
+\end{proposition}
+
+\begin{definition}[Differentiability on an open set]
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two normed vector spaces. Let $\Omega \subset V$ be open. We say that a function $f : \Omega \to W$ is differentiable on $\Omega$ if for every $a \in \Omega$, the function $f$ is differentiable in $a$.
+\end{definition}

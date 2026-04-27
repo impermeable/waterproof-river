@@ -3,8 +3,10 @@ import { CancellationToken, chat, ChatContext, ChatParticipant, ChatRequest, Cha
 import { WaterproofAPI } from './api';
 import { handleHelp, handleSyntaxHelp, handleToWaterproof } from "./handlers";
 import { ToolCallRound, ToolResultMetadata, ToolUserPrompt, TsxToolUserMetadata } from "./prompts/toolCalls";
-import { HintTool, ProofContextTool, SyntaxHelpTool } from "./tools";
+import { HintTool, ProofContextTool, SyntaxHelpTool, TryStepTool } from "./tools";
 import { satisfies } from 'semver';
+import { TheoryTool } from './tools/theoryTool';
+import { LectureNotesRetriever } from './retrieval';
 
 
 class RiverExtension implements Disposable {
@@ -12,16 +14,38 @@ class RiverExtension implements Disposable {
 	private riverChatParticipant: ChatParticipant;
 	private lastSeenVersion: number = 0;
 	public readonly collection: DiagnosticCollection;
+	private disposables: Array<{dispose(): any;}> = [];
 
-	constructor(private api: WaterproofAPI, context: ExtensionContext) {
+	constructor(private readonly api: WaterproofAPI, private readonly context: ExtensionContext) {
 		this.riverChatParticipant = chat.createChatParticipant('waterproof-tue.river', this.riverChatHandler.bind(this));
 		this.riverChatParticipant.iconPath = Uri.joinPath(context.extensionUri, 'media', 'drop.png');
+		this.push(this.riverChatParticipant);
 
 		this.collection = languages.createDiagnosticCollection("waterproof-river");
 
-		context.subscriptions.push(commands.registerCommand("river.clearSuggestions", () => {
+		this.push(commands.registerCommand("river.clearSuggestions", () => {
 			this.clearDiagnostics();
 		}));
+
+		this.registerTools();
+	}
+
+	/**
+	 * Short-hand to add disposable to the array of disposables from the extension context
+	 * @param disposables Collection of disposable items that will be disposed when the RiverExtension
+	 * is disposed of.
+	 */
+	private push(...disposables: {dispose(): any;}[]) {
+		this.disposables.push(...disposables);
+	}
+
+	private registerTools() {
+		// Register tools
+		this.push(lm.registerTool("waterproof-tue_hint", new HintTool(this.api)));
+		this.push(lm.registerTool("waterproof-tue_syntax_check", new SyntaxHelpTool(this.api, this.collection)));
+		this.push(lm.registerTool("waterproof-tue_proof_context", new ProofContextTool(this.api)));
+		this.push(lm.registerTool("waterproof-tue_try_proof_step_at_cursor", new TryStepTool(this.api)));
+		this.push(lm.registerTool("waterproof-tue_theory_information", new TheoryTool(new LectureNotesRetriever(this.context))));
 	}
 
 	async clearDiagnostics() {
@@ -34,22 +58,27 @@ class RiverExtension implements Disposable {
 		stream: ChatResponseStream,
 		token: CancellationToken
 	) {
-		if (request.command === "syntaxHelp") {
+		// We first determine if the user used a command
+		const { command } = request;
+
+		if (command === "syntaxHelp") {
 			await handleSyntaxHelp(this.api, this.collection, request, context, stream, token);
 		}
-		else if (request.command === "hint") {
+		else if (command === "hint") {
 			await handleHelp(this.api, request, context, stream, token);
 		}
-		else if (request.command === "translateProof") {
-			await handleToWaterproof(this.api, request, context, stream, token);
+		else if (command === "translateProof") {
+			await handleToWaterproof(this.api, this.collection, request, context, stream, token);
 		}
 		else {
-			await this.handleTest(request, context, stream, token);
+			// If we reach this else statement, then the user has *not* used a command
+			// and we are in the freeform chat mode
+			await this.handleChat(request, context, stream, token);
 		}
-
 	}
 	
-	async handleTest(request: ChatRequest, context: ChatContext, stream: ChatResponseStream, token: CancellationToken) {
+	// handle a free form chat message
+	async handleChat(request: ChatRequest, context: ChatContext, stream: ChatResponseStream, token: CancellationToken) {
 		const doc = this.api.currentDocument();
 		if (doc === undefined) {
 			stream.markdown("Could not get the current document from Waterproof. Please make sure you have a Waterproof document open and try again.");
@@ -150,15 +179,11 @@ class RiverExtension implements Disposable {
 
 
 	dispose() {
-		this.riverChatParticipant.dispose();
+		this.disposables.forEach(v => v.dispose());
 	}
 }
 
-
-
-// activation function for the extension
 export function activate(context: ExtensionContext) {
-
 	// Entry point of the extension.
 
 	// Search for the Waterproof-vscode extension.
@@ -170,22 +195,29 @@ export function activate(context: ExtensionContext) {
 		throw new Error("Waterproof extension not found");
 	}
 
+	// Create a debug channel on which we can output debug statements.
 	const debugChannel = window.createOutputChannel("Waterproof River");
 	context.subscriptions.push(debugChannel);
 
 	// Retrieve the version of the Waterproof vscode extension
 	const version = waterproofExtension.packageJSON["version"] as string;
-	const REQUIRED_WATERPROOF_VERSION = "=0.10.1";
+	// semver range for the Waterproof version we can work with.
+	const REQUIRED_WATERPROOF_VERSION = "=0.11.1";
 	debugChannel.appendLine(`Waterproof extension version: ${version} (required range: ${REQUIRED_WATERPROOF_VERSION})`);
 	const sat = satisfies(version, REQUIRED_WATERPROOF_VERSION);
 	
 	debugChannel.appendLine(`Waterproof version satisfies version requirement: ${sat ? 'yes' : 'no'}`);
 
 	if (!sat) {
-		window.showErrorMessage(`River expects a version of the Waterproof extension satisfying ${REQUIRED_WATERPROOF_VERSION}, but we found ${version} instead.\nSome functions may not work as expected!`);
+		// If the version of Waterproof does not match the range we expect we show an error message...
+		window.showErrorMessage(`River expects a version of the Waterproof extension satisfying ${REQUIRED_WATERPROOF_VERSION}, but we found ${version} instead.\nSome functions may not work as expected!`, {modal: true});
+		//...yet still carry on with the initialization of River
 	}
 
-	const riverExtension = new RiverExtension(waterproofExtension.exports!, context);
+	const api = waterproofExtension.exports;
+
+	// Initialize the RiverExtension object with the Waterproof API
+	const riverExtension = new RiverExtension(api, context);
 
 	context.subscriptions.push(riverExtension);
 
@@ -200,14 +232,7 @@ export function activate(context: ExtensionContext) {
 	}
 	statusBarItem.show();
 	context.subscriptions.push(statusBarItem);
-
-	const api = waterproofExtension.exports;
-
-	// Register tools
-	context.subscriptions.push(lm.registerTool("waterproof-tue_hint", new HintTool(api)));
-	context.subscriptions.push(lm.registerTool("waterproof-tue_syntax_check", new SyntaxHelpTool(api, riverExtension.collection)));
-	context.subscriptions.push(lm.registerTool("waterproof-tue_proof_context", new ProofContextTool(api)));
 }
 
-// This method is called when your extension is deactivated
+// Called when the extension is deactivated
 export function deactivate() { }

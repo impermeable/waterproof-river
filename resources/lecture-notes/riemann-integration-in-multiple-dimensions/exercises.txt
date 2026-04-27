@@ -1,0 +1,20 @@
+\begin{orange_exercise}
+Let $S_1, \dots, S_m \subset \mathbb{R}^d$ have Jordan content zero.
+Show that the union
+\[
+\bigcup_{i=1}^m S_i
+\]
+also has Jordan content zero.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Show that the unit ball $B(0, 1)$ in $\mathbb{R}^2$ is a Jordan set. {\textbf{Hint: } Make a parametrization of the boundary of the unit ball}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $E \subset \mathbb{R}^2$ be the subset of $[0,1]^2$ above the curve $y = x^4$, and to the right of the curve $x = \sin(y \pi)^3$. Show that $E$ is a Jordan set.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $E \subset \mathbb{R}^2$ be the subset of $[0,1]^2$ above the curve $y = x^4$, and to the right of the curve $y = \sqrt[3]{x}$. Show that $E$ is a Jordan set.
+\end{orange_exercise}

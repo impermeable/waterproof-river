@@ -1,0 +1,133 @@
+Before we describe the theorem, we will need to introduce more notation.
+
+Since we will assume the function $f: \Omega \to \mathbb{R}^m$ to be continuously differentiable (with $\Omega$ an open subset of $\mathbb{R}^{d+ m}$), we will have that in a point $(a, b) \in \Omega$, the derivative $(D f)_{(a, b)}$ exists and is a linear map from $\mathbb{R}^{d+m}$ to $\mathbb{R}^m$. To get a feeling for this, let's see what it looks like in an example.
+
+\begin{example}
+We could for instance be considering the function $F : \mathbb{R}^{3+2} \to \mathbb{R}^2$ defined by
+\[
+F((x_1, x_2, x_3), (y_1, y_2)) = ((x_1)^2 y_2 + y_1 - 2, \sin(x_2 y_2)  + (x_3)^4 - 3 )
+\]	
+The function $F$ is indeed differentiable and
+\[
+\begin{split}
+(DF)_{(a, b)}(((h_1, h_2, h_3), (k_1, k_2))) = [DF]_{(a, b)}
+\left(\begin{array}{c} h_1\\
+	h_2\\
+	h_3\\
+	k_1\\
+	k_2
+\end{array}\right)
+\end{split}
+\]
+where the Jacobian $[DF]_{(a, b)}$ of $F$ in the point $(a, b) \in \mathbb{R}^{3 + 2}$ is given by
+\[
+\begin{split}
+[DF]_{(a, b)} 
+&=
+\left(
+\begin{array}{ccc|cc}
+	\frac{\partial f_1}{\partial x_1}((a, b))
+	& \frac{\partial f_1}{\partial x_2}((a, b))
+	& \frac{\partial f_1}{\partial x_3}((a, b))
+	& \frac{\partial f_1}{\partial y_1}((a, b))
+	& \frac{\partial f_1}{\partial y_2}((a, b)) \\
+	\frac{\partial f_2}{\partial x_1}((a, b))
+	& \frac{\partial f_2}{\partial x_2}((a, b))
+	& \frac{\partial f_2}{\partial x_3}((a, b))
+	& \frac{\partial f_2}{\partial y_1}((a, b))
+	& \frac{\partial f_2}{\partial y_2}((a, b)) \\
+\end{array}
+\right)\\
+&=
+\left(
+\begin{array}{ccc|cc}
+2 a_1 b_2 & 0 & 0 & 1 & (a_1)^2 \\
+0 & \cos(a_2 b_2) b_2 & 4 (a_3)^3 & 0 & \cos(a_2 b_2) a_2
+\end{array}
+\right)
+\end{split}
+\]
+\end{example}
+
+We will denote by 
+\[
+(\Dleft f)_{(a, b)} : \mathbb{R}^d \to \mathbb{R}^m
+\]
+the restriction of the derivative $(D f)_{(a, b)}: \mathbb{R}^{d+ m} \to \mathbb{R}^m$ to the subspace $\mathbb{R}^d \subset \mathbb{R}^{d + m}$. In other words, for all $h \in \mathbb{R}^d$,
+\[
+(\Dleft f)_{(a, b)}( h) = (D f)_{(a, b)} ((h, 0)).
+\]
+Similarly, we will denote by
+\[
+(\Dright f)_{(a, b)} : \mathbb{R}^m \to \mathbb{R}^m
+\]
+the restriction of the derivative $(D f)_{(a, b)} : \mathbb{R}^{d + m} \to \mathbb{R}^m$ to the subspace $\mathbb{R}^m \subset \mathbb{R}^{d + m}$. In other words, for all $k \in \mathbb{R}^m$,
+\[
+(\Dright f)_{(a, b)} (k) = (Df)_{(a, b)} ((0, k)).
+\]
+By linearity of $(Df)_{(a, b)}$, we have the following relationship
+\[
+(D f)_{(a, b)}( h, k) = (\Dleft f)_{(a, b)} (h) + (\Dright f )_{(a, b)}(k).
+\]
+We will denote the matrix representations (with respect to the standard bases) of the maps $(\Dleft f)_{(a, b)}$ and $(\Dright f)_{(a, b)}$ by $[\Dleft f]_{(a, b)}$ and $[\Dright f]_{(a, b)}$ respectively.
+
+
+Then 
+	\[
+	\begin{split}
+	(Df)_{(a, b)} ((h, k))
+	&=(\Dleft f)_{(a, b)} (h) + (\Dright f )_{(a, b)}(k)
+	\\
+	&= [\Dleft f]_{(a, b)} \left(\begin{array}{c} h_1 \\ h_2 \\ h_3\end{array}\right) + 
+	[\Dright f]_{(a, b)} \left(\begin{array}{c} k_1 \\ k_2 \end{array}\right)
+	\end{split}
+	\]
+\begin{example}
+	In our previous example, 
+	 the matrix $[\Dleft  f]_{(a, b)}$ is given by
+	\[
+	\begin{split}
+	[\Dleft  f]_{(a, b)}
+	&= 
+	\left(
+	\begin{array}{ccc}
+		\frac{\partial f_1}{\partial x_1}((a, b))
+		& \frac{\partial f_1}{\partial x_2}((a, b))
+		& \frac{\partial f_1}{\partial x_3}((a, b))
+		\\
+		\frac{\partial f_2}{\partial x_1}((a, b))
+		& \frac{\partial f_2}{\partial x_2}((a, b))
+		& \frac{\partial f_2}{\partial x_3}((a, b))
+	\end{array}
+	\right)
+	\\
+	&=
+	\left(
+	\begin{array}{ccc}
+		2 a_1 b_2 & 0 & 0  \\
+		0 & \cos(a_2 b_2) b_2 & 4 (a_3)^3 
+	\end{array}
+	\right)
+	\end{split}
+	\]
+	and the matrix $[\Dright f]_{(a, b)}$ is given by
+	\[
+	\begin{split}
+		[\Dright f]_{(a, b)} &= 
+		\left(
+		\begin{array}{cc}
+			\frac{\partial f_1}{\partial y_1}((a, b))
+			& \frac{\partial f_1}{\partial y_2}((a, b)) \\
+			\frac{\partial f_2}{\partial y_1}((a, b))
+			& \frac{\partial f_2}{\partial y_2}((a, b)) 
+		\end{array}
+		\right)\\
+		&=\left(
+		\begin{array}{cc}
+			1 & (a_1)^2 \\
+			0 & \cos(a_2 b_2) a_2
+		\end{array}
+		\right)
+	\end{split}
+	\]
+\end{example}

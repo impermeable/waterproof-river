@@ -1,0 +1,48 @@
+In analysis, we don't just work with any sets.
+It is crucial that we can make sense of what it means for two points in a set to be close, or far away.
+We can make this precise by the concept of a \emph{distance}. A distance is really nothing more than a function, that takes a pair of points in $X$ as input, and produces a real number as output, satisfying the properties in the definition listed below.
+\begin{definition}[distance]
+	\label{de:distance}
+	Let $X$ be a set. A function $d : X \times X \to \mathbb{R}$ is called a \emph{distance} on $X$ if
+	\begin{enumerate}
+		\item (positivity) For all $a, b \in X$, it holds that $d(a, b) \geq 0$.
+		\item \label{it:distance-non-degeneracy} (non-degeneracy) For all $a, b \in X$, if $d(a, b) = 0$ then $a = b$.
+		\item (symmetry) For all $a, b \in X$, $d(a, b) = d(b, a)$.
+		\item (triangle inequality) For all $a, b, c \in X$, \[d(a, c) \leq d(a, b) + d(b, c).\]
+		\item \label{it:distance-reflexivity} (reflexivity) For all $a \in X$, $d(a, a) = 0$.
+	\end{enumerate}		
+\end{definition}
+
+Usually conditions (\ref{it:distance-non-degeneracy}) and (\ref{it:distance-reflexivity}) are combined to the condition that for all $a, b \in X$, $d(a, b) = 0$ if and only if $a = b$.
+
+\begin{definition}[metric space]
+A metric space $(X, \dist)$ is a pair of a set $X$ and a distance function $\dist:X \times X \to \mathbb{R}$ on $X$.
+\end{definition}
+
+\begin{example}[example of a metric space]
+	\label{ex:example-metric-space}
+	Let $X := \{\mathsf{red}, \mathsf{yellow}, \mathsf{blue} \}$ be the set of (traditional) primary colors. The following table describes a function $d : X \times X \to \mathbb{R}$ as follows: in the row corresponding to a color $x$ and a column corresponding to a color $y$ the value $d(x, y)$. So for instance $d(\mathsf{yellow}, \mathsf{blue}) = 3$.
+	\[
+	\begin{array}{c | c c c }
+			& \mathsf{red} & \mathsf{yellow} & \mathsf{blue} \\
+	\mathsf{red} & 0 & 1 & 2 \\
+	\mathsf{yellow} & 1 & 0 & 3 \\
+	\mathsf{blue} & 2 & 3 & 0
+	\end{array}
+	\]
+	We claim that $d : X \times X \to \mathbb{R}$ is indeed a distance on $X$. We can loosely verify the properties in Definition \ref{de:distance} quite easily by inspecting the table. For instance, because all elements in the table are positive, the positivity property holds for the function $d$.\footnote{this isn't quite a rigorous proof. A full proof is a bit cumbersome because we really need to go through all possible cases, i.e.~through all possible combinations of colors.} Similarly, we can verify the non-degeneracy, symmetry, the triangle inequality and the reflexivity. We conclude that $d$ is a distance on $X$, the pair $(X, d)$ is a metric space.
+\end{example}
+
+It will be very useful to give a definition to all points within a certain distance of a given point in a metric space.
+
+\begin{definition}[(open) ball]
+	\label{de:open-ball}
+	Let $(X, \dist)$ be a metric space. The (open) ball around a point $p \in X$ with radius $r > 0$ is denoted by $B(p, r)$ and is defined as the set
+	\[
+	B(p, r) := \{q \in X \ | \ \dist(q, p) < r \}.
+	\]
+\end{definition}
+
+\begin{example}
+	In \ref{ex:example-metric-space}, the open ball $B(\mathsf{yellow}, 3/2)$ is the set $\{\mathsf{yellow}, \mathsf{red} \}$, because $d(\mathsf{yellow}, \mathsf{yellow}) = 0 $ which is strictly less than $3/2$, and $d(\mathsf{yellow}, \mathsf{red}) = 1 < 3/2$, but $d(\mathsf{yellow}, \mathsf{blue}) = 3 > 3/2$.
+\end{example}

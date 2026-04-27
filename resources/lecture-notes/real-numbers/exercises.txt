@@ -1,0 +1,51 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+	Show that for all $a, b \in \mathbb{R}$, if $a < b$ then
+	\[
+	\inf [a, b) = a.
+	\]	
+\end{blue_exercise}
+
+\begin{blue_exercise}
+	Prove Proposition \ref{pr:sup-in-set-gives-max}.	
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Show that 
+\[
+\sup [0,4) = 4
+\]	
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+	\label{ex:alt-char-sup}
+	Prove Proposition \ref{pr:alt-char-sup}.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Prove item (\ref{it:comp-rule-mult-sup}) of Proposition \ref{pr:comp-rules-sup-inf}.
+	You can go through the following steps.
+	\begin{enumerate}
+		\renewcommand{\theenumi}{(\alph{enumi})}
+		\item Make a few drawings of the situation. You can draw two real lines, one having some example $A$, and one containing $\lambda A$. You can vary with $A$ and $\lambda$ in your drawings. You can also draw the suprema in the drawings.
+		\item Define $M := \lambda \sup A$.
+		\item Write down a {\color{blue} proof framework} for this proof. Start by using the alternative characterization of the supremum and the construction "It suffices to show that". If you need inspiration, you can look at the example proof framework (\ref{eq:example-proof-framework}) (which was set up for a different proof), and at the proof of (\ref{it:comp-rule-sum-sup}) of Proposition \ref{pr:comp-rules-sup-inf}.
+		\item Did you already make space for \emph{using} the fact that $\sup(A) = M$? How can you incorporate that in your proof framework?
+		\item Now complete your proof framework to a full proof.
+		\item Look over your proof critically. Are all steps valid? Did you make sure not to divide by zero somewhere? Adapt your proof if necessary.
+	\end{enumerate}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Prove item (\ref{it:comp-rule-refl-inf}) of Proposition \ref{pr:comp-rules-sup-inf}.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $A \subset \mathbb{R}$ be defined by
+	\[ A := \left\{ 2\sqrt{2}\ x + x^2 \ \middle| \ x \in \mathbb{Q} \right\}. \]
+	
+	Give $\inf A$ and prove your answer.
+\end{orange_exercise}

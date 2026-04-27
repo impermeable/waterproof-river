@@ -1,0 +1,36 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+	Determine whether the following series converge or diverge.
+\begin{align*} 
+	(a) \quad & \sum_{k=0}^\infty (-1)^{k+1} \frac{1}{\sqrt{k+1}} &
+	(b) \quad & \sum_{k=1}^\infty \sin\left(\frac{k \pi}{6} \right) \frac{1}{k^{4}}
+\end{align*}
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+Give an example of a sequence $a : \mathbb{N} \to \mathbb{R}$ such that 
+\begin{itemize}
+	\item for all $k \in \mathbb{N}$, it holds that $a_k > 0$,
+	\item $\lim_{k \to \infty} a_k = 0$,
+\end{itemize}
+yet the series
+\[
+\sum_{k=0}^\infty (-1)^k a_k
+\]
+diverges.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $c : \mathbb{N} \to \mathbb{R}$ be a bounded sequence.
+	Determine whether the following series converge or diverge. In case they converge, determine whether they converge absolutely or conditionally.
+\begin{align*}
+	(a)\quad& \sum_{k=1}^\infty \cos (k) \frac{5^k k}{(3k+1)!} &
+	(b)\quad& \sum_{k=10}^\infty (-1)^k 
+	  \frac{k + 1}{k^2 + 1} \\
+	(c)\quad& \sum_{k=2}^\infty (-1)^k \frac{k^2 + 4 k + 5}{k^4 + 5 k + 6} &
+	(d)\quad& \sum_{k=3}^\infty c_k \frac{1}{k^{50}} 4^{c_k}
+\end{align*}
+\end{orange_exercise}

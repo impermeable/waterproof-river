@@ -1,0 +1,29 @@
+In the next few sections, we will discuss several limits involving infinity.
+There are many combinations of such limits possible, all of them with their own types of limit theorems and alternative characterizations, and because of this it tends to get a bit out of hand. One remedy is to organize the information, definitions and arguments by introducing the \emph{extended real line}. With that tool, we can use previous limit laws and sequence characterizations for the analysis of limits involving infinity.
+
+We first discuss the extended real line as a \emph{set}.
+
+\begin{definition}[The extended real line]
+	The \emph{extended real line} $\extR$ is the union of the set $\mathbb{R}$ and two symbols, "$\infty$" and "$-\infty$".
+	That is $\extR = \mathbb{R} \cup \{ \infty \} \cup \{ - \infty\}$.
+\end{definition}
+
+We now want to turn the extended real line into a metric space. For that, we need to define a distance on the extended real line. We do this by first defining the map $\iota : \extR \to [-1, 1]$ by
+\[
+\iota (x) := 
+\begin{cases}
+	-1 &\text{if } x = -\infty,\\
+	\frac{x}{1+x} &\text{if } x \in \mathbb{R} \text{ and } x \geq 0,\\
+	\frac{x}{1-x} &\text{if } x \in \mathbb{R} \text{ and } x < 0,\\
+	1 &\text{if } x = \infty.	
+\end{cases}
+\]
+Because this function is injective, we can now use Exercise \ref{ex:pullback-distance} to build a distance on $\extR$.
+
+\begin{definition}[Distance on extended real line]
+	Given the definition of the injective function $\iota : \extR \to [-1,1]$ above, we define the distance on $\extR$ by
+	\[
+	\dist_{\extR} (x, y) := \dist_{\mathbb{R}}(\iota(x), \iota(y)), \qquad \text{ for } x, y \in \extR,
+	\]
+	where $\dist_{\mathbb{R}}$ denotes the standard Euclidean distance on $\mathbb{R}$.
+\end{definition}

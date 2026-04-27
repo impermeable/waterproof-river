@@ -1,0 +1,60 @@
+\begin{proposition}
+Let $f : [a, b] \to \mathbb{R}$ be continuous.
+Then $f$ is Riemann integrable.	
+\end{proposition}
+
+\begin{proof}
+We will use the alternative characterization of Riemann integrability, namely Proposition \ref{pr:alt-char-Riem-int}. We therefore need to show that
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\qquad \existstext \text{a partition } P \text{ of } [a, b],\\
+&\qquad\qquad U(P, f) - L(P, f) < \epsilon.
+\end{split}
+\]
+Let $\epsilon > 0$.	
+
+Because the closed interval $[a, b]$ is compact, the function $f$ is uniformly continuous.
+Therefore, there exists a $\delta > 0$ such that for all $x, y \in [a, b]$, if $0 < |x - y| < \delta$ then 
+\[
+|f(x) - f(y)| < \frac{\epsilon}{2 (b - a)}.
+\]
+Now choose an $N \in \mathbb{N}$ such that $N > 1/ \delta$. We define the partition
+\[
+P := (x_0 , x_1, \dots, x_{N+1})
+\]
+by 
+\[
+x_i := a + i \frac{b - a}{N}.
+\]
+Then
+\[
+\begin{split}
+U(P, f) - L(P, f)
+&= \sum_{k=1}^N M_k \Delta x_k - \sum_{k=1}^N m_k \Delta x_k\\
+&= \sum_{k=1}^N (M_k - m_k) \Delta x_k	
+\end{split}
+\]
+with
+\[
+M_k = \sup_{x \in [x_{k-1}, x_k]} f(x)
+\]
+and
+\[
+m_k = \inf_{x \in [x_{k-1}, x_k]} f(x).
+\]
+Therefore, for all $k \in \{1, \dots, N\}$,
+\[
+0 \leq M_k - m_k \leq \frac{\epsilon}{2 (b - a)}.
+\]
+We find that
+\[
+\begin{split}
+	|U(P, f) - L(P, f)|
+	&\leq \sum_{k=1}^N |M_k - m_k| \Delta x_k \\
+	&\leq \frac{\epsilon}{2(b - a)} \sum_{k=1}^N \Delta x_k \\
+	&= \frac{\epsilon}{2 (b - a)} (b - a)\\
+	&< \epsilon.
+\end{split}
+\]
+\end{proof}

@@ -1,0 +1,53 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+	\label{ex:limit-const-seq}
+	Prove Proposition \ref{pr:limit-const-seq}.	
+\end{blue_exercise}
+
+\begin{blue_exercise}
+	\label{ex:index-shift}
+	Prove Proposition \ref{pr:index-shift}.
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+	Prove item (\ref{it:limit-thm-sum}) of Theorem \ref{th:limit-theorems-vector-space}.
+\end{orange_exercise}
+
+\begin{restatable}{orange_exercise}{reLimSupDist}
+	\label{ex:limsupdist}
+	Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ be a bounded sequence in $X$. Let $p \in X$.
+	Define also the sequence $s : \mathbb{N} \to \mathbb{R}$ by
+	\[
+	s_k := \sup\{ \dist(a_l, p) \mid l \in \mathbb{N},\ l \geq k\}.
+	\]
+	Show that $\lim_{n \to \infty} a_n = p$ if and only if 
+	\[
+	\inf_{k \in \mathbb{N}} s_k = 0.
+	\]	
+	Here, $\inf_{k \in \mathbb{N}} s_k$ is shorthand for
+	\[
+	\inf_{k \in \mathbb{N}} s_k := \inf \left\{s_k \mid k \in \mathbb{N} \right\}.
+	\]
+	{\bf Hint: } Due to notation, this exercise may look intimidating. However, if you let yourself be guided by the best practices and if you use the alternative characterization of the infimum, it becomes quite a bit easier than it looks.
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reSqrtSeq}
+	\label{ex:reSqrtSeq}
+	Let $a : \mathbb{N} \to \mathbb{R}$ be a sequence in $\mathbb{R}$. Let $p \in \mathbb{R}$ and assume that
+	\[
+	\lim_{n \to \infty} a_n = p.
+	\]
+	
+	Define the sequence $b : \mathbb{N} \to \mathbb{R}$ by
+	\[
+	b_n := 10 \cdot a(\lceil \sqrt{n} \rceil).
+	\]
+	Determine whether the following limit exists and if it does, determine its value
+	\[
+	\lim_{n \to \infty} b_n.
+	\]
+	As always, make sure to provide a proof for your answer.
+\end{restatable}

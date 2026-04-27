@@ -1,0 +1,27 @@
+The following proposition implies that the composition of two continuous functions is also continuous.
+\begin{proposition}
+Let $(X, \dist_X)$, $(Y, \dist_Y)$ and $(Z, \dist_Z)$ be metric spaces, let $D \subset X$ and $E \subset Y$. Let $f : D \to Y$ and $g : E \to Z$ be two functions, and assume that $f(D) \subset E$. Let $a \in D$. If $f$ is continuous in $a$ and $g$ is continuous in $f(a)$ then $g\circ f$ is continuous in $a$.
+\end{proposition}
+
+\begin{proof}
+We use the sequence characterization of continuity.
+We need to show that for every sequence $(x^{n})$ in $D$ converging to $a$, in fact
+\[
+\lim_{n \to \infty} (g \circ f)(x^{n}) = (g \circ f) (a)
+\]
+or written differently that
+\[
+\lim_{n \to \infty} g ( f(x^{n}) )= g (f (a)).
+\]
+Let $(x^{n})$ be a sequence in $D$ converging to $a$.
+Since $f$ is continuous, we know that
+\[
+\lim_{n \to \infty} f(x^{n}) = f(a)
+\]
+or in words the sequence $(f(x^{n}))$ converges to $f(a)$.
+Because $g$ is continuous in $f(a)$, it follows that
+\[
+\lim_{n \to \infty} g(f(x^{n})) = g(f(a))
+\]
+which was what we needed to show.
+\end{proof}

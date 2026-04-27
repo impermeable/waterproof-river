@@ -1,0 +1,9 @@
+As a motivation for the following definition, let us consider the sequence $a_\ell = (-1)^\ell$. A term $a_\ell$ of this sequence equals $1$ if its index $\ell$ is even, and equals $(-1)$ if its index $\ell$ is odd. This sequence does not converge, but if we just consider the subsequence $(a_{n_k})_k$ with $n_k := 2k$, then this subsequence is a constant sequence, every term equals $1$ and therefore it does converge.
+
+In general then, we will find it interesting to know if a subsequence of a sequence converges. And the limit of such a subsequence is special too. We call a limit of a subsequence a (sequential) accumulation point.
+
+\begin{definition}[(Sequential) accumulation points]
+	\label{de:seq-acc-point}
+Let $(X, \dist)$ be a metric space.
+A point $p \in X$ is called an \emph{accumulation point} of a sequence $a : \mathbb{N} \to X$ if there is a subsequence $a \circ n$ of $a$ such that $a \circ n$ converges to $p$.
+\end{definition}

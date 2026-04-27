@@ -1,0 +1,9 @@
+\begin{definition}
+Let $f : \Omega \to \mathbb{R}$ be a function that is infinitely many times differentiable on some open set $\Omega$. Assume $c \in \Omega$.
+
+Then the function series
+\[
+\sum_{k=0}^\infty \frac{f^{(k)}(c)}{k!} (x - c)^k
+\]
+is called the \emph{Taylor series} of $f$ around $c$.
+\end{definition}

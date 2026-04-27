@@ -1,0 +1,45 @@
+Just as in the one-dimensional case, the set of all Riemann integrable functions on a rectangle $R$ forms a vector space, and the integral is linear.
+
+\begin{proposition}
+Let $R$ be a closed rectangle and let $f, g : R \to \mathbb{R}$ be bounded and Riemann integrable on $R$. Then
+\begin{enumerate}
+\item the function $f + g$ is Riemann integrable on $R$ and 
+\[
+\int_R (f(x) + g(x) ) dx = \int_R f(x) dx + \int_R g(x) dx
+\]	
+\item for all $\lambda \in \mathbb{R}$, the function $\lambda f$ is Riemann integrable on $R$ and
+\[
+\int_R \lambda f(x) dx = \lambda \int_R f(x) dx .
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Let $R = [a_1, b_1] \times \cdots \times [a_d, b_d]$ be a closed rectangle in $\mathbb{R}^d$ and let $f, g : R \to \mathbb{R}$ be bounded and Riemann integrable on $R$. Then
+\begin{enumerate}
+\item (volume)
+\[
+\int_R 1 dx = (b_1 - a_1) (b_2 - a_2) \cdots (b_d - a_d) =: \Vol(R)
+\]	
+\item (monotonicity) if for all $x \in R$, $f(x) \leq g(x)$ then
+\[
+\int_R f(x) dx \leq \int_R g(x) dx
+\]
+\item (triangle inequality) the function $|f|$ is Riemann integrable on $R$ and
+\[
+\left|\int_R f(x) dx  \right|\leq \int_R |f(x) | dx.
+\]
+\item (additivity of domain) if $Q$ is a closed rectangle contained in $R$, then $f$ is integrable on $Q$. Moreover, if $Q_1, \dots, Q_N$ are finitely many closed rectangles,  
+\begin{itemize}
+	\item if their interiors are disjoint, i.e. $\mathrm{int} \ Q_i \cap \mathrm{int} \ Q_j = \emptyset$ if $i \neq j$ and
+	\item if the union of $Q_i$'s equals $R$, i.e.
+\[
+\bigcup_{i=1}^N Q_i = R,
+\]
+\end{itemize}
+then
+\[
+\int_R f(x) dx = \sum_{i=1}^N \int_{Q_i} f(x) dx .
+\]
+\end{enumerate}
+\end{proposition}

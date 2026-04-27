@@ -1,0 +1,11 @@
+When you are stuck proving something directly, it is a good idea to try to give a proof by contradiction: You assume that whatever you want to show is not true, and derive a contradiction from there. Some statements in analysis are (almost?) impossible to show without using a contradiction argument somewhere.
+
+You can use the following template for a contradiction argument.
+
+\begin{mcode}
+	\begin{split}
+		&\text{We argue by contradiction. Suppose } \neg ( \textellipsis ).\\
+		&\quad\quad \textellipsis \textit{ derivation that leads to a contradiction } \textellipsis\\
+		&\quad\quad \text{Contradiction. We conclude that } (\textellipsis) \text{ holds}.
+	\end{split}
+\end{mcode}

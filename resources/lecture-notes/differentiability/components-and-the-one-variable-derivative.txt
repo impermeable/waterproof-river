@@ -1,0 +1,44 @@
+Although we sometimes have a general normed vector space $(W, \|\cdot\|_W)$ as a target space for a function $f : \Omega \to W$, the one-variable derivative of $f$ is easy to understand in terms of one-variable derivatives of functions that have as target space $\mathbb{R}$.
+
+\begin{definition}
+Given a function $f : O \to W$ and a basis $\mathbf{w}_1, \dots, \mathbf{w}_m$ of $W$, there are unique functions $f_1, \dots, f_m : \Omega \to \mathbb{R}$ such that for all $x \in \Omega$,
+\[
+f(x) = f_1(x) \mathbf{w}_1 + \dots + f_m(x) \mathbf{w}_m.
+\]
+We call the functions $f_1, \dots, f_m$ the components of $f$ (with respect to the basis $\mathbf{w}_1, \dots, \mathbf{w}_m$).
+\end{definition}
+
+\begin{proposition}
+	\label{pr:components-one-variable}
+	Let $O \subset \mathbb{R}$ be open, let $f : O \to W$ and let $s \in O$.
+	
+	A function $f : O \to W$ is differentiable in $s$ if and only if all components $f_1, \dots, f_m : O \to \mathbb{R}$ are differentiable in $s$, and in that case
+	\[
+	f'(s) = f_1'(s) \mathbf{w}_1 + \dots + f_m'(s) \mathbf{w}_m.
+	\]
+\end{proposition}
+
+In case $W = \mathbb{R}^m$, we will usually take for $\mathbf{w}_1, \dots, \mathbf{w}_m$ the standard basis $\mathbf{e}_1, \cdots, \mathbf{e}_m$ so that we get
+\[
+f'(s) = \left( \begin{array}{c} f_1'(s) \\ \vdots \\ f_m'(s) \end{array} \right).
+\]
+
+\begin{example}
+	Consider the function $f: \mathbb{R} \to \mathbb{R}^2$ given by
+	\[
+	f(t) = \big( t^2 , \sin(t)  \big)
+	\]	
+	The component functions $f_1: \mathbb{R} \to \mathbb{R}$ and $f_2 : \mathbb{R} \to \mathbb{R}$ are given by
+	\[
+	f_1(t) = t^2
+	\]
+	and
+	\[
+	f_2(t) = \sin(t)
+	\]
+	Since these component functions are differentiable standard functions, we find by Corollary \ref{co:components-differentiable-function-differentiable} that $f$ is differentiable as well and
+	\[
+	f'(t) = \big( f_1'(t), f_2'(t) \big)
+	= \big( 2 t , \cos(t) \big)
+	\]
+\end{example}

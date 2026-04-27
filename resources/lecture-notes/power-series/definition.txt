@@ -1,0 +1,7 @@
+\begin{definition}
+A \emph{power series} at a point $c \in \mathbb{R}$ is a function series of the form
+\[
+\sum_{k=0}^\infty a_k (x - c)^k
+\]
+where $a: \mathbb{N} \to \mathbb{R}$ is a real-valued sequence.
+\end{definition}

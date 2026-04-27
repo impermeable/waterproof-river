@@ -1,0 +1,78 @@
+The next test, called the ratio test, is very convenient for determining that a series such as
+\[
+\sum_{k=0}^\infty \frac{2^k}{k!}
+\]
+converges.
+Interestingly, such series occur very often `in the wild'. We are not ready to show this yet, but at some point we will see that the value of the series is actually equal to $e^2$, where $e$ was introduced in Section \ref{se:number-e} as the limit
+\[
+e := \lim_{n \to \infty} \left(1 + \frac{1}{n} \right)^n.
+\]
+
+\begin{theorem}[Ratio Test]
+	Let $a : \mathbb{N} \to (0,\infty)$ be a sequence only taking on strictly positive values.
+	\begin{enumerate}
+		\item \label{it:ratiotestconv} If there exists an $N \in \mathbb{N}$ and a $q \in (0,1)$ such that for all $n \geq N$, it holds that
+		\[
+		\frac{a_{n+1}}{a_n} \leq q,
+		\]
+		then the series $\sum a_k$ converges.
+		\item \label{it:ratiotestdiv} If there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, it holds that
+		\[
+		\frac{a_{n+1}}{a_n} \geq 1,
+		\]
+		then the series $\sum a_k$ diverges.
+	\end{enumerate}	
+\end{theorem}
+
+\begin{proof}
+	We first show (\ref{it:ratiotestconv}). 
+	So assume there exists an $N \in \mathbb{N}$ and a $q \in (0,1)$ such that for all $n \geq N$, it holds that
+	\[
+	\frac{a_{n+1}}{a_n} \leq q.
+	\]
+	Then it holds for all $k \in \mathbb{N}$ that
+	\[
+	0 < a_{N + k} \leq q^k a_{N}
+	\]
+	Note that the series 
+	\[
+	\sum_{k=0}^\infty q^k
+	\]
+	is convergent as it is a standard geometric series with $|q| < 1$. By Theorem \ref{th:limit-laws-series}, part (\ref{it:lim-law-scal-series}), the series
+	\[
+	\sum_{k=0}^\infty q^k a_N
+	\]
+	is convergent as well. Therefore, we find by the Comparison Test that the series
+	\[
+	\sum_{k=N}^\infty a_{k}
+	\]
+	is convergent as well.
+	
+	We now show (\ref{it:ratiotestdiv}).
+	Assume there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, it holds that 
+	\[
+	\frac{a_{n+1}}{a_n} \geq 1.
+	\]
+	Then for all $n \geq N$, $a_n \geq a_N$, so that $a_n$ does not converge to zero.
+	By the divergence test (Theorem \ref{th:divergence-test}), we find that the series
+	\[
+	\sum_{k=0}^\infty a_k
+	\]
+	is divergent.
+\end{proof}
+
+\begin{corollary}[Ratio Test, limit version]
+	Let $(a_n)$ be a sequence of \emph{strictly positive} real numbers.
+	
+	\begin{itemize}
+		\item If $\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = q$ with $q \in [0, 1)$, then the series $\sum_k a_k$ converges.
+		\item If $\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = q$ with $q \in (1, \infty)$, or if $\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \infty$, then the series $\sum_k a_k$ diverges.
+	\end{itemize}
+\end{corollary}
+
+\begin{warning}
+{\bf Warning:} We cannot conclude anything about the convergence of a series $\sum_k a_k$ when
+\[
+\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = 1.
+\]
+\end{warning}

@@ -1,14 +1,21 @@
 import { CancellationToken, LanguageModelTextPart, LanguageModelTool, LanguageModelToolInvocationOptions, LanguageModelToolInvocationPrepareOptions, LanguageModelToolResult, MarkdownString } from "vscode";
 import { WaterproofAPI } from "../api";
 
+/**
+ * Tool responsible for getting the current proof context.
+ * The proof context includes the proof the student is working on, how far they got
+ * and where (the cursor position) from where they are asking the question.
+ */
 export class ProofContextTool implements LanguageModelTool<null> {
-    constructor (private api: WaterproofAPI) {}
+    constructor (private readonly api: WaterproofAPI) {}
+
     async invoke(options: LanguageModelToolInvocationOptions<null>, token: CancellationToken) {
-        
         try {
+            // Get the goals and the proof context from Waterproof using the WaterproofAPI object
             const context = await this.api.proofContext("<context-cursor>USER CURSOR IS HERE</context-cursor>");
             const goals = await this.api.goals();
 
+            // Convert the hypotheses into a string
             const hypString = goals.hypotheses.map(v => `- ${v.name}: ${v.content}`).join("\n");
             
             return new LanguageModelToolResult([
@@ -18,22 +25,24 @@ export class ProofContextTool implements LanguageModelTool<null> {
                 new LanguageModelTextPart(`The hypotheses for this goal are:\n${hypString}`)
             ]);
         } catch {
+            // Inform the model that either proofContext or goals request failed
             return new LanguageModelToolResult([
                 new LanguageModelTextPart("Could not get goals or proof context from Waterproof")
             ]);
         }
     }
+
     async prepareInvocation(
         options: LanguageModelToolInvocationPrepareOptions<null>,
         _token: CancellationToken
     ) {
         const confirmationMessages = {
-            title: 'Allow River to retrieve the current proof context?',
+            title: "Allow River to retrieve the current proof context?",
             message: new MarkdownString("Allow River to retrieve the current proof context?"),
         };
 
         return {
-            invocationMessage: 'Proof context',
+            invocationMessage: "Proof context",
             confirmationMessages,
         };
     }

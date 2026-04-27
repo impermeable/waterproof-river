@@ -1,0 +1,54 @@
+Before we can state the mean-value inequality for functions defined on general domains, let's have a small recap about the operator norm 
+\[
+\| \cdot \|_{V \to W}
+\] defined on the space of linear maps $\Lin (V, W)$. What we need to remember about this norm is the following. Given a linear map $L : V \to W$, the norm $\|L \|_{V\to W}$ is the smallest constant $K \in \mathbb{R}$ such that for all $v \in V$,
+\[
+\| L(v) \|_W \leq K \|v \|_V.
+\]
+In other words,
+\begin{enumerate}
+\item for all $v \in V$, and every $L \in \mathsf{Lin}(V, W)$,
+\[
+\| L (v) \|_W \leq \| L \|_{V \to W} \| v\|_V
+\]	
+\item for every $L \in \mathsf{Lin}(V, W)$ we have the following. If $K \in \mathbb{R}$ is a constant such that for all $v \in V$
+\[
+\| L(v) \|_W \leq K \|v \|_V,
+\]
+then
+\[
+\| L \|_{V \to W} \leq K.
+\]
+\end{enumerate}
+
+If we combine the mean-value inequality from the previous section with the chain rule, we obtain the following version of the mean value-inequality.
+
+\begin{corollary}[Mean-value inequality]
+	\label{co:MVI}
+	Let $f : \Omega \to W$ be differentiable on an open domain $\Omega \subset V$. Then, for all $a, b \in \Omega$, if for every $\tau \in (0, 1)$, also 
+	\[ 
+	(1-\tau)a + \tau b \in \Omega
+	\]
+	then
+	\[
+	\|f(b) - f(a)\|_W \leq \sup_{\tau \in (0, 1)} \| (Df)_{(1-\tau)a + \tau b}\|_{V \to W} \| b - a \|_V.
+	\]
+\end{corollary}
+
+The derivation of Corollary \ref{co:MVI} from Lemma \ref{le:MVI} is the topic of Exercise \ref{ex:MVI}.
+
+\begin{lemma}
+	\label{le:err-estimate-due-to-MVI}
+	Suppose $f: \Omega \to W$ is differentiable on $\Omega$, and suppose its derivative function $Df : \Omega \to \mathsf{Lin}(V, W)$ is bounded.
+	Let $a \in \Omega$ and assume $r > 0$ is such that $B(a, r) \subset \Omega$. Then for all $x \in B(a, r)$,
+	\[ 
+	\| \mathsf{Err}_a^f(x) \|_W \leq \sup_{z \in B(a, r)}\| (Df)_z - (Df)_a \|_{V \to W} \| x - a \|_V
+	\]
+\end{lemma}
+
+%\begin{lemma}
+%Let $f : \Omega \to W$ be a function, let $u, v \in V$ be two vectors in $V$, assume that the directional derivative $D_v f : \Omega \to W$ exists and is bounded function, and assume that the directional derivative $D_u(D_v f) : \Omega \to W$ exists and is bounded. Let $(s, t) \in B(0, r)\subset \mathbb{R}^2$ for some $r > 0$. Then
+%\[
+%\|f(a + su + t v) - f(a + s u ) - f ( a + t v) + f (a) \|_W \leq \sup_{(\sigma, \tau) \in B(0, r)^2} \|(D_u (D_v f))_{a + \sigma u + \tau v} \|_W s t
+%\]
+%\end{lemma}

@@ -1,0 +1,75 @@
+\begin{theorem}[Comparison test]
+	\label{th:comparison-test}
+	Let $a: \mathbb{N} \to [0,\infty)$ and $b : \mathbb{N} \to [0,\infty)$ be two sequences. Assume that there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, $a_n \leq b_n$. 
+	\begin{enumerate}
+		\item \label{it:comp-majorization} Suppose the series $\sum b_n$ converges, then the series $\sum a_n$ converges as well.
+		\item \label{it:comp-minorization} Suppose the series $\sum a_n$ diverges, then the series $\sum b_n$ diverges as well.
+	\end{enumerate}	
+\end{theorem}
+
+\begin{proof}
+	We first show (\ref{it:comp-majorization}).
+	Suppose the series $\sum b_n$ converges. Denote 
+	\[
+	S_n := \sum_{k=N}^n a_k \qquad T_n := \sum_{k=N}^n b_k.
+	\]
+	Then we know that for every $n \geq N$ that
+	\[
+	S_n \leq T_n \leq \sum_{k=N}^\infty b_n.
+	\]
+	The sequence $(S_n)$ is therefore bounded and increasing, thus convergent.
+	
+	We now show (\ref{it:comp-minorization}).
+	Suppose the series $\sum a_n$ diverges.
+	Let $M \in \mathbb{N}$.
+	Then there exists a $n_0 \in \mathbb{N}$ such that for all $n \geq n_0$,
+	\[
+	\sum_{k=N}^n a_k > M.
+	\]
+	Then also
+	\[
+	\sum_{k=N}^n b_k > M
+	\]
+	Therefore the series $\sum_{k=N}^\infty b_k$ diverges.
+	Then also the series $\sum_{k=0}^\infty b_k$ diverges.
+\end{proof}
+
+\begin{example}
+Consider the series
+\[
+\sum_{k=2}^\infty \frac{k}{k^2 - 1}.
+\]
+We would like to determine whether this series diverges or converges. There are usually two stages to reaching a conclusion. First is building intuition, the second is setting up a rigorous argumentation.
+
+Let us discuss the intuition first. For that, it is helpful to squint your eyes and get a feeling for the approximate behavior of the terms when $k$ is large. Since the terms 
+\[
+\frac{k}{k^2 - 1}
+\]
+are very close to $1/k$ for large $k$, we may expect that this series diverges, as the harmonic series $\sum \frac{1}{k}$ diverges as well.
+
+The previous theorem allows us to turn this intuition into a precise argument.
+
+The precise argument looks as follows. We first observe that for all $k \geq 2$, 
+\[
+\frac{k}{k^2 - 1} \geq \frac{k}{k^2} = \frac{1}{k}.
+\]
+Because the series
+\[
+\sum_{k=2}^\infty \frac{1}{k}
+\]
+diverges, the series
+\[
+\sum_{k=2}^\infty \frac{k}{k^2 - 1}
+\]
+diverges as well by the comparison test, Theorem \ref{th:comparison-test}.
+\end{example}
+
+\begin{warning}
+{\bf Warning:} Whenever you want to apply the Comparison Test, as with all theorems, you first need to check the conditions. If you want to show that a series $\sum_{k=N}^\infty a_k$ converges, by comparing it to a series $\sum_{k=N}^\infty b_k$, you need to show that there exists some $N \in \mathbb{N}$ such that for all $n \geq N$, $a_n \leq b_n$, and you need to show that the series $\sum_{k=N}^\infty b_k$ indeed converges.
+
+In particular, do {\bf not} write
+\[
+\sum_{k=N}^\infty a_k \leq \sum_{k=N}^\infty b_k
+\]
+{\bf before} you applied the Comparison Test, because before you concluded the convergence of the left-hand side, the statement does not make sense.
+\end{warning}

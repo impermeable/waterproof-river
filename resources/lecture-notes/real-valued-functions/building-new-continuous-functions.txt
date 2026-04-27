@@ -1,0 +1,13 @@
+The following theorem translates the limit laws of Section \ref{se:limit-laws-real-valued-functions} into statements about continuity.
+
+\begin{theorem}
+	Let $(X, \dist)$ be a metric space, let $D$ be a subset of $X$ and assume $a \in D$.
+	Let $f : D \to \mathbb{R}$ and $g : D \to \mathbb{R}$ be two real-valued functions that are continuous in $a \in D$. 
+	\begin{enumerate}
+	\item For every $m \in \mathbb{N}$, the function $f^m$ is continuous in $a$.
+	\item The function $f + g$ is continuous in $a$.
+	\item \label{it:cont-multiplication} The function $f \cdot g$ is continuous in $a$.
+	\item If $g(a) \neq 0$, the function $f / g$ is continuous in $a$.
+	\item If for all $x \in D$, $f(x) \geq 0$, then for every $k \in \mathbb{N} \setminus \{ 0 \}$, the function $\sqrt[k]{f}$ is continuous in $a$.
+	\end{enumerate}
+\end{theorem}

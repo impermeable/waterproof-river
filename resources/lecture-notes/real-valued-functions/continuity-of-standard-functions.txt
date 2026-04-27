@@ -1,0 +1,21 @@
+\begin{proposition}
+Every (possibly multivariate) polynomial is continuous as a function from $(\mathbb{R}^d, \| \cdot \|_2)$ to $(\mathbb{R}, | \cdot |)$.
+\end{proposition}
+
+\begin{proposition}
+Every (possibly multivariate) rational function is continuous on its domain of definition (viewed as a function from a domain in $(\mathbb{R}^d, \| \cdot \|_2)$ to $(\mathbb{R}, | \cdot |)$).	
+\end{proposition}
+
+In some sense, we're not ready for the next proposition: not only do we not yet have the tools to prove it, worse, we are not even ready to define the functions involved. Most likely, however, you have seen these functions in high school or in Calculus. I think it's good to mention the proposition now anyway, as it plays a central role when you want to show that some more complicated functions are continuous.
+
+\begin{proposition}[Continuity of some standard functions]
+	\label{pr:continuity-standard-function}
+	The functions
+	\begin{align*}
+		\exp &: \mathbb{R} \to \mathbb{R}  & \ln &: (0,\infty) \to \mathbb{R}\\
+		\sin &: \mathbb{R} \to \mathbb{R}  & \arcsin &: [-1, 1] \to \mathbb{R} \\
+		\cos &: \mathbb{R} \to \mathbb{R}  & \arccos &: [-1, 1] \to \mathbb{R}\\
+		\tan &: (-\pi/2, \pi/2) \to \mathbb{R} & \arctan &: \mathbb{R} \to \mathbb{R}
+	\end{align*}
+	are all continuous.
+\end{proposition}

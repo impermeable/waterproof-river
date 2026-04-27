@@ -1,0 +1,18 @@
+Make sure that every variable that you are using is defined. In particular:
+
+\begin{itemize}
+	\item After writing a sentence:
+	\begin{mcode}
+		\foralltext \epsilon > 0, \quad \textellipsis
+	\end{mcode}
+	the variable $\epsilon$ is not defined, and you cannot refer to it.
+	\item After writing the sentence
+	\begin{mcode}
+		\existstext N \in \mathbb{N}, \quad \textellipsis
+	\end{mcode}
+	the variable $N$ is not defined, and you cannot refer to it. To use it in the rest of a proof, you can follow up with 
+	\begin{mcode}
+		\text{Choose such an } N \in \mathbb{N}.	
+	\end{mcode}
+	See also item (\ref{it:bp-using-exists}) of this best-practices list.
+\end{itemize}

@@ -1,0 +1,192 @@
+We are now ready to give a definition of a closed set.
+
+\begin{definition}
+Let $(X, \dist)$ be a metric space. We say a set $C \subset X$ is \emph{closed} if its complement $X \setminus C$ is open.
+\end{definition}
+
+Both the empty set and the full set are closed.
+
+\begin{proposition}
+	\label{pr:empty-full-closed}
+Let $(X, \dist)$ be a metric space. Then both the empty set $\emptyset$ and the set $X$ itself are closed.	
+\end{proposition}
+\begin{proof}
+	The empty set is closed because its complement, $X \setminus \emptyset = X$ is open by Proposition \ref{pr:empty-full-open}.
+	
+	The set $X$ is closed because its complement, $X \setminus X = \emptyset$ is open by Proposition \ref{pr:empty-full-open}.
+\end{proof}
+
+\begin{warning}
+	{\bf Warning:} The following two facts may conflict your expectations when you use intuition for the meaning of `open' and `closed' from daily life:
+	\begin{enumerate}
+		\item Combining Propositions \ref{pr:empty-full-open} and \ref{pr:empty-full-closed} we see that both the empty set and the full set $X$ are both open and closed.
+		\item In Exercise \ref{ex:set-not-open-not-closed} we will see that there is a set (and many more) that are neither open nor closed.
+	\end{enumerate}
+
+	What does it mean in practice? If you want to show that a set is closed, {\bf it is not enough} to show that the set is not open. 
+\end{warning}
+
+\begin{proposition}[Sequence characterization of closedness]
+A set $C \subset X$ is closed if and only if for every sequence $(c_n)$ in $C$ converging to some $x \in X$, it holds that $x \in C$.
+\end{proposition}
+
+\begin{proof}
+Assume $C$ is closed.
+Let $(c_n)$ be a sequence in $C$ converging to some $x \in X$.
+We need to show that $x \in C$, and we will argue by contradiction.
+So suppose that $x \in O := X \setminus C$.
+Since $C$ is closed, we have (by definition of `closed') that $O$ is open. Since $x \in O$, and $O$ is open, $x$ is (by the definition of `open') an interior point of $O$. Therefore, there exists an $r > 0$ such that $B(x, r) \subset O$.
+
+Since the sequence $(c_n)$ converges to $x$, we may obtain an $N \in \mathbb{N}$ such that for all $n\geq N$, $\dist(c_n, x) < r$. In particular, $\dist( c_N, x) < r$ which means that $c_N \in B(x, r) \subset O$, which is a contradiction because $c_N \in C$.
+
+Now assume that for every sequence $(c_n)$ in $C$ converging to some $x \in X$, it holds that $x \in C$.
+We want to show that $O := X\setminus C$ is open, i.e.~ that every $p \in O$ is an interior point. Let $p \in O$. We need to show that $p$ is an interior point. We argue by contradiction. Suppose $p \in O$ is not an interior point, then
+\begin{equation}
+\begin{split}
+&\foralltext r > 0,\\
+&\quad   B(p, r) \not\subset O.
+\end{split}
+\end{equation}
+In other words
+\begin{equation}
+	\label{eq:equivalent-closed-pre-sequence}
+	\begin{split}
+		&\foralltext r > 0,\\
+		&\quad \existstext a \in B(p, r) \\
+		&\quad\quad a \notin O.
+	\end{split}
+\end{equation}
+Then there exists a point $p \in X \setminus C$ which is not an interior point. We claim that there exists a sequence $y : \mathbb{N} \to C$ with values in $C$ converging to $p$. For $n \in \mathbb{N}$ we choose $r := 2^{-n}$ in (\ref{eq:equivalent-closed-pre-sequence}). Then there exists an $a_n \in B(p, 2^{-n})$ such that $a_n \notin O$. Choose such an $a_n$ and define $y_n := a_n$. Note that $y_n \in C$ and
+\[
+0 \leq \dist(y_n, p) < 2^{-n}.
+\]
+It now follows by the squeeze theorem (Theorem \ref{th:squeeze-theorem}) that
+\[
+\lim_{n \to \infty} \dist(y_n, p) = 0
+\]
+and therefore (by Proposition \ref{pr:conv-iff-dist-to-0}) that
+\[
+\lim_{n \to \infty} y_n = p.
+\]
+
+Since $(y_n)$ converges to $p$, we know by assumption that $p \in C$, which is a contradiction.
+\end{proof}
+
+Here is a typical example of how you can show that set is closed.
+
+\begin{example}
+Consider the subset $A$ of the metric space $(\mathbb{R}^2, \| \cdot \|_2)$ defined by
+\[
+A := \{ (x_1, x_2) \in \mathbb{R}^2 \mid x_1 \leq (x_2)^2 \}
+\]	
+\end{example}
+
+\begin{proof}
+By the sequence characterization of closedness, it suffices to show that for all sequences $y : \mathbb{N} \to A$, if the sequence $y$ converges to some point $z \in \mathbb{R}^2$, then actually $z \in A$.
+
+Let therefore $y : \mathbb{N} \to A$ be a sequence in $A$. Assume that the sequence $y : \mathbb{N} \to A$ converges to some point $z \in X$. We need to show that actually $z \in A$.
+
+By Proposition \ref{pr:seq-converges-comp-converge}, we know that the component sequences of the sequence $y$ converge as well to the components of $z \in \mathbb{R}^2$, namely 
+\[
+\lim_{n \to \infty} y^{(n)}_1 = z_1
+\]
+and 
+\[
+\lim_{n \to \infty} y^{(n)}_2 = z_2.
+\]
+
+By limit theorems, we know that the limit of the sequence $n \mapsto (y^{(n)}_2)^2$ also exists and
+\[
+\lim_{n \to \infty} \left(y^{(n)}_2\right)^2 = (z_2)^2.
+\]
+Since for all $n\in \mathbb{N}$, $y^{(n)} \in A$, we also know that for all $n \in \mathbb{N}$, $y^{(n)}_1 \leq (y^{(n)}_2)^2$. Therefore,
+\[
+z_1 = \lim_{n \to \infty} y^{(n)}_1 \leq \lim_{n \to \infty} \left(y^{(n)}_2\right)^2 = (z_2)^2.
+\]
+We conclude that indeed $z \in A$.
+\end{proof}
+
+\begin{proposition}
+Let $a, b \in \mathbb{R}$ with $a < b$. Then the intervals $[a, b]$, $(-\infty, b]$ and $[a, \infty)$ are all closed.
+\end{proposition}
+
+We now provide a few ways to create new closed sets out of sets about which you already know that they are closed.
+
+\subsection*{Intersections of closed sets are always closed}
+
+Let $(X, \dist)$ be a metric space. If $\mathcal{I}$ is a set, and for every $\alpha \in \mathcal{I}$, we have a subset $A_\alpha$ of $X$, then the intersection
+\[
+\bigcap_{\alpha \in I} A_\alpha
+\]
+is defined as
+\[
+\bigcap_{\alpha \in I} A_\alpha := \{ x \in X \mid \text{ for all } \alpha \in \mathcal{I}, x \in A_\alpha \}.
+\]
+
+\begin{proposition}
+Let $(X, \dist)$ be a metric space. Let $\mathcal{I}$ be a set and suppose for every $\alpha \in \mathcal{I}$ we have a subset $C_\alpha \subset X$.	Assume that for every $\alpha \in \mathcal{I}$ the set $C_\alpha$ is closed. Then the intersection 
+\[
+\bigcap_{\alpha \in \mathcal{I}} C_\alpha
+\]
+is closed as well.
+\end{proposition}
+
+\subsection*{Finite unions of closed sets are closed}
+
+\begin{proposition}
+Let $(X, \dist)$ be a metric space. Let $C_1, \dots C_N$ be closed subsets of $X$. Then the finite union
+\[
+C_1 \cup \cdots \cup C_N
+\]	
+is also closed.
+\end{proposition}
+
+\subsection*{Products of closed sets}
+\begin{proposition}
+Let $C_1, \dots, C_d$ be closed subsets of $\mathbb{R}$. Then the Cartesian product
+\[
+C_1 \times \cdots \times C_d ( = \{(c_1, \cdots, c_d) \mid c_i \in C_i \})
+\]
+is a closed subset of $(\mathbb{R}^d, \| \cdot \|_2)$.	
+\end{proposition}
+
+\subsection*{The topological boundary of a set}
+
+We now give the definition of the topological boundary of a subset $A$ of a metric space $(X, \dist)$. 
+
+\begin{warning}
+Although for some sets, the topological boundary may coincide with what you intuitively think of as a `boundary' of a set, for many sets the topological boundary is a very counter-intuitive set!
+\end{warning}
+
+\begin{definition}[The topological boundary]
+	Let $(X, \dist)$ be a metric space and let $A \subset X$.
+	The \emph{topological boundary} of a set $A$ is denoted by $\partial A$ and defined as
+	\[
+	\partial A := X \setminus \big( (\interior A) \cup (\interior (X \setminus A)) \big)
+	\]
+\end{definition}
+
+\begin{example}
+The topological boundary of the interval $[2, 5)$ (viewed as a subset of the normed vector space $(\mathbb{R}, | \cdot |)$ ) is the set $\{ 2, 5\}$ that exactly consists of the points $2$ and $5$.
+\end{example}
+
+\begin{proof}
+In a previous example we have already shown that
+\[
+\interior [2, 5) = (2, 5).
+\]	
+Moreover, $\mathbb{R} \setminus [2, 5) = (-\infty, 2) \cup [5, \infty)$.
+
+With a similar argument, we can show that
+\[
+\interior [5, \infty) = (5, \infty).
+\]
+and
+\[
+\interior (\mathbb{R} \setminus [2, 5)) = (-\infty, 2) \cup (5, \infty).
+\]
+Therefore
+\[
+\partial ([2, 5)) = \mathbb{R} \setminus((2, 5)) \cup  \left((-\infty, 2) \cup (5, \infty) \right) = \{ 2, 5\}.
+\]
+\end{proof}

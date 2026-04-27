@@ -1,0 +1,65 @@
+\begin{orange_exercise}
+	Let $a, b$ and $c$ be three real numbers, with $a< b < c$ and let $g : [a, b] \to \mathbb{R}$ and $h: [b, c]\to\mathbb{R}$ be two bounded and Riemann-integrable functions. Let $f : [a, c] \to \mathbb{R}$ be such that for all $x \in (a, b)$ 
+	\[
+	f(x) = g(x)
+	\]	
+	and for all $x \in (b, c)$,
+	\[
+	f(x) = h(x).
+	\]
+	Show that $f$ is Riemann integrable. (Note that the values of $f$ in the points $a$, $b$ and $c$ are not specified.)
+\end{orange_exercise}
+
+
+
+\begin{orange_exercise}
+Consider the function $f : [0, 1] \to \mathbb{R}$ defined by
+\[
+f(x) = \begin{cases}
+2 + x^2 & \text{ if } x \in \mathbb{R} \setminus \mathbb{Q}\\
+-3 & \text{ if } x \in \mathbb{Q}.	
+\end{cases}
+\]
+\begin{enumerate}
+\item Let $P = \{ x_0, x_1, \dots, x_n \}$ be a partition of $[0, 1]$. Show that
+\[
+U(P, f) - L(P, f) \geq 5.
+\]	
+\item Show that $f$ is not Riemann integrable.
+\end{enumerate}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Compute the following integral, carefully quoting the theorems that you use in your computation
+\[
+\int_{-1}^{\sqrt{3}} \frac{1}{1 + x^2} dx.
+\]	
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $a, b$ and $c$ be three real numbers, with $a< b < c$. Assume $f: [a, c] \to \mathbb{R}$ is bounded, and assume $f$ is Riemann integrable on $[a, b]$ and Riemann integrable on $[b, c]$.
+	
+	Prove that $f$ is Riemann integrable on $[a, c]$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Suppose $f : [a, b] \to \mathbb{R}$ and $g :[a, b] \to \mathbb{R}$ are bounded. Assume there exists an $n \in \mathbb{N}$ and that there are points $y_1, \dots, y_n$ in $[a, b]$ such that for all $x \in [a, b] \setminus\{y_1, \dots, y_n\}$
+\[
+f(x) = g(x).
+\]
+Assume also that $f$ is Riemann integrable. Prove that $g$ is Riemann integrable.
+
+{\bf Hint:} First show that for all $y \in [a, b]$, the function 
+\[
+\mathbf{1}_{y} : [a, b] \to \mathbb{R}
+\]
+defined as
+\[
+\mathbf{1}_y(x) =
+\begin{cases}
+	1 &\text{if } x = y\\
+	0 &\text{if } x \neq y
+\end{cases}
+\]
+is Riemann integrable.
+\end{orange_exercise}

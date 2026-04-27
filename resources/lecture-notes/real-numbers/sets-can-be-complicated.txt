@@ -1,0 +1,8 @@
+Subsets of the real line can be incredibly complicated monstrous objects.
+What do I mean by this and why is it relevant?
+
+If you think of examples of sets, you might think of an interval such as $(2, 4]$, or a subset that consists of a single point $\{ 5 \}$, or if you go crazy an example may be $(2, 4] \cup \{ 37 \} \cup [40, \infty)$. But none of these examples are very representative: they are much simpler than an 'arbitrary' set.
+
+Why is this relevant? In this course, the aim is to prove statements such as \emph{for all nonempty, bounded subsets $A, B \subset \mathbb{R}$, it holds that $\sup (A + B) = \sup A + \sup B$}. If you need to prove such a statement, you really need to show that \emph{for every} possible subsets $A$ and $B$, and you can easily fool yourself by considering examples that are too simple.
+
+So, I encourage you, to every once in a while think about whether the examples you think of are representative. What is the most complicated subset of the real line you can think of?

@@ -1,0 +1,46 @@
+\begin{proposition}
+	Suppose $f : \Omega \to W$ is differentiable in a point $a \in \Omega$.
+	
+	Then for all $v \in V$, the directional derivative of $f$ at $a$ in the direction of $v$ exists and satisfies
+	\[
+	(D_v f)_a = (D f)_a(v)
+	\]	
+	i.e.~it exists and is equal to the derivative of $f$ at the point $a$ (which is a linear map) applied to the vector $v$.
+\end{proposition}
+
+\begin{proof}
+	Let $v \in V$. We need to show that
+	\[
+	\lim_{h \to 0} \frac{f(a + hv) - f(a)}{h} = (Df)_a(v).
+	\]
+	By the definition of the error function, this comes down to showing that
+	\[
+	\lim_{h \to 0} \frac{(Df)_a(hv) + \mathsf{Err}_a(a + hv)}{h} = (Df)_a(v).
+	\]
+	By limit theorems and by the linearity of the map $(Df)_a: V \to W$, it suffices to show that
+	\[
+	\lim_{h \to 0} \frac{\mathsf{Err}_a(a + hv)}{h} = 0.
+	\]
+	Now this is a direct consequence of the fact that
+	\[
+	\lim_{x \to a} \frac{\|\mathsf{Err}_a(x) \|_W}{\|x - a\|_V} = 0,
+	\]
+	but let us be precise with the argumentation.
+	
+	By the sequence characterization of limits, it suffices to show that for every sequence $\rho : \mathbb{N} \to \mathbb{R}$ converging to $0$,
+	\[
+	\lim_{n \to \infty} \frac{\mathsf{Err}_a(a + \rho_n v)}{\rho_n} = 0.
+	\]
+	By Proposition \ref{pr:conv-iff-dist-to-0}, it suffices to show that
+	\[
+	\lim_{n \to \infty} \left\|\frac{\mathsf{Err}_a(a + \rho_n v)}{\rho_n}\right\|_W = 0.
+	\]
+	By absolute homogeneity of the norm and by a limit theorem, it then suffices to show that
+	\[
+	\lim_{n \to \infty} \frac{\|\mathsf{Err}_a(a + \rho_n v)\|_W}{\|(a +\rho_n v) - a\|_V} = 0.
+	\]
+	Now note that $n \mapsto a + \rho_n v$ is a sequence converging to $a$, and the result follows by the sequence characterization of the limit
+	\[
+	\lim_{x \to a} \frac{\|\mathsf{Err}_a(x) \|_W}{\|x - a\|_V} = 0,
+	\]
+\end{proof}

@@ -1,0 +1,20 @@
+You can use natural induction to show a statement
+\begin{mcode}
+	\begin{split}
+		&\foralltext n \in \mathbb{N}, \\
+		&\quad\quad P(n)
+	\end{split}
+\end{mcode}
+where $P(n)$ is a statement depending on $n$. The template is as follows:
+
+\begin{mcode}
+	\begin{split}
+		& \text{We use induction on } n \in \mathbb{N}.\\
+		&\quad\quad \text{We first show the base case, i.e.~that } P(0) \text{ holds.}\\
+		&\quad\quad \quad\quad \textit{... insert here a proof of $P(0)$ ...}\\
+		&\quad\quad \text{We now show the induction step.}\\
+		&\quad\quad \quad \text{Let } k \in \mathbb{N} \text{ and assume that } P(k) \text{ holds.}\\
+		&\quad\quad\quad \text{We need to show that } P(k + 1) \text{ holds.}\\
+		&\quad\quad\quad\quad \textit{... insert here a proof of $P(k+1)$ ...}
+	\end{split}
+\end{mcode}

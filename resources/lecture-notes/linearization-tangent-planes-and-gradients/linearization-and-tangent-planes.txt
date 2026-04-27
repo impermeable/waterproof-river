@@ -1,0 +1,26 @@
+If a function $f : \Omega \to W$ is differentiable in $a \in \Omega$, then by definition it can be well approximated by an affine function. This affine function is also called the \emph{linearization} of $f$.
+
+Recall that the \emph{graph} of a function $f : \Omega \to \mathbb{R}$ is the following subset of $\Omega \times \mathbb{R}$:
+\[
+\mathsf{Graph}(f) := \{ (x, f(x) ) \ | \ x \in \Omega \}.
+\]
+
+\begin{definition}
+Let $f : \Omega \to \mathbb{R}$, where $\Omega$ is a subset of a normed vector space $V$. Assume $f$ is differentiable in $a \in \Omega$. Then the \emph{tangent plane to the graph of} $f$ at $a$ is the graph of the linearization $L_a$ of $f$, i.e.
+\[
+T_a := \{ (v, L_a(v)) \ | \ 
+v \in V \}
+\]
+\end{definition}
+
+\begin{definition}
+	\label{de:tangent-plane-level-set}
+Let $f : \Omega \to \mathbb{R}$ where $\Omega$ is a subset of a normed vector space $V$. Let $a \in \Omega$, and set $c := f(a)$. Assume $f$ is differentiable in $a$ with $(Df)_a \neq 0$. Then the \emph{tangent plane to the level set}
+\[
+f^{-1}(c) = \{ x \in \Omega \ | \ f(x) = c \}
+\]
+at $a$ is given by
+\[
+\{ x \in V \ | \ L_a(x) = c \}.
+\]
+\end{definition}

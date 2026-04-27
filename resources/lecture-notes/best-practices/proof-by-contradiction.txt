@@ -1,0 +1,12 @@
+To prove a statement
+\begin{mcode}
+	( \textellipsis )	
+\end{mcode}
+by contradiction, you can use the following template:
+\begin{mcode}
+	\begin{split}
+		&\text{We argue by contradiction. Suppose } \neg ( \textellipsis ).\\
+		&\quad\quad \textellipsis \textit{ derivation that leads to a contradiction } \textellipsis\\
+		&\quad\quad \text{Contradiction. We conclude that } (\textellipsis) \text{ holds}.
+	\end{split}
+\end{mcode}

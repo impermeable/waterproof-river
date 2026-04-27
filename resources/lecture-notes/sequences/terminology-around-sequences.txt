@@ -1,0 +1,102 @@
+\begin{definition}[bounded sequences]
+	\label{de:bounded-sequence}
+Let $(X, \dist)$ be a metric space.
+We say a sequence $a: \mathbb{N} \to X$ is \emph{bounded} if
+\[
+\begin{split}
+& \existstext q \in X,\\
+& \quad	\existstext M > 0, \\
+& \quad\quad \foralltext n \in \mathbb{N}, \\
+& \quad\quad\quad \dist(a_n, q) \leq M.
+\end{split}
+\]
+\end{definition}
+
+In normed linear spaces, we can use a simpler criterion to check whether a sequence is bounded.
+That is the content of the following proposition.
+
+\begin{proposition}
+Let $(V, \| \cdot \|)$ be a normed vector space.
+Let $a : \mathbb{N} \to V$ be a sequence.
+The sequence $a$ is bounded if and only if
+\[
+\begin{split}
+& \existstext M > 0,\\
+& \quad \foralltext n \in \mathbb{N},\\
+& \quad\quad \left\| a_n \right\| \leq M.
+\end{split}
+\]
+\end{proposition}
+
+The proof is not difficult, but it is an excellent opportunity to go through it slowly, carefully following the proof expectations formulated in Chapter \ref{ch:proofs}.
+
+\begin{proof}
+We first show the ``if" part of the statement.
+So we assume that
+\[
+\begin{split}
+& \existstext M_1 > 0, \\
+& \quad \foralltext n \in \mathbb{N}, \\
+& \quad\quad \left\| a_n \right\| \leq M_1	
+\end{split}
+\]
+and we need to show that
+\[
+\begin{split}
+	& \existstext q \in V, \\
+	& \quad \existstext M > 0, \\
+	& \quad\quad \foralltext n \in \mathbb{N}, \\
+	& \quad\quad\quad \left\| a_n - q \right\| \leq M.	
+\end{split}
+\]
+Because the statement we need to show is of the form ``there exists a $q \in V$ such that \textellipsis", we need to choose an appropriate $q \in V$. 
+
+We choose $q := 0$.
+
+Next, we need to show ``there exists an $M > 0$ such that \textellipsis", so we need to identify an appropriate $M$.
+
+For this, we first conclude by our assumption that there exists an $M_1 > 0$ such that for all $n \in \mathbb{N}$, it holds that $\|a_n \| \leq M_1$. 
+
+We choose $M := M_1$.
+
+We need to show ``for all $n \in \mathbb{N}$, \textellipsis". Therefore the next line of the proof is:
+
+Let $n \in \mathbb{N}$. 
+
+Finally we need to show that $\|a_n - q\| \leq M$.
+
+But $\|a_n - q \| = \|a_n - 0 \| = \|a_n\|$ and we already know that $\| a_n \| \leq M_1$ and we chose $M := M_1$ so that indeed $\| a_n \| \leq M$.
+
+Now we will show the ``only if" part of the statement.
+We assume that 
+\[
+\begin{split}
+	& \existstext q \in V, \\
+	& \quad \existstext M > 0, \\
+	& \quad\quad \foralltext n \in \mathbb{N}, \\
+	& \quad\quad\quad \left\| a_n - q \right\| \leq M	
+\end{split}
+\]
+and we need to show that
+\[
+\begin{split}
+	& \existstext M_1 > 0, \\
+	& \quad \foralltext n \in \mathbb{N}, \\
+	& \quad\quad \left\| a_n \right\| \leq M_1.
+\end{split}
+\]
+Can you see the template we should be using?
+
+Choose $M_1 := M + \| q \|$.
+
+Let $n \in \mathbb{N}$.
+
+Then by the triangle inequality
+\[
+\begin{split}
+\| a_n \| &= \|a_n - q + q \| \\
+&\leq \| a_n - q \| + \|q\|\\
+&\leq M + \|q\| = M_1.
+\end{split}
+\]
+\end{proof}

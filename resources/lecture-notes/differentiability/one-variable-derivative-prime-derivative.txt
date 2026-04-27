@@ -1,0 +1,27 @@
+Before we give the general definition of differentiability in a point, let us first reframe the differentiability concept from Calculus.
+
+\begin{definition}[One-variable derivative / prime derivative]
+	Let $(W, \| \cdot \|_W)$ be a normed vector space, let $O \subset \mathbb{R}$ be open and let $f : O \to W$ and let $s \in O$.
+	
+	We say the one-variable derivative of $f$ in the point $s$ exists if the limit
+	\[
+	\lim_{h \to 0} \frac{f(s + h) - f(s)}{h} 
+	\]
+	exists.
+	
+	If it does, we call this limit the \emph{one-variable derivative} or \emph{prime derivative} of $f$ in the point $s$ and denote it by $f'(s)$ or by
+	\[
+	\left. \frac{d}{dt} f(t)\right|_{t=s} = \lim_{h \to 0} \frac{f(s + h) - f(s)}{h}.
+	\]
+\end{definition}
+
+Note that $f'(s) \in W$ and that it also equals
+\[
+f'(s) = \lim_{t \to s} \frac{f(t) - f(s)}{t - s}.
+\]
+
+If the (one-variable) derivative exists in a point, we also say that the function is (one-variable) differentiable in that point.
+
+The above definition with a limit of a difference quotient no longer works if the input space is more than one-dimensional. Therefore, later in this course we define differentiability differently, in a way that \emph{does} work for maps between normed vector spaces.
+
+However, before we give the general definition of differentiability, we introduce related properties of functions that are a bit easier and that can be formulated in terms of the one-variable derivative.

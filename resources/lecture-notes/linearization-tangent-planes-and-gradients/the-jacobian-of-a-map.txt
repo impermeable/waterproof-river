@@ -1,0 +1,70 @@
+%
+%In Section \ref{se:matrix-representation} and in particular in Definition \ref{de:jacobian-bases} we introduced the Jacobian of a map (with respect to some bases). The Jacobian $[Df]_a$ of $f$ in $a$ is the matrix (representation) of the linear map $(Df)_a$ with respect to the bases $v_1, \dots, v_d$ and $w_1, \dots, w_m$. We will now give a way to compute the Jacobian, that was already announced in Section \ref{se:matrix-representation} but back then we didn't have the means to prove our statements.
+%
+%First we start with the particular case when $f : \Omega \to \mathbb{R}^m$ with $\Omega \subset \mathbb{R}^d$, and we choose the standard bases of unit vectors in $\mathbb{R}^d$ and $\mathbb{R}^m$. 
+%
+%\begin{proposition}
+%Suppose $f : \Omega \to \mathbb{R}^m$ is a function defined on an open domain $\Omega \subset \mathbb{R}^d$, and suppose $f$ is differentiable in a point $a \in \Omega$.
+%Then the Jacobian matrix of $f$ (with respect to the standard bases) is given by
+%\[\arraycolsep=5pt
+%\def \arraystretch{2.2}
+%[Df]_a := \left(
+%\begin{array}{cccc} 
+%	\frac{\partial f_1}{\partial x_1}(a) & \frac{\partial f_1}{\partial x_2}(a) & \cdots & \frac{\partial f_1}{\partial x_d}(a)\\
+%	\frac{\partial f_2}{\partial x_1}(a) & \frac{\partial f_2}{\partial x_2}(a) & \cdots & \frac{\partial f_2}{\partial x_d}(a)\\
+%	\vdots & \vdots & \ddots & \vdots \\
+%	\frac{\partial f_m}{\partial x_1}(a) & \frac{\partial f_m}{\partial x_2}(a) & \cdots & \frac{\partial f_m}{\partial x_d}(a)
+%\end{array}
+%\right)
+%\]	
+%In other words, for all $x \in \mathbb{R}^d$, it holds that
+%\[\arraycolsep=5pt
+%\def \arraystretch{2.2}
+%(Df)_a (x) =
+%\left(
+%\begin{array}{cccc} 
+%\frac{\partial f_1}{\partial x_1}(a) & \frac{\partial f_1}{\partial x_2}(a) & \cdots & \frac{\partial f_1}{\partial x_d}(a)\\
+%\frac{\partial f_2}{\partial x_1}(a) & \frac{\partial f_2}{\partial x_2}(a) & \cdots & \frac{\partial f_2}{\partial x_d}(a)\\
+%\vdots & \vdots & \ddots & \vdots \\
+%\frac{\partial f_m}{\partial x_1}(a) & \frac{\partial f_m}{\partial x_2}(a) & \cdots & \frac{\partial f_m}{\partial x_d}(a)
+%\end{array}
+%\right)
+%\left(\begin{array}{c} x_1 \\ x_2 \\ \vdots \\ x_d \end{array} \right)
+%\]	
+%\end{proposition}
+%
+%
+%
+%\begin{proof}
+%Since $(Df)_a$ is a linear map, it follows from linear algebra that we just need to check that for every $j = 1, \dots, m$, the $j$th column of the matrix corresponds to the image of the standard unit vector $e_j$, i.e. to $(Df)_a(e_j)$. However, since $f$ is differentiable, this last expression corresponds to the $j$th partial derivative of $f$:
+%\[
+%(Df)_a(e_j) = \frac{\partial f}{\partial x_j}(a) = \left(\begin{array}{c} \frac{\partial f_1}{\partial x_j}(a) \\ \frac{\partial f_2}{\partial x_j}(a) \\ \vdots \\ \frac{\partial f_m}{\partial x_j}(a) \end{array} \right)
+%\]
+%so indeed this corresponds with the $j$th column of the matrix.
+%\end{proof}
+%
+%In the more general case of a map $f : \Omega \to W$ from a subset $\Omega$ in a finite-dimensional vector space $V$ to a finite dimensional vector space $W$ with basis $v_1, \dots, v_d$ and $w_1, \dots, w_m$ and coordinate maps $\Phi$ and $\Psi$ respectively, we can compute $[D f]_a$ from the coordinate representation $\bar{f} =  \Psi \circ f\circ \Phi^{-1}$ of $f$.
+%
+%\begin{proposition}
+%Let $f : \Omega \to W$ with $\Omega \subset V$ open, and let $v_1, \dots, v_d$ be a basis of $V$ with coordinate map $\Phi$ and let $w_1, \dots, w_m$ be a basis of $W$ with coordinate map $\Psi$. Let $a \in \Omega$. Then the Jacobian of $f$ with respect to these bases is given by
+%\[
+%[D f]_a = [D\bar{f}]_{\Phi(a)}
+%\]
+%where $\bar{f} := \Psi \circ f \circ \Phi^{-1}$ is the coordinate representation of $f$.
+%\end{proposition}
+
+%\begin{definition}[Jacobian matrix]
+%	Let $f : \Omega \to \mathbb{R}^m$ be a function mapping from an open domain $\Omega$ of the normed vector space $(\mathbb{R}^d, \| \cdot\|_2)$ to the normed vector space $(\mathbb{R}^m, \| \cdot \|_2)$. Assume $f$ is differentiable in a point $a \in \Omega$. Then the matrix $[Df]_a \in \mathbb{R}^{m \times d}$ given by
+%\[\arraycolsep=5pt
+%\def \arraystretch{2.2}
+%[Df]_a := \left(
+%\begin{array}{cccc} 
+%	\frac{\partial f_1}{\partial x_1}(a) & \frac{\partial f_1}{\partial x_2}(a) & \cdots & \frac{\partial f_1}{\partial x_d}(a)\\
+%	\frac{\partial f_2}{\partial x_1}(a) & \frac{\partial f_2}{\partial x_2}(a) & \cdots & \frac{\partial f_2}{\partial x_d}(a)\\
+%	\vdots & \vdots & \ddots & \vdots \\
+%	\frac{\partial f_m}{\partial x_1}(a) & \frac{\partial f_m}{\partial x_2}(a) & \cdots & \frac{\partial f_m}{\partial x_d}(a)
+%\end{array}
+%\right)
+%\]	
+%is called the \emph{Jacobian matrix} of $f$ at $a$.
+%\end{definition}

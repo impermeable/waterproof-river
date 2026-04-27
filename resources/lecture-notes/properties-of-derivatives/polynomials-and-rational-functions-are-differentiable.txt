@@ -1,0 +1,32 @@
+%\begin{proposition}[Differentiability of polynomials in one variable]
+%	For every $n \in \mathbb{N}$, it holds that the function $f : \mathbb{R} \to \mathbb{R}$ given by
+%	\[
+%	f(x) = x^n
+%	\]
+%	is differentiable with
+%	\[
+%	f'(x) = n x^{n-1}.
+%	\]
+%	In other words, the derivative of $f$, i.e. $(Df) : \mathbb{R} \to \mathsf{Lin}(\mathbb{R}, \mathbb{R})$ is given by
+%	\[
+%	x \mapsto \left( h \mapsto n x^{n-1} h \right)
+%	\]
+%\end{proposition}
+
+\begin{proposition}[Every polynomial is differentiable]
+	Every polynomial on $\mathbb{R}^d$ is differentiable. 
+\end{proposition}
+
+\begin{proposition}[Every rational function is differentiable on its domain]
+	Let $p : \mathbb{R}^d \to \mathbb{R}$ and $q : \mathbb{R}^d \to \mathbb{R}$ be two polynomials. Let 
+	\[
+	D := \{x \in \mathbb{R}^d \ | \ q(x) \neq 0 \}.
+	\]
+	Then the function $f: D \to \mathbb{R}$ given by
+	\[
+	f(x) = \frac{p(x)}{q(x)}
+	\]
+	is differentiable.
+	
+	In other words, every rational function is differentiable on its domain of definition.
+\end{proposition}

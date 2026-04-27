@@ -1,0 +1,17 @@
+\begin{definition}[Characteristic function of a set]
+	Let $E \subset \mathbb{R}^d$. The characteristic function of $E$ is the function $\mathbf{1}_E : \mathbb{R}^d \to \mathbb{R}$ given by
+	\[
+	\mathbf{1}_E(x) :=
+	\begin{cases}
+	1 &\text{if } x \in E \\
+	0 &\text{if } x \notin E.
+	\end{cases}
+	\]	
+\end{definition}
+
+\begin{definition}
+Let $E$ be a bounded set such that the characteristic function $\mathbf{1}_E: \mathbb{R}^d \to \mathbb{R}$ is Riemann integrable. Then the volume of $E$ is defined as 
+\[
+\Vol(E) := \int_E 1 dx.
+\]
+\end{definition}

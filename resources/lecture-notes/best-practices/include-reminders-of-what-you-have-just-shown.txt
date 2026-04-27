@@ -1,0 +1,11 @@
+For the reader it can be very helpful to repeat or clearly indicate what you have just shown.
+
+\begin{mcode}
+	\text{We conclude that } \textellipsis
+\end{mcode}
+
+or
+
+\begin{mcode}
+	\text{This concludes the proof that } \textellipsis
+\end{mcode}

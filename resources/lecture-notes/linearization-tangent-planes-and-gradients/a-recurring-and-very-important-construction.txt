@@ -1,0 +1,84 @@
+%
+%The following construction is so important, that it really pays off to go through the following text very slowly and/or several times, making sure you understand every step.
+%
+%To analyze the behavior of a function $f : \Omega \to W$, where $\Omega$ is some subset of $V$, we will often study how $f$ behaves on lines.
+%Let's make this precise. We will often select a point $a \in \Omega$, a direction $v \in V$, and consider the composition $f \circ \ell_{a, v}$, where the function $\ell_{a, v}$ maps from a small interval $(-\delta, \delta)$ around $0 \in \mathbb{R}$ to $\Omega$ and is given by
+%\[
+%\ell_{a, v}(t) := a + t v.
+%\]
+%
+%Note that $\ell_{a, v}$ is an affine map, i.e.~it is the sum of a constant and a linear map. It is therefore differentiable on $(-\delta, \delta)$, and for every $t\in (-\delta, \delta)$, its derivative $(D \ell_{a, v})_t$ in $t$ is a linear map from $\mathbb{R}$ to $V$. In fact, for all $h \in \mathbb{R}$,
+%\[
+%(D \ell_{a, v})_t (h) = h v.
+%\]
+%
+%If $f$ is differentiable in $a$, then it follows by the chain rule that $f \circ \ell_{a, v}$ is differentiable in $0$, and,
+%\[
+%(D(f \circ \ell_{a, v}))_0 = (Df)_a \circ (D\ell_{a, v})_0.
+%\]
+%To figure out what this means, we realize that $(D(f \circ \ell_{a, v}))_0$ is a linear map from $\mathbb{R}$ to $W$. So let's see its output when the input is $h \in \mathbb{R}$:
+%\[
+%\begin{split}
+%(D(f\circ\ell_{a, v}))_0(h) &= \big((Df)_a \circ (D\ell_{a, v})_0 \big)(h) \\
+%&= (Df)_a \big( (D\ell_{a, v})_0(h) \big) \\
+%&= (Df)_a \big(h v\big)\\
+%&= h (Df)_a (v)
+%\end{split}
+%\]
+%
+%
+%
+%How does the \emph{directional derivative} relate to the \emph{derivative} of a function? The answer is subtle. {\text If } the derivative exists in a point $a$, then for all $v \in V$, the directional derivative in the direction of $v$ of $f$ in the point $a$ exists as well and
+%\[
+%(D_v f)_a = (D f)_a(v).
+%\]
+%The last equality tells us that in this case the directional derivative in the direction of $v$ at a point $a$, namely $(D_v f)_a$, is just the derivative of $f$ in the point $a$ (which is a linear map!) applied to the vector $v$, namely $(Df)_a (v)$. The precise statement is given by the next proposition. After the proposition, we will give a warning about the reverse direction: existence of directional derivatives does not say anything about existence of the derivative.
+%
+%\begin{proposition}
+%Suppose $f : \Omega \to W$ is differentiable in a point $a \in \Omega$. Then for all $v \in V$, the directional derivative of $f$ at $a$ in the direction of $v$
+%\[
+%(D_v f)_a
+%\]	
+%exists and is equal to the derivative of $f$ at the point $a$ (which is a linear map) applied to the vector $v$
+%\[
+%(Df)_a (v).
+%\]
+%\end{proposition}
+%
+%\begin{proof}
+%This proposition follows from the Chain Rule, Theorem \ref{th:chain-rule}.
+%
+%Indeed, let $v \in V$.
+%
+%Because $\Omega$ is open, there exists a $\delta_1 > 0$ such that $B(a, \delta_1) \subset \Omega$.
+%
+%Consider now the function $g := f \circ \ell_{a, v}$, which is a function from $(-\delta, \delta) \to W$ where $\delta := \delta_1/ \| v \|_V$.
+%
+%The function $\ell_{a, v}$ is an affine function, and therefore it is differentiable in $0$ with derivative
+%\[
+%(D\ell_{a, v})_0 := \Big( h \mapsto h v \Big).
+%\]
+%
+%By the chain rule, Theorem \ref{th:chain-rule}, $g$ is differentiable and the derivative of $g$, which is a linear map from $\mathbb{R}$ to $W$, is given by
+%\begin{equation}
+%\label{eq:deriv-implies-dir-deriv-g}
+%(Dg)_0 = (D(f \circ \ell_{a, v}))_0 = (D f)_{\ell_{a, v}(0)} \circ (D\ell_{a, v})_0
+%\end{equation}
+%Since $g$ is differentiable, by definition of the directional derivative, the directional derivative in the direction of $v$ of $f$ in $a$ exists.
+%
+%To find the value of the derivative, we now apply the left hand side and the right-hand side in (\ref{eq:deriv-implies-dir-deriv-g}) to the vector $1 \in \mathbb{R}$
+%\[
+%(Dg)_0(1) = (Df)_{\ell_{a, v}(0)} \big( (D\ell_{a, v})_0 ( 1) \big) = (Df)_{a} (v)
+%\]
+%On the other hand, by Proposition \ref{pr:relation-diff-with-prime-normed}, 
+%\[
+%(D_v f)_a = g'(0) \cdot 1 = (Dg)_0(1) = (Df)_a (v)
+%\]
+%which is what we wanted to show.
+%\end{proof}
+
+
+
+
+
+%

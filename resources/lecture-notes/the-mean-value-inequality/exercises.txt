@@ -1,0 +1,57 @@
+\begin{orange_exercise}
+\label{ex:MVI}
+Prove Corollary \ref{co:MVI}.	
+\end{orange_exercise}
+
+\begin{orange_exercise}
+\label{ex:err-estimate-due-to-MVI}
+	Give a proof of Lemma \ref{le:err-estimate-due-to-MVI}.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+\label{ex:application-MVI-curved-path}
+Define the subset $\Omega \subset \mathbb{R}^2$ as follows
+\[
+\Omega := \{ (x_1, x_2) \in \mathbb{R}^2 \ | \ \| (x_1, x_2)\|_2 > 1.9 \}.
+\]	
+Let $f : \Omega \to W$ be a differentiable function and assume that for all $a \in \Omega$,
+\[
+\| (D f)_a \|_{\mathbb{R}^2 \to W} \leq 5. 
+\]
+Prove that
+\[
+\| f( (2, 0) ) - f( (-2, 0) ) \|_W \leq 10 \pi.
+\]
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:application-cont-part-deriv}
+Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+\[
+f((x_1, x_2) ) :=
+\begin{cases}
+	\frac{(x_1)^2 (x_2)^7}{(x_1)^2 + (x_2)^2} & \text{if } (x_1, x_2) \neq (0, 0)\\
+	0 & \text{if } (x_1, x_2) = (0, 0).
+\end{cases}
+\]
+\begin{enumerate}
+	\renewcommand{\theenumi}{\alph{enumi}}
+\item Show that $f$ is differentiable on $\mathbb{R}^2$ by showing that the partial derivatives exist and are continuous.
+\item For $a \in \mathbb{R}^2$, compute $\nabla f(a)$.
+\end{enumerate}
+\end{orange_exercise}
+
+\begin{restatable}{orange_exercise}{reMVIExercise}
+	Consider the domain $\Omega$ given by
+	\[
+	\Omega = \{ (x_1, x_2) \in \mathbb{R}^2 \ | \ \sin(x_1) - \frac{1}{10} < x_2 < \sin(x_1) + \frac{1}{10} \}
+	\]
+	Let $(W, \| \cdot \|_W)$ be a normed vector space and let $f : \Omega \to W$ be differentiable such that for all $a \in \Omega$,
+	\[
+	\|(Df)_a\|_{\mathbb{R}^2 \to W} \leq 7.
+	\]
+	Prove that
+	\[
+	\| f((-\pi, 0)) - f((\pi, 0)) \|_W \leq 14 \sqrt{2} \pi.
+	\]
+\end{restatable}

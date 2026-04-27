@@ -1,0 +1,20 @@
+We can now define limits in accumulation points of $D$.
+
+\begin{definition}[Limit in an accumulation point]
+	\label{de:limit-in-acc-point}
+	%\coqlib{Coq.Reals.Rlimit}{limit1\_in}
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces and let $D \subset X$ be a subset of $X$. Let $f : D \to Y$ be a function and let $q \in Y$ be a point in $Y$.
+	Let $a \in D'$ be an accumulation point of $D$. Then we say $f$ converges to $q$ as $x$ goes to $a$, and write
+	\[
+	\lim_{x \to a} f(x) = q
+	\]	
+	if
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext \delta > 0,\\
+	&\quad\quad\foralltext x \in D,\\
+	&\quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta, \text{ then } \dist_Y(f(x), q) < \epsilon.
+	\end{split}
+	\]
+\end{definition}

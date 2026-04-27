@@ -1,0 +1,214 @@
+{\unichar{"221E}} and \texorpdfstring{$-\infty$}{-\unichar{"221E}}}
+
+\begin{definition}
+Let $(Y, \dist_Y)$ be a metric space and let $D$ be a subset of $\mathbb{R}$ that is unbounded from above.
+Let $q \in Y$. Let $f : D \to Y$ be a function. We say that $f(x)$ converges to $q$ as $x \to \infty$, and write
+\[
+\lim_{x \to \infty} f(x) = q
+\]
+if
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \existstext z \in \mathbb{R}, \\
+&\quad\quad \foralltext x \in D,\\
+&\quad\quad\quad x > z \implies \dist_Y(f(x), q) < \epsilon.	
+\end{split}
+\]
+\end{definition}
+
+\begin{definition}
+	Let $(Y, \dist_Y)$ be a metric space and let $D$ be a subset of $\mathbb{R}$ that is unbounded from below.
+	Let $q \in Y$. Let $f : D \to Y$ be a function. We say that $f(x)$ converges to $q$ as $x \to - \infty$, and write
+	\[
+	\lim_{x \to -\infty} f(x) = q
+	\]
+	if
+	\[
+	\begin{split}
+		&\foralltext \epsilon > 0,\\
+		&\quad \existstext z \in \mathbb{R}, \\
+		&\quad\quad \foralltext x \in D,\\
+		&\quad\quad\quad x < z \implies \dist_Y(f(x), q) < \epsilon.	
+	\end{split}
+	\]
+\end{definition}
+
+We can also combine divergence to and at infinity.
+
+\begin{definition}
+	Let $D \subset \mathbb{R}$ be a subset of $\mathbb{R}$ that is unbounded from above. Let $f : D \to \mathbb{R}$ be a function. 
+	We say that $f(x)$ diverges to $\infty$ as $x$ approaches $\infty$ and write
+	\[
+	\lim_{x \to \infty} f(x) = \infty
+	\]
+	if 
+	\[
+	\begin{split}
+	&\foralltext M \in \mathbb{R},\\
+	&\quad \existstext z \in \mathbb{R},\\
+	&\quad\quad \foralltext x \in D,\\
+	&\quad\quad\quad x > z \implies f(x) > M.
+	\end{split}
+	\]
+\end{definition}
+
+\begin{definition}
+	Let $D \subset \mathbb{R}$ be a subset of $\mathbb{R}$ that is unbounded from above. Let $f : D \to \mathbb{R}$ be a function. 
+	We say that $f(x)$ diverges to $-\infty$ as $x$ approaches $\infty$ and write
+	\[
+	\lim_{x \to \infty} f(x) = - \infty
+	\]
+	if 
+	\[
+	\begin{split}
+		&\foralltext M \in \mathbb{R},\\
+		&\quad \existstext z \in \mathbb{R},\\
+		&\quad\quad \foralltext x \in D,\\
+		&\quad\quad\quad x > z \implies f(x) < M.
+	\end{split}
+	\]
+\end{definition}
+
+% TODO: make this a proper section
+\section*{Overview of limit statements}
+
+To help get an overview of all the possible formal limit statements, we have created an overview in Tables \ref{tbl:limit-statements-domain} and \ref{tbl:limit-statements-target}. The first column in the tables indicate the general form of the limit definition, whereas the second column indicates what lines in the formal limit definition correspond to this format. The last column in the table indicates whether the domain or target actually needs to be the real line for the limit statement to make sense.
+
+\begin{table}
+	\begin{tabular}{m{3cm} | m{6cm} | m{3cm}}
+	Limit statement of form: & Lines in formal definition: & Needs $X = \mathbb{R}$?\\
+	\hline
+    $\displaystyle \lim_{x \to a} f(x) = \ldots $
+    &
+    $\begin{aligned}[t] & \ldots, \\
+    	                & \quad \text{there exists } \delta > 0,\\
+                        & \quad \quad \text{for all } x \in D,\\
+                        & \quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta,\\
+                        & \quad\quad\quad\quad \ldots
+     \end{aligned}$
+    & No \\
+    \hline
+    $\displaystyle \lim_{x \uparrow a} f(x) = \ldots $
+    &
+    $\begin{aligned}[t] & \ldots, \\
+    	& \quad \text{there exists } \delta > 0,\\
+    	& \quad \quad \text{for all } x \in D \cap (-\infty, a),\\
+    	& \quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta,\\
+    	& \quad\quad\quad\quad \ldots
+    \end{aligned}$
+    & Yes \\
+    \hline
+    $\displaystyle \lim_{x \downarrow a} f(x) = \ldots $
+    &
+    $\begin{aligned}[t] & \ldots, \\
+    	& \quad \text{there exists } \delta > 0,\\
+    	& \quad \quad \text{for all } x \in D \cap (a, \infty),\\
+    	& \quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta,\\
+    	& \quad\quad\quad\quad \ldots
+    \end{aligned}$
+    & Yes \\
+    \hline
+    $\displaystyle \lim_{x \leftarrow -\infty} f(x) = \ldots $
+    &
+    $\begin{aligned}[t] & \ldots, \\
+    	& \quad \text{there exists } z \in \mathbb{R},\\
+    	& \quad \quad \text{for all } x \in D,\\
+    	& \quad\quad\quad \text{if } x < z,\\
+    	& \quad\quad\quad\quad \ldots
+    \end{aligned}$
+    & Yes \\
+    \hline
+    $\displaystyle \lim_{x \to \infty} f(x) = \ldots $
+    &
+    $\begin{aligned}[t] & \ldots, \\
+    	& \quad \text{there exists } z \in \mathbb{R},\\
+    	& \quad \quad \text{for all } x \in D,\\
+    	& \quad\quad\quad \text{if } x > z,\\
+    	& \quad\quad\quad\quad \ldots
+    \end{aligned}$
+    & Yes
+	\end{tabular}
+\caption{Possible patterns for limit statements regarding the domain, and the lines that correspond to them in the formal definition}
+	\label{tbl:limit-statements-domain}
+\end{table}
+
+\begin{table}
+	\begin{tabular}{m{3cm} | m{6cm} | m{3cm}}
+	Limit statement of form: & Lines in formal definition: & Needs $Y = \mathbb{R}$?\\
+	    \hline
+	    $\displaystyle \lim_{\ldots} f(x) = q$
+		& 
+		$\begin{aligned}[t] & \text{for all } \epsilon > 0, \\
+			& \quad \ldots,\\
+			& \quad \quad \ldots,\\
+			& \quad\quad\quad \ldots,\\
+			& \quad\quad\quad\quad \dist_Y(f(x), q) < \epsilon
+		\end{aligned}$
+		& No\\
+		$\displaystyle \lim_{\ldots} f(x) = -\infty $
+		&
+		$\begin{aligned}[t] & \text{for all } M \in \mathbb{R}, \\
+			& \quad \ldots,\\
+			& \quad \quad \ldots,\\
+			& \quad\quad\quad \ldots,\\
+			& \quad\quad\quad\quad f(x) < M
+		\end{aligned}$
+		& Yes \\
+		$\displaystyle \lim_{\ldots} f(x) = \infty $
+		&
+		$\begin{aligned}[t] & \text{for all } M \in \mathbb{R}, \\
+			& \quad \ldots,\\
+			& \quad \quad \ldots,\\
+			& \quad\quad\quad \ldots,\\
+			& \quad\quad\quad\quad f(x) > M
+		\end{aligned}$
+		& Yes
+	\end{tabular}
+\caption{Possible patterns for limit statements regarding the target space, and the lines that correspond to them in the formal definition}
+	\label{tbl:limit-statements-target}
+\end{table}
+
+In total, the tables give rise to 15 possible limit statements. The following example gives an indication on how to use them.
+
+\begin{example}
+	If we are interested in the formal limit definition for
+	\[
+	\lim_{x \uparrow a} f(x) = \infty,
+	\]
+	we can look in Table \ref{tbl:limit-statements-domain} to find that the pattern
+	\[
+	\lim_{x \uparrow a} f(x) = \ldots
+	\]
+	corresponds to the lines
+	\[
+	\begin{aligned}[t] & \ldots, \\
+		& \quad \text{there exists } \delta > 0,\\
+		& \quad \quad \text{for all } x \in D \cap (-\infty, a),\\
+		& \quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta,\\
+		& \quad\quad\quad\quad \ldots
+	\end{aligned}
+	\]
+	and the pattern
+	\[
+	\lim_{\ldots} f(x) = \infty
+	\]
+	corresponds to the lines
+	\[
+	\begin{aligned}[t] & \text{for all } M \in \mathbb{R}, \\
+		& \quad \ldots,\\
+		& \quad \quad \ldots,\\
+		& \quad\quad\quad \ldots,\\
+		& \quad\quad\quad\quad f(x) > M.
+	\end{aligned}
+	\]
+	Combining these, we get as the formal definition
+	\[
+	\begin{aligned}[t] & \text{for all } M \in \mathbb{R}, \\
+		& \quad \text{there exists } \delta > 0,\\
+		& \quad \quad \text{for all } x \in D \cap (-\infty, a),\\
+		& \quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta,\\
+		& \quad\quad\quad\quad f(x) > M
+	\end{aligned}
+	\]
+\end{example}

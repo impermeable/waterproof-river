@@ -1,0 +1,123 @@
+\begin{orange_exercise}
+	\label{ex:polynomial-deriv-lin-map}
+Consider the polynomial $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+\[
+f(x_1, x_2) = 3 x_1^m x_2^n + x_1^k
+\]	
+for some nonnegative integers $m, n$ and $k$. Since $f$ is a polynomial, it is differentiable on $\mathbb{R}^2$. Give $(D f) : \mathbb{R}^2 \to \mathsf{Lin}(\mathbb{R}^2, \mathbb{R})$ and justify your answer. 
+\end{orange_exercise}
+
+\begin{orange_exercise}
+\label{ex:components-differentiable-function-differentiable}
+Prove Proposition \ref{pr:components-differentiable-function-differentiable}.	
+\end{orange_exercise}
+
+\begin{orange_exercise}
+\label{ex:rational-two-d-deriv}
+Consider the function $f : \mathbb{R}^2 \to \mathbb{R}^2$ given by
+\[
+f(x_1, x_2) =
+\begin{cases}
+	\left(\frac{x_1x_2^3}{x_1^2 + x_2^2}  ,\ 5 x_2\right) &\text{if } (x_1, x_2) \neq (0, 0)\\
+	(0, 0) &\text{if } (x_1, x_2) = (0, 0).
+\end{cases}
+\]	
+Prove that $f$ is differentiable on $\mathbb{R}^2$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\begin{enumerate}
+		\item Consider the function $f : \mathbb{R} \to \mathbb{R}^3$ given by
+		\[
+		f(t) := \big(\cos(t), \sin(t), \arctan(t)\big).
+		\]	
+		Show that $f$ is differentiable and give an expression for the function $f' : \mathbb{R} \to \mathbb{R}^3$ and for the derivative $(Df) : \mathbb{R} \to \Lin(\mathbb{R}, \mathbb{R}^3)$.
+		\item 
+		Let $w_1$ and $w_2$ be two vectors in a finite-dimensional normed vector space $(W, \| \cdot \|_W)$.	Consider the function $g : \mathbb{R} \to W$ given by
+		\[
+		g(t) = \cosh(t) w_1 + \sinh(t) w_2.
+		\]
+		Show that $g$ is differentiable and give an expression for the function $g' : \mathbb{R} \to W$ and for the derivative $(Dg) : \mathbb{R} \to \Lin(\mathbb{R}, W)$.
+	\end{enumerate}
+\end{orange_exercise}
+
+\begin{restatable}{orange_exercise}{reEstimateLn}
+	\label{ex:estimate-ln}
+	The function $\ln : (0,\infty) \to \mathbb{R}$ is the unique, differentiable function such that $\ln(1) = 0$ and $\ln'(x) = 1/x$. Show that for all $x \in (-1, \infty)$, it holds that
+	\[
+	\ln(1 + x) \leq x
+	\]
+	with equality if and only if $x = 0$.
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reChainRulePractice}
+	\label{ex:jac-polar-coord}
+	Consider the map $g : (0,\infty)\times\mathbb{R} \to \mathbb{R}^2$ defined by
+	\[
+	g((r, \phi)) :=
+	\left(
+	\begin{array}{c}
+		r \cos \phi \\
+		r \sin \phi
+	\end{array}\right)
+	\]
+	Let $f : \mathbb{R}^2 \to \mathbb{R}^2$ be differentiable.
+	\begin{enumerate}
+		\renewcommand{\theenumi}{(\alph{enumi})}
+		\item Show that $g$ is differentiable.
+		\item Compute for every $(r, \phi) \in (0,\infty) \times \mathbb{R}$ the Jacobian $[Dg]_{(r, \phi)}$.
+		\item Prove that $f \circ g$ is differentiable.
+		\item Assume that
+		\[
+		\frac{\partial (f \circ g)}{\partial r}((\sqrt{2}, \pi/4)) = 
+		\left(\begin{array}{c} 2\sqrt{2} \\ \sqrt{2} \end{array} \right)
+		\]
+		and
+		\[
+		\frac{\partial (f \circ g)}{\partial \phi}((\sqrt{2}, \pi/4)) = 
+		\left(\begin{array}{c} -1 \\ 3 \end{array} \right)
+		\]
+		Determine
+		\[
+		[D f]_{(1, 1)}.
+		\]
+		\item
+		Give the linearization of $f$ around the point $(1, 1)$.
+	\end{enumerate}
+	
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reChainRuleExercise}
+	\label{ex:jac-polar-coord}
+	Consider the map $f : \mathbb{R}^2 \to \mathbb{R}^2$ defined by
+	\[
+	f(z_1, z_2) := \left(
+	\begin{array}{c}
+		\exp((z_1)^2 - 4(z_2)^2) \\
+		(z_1) (z_2)^3
+	\end{array}
+	\right)
+	\]
+	Let $g : \mathbb{R}^2 \to \mathbb{R}^2$ be differentiable and assume that $g(3,7) = (2, 1)$.
+	\begin{enumerate}
+		\renewcommand{\theenumi}{(\alph{enumi})}
+		\item Show that $f$ is differentiable.
+		\item Compute for every $(z_1, z_2) \in \mathbb{R}^2$ the Jacobian $[Df]_{(z_1, z_2)}$.
+		\item Prove that $f \circ g$ is differentiable.
+		\item Assume that
+		\[
+		(D_{(1, 1)} (f \circ g))_{(3, 7)} = 
+		\left(\begin{array}{c} 3 \\ -1 \end{array} \right)
+		\]
+		and
+		\[
+		(D_{(1, -1)}(f \circ g))_{(3, 7)} = 
+		\left(\begin{array}{c} 1 \\ 1 \end{array} \right)
+		\]
+		Determine
+		\[
+		[D g]_{(3, 7)}.
+		\]
+		\item Give the linearization of $g$ around the point $(3, 7)$.
+	\end{enumerate}
+\end{restatable}

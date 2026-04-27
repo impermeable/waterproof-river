@@ -1,0 +1,164 @@
+%We now give an alternative characterization of compact sets.
+%For this, we first need a definition.
+%\begin{definition}
+%We say a collection of subsets $(C_\alpha)_\alpha$ of $X$ has the \emph{finite intersection property} if every finite subcollection $C_{\alpha_1}, \dots, C_{\alpha_N}$ has a nonempty intersection.
+%\end{definition}
+%
+%\begin{theorem}
+%A subset $K \subset X$ is compact if and only if for every collection of relatively closed sets $C_\alpha \subset K$ with the finite intersection property it holds that
+%\[
+%\bigcap_{\alpha} C_\alpha \neq \emptyset.
+%\]
+%\end{theorem}
+%
+%\begin{proof}
+%
+%\end{proof}
+%
+%\begin{lemma}
+%Let $K \subset X$ be compact.
+%Then the restricted metric space $(K, \dist)$ is complete.
+%\end{lemma}
+%
+%\begin{proof}
+%Suppose $(x_n)$ is a Cauchy sequence in $K$.
+%Then there exists a subsequence $x_{n_k}$ such that for every $k \in \mathbb{N}$ and every $\ell \geq n_k$,
+%\[
+%x_{\ell} \in \overline{B(x_{n_k}, 2^{-k})} \cap K =: C_k.
+%\]
+%The collection of closed subsets $(C_k)$ has the finite intersection property, and therefore there exists a point
+%\[
+%x \in \bigcap_{k=0}^\infty C_k
+%\]
+%It follows that $x_n \to x$.
+%\end{proof}
+%
+%\begin{theorem}
+%A subset $K \subset X$ is compact if and only if every sequence $(x_n)$ in $X$ has a converging subsequence with limit in $K$.
+%\end{theorem}
+%
+%\begin{proof}
+%Suppose $K$ is compact.
+%
+%\end{proof}
+
+We are now ready to show that a subset $K \subset X$ is compact if and only if it is complete and totally bounded. The proof is one of the most beautiful, but also one of the most complicated in these lecture notes. You may want to skip it on first reading.
+
+\begin{theorem}
+	\label{th:alt-char-comp}
+A subset $K \subset X$ is compact if and only if it is complete and totally bounded.
+\end{theorem}
+
+\begin{proof}
+We first show the ``only if" direction. Suppose $K \subset X$ is compact.
+
+We are going to show that $K$ is totally bounded.
+We argue by contradiction.
+So suppose the set $K$ is not totally bounded.
+Then
+\[
+\begin{split}
+&\existstext r > 0,\\
+&\quad \foralltext N \in \mathbb{N},\\
+&\quad\quad \foralltext p_1, \dots, p_N \in X,\\
+&\quad\quad\quad K \not\subset \bigcup_{i=1}^N B(p_i, r).
+\end{split}
+\]
+Choose such an $r > 0$. We can now inductively construct a sequence of points $p_0, p_1, p_2, \dots$ in $K$ such that
+\[
+\dist(p_i, p_j) \geq r
+\]
+for every $i \neq j$. Note that we can also phrase this last property as that for all $k \in \mathbb{N}$, and all $i < k$, $\dist(p_i, p_k) \geq r$.
+
+We first just take some point $p_0 \in K$. Now let $k \in \mathbb{N}$ and assume the points $p_0, \dots, p_k$ have already been defined, and $\dist(p_i, p_k) \geq r$ for $i\in \{0, \dots, k-1\}$. Then we know that 
+\[
+K \not\subset \bigcup_{i=0}^k B(p_i, r).
+\] 
+In other words, there exists a point
+\[
+q \in K \setminus \left(  \bigcup_{i=0}^k B(p_i, r) \right).
+\]
+Now define $p_{k+1} := q$. Then indeed for all $i = 0, \dots, k$, it holds that $\dist(p_{k+1}, p_i) \geq r$.
+
+Because $K$ is compact, there is a converging subsequence $(p_{n_i})$ in $K$.
+In particular, the sequence $(p_{n_i})$ is a Cauchy sequence, so that for $k, \ell$ large enough in fact
+\[
+\dist(p_{n_k}, p_{n_\ell}) < r.
+\]
+This is a contradiction.
+
+We will now show that $K$ is complete.
+Let $(x_n)$ be a Cauchy sequence in $K$.
+Since $K$ is compact, there is a converging subsequence $(x_{n_k})$ of $(x_n)$, converging to a point $z \in K$.
+But then the original sequence $(x_n)$ converges to $z$ as well by Proposition \ref{pr:cauchy-seq-subseq}.
+
+We will now show the ``if" direction. Assume that $K \subset X$ is complete and totally bounded. We are going to show that $K$ is compact.
+
+Let $(x_n)$ be an arbitrary sequence in	$K$.
+We are going to construct a limit point $x^* \in K$ by what is called a \emph{diagonal argument}. The preparation for this is as follows.
+We are going to define subsequences of $(x_n)$ inductively. Precisely, we will use induction to, for every $k \in \mathbb{N}$, construct an index sequence $n^{(k)} : \mathbb{N} \to \mathbb{N}$. Said differently, we are going to construct a sequence of index sequences. Moreover, we will construct this sequence of index sequences in such a way that for every $\tilde{k}, k \in \mathbb{N}$, if $\tilde{k} \geq k$ then the index sequence $n^{(\tilde{k})}$ is a subsequence of the index sequence $n^{(k)}$, and such that for all $k \in \mathbb{N}$, and all $\ell, j \in \mathbb{N}$,
+\begin{equation}
+	\label{eq:bound-x-n-j-k-diagonal}
+\dist\left(x_{n^{(k)}_\ell}, x_{n^{(k)}_j} \right) < \frac{2}{k}.
+\end{equation}
+
+We will now tackle the base case of the inductive definition. For this, we let the index sequence $n^{(0)} : \mathbb{N} \to \mathbb{N}$ be just the identity function, i.e.
+\[
+n^{(0)}_\ell := \ell.
+\]
+We now continue with the inductive step of the inductive definition. Let $k \in \mathbb{N}$ and assume that the index sequence $n^{(k-1)} : \mathbb{N} \to \mathbb{N}$ is defined for some $k \in \mathbb{N} \setminus \{0\}$.
+We are going to define the index sequence $n^{(k)} : \mathbb{N} \to \mathbb{N}$ as a subsequence of $n^{(k-1)}$.
+Note that there exists an $N_k \in \mathbb{N}$ and points $p^{(k)}_1, \dots, p^{(k)}_{N_k} \in K$ such that
+\[
+K \subset \bigcup_{i=1}^{N_k} B\left(p_i^{(k)}, 1/k\right).
+\]
+Said differently, the set $K$ is covered by only \emph{finitely} many balls of radius $1/k$.
+Hence, there exists a point $p^{(k)}_{i_k}$ such that $x_{n^{(k-1)}_\ell} \in B(p^{(k)}_{i_k}, 1/k)$ for \emph{infinitely} many $\ell \in \mathbb{N}$. 
+Therefore, there exists an index sequence $n^{(k)} : \mathbb{N} \to \mathbb{N}$, itself a subsequence of $n^{(k-1)}$, such that 
+\[
+x_{n^{(k)}_\ell} \in B\left(p^{(k)}_{i_k}, 1/k\right)
+\]
+for all $\ell \in \mathbb{N}$. In particular, for all $\ell, j \in \mathbb{N}$,
+\[
+\dist\left(x_{n_\ell^{(k)}}, x_{n_j^{(k)}}\right) \leq \dist\left(x_{n_\ell^{(k)}}, p_{i_k}^{(k)}\right) + \dist\left(p_{i_k}^{(k)},x_{n_j^{(k)}} \right) < \frac{2}{k}.
+\]
+
+Now define the sequence $m : \mathbb{N} \to \mathbb{N}$
+\[
+m_\ell := n^{(\ell)}_\ell.
+\]
+We claim that $m: \mathbb{N} \to \mathbb{N}$ is an index sequence. To prove the claim, we need to show that $m : \mathbb{N} \to \mathbb{N}$ is strictly increasing. This follows because for every $\ell \in \mathbb{N}$,
+\[
+m_{\ell} = n^{(\ell)}_\ell < n^{(\ell)}_{\ell+1} \leq n^{(\ell+1)}_{\ell+1} = m_{\ell+1}
+\]
+where for the strict inequality we used that $n^{(\ell)}$ is an index sequence and therefore strictly increasing, while the second inequality follows because for every two index sequences $a, b: \mathbb{N} \to \mathbb{N}$ and every $i \in \mathbb{N}$, $a_{b_i} \geq a_i$ (this can be applied to the case where $a\circ b$ equals $n^{(\ell+1)}$ and $a$ equals $n^{(\ell)}$). This finishes the proof of the claim that $m : \mathbb{N} \to \mathbb{N}$ is an index sequence.
+
+We now claim that the sequence $(x_{m_\ell})_\ell$ is a Cauchy sequence.
+Let $\epsilon > 0$. Choose $M:=\lceil 2 / \epsilon \rceil + 1$. Let $\tilde{\ell}, \tilde{j} \geq M$. Then, because $n^{(\tilde{\ell})}$ is a subsequence of $n^{(M)}$, we can find an $\ell \in \mathbb{N}$ such that
+\[
+m_{\tilde{\ell}} = n_{\tilde{\ell}}^{(\tilde{\ell})} = n_{\ell}^{(M)}.
+\]
+For the same reason, we may find a $j \in \mathbb{N}$ such that $m_{\tilde{j}} = n_{j}^{(M)}$.
+It follows by (\ref{eq:bound-x-n-j-k-diagonal}) that
+\[
+\dist\left(x_{m_{\tilde{\ell}}}, x_{m_{\tilde{j}}}\right) = \dist\left(x_{n^{(M)}_\ell}, x_{n^{(M)}_j}\right) < \frac{2}{M} < \epsilon.
+\]
+
+Since $K$ is complete, the sequences $(x_{m_\ell})_\ell$ is convergent with a limit $x^* \in K$.
+This was what we needed to show.
+\end{proof}
+
+In the special case of $(\mathbb{R}^d, \| \cdot \|_2)$ we have an easier alternative characterization of compactness.
+
+\begin{theorem}[Heine-Borel Theorem]
+	\label{th:heine-borel}
+	A subset of $(\mathbb{R}^d, \| \cdot \|_2)$ is compact if and only if it is closed and bounded.
+\end{theorem}
+
+\begin{proof}
+	We first show the ``only if" direction. Suppose $A \subset \mathbb{R}^d$ is compact. We will first show that $A$ is closed. By the alternative characterization of compactness in Theorem \ref{th:alt-char-comp}, we know that the set $A$ is complete. By Proposition \ref{pr:complete-implies-closed}, which says that every complete set is closed, it follows that the set $A$ is closed.
+	
+	We will now show that $A$ is bounded. By Theorem \ref{th:alt-char-comp} we know that $A$ is totally bounded. By Proposition \ref{pr:totally-bounded-implies-bounded}, which says that every totally bounded set is bounded, we know that $A$ is bounded.
+	
+	Suppose now that $A \subset \mathbb{R}^d$ is closed and bounded. Because $\mathbb{R}^d$ is complete, the closed set $A$ is a subset of a complete set, and (by Proposition \ref{pr:closed-in-complete-implies-complete}) therefore itself complete as well. Moreover, by Proposition \ref{pr:Rd-bounded-iff-totally-bounded}, we know that every bounded subset of $(\mathbb{R}^d, \| \cdot \|_2)$ is also totally bounded. In particular, the set $A$ is totally bounded. We conclude that $A$ is complete and totally bounded, and therefore compact by the alternative characterization of compactness in Theorem \ref{th:alt-char-comp}.
+\end{proof}

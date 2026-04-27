@@ -1,0 +1,12 @@
+To directly prove a statement 
+\begin{mcode}
+	\begin{split}
+		& \foralltext a \in A,\\
+		&\quad\quad  ( \dots )
+	\end{split}
+\end{mcode}
+you first introduce $a \in A$ by writing
+\begin{mcode}
+	\text{Let } a \in A.
+\end{mcode}
+and then you continue to prove $( \dots )$.

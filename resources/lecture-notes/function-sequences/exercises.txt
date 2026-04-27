@@ -1,0 +1,14 @@
+\begin{orange_exercise}
+	\label{ex:convergence-concrete}
+	\renewcommand{\theenumi}{\alph{enumi}}
+	Determine whether the following functions converge pointwise and whether they converge uniformly on the indicated domain. If they converge pointwise, give the pointwise limit.
+	
+	\begin{enumerate}
+		\item $a_n(x) = n x \exp(-n x)$ on the domain $\mathbb{R}$.
+		\item $b_n(x) = \sin(n x)$ on the domain $\mathbb{R}$.
+		\item $c_n(x) = x^n \cos(n x)$ on the domain $[0, 1)$.
+		\item $d_n(x) = \tan(x/n)$ on the domain $[-1, 1]$.
+		\item $e_n(x) = \exp(x - n)$ on the domain $(-\infty, 5]$. 
+		\item $f_n(x) = \arctan(n(x - 2))$ on the domain $\mathbb{R}$.
+	\end{enumerate}
+\end{orange_exercise}

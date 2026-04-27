@@ -1,0 +1,48 @@
+\begin{example}[Hyperharmonic series]
+	Let $p > 1$. Then the series
+	\[
+	\sum_{k=1}^\infty \frac{1}{k^p}
+	\]
+	converges.
+\end{example}
+
+\begin{proof}
+	For $\ell \in \mathbb{N}\setminus \{0\}$ we now consider the partial sums
+	\[
+	\begin{split}
+		S_{2^\ell - 1} 
+		&= \sum_{k=1}^{2^\ell-1} \frac{1}{k^p}.
+	\end{split}
+	\]	
+	For every $m \in \mathbb{N} \setminus \{ 0 \}$ and for $k \in \{2^{m-1}, \dots, 2^{m}-1 \}$ we have that
+	\[
+	\frac{1}{k^p} \leq \left(\frac{1}{2^{m - 1}}\right)^p = \frac{1}{2^{p(m-1)}} .
+	\]
+	Since there are $2^{m-1}$ such terms, we find that
+	\[
+	S_{2^{m}-1} - S_{2^{m-1}-1} \leq 2^{m-1} \times \frac{1}{2^{p(m-1)}} = \left(\frac{1}{2^{p-1}}\right)^{m-1}.
+	\]
+	Therefore
+	\[
+	\begin{split}
+		S_{2^{\ell} - 1}
+		&= \sum_{m=1}^{\ell} \sum_{k = 2^{m-1}}^{2^{m}-1} \frac{1}{k^p} \\
+		&\leq \sum_{m=1}^\ell \left(\frac{1}{2^{p-1}}\right)^{m-1}.
+	\end{split}
+	\]
+	We recognize the last sum as a geometric sum, and conclude that
+	\[
+	S_{2^{\ell}-1} \leq \frac{1}{1 - \frac{1}{2^{p-1}}}.
+	\]
+	The last bound is independent of $\ell$.
+	We then know that the sequence $(S_n)$ is increasing and bounded from above, and therefore convergent.
+\end{proof}
+
+\begin{example}
+Here is an example of a series taking values in the normed vector space $(\mathbb{R}^2, \| \cdot \|_2)$:
+
+\[
+\sum_{k=1}^\infty \left(\frac{1}{k^2}  , \left(\frac{1}{2} \right)^k \right)
+\]	
+
+\end{example}

@@ -1,0 +1,107 @@
+Intuitively, this section is about the multiplication of two real-valued series. The precise statement is covered in the next theorem.
+
+\begin{theorem}[Cauchy product]
+	\label{th:cauchy-product}
+	Let $(A_k)$ and $(B_k)$ be two real-valued sequences, and assume that the series
+	\[
+	\sum_{k=0}^\infty A_k \qquad \text{ and } \qquad \sum_{k=0}^\infty B_k
+	\]	
+	both converge \emph{absolutely}. Then the series
+	\[
+	\sum_{k=0}^\infty C_k
+	\]
+	converges absolutely as well, where $C_k := \sum_{\ell = 0}^k A_\ell B_{k - \ell}$, and
+	\[
+	\sum_{k=0}^\infty C_k = \left(\sum_{k=0}^\infty A_k \right) \left( \sum_{k=0}^\infty B_k \right).
+	\]
+\end{theorem}
+
+\begin{proof}
+	We will first show that the series
+	\[
+	\
+	\sum_{k=0}^\infty C_k
+	\]
+	converges absolutely. Note that
+	\[
+	\begin{split}
+		\sum_{k=0}^n C_k
+		&=
+		\sum_{k=0}^n \sum_{\ell = 0}^k A_\ell B_{k-\ell} \\
+		&= \sum_{\ell=0}^n \sum_{k=\ell}^n A_\ell B_{k - \ell} \\
+		&= \sum_{\ell = 0}^n \sum_{m=0}^{n-\ell} A_\ell B_m.
+	\end{split}
+	\]
+	Therefore
+	\[
+	\begin{split}
+		\sum_{k=0}^n |C_k|
+		&\leq \sum_{\ell = 0}^n |A_\ell| \sum_{m=0}^{n-\ell} |B_m|\\
+		&\leq \left(\sum_{\ell = 0}^n |A_\ell| \right) \left( \sum_{m=0}^n |B_m|\right)\\
+		&\leq \left(\sum_{\ell = 0}^\infty |A_\ell| \right) \left( \sum_{m=0}^\infty |B_m|\right)
+	\end{split}
+	\]
+	It follows that the sequence of partial sums
+	\[
+	n \mapsto \sum_{k=0}^n |C_k|
+	\]
+	is bounded from above. It is also increasing, and therefore it converges.
+	
+	Now let $n \in \mathbb{N}$. Then
+	\[
+	\begin{split}
+		\sum_{k=0}^{2n} C_k - \sum_{\ell = 0}^{2n} A_\ell \sum_{m=0}^{2n} B_m
+		&= \sum_{\ell = 0}^{2n} \sum_{m = 2n -\ell +1}^{2n} A_\ell  B_m\\
+		&= \sum_{\ell = 0}^{2n} A_\ell \sum_{m = 2n-\ell +1}^{2n} B_m\\
+		&= \sum_{\ell = 0}^{n} A_\ell \sum_{m=2n - \ell + 1}^{2n} B_m + \sum_{\ell = n+1}^{2n} A_\ell \sum_{m = 2n - \ell + 1}^{2n} B_m
+	\end{split}
+	\]
+	It follows that
+	\begin{equation}
+		\label{eq:compare_sum_C_k_sum_AB}
+		\begin{split}
+			\left| \sum_{k=0}^{2n} C_k - \sum_{\ell = 0}^{2n} A_\ell \sum_{m=0}^{2n} B_m \right|	
+			&\leq \sum_{\ell = 0}^n |A_\ell| \sum_{m = n}^\infty |B_m| + \sum_{\ell = 0}^n |B_\ell| \sum_{m=n}^\infty |A_n|.
+		\end{split}
+	\end{equation}
+	Now note that because the series
+	\[
+	\sum_{\ell=0}^\infty A_\ell
+	\]
+	is absolutely convergent, the series
+	\[
+	\sum_{\ell=0}^\infty |A_\ell|
+	\]
+	is convergent, which exactly means that
+	\[
+	\lim_{n \to \infty} \sum_{\ell =0}^\infty |A_\ell|
+	\]
+	exists. Similarly, 
+	\[
+	\lim_{n \to \infty} \sum_{\ell=0}^\infty  |B_\ell|
+	\]
+	exists. 
+	
+	Moreover, because the series
+	\[
+	\sum_{m=0}^\infty |B_m|
+	\]
+	converges, it follows by Proposition \ref{pr:tail-converges-to-zero} that
+	\[
+	\lim_{n \to \infty} \sum_{m=n}^\infty |B_m| = 0.
+	\]
+	Similarly,
+	\[
+	\lim_{n \to \infty} \sum_{m=n}^\infty |A_m| = 0.
+	\]
+	It follows by limit laws that the right-hand side of (\ref{eq:compare_sum_C_k_sum_AB}) converges to $0$ as $n\to \infty$. 
+	
+	It follows that the sequence
+	\[
+	n \mapsto \sum_{k=0}^{n} C_k
+	\]
+	converges to 
+	\[
+	\sum_{\ell = 0}^\infty A_\ell \sum_{m=0}^\infty B_m.
+	\]
+\end{proof}

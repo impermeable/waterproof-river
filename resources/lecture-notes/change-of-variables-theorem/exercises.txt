@@ -1,0 +1,60 @@
+\begin{orange_exercise}
+Determine
+\[
+\int_0^{\pi/2}\int_{0}^y \frac{\sin(y)}{\sqrt{4 - \sin^2(x)} }dx dy
+\]	
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $K$ be the following subset of $\mathbb{R}^3$
+\[
+K := \{(x, y, z) \in \mathbb{R}^3 \ | \ 
+0 \leq z \leq 1, \ x^2 + y^2 < z \}
+\]	
+Determine
+\[
+\int_K \exp(- (x^2 + y^2) ) dx dy dz.
+\]
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $K$ be the subset of those points in $\mathbb{R}^3$ that are inside the ball around the origin of radius $4$ but outside the cylinder around the $z$-axis of radius $1$, i.e.
+\[
+K := B(0, 4) \setminus \{ (x, y, z) \in \mathbb{R}^3 \ | \
+x^2 + y^2 < 1 \}
+\]
+Determine the volume of $K$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	The center of mass of a Jordan set $K \subset \mathbb{R}^d$ is defined as
+	\[
+	\mathsf{c.m.}(K) := \frac{1}{\Vol(K)}\left( \int_K x_1 dx, \int_K x_2 dx, \cdots, \int_K x_d dx \right)
+	\]
+	Let $E \subset \mathbb{R}^d$ be a Jordan set. Let $\Phi : \mathbb{R}^d \to \mathbb{R}^d$ be linear and invertible. Show that the center of mass of $\Phi(E)$ is equal to
+	\[
+	\mathsf{c.m.}(\Phi(E)) = \Phi(\mathsf{c.m.}(E) ).
+	\]
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\begin{enumerate}
+\item Let $e_1, \dots, e_d$ be the standard basis in $\mathbb{R}^d$. Consider the simplex 
+\[
+\mathcal{S} := \{ x \in \mathbb{R}^d \ | \
+x_1 + \dots + x_d \leq 1 
+\text{ and for all } i \in \{1, \dots, d\}, 0 \leq x_i \leq 1,  \}
+\]	
+Compute the volume of $\mathcal{S}$.
+
+
+\item Now let $v_1, \dots, v_d$ be a basis in $\mathbb{R}^d$. Let $M$ denote the $d \times d$ matrix for which the column vectors are the vectors $v_1, \dots, v_d$. Let the map $\iota : \mathbb{R}^d \to \mathbb{R}^d$ be given by
+\[
+\iota(x) = x_1 v_1 + \cdots + x_d v_d.
+\]
+Show that
+\[
+\Vol(\iota(\mathcal{S})) = \frac{1}{d!} |\det M|.
+\]
+\end{enumerate}
+\end{orange_exercise}

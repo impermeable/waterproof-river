@@ -1,0 +1,157 @@
+We also state another property of the real numbers.
+This one sounds very logical, but is sometimes needed in mathematical proofs.
+
+\begin{proposition}[Archimedean property]
+	For every real number $x \in \mathbb{R}$ there exists a natural number $m \in \mathbb{N}$ such that $x < m$.	
+\end{proposition}
+
+\begin{proof}
+	We argue by contradiction.
+	Suppose therefore that there exists an $x \in \mathbb{R}$ such that for all $m \in \mathbb{N}$, it holds that $m \leq x$. That means that $\mathbb{N}$ is bounded from above. Since $\mathbb{N}$ is also nonempty, we know that the supremum $\sup \mathbb{N}$ would exist. Then there exists a natural number $m \in \mathbb{N}$ such that
+	\[
+	m > \sup \mathbb{N} - 1/2.
+	\]
+	Now $m + 1$ is a natural number as well, and
+	\[
+	m + 1 > \sup \mathbb{N} - 1/2 + 1 > \sup \mathbb{N}
+	\]
+	which is a contradiction.
+\end{proof}
+
+Given the previous proposition, we can define the ceiling function (that we actually have already used in the running example in the previous chapter).
+
+\begin{definition}(ceiling function)
+	The \emph{ceiling function} $\lceil \cdot \rceil : \mathbb{R} \to \mathbb{Z}$ is defined as follows. For $x \in \mathbb{R}$, $\lceil x \rceil$ denotes the smallest integer $z \in \mathbb{Z}$ such that $x \leq z$.
+\end{definition}
+
+The Archimedean property implies that between every two real numbers you can find a rational number. That is the content of the following proposition.
+
+\begin{proposition}
+	\label{pr:density-rationals}
+	For every two real numbers $a, b \in \mathbb{R}$ with $a < b$, there exists a $q \in \mathbb{Q}$ with $a < q < b$.	
+\end{proposition}
+\begin{proof}
+Let $a, b \in \mathbb{R}$ such that $a < b$.
+Define
+\[
+M := \left\lceil \frac{3}{b-a} \right\rceil \in \mathbb{N}.
+\]
+Then
+\[
+M b - M a = M (b - a) = \left\lceil \frac{3}{b-a} \right\rceil (b-a) \geq \frac{3}{b-a} (b-a) = 3.
+\]
+Therefore
+\begin{equation}
+	\label{eq:arch-before-dividing-M}
+M a < \lceil M a \rceil + 1 < M a + 2 < M b.
+\end{equation}
+Choose $q := \frac{\lceil M a \rceil + 1}{M}$, which is indeed an element of $\mathbb{Q}$.
+After dividing both sides of (\ref{eq:arch-before-dividing-M}) by $M$, we conclude that
+\[
+a < \frac{\lceil M a \rceil + 1}{M} < b.
+\]
+\end{proof}
+
+The next proposition loosely speaking says that the $\sqrt{2}$ is irrational. If we would be very precise, though, at this stage we wouldn't even know how to define $\sqrt{2}$. Sure, we could define it as a real number $x \in \mathbb{R}$ such that $x^2 =2$, but who says such a real number exists?
+
+\begin{proposition}
+There does not exist a rational number $r \in \mathbb{Q}$ such that $r^2 = 2$.
+\end{proposition}
+\begin{proof}
+We argue by contradiction.
+Suppose there exists a rational number $r \in \mathbb{Q}$ such that $r^2 = 2$. We can therefore choose such an $r$, and we can even choose it such that $r > 0$. Then $r = p / q$ with $p$ and $q$ nonzero natural numbers such that their greatest common divisor is one. We then have
+\[
+\frac{p^2}{q^2} = 2,
+\]
+so that 
+\[
+p^2 = 2 q^2
+\]
+Since the right-hand side is divisible by $2$ (i.e.~it is even), the left-hand side is divisible by $2$ as well. Recall that if a product of positive natural numbers $a b$ is divisible by $2$, then at least one of $a$ or $b$ is divisible by $2$. Therefore $p$ is divisible by $2$ and $p^2$ is divisible by $4$. However, because the greatest common divisor of $p$ and $q$ is $1$, we have that $q$ is not divisible by $2$. Therefore $2 q^2$ is not divisible by $4$, which gives a contradiction.
+\end{proof}
+
+The next proposition really defines $\sqrt{2}$.
+
+\begin{proposition}
+Consider the set 
+\[
+A := \{a \in \mathbb{Q} \mid a^2 \leq 2 \text{ and } a > 0 \}.
+\]	
+Then $A$ is non-empty, bounded above and $(\sup A)^2 = 2$. In other words, $\sqrt{2}$ exists as a real number and equals $\sup A$.
+\end{proposition}
+\begin{proof}
+We first show that $A$ is non-empty. This holds because $1 \in A$. 
+
+We will now show that $A$ is bounded above. We need to show that there exists an $M \in \mathbb{R}$ such that $M$ is an upper bound for $A$.
+
+We choose $M:=2$.
+
+We now have to show that $2$ is an upper bound for $A$. We need to show that for all $a \in A$, $a \leq 2$. We argue by contradiction. Suppose $\neg (a \leq 2)$. Then $a > 2$ and therefore $a^2 > 4> 2$, which is a contradiction.
+
+Therefore we can conclude that $\sup A$ exists and that $1 \leq \sup A \leq 2$.
+
+We will now show that $(\sup A)^2 = 2$. We again argue by contradiction. Suppose $(\sup A)^2\neq 2$. Then either $(\sup A)^2 < 2$ or $(\sup A)^2 > 2$.
+
+We first consider the case $(\sup A)^2 < 2$. We also know that $\sup A \geq 1$. By Proposition \ref{pr:density-rationals} we may choose a $q \in \mathbb{Q}$ such that
+\[
+\sup A < q < \sup A + \frac{2 - (\sup A)^2}{4 \sup A}.
+\]
+We define $\epsilon := q - \sup A$, and note that
+\[
+0 < \epsilon < \frac{2 - (\sup A)^2}{4 \sup A} < 1.
+\]  
+Therefore
+\[
+\begin{split}
+q^2 &= (\sup A + \epsilon)^2 \\
+&=(\sup A)^2 + 2 \epsilon \sup A + \epsilon^2 \\
+&< (\sup A)^2 + 2 \epsilon \sup A + \epsilon \\
+&< (\sup A)^2 + 2 \epsilon \sup A + 2 \epsilon \sup A \\
+&= (\sup A)^2 + 4 \epsilon \sup A < 2,
+\end{split}
+\]
+where in the first inequality we used that $\epsilon < 1$. 
+In other words, we have found a $q \in A$ such that $q > \sup A$. This is a contradiction since $\sup A$ is an upper bound for $A$.
+
+We now consider the case that $(\sup A)^2 > 2$. Define
+\[
+\delta := \frac{(\sup A)^2 - 2}{2 \sup A}.
+\]
+By the alternative characterization of the supremum, there exists an $r \in A$ such that 
+\[
+r > \sup A - \frac{(\sup A)^2 - 2}{2 \sup A}.
+\]
+Choose such an $r$. 
+Then
+\[
+\begin{split}
+r^2 &> (\sup A - \delta)^2 \\
+&= (\sup A)^2 - 2 \delta \sup A + \delta^2 \\
+&> (\sup A)^2 - 2 \delta \sup A \\
+&= (\sup A)^2 - 2 \frac{(\sup A)^2 - 2}{2 \sup A} \sup A = 2,
+\end{split}
+\]
+which is also a contradiction.
+
+We conclude that $(\sup A)^2 = 2$. 
+\end{proof}
+
+\begin{corollary}
+	For every two real numbers $a, b \in \mathbb{R}$ with $a < b$, there exists an irrational number $r \in \mathbb{R} \setminus \mathbb{Q}$ such that $a < r < b$.
+\end{corollary}
+\begin{proof}
+	Let $a, b \in \mathbb{R}$. 
+	By the Proposition \ref{pr:density-rationals} there exists a $q \in \mathbb{Q}$ such that $a < q < b$. Choose such a $q$. 
+	Set
+	\[
+	N := \lceil 1 /( b - q) \rceil + 1.
+	\]
+	Choose
+	\[
+	r := q + \frac{\sqrt{2}}{2 N}.
+	\]
+	Then $r$ is irrational and
+	\[
+	a < r = q + \frac{\sqrt{2}}{2 N} \leq q + \frac{1 }{N} <q + (b - q) = b.
+	\]
+\end{proof}

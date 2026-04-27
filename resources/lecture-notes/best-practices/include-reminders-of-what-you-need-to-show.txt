@@ -1,0 +1,5 @@
+At several times, remind the reader (and yourself) of what you need to show at that stage.
+
+\begin{mcode}
+	\text{We need to show that } \textellipsis
+\end{mcode}

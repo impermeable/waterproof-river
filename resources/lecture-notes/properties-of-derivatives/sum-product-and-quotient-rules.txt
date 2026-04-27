@@ -1,0 +1,29 @@
+The following sum, product and quotient rules will be familiar from Calculus, but now they are formulated in the language of linear maps.
+
+\begin{theorem}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two normed vector spaces. 
+	Let $\Omega \subset V$ be open and let $f : \Omega \to W$ and $g : \Omega \to W$ be two functions, that are both differentiable in a point $a \in \Omega$, with derivative $(Df)_a : V \to W$ and $(Dg)_a : V \to W$ respectively. 
+	
+	Then the function $f + g : \Omega \to W$ is also differentiable in $a$ with derivative
+	\[
+	(D(f + g))_a = (Df)_a + (Dg)_a
+	\]
+\end{theorem}
+
+
+
+\begin{theorem}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be  normed vector spaces. Let $\Omega \subset V$ be open and let $f : \Omega \to W$ and $g : \Omega \to \mathbb{R}$ be two functions mapping to the normed vector space $(\mathbb{R}, | \cdot |)$. Assume both $f$ and $g$ are differentiable in the point $a \in \Omega$, with derivative $(Df)_a : V \to W$ and $(Dg)_a : V \to \mathbb{R}$ respectively. Then
+	\begin{enumerate}
+		\item (product rule) The function $f \cdot g$ is differentiable in $a$ as well, with derivative given by
+		\[
+		(D(f\cdot g))_a(h) =  f(a) (Dg)_a(h) + g(a) (Df)_a(h)
+		\]	
+		for all $h \in V$.
+		\item (quotient rule) If $g(a) \neq 0$, the function $f / g$ is differentiable in $a$ as well, with derivative given by
+		\[
+		(D(f/g))_a(h) = \frac{1}{(g(a))^2}\big(g(a) (Df)_a(h) - f(a) (Dg)_a(h)\big)
+		\]
+		for all $h \in V$.
+	\end{enumerate}
+\end{theorem}

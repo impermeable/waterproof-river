@@ -1,0 +1,13 @@
+\begin{orange_exercise}
+\label{ex:practice-banach-fixed-point}
+Consider the function $F: [-1, 1]^2 \to \mathbb{R}^2$ given by
+\[
+F((x_1, x_2))
+:=
+\left(
+\frac{1}{2} \sin(x_2) + \frac{1}{3} x_1 + \frac{1}{6},
+\frac{1}{4} (x_1)^3 - \frac{1}{6} 
+\right)
+\]
+Show that the function $F$ has a fixed point.
+\end{orange_exercise}

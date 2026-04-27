@@ -1,0 +1,59 @@
+We are now going to illustrate how we can understand $(Df)_a(v)$ in terms of matrix multiplication. If $V = \mathbb{R}^d$ and $W = \mathbb{R}^m$, we will see that
+\begin{equation}
+	\label{eq:rel-der-jac-Rdm}
+(Df)_a(v) = [D f]_a v
+\end{equation}
+i.e.~the derivative applied to $v$ is just a matrix $[D f]_a$ multiplied by the vector $v$.
+The matrix $[D f]_a$ is called the Jacobian.
+
+\begin{definition}
+	Suppose $f : \Omega \to W$ is a function defined on an open domain $\Omega \subset V$, and suppose $f$ is differentiable in a point $a \in \Omega$. Let $\mathbf{v}_1, \dots, \mathbf{v}_d$ be a basis of $V$ and let $\mathbf{w}_1, \dots, \mathbf{w}_m$ be a basis of $W$.
+	
+	Then the Jacobian matrix of $f$ (with respect to the bases $\mathbf{v}_1, \dots, \mathbf{v}_d$ and $\mathbf{w}_1, \dots, \mathbf{w}_m$) is given by
+	\[\arraycolsep=5pt
+	\def \arraystretch{2.2}
+	[Df]_a := \left(
+	\begin{array}{cccc} 
+		\frac{\partial f_1}{\partial x_1}(a) & \frac{\partial f_1}{\partial x_2}(a) & \cdots & \frac{\partial f_1}{\partial x_d}(a)\\
+		\frac{\partial f_2}{\partial x_1}(a) & \frac{\partial f_2}{\partial x_2}(a) & \cdots & \frac{\partial f_2}{\partial x_d}(a)\\
+		\vdots & \vdots & \ddots & \vdots \\
+		\frac{\partial f_m}{\partial x_1}(a) & \frac{\partial f_m}{\partial x_2}(a) & \cdots & \frac{\partial f_m}{\partial x_d}(a)
+	\end{array}
+	\right)
+	\]
+\end{definition}
+
+Given choosing bases for $V$ and $W$, a relation similar to (\ref{eq:rel-der-jac-Rdm}) still holds for the coordinate vectors.
+Let $v \in V$. Let $z \in \mathbb{R}^d$ be the coordinate vector of $v$ with respect to the basis $\mathbf{v}_1, \dots, \mathbf{v}_d$, i.e.,
+\[
+v = z_1 \mathbf{v}_1 + \dots + z_d \mathbf{v}_d
+\]
+and let $y$ be the coordinate vector of $(Df)_a(v)$ with respect to the basis $\mathbf{w}_1, \dots, \mathbf{w}_m$, i.e.
+\[
+(Df)_a(v) = y_1 \mathbf{w}_1 + \cdots + y_m \mathbf{w}_m.
+\]
+Then
+\[
+y = [Df]_a z.
+\]
+
+Indeed,
+\[
+\begin{split}
+	y_1 \mathbf{w}_1 + \dots + y_m \mathbf{w}_m&=
+	(Df)_a(v)\\
+	 	&= (Df)_a(z_1 \mathbf{v}_1 + \dots + z_d \mathbf{v}_d) \\
+	 	&= z_1 (Df)_a(\mathbf{v}_1) + \dots + z_d (Df)_a(\mathbf{v}_d) \\
+	 	&= z_1 (D_{\mathbf{v}_1} f)_a + \dots + z_d (D_{\mathbf{v}_d} f)_a \\
+	 	&= z_1 \frac{\partial f}{\partial x_1}(a) + \dots + z_d \frac{\partial f}{\partial x_d} (a)\\
+	 	&= z_1 \sum_{i=1}^m \frac{\partial f_i}{\partial x_1}(a) \mathbf{w}_i + \dots + z_d 
+	 	   \sum_{i=1}^m \frac{\partial f_i}{\partial x_d}(a) \mathbf{w}_i \\
+	 	&= \sum_{i = 1}^m \left( \sum_{j=1}^d \frac{\partial f_i}{\partial x_j}(a) z_j \right) \mathbf{w}_i
+\end{split}
+\]
+
+This proves the following proposition.
+
+\begin{proposition}
+	The Jacobian $[Df]_a$ is the matrix of the linear map $(Df)_a$ with respect to the bases $\mathbf{v}_1, \dots, \mathbf{v}_d$ and $\mathbf{w}_1, \dots, \mathbf{w}_m$.
+\end{proposition}

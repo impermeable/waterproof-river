@@ -1,0 +1,43 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+	Let $(V, \| \cdot \|)$ be a normed linear space and let $A$ be the closed ball of radius $1$ around the origin, i.e.
+	\[
+	A := \{ v \in V \ | \ \| v \| \leq 1 \}.
+	\]	
+	Show that the set $A$ is closed.
+\end{blue_exercise}
+
+\begin{blue_exercise}
+	\label{ex:set-not-open-not-closed}
+	Show that the interval $[0, 1)$ is neither open nor closed (seen as a subset of the normed linear space $(\mathbb{R}, | \cdot |)$ ).
+\end{blue_exercise}
+
+Note the moral of the previous exercise: there are sets that are neither open nor closed.
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+	\label{ex:Rd-complete}
+	Prove Proposition \ref{pr:Rd-complete}.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Consider the following line in $\mathbb{R}^2$
+	\[
+	L := \{ (x, y ) \in \mathbb{R}^2 \ | \ x + 2 y = 1 \}.
+	\]
+	Show that $L$ is a closed subset of $\mathbb{R}^2$ and that $L$ is complete.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Give an example of a metric space $(X, \dist)$ that is not complete (as always, actually prove that $(X, \dist)$ is indeed not complete).
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Consider the following subset $A$ of $\mathbb{R}^2$
+\[
+A := \{(x_1, x_2) \in \mathbb{R}^2 \mid  4 (x_1)^2 + (x_2)^2  \leq 25 \}.
+\]
+Prove that the set $A$ is a closed and bounded subset of $(\mathbb{R}^2, \| \cdot \|_2)$. Please see Proposition \ref{pr:bounded-sets-normed-vector} for a characterization of bounded sets in normed vector spaces.
+\end{orange_exercise}

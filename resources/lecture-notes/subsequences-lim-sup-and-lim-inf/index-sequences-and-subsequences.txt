@@ -1,0 +1,53 @@
+Subsequences are made by precomposing a sequence by a very special type of sequence: an index sequence.
+
+\begin{definition}[index sequence]
+We say a sequence $n : \mathbb{N} \to \mathbb{N}$ is an \emph{index sequence} if $n$ is strictly increasing.
+\end{definition}
+
+There are two important elements to this definition: first of all, index sequences are sequences taking values in the natural numbers (as opposed to just an arbitrary space). Secondly, an index sequence is strictly increasing, so for every $k \in \mathbb{N}$, $n_{k+1} > n_k$.
+
+We often write $(n_k)_{k \in \mathbb{N}}$ or just $(n_k)$ to denote an index sequence.
+	
+\begin{example}
+The sequence $n : \mathbb{N} \to \mathbb{N}$ defined by
+\[
+n_k := 2k
+\]
+is a is strictly increasing sequence of natural numbers. In other words, it is an index sequence.
+\end{example}	
+	
+The next definition describes how to make a subsequences by precomposing a sequence with an index sequence.	
+	
+\begin{definition}[subsequence]
+Let $a: \mathbb{N} \to X$ be a sequence. A sequence $b : \mathbb{N} \to X$ is called a \emph{subsequence} of $a$ if there exists an index sequence $n: \mathbb{N} \to \mathbb{N}$ such that $b = a \circ n$. 
+\end{definition}
+
+Just as we often write $(a_{n})_{n \in \mathbb{N}}$ for a sequence called $a$, we often write $(a_{n_k})_{k \in \mathbb{N}}$ for the subsequence $a \circ n$. 
+
+\begin{example}
+Let's see what happens in an example. Let $a : \mathbb{N} \to \mathbb{R}$ be defined by $a_\ell := \frac{1}{\ell+1}$ for $\ell \in \mathbb{N}$. 
+Let $n : \mathbb{N} \to \mathbb{N}$ be the index sequence defined by $n_\ell := (2 \ell + 1)$. 
+
+Here is a table that indicates for this example the first terms of the sequences, $(a_\ell)_{\ell}$, $(a_{n_k})_{k}$ and $(n_k)_k$. 
+\[
+\begin{array}{cccccccccccccccc}
+	\ell & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & \textellipsis\\
+	a_\ell & a_0 & a_1 & a_2 & a_3 & a_4 & a_5 & a_6 & a_7 & a_8 & a_9 & a_{10} & a_{11} & a_{12} & a_{13} \\
+	a_\ell & \frac{1}{1} & \frac{1}{2} & \frac{1}{3} & \frac{1}{4} 
+	& \frac{1}{5}  & \frac{1}{6} & \frac{1}{7} & \frac{1}{8} &\frac{1}{9} 
+	& \frac{1}{10} & \frac{1}{11} & \frac{1}{12} & \frac{1}{13} & \frac{1}{14} \\
+		a_{n_k} & &\frac{1}{2} & &\frac{1}{4} & &\frac{1}{6} & & \frac{1}{8} 
+		& & \frac{1}{10} & & \frac{1}{12} & & \frac{1}{14} \\
+	a_{n_k} & & a_1 & & a_3 & & a_5 & & a_7 & & a_9 & & a_{11} & & a_{13} \\
+	n_k & & 1 & & 3 & & 5 & & 7 & & 9 & & 11 & & 13\\
+
+		k &  & 0 & & 1 & & 2 & & 3 & & 4 & & 5 & & 6\\
+\end{array}
+\]
+
+It could really help to think of an example sequence yourself, and an example index sequence, and create a similar table for your own example.
+\end{example}
+
+\begin{warning}
+{\bf Warning:} the following subtle point requires some quiet overthinking. The subsequences $(a_{n_k})_{k \in \mathbb{N}}$ and $(a_{n_\ell})_{\ell \in \mathbb{N}}$ are exactly the same! Both notations represent the subsequence $a \circ n$.
+\end{warning}

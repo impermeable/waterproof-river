@@ -1,0 +1,7 @@
+Just as with integration in one dimension, \emph{if} the function $f$ is continuous on $R$, \emph{then} it is Riemann integrable on $R$.
+
+\begin{theorem}
+Let $R \subset\mathbb{R}^d$ be a closed rectangle, and let $f : R \to \mathbb{R}$ be a continuous function. Then $f$ is bounded and Riemann integrable on $R$. 	
+\end{theorem}
+
+The proof is practically identical to the proof in the one-dimensional case.

@@ -1,0 +1,22 @@
+A bounded sequence may not always converge. In other words, its limit may not always exist. But the lim sup and lim inf always do exist for bounded sequences. The following proposition tells us moreover that the sequence converges if and only if the lim sup and the lim inf are the same.
+
+\begin{proposition}
+	\label{pr:lim-limsup-liminf}
+Let $a : \mathbb{N} \to \mathbb{R}$ be a real-valued sequence and let $L \in \mathbb{R}$. Then $a: \mathbb{N} \to \mathbb{R}$ converges to $L$ if and only if 	
+\[
+\liminf_{\ell \to \infty} a_\ell = \limsup_{\ell \to \infty} a_\ell = L.
+\]
+\end{proposition}
+
+So far we haven't seen a statement that said that if two convergent sequences $a: \mathbb{N} \to \mathbb{R}$ and $b : \mathbb{N} \to \mathbb{R}$ are ordered as in $a_\ell \leq b_\ell$ for all $\ell$, then $\lim_{\ell \to \infty} a_\ell \leq \lim_{\ell \to \infty} b_\ell$. Part of the reason is that the assumption of convergence of both sequences is a bit unsatisfactory. The next proposition is a generalization that can be much more useful, especially when it is combined with the previous proposition.
+
+\begin{proposition}
+Let $a : \mathbb{N} \to \mathbb{R}$ and $b : \mathbb{N} \to \mathbb{R}$ be two real-valued sequences, such that there exists an $N \in \mathbb{N}$ such that for all $\ell \geq N$, $a_\ell \leq b_\ell$. Then
+\[
+\limsup_{\ell \to \infty} a_\ell \leq \limsup_{\ell \to \infty} b_\ell
+\]	
+and 
+\[
+\liminf_{\ell \to \infty} a_\ell \leq \liminf_{\ell \to \infty} b_\ell.
+\]
+\end{proposition}

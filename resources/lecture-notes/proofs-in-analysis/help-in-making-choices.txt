@@ -1,0 +1,40 @@
+In the proof above we made two choices: one choice to prove a ``there exists" statement, and one choice for using a ``for all" statement. There are two ways I recommend to deal with such a choice.
+
+\subsection{Pick and roll}
+
+Just make a choice and go for it.
+I sometimes call this pick-and-roll.
+It will probably be wrong, but at least it brings you further in the proof.
+Then later, you can try to reverse engineer what choice would actually have worked.
+In the proof above, we found out that we need that $1/10< \epsilon$.
+This, of course, is not true, but other number, different from $10$, would have worked.
+Note that here you can make that number actually depend on $\epsilon$.
+
+\subsection{Leaving it open}
+
+An alternative technique is to leave the choice open, to postpone it.
+Then we could have written
+\begin{mcode}
+	\begin{split}
+	&\text{Choose } n_0 := \_ \ .\\
+	&\quad \text{Indeed, } \_ \in \mathbb{N}.
+	\end{split}
+\end{mcode}
+We can then refer to our, still to be filled-in choice, as $?n_0?$.
+We try to finish our proof by
+\begin{mcode}
+	\begin{split}
+		&\text{Let } n \geq n_0.
+		&\text{We conclude that } | 1 - 1 / n | = 1 / n \leq 1 / ?n_0? < \epsilon.
+	\end{split}
+\end{mcode}
+We can now use this last line to figure out what we need to arrange for $?n_0?$. 
+Indeed, all would be okay if
+\[
+?n_0? > 1 / \epsilon.
+\]
+
+How can we find such a natural number that is larger than the real number $1/\epsilon$? Exactly by using $x := 1 / \epsilon$ in the Archimedean property.
+It then also turns out that we need to use the Archimedean property \emph{before} we choose $n_0$.
+The order in which we do things is important, for instance because you cannot refer to 
+variables that are only introduced later in a proof.

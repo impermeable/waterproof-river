@@ -1,0 +1,63 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+	Prove Proposition \ref{pr:boundedness-real-seq-alt}.	
+\end{blue_exercise}
+
+
+\begin{blue_exercise}
+	Prove item (\ref{it:div-plus-minus-infty}) of Proposition \ref{pr:characterizations-improper-divergence}.
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+\begin{orange_exercise}
+	Prove item (\ref{it:improper-to-zero}) of Proposition \ref{pr:characterizations-improper-divergence}.	
+\end{orange_exercise}
+
+
+\begin{orange_exercise}
+	Prove the statement about the sequence $(b_n)$ in Proposition \ref{pr:improper-divergence-boundedness}.
+\end{orange_exercise}
+
+
+\begin{orange_exercise}
+Define the sequence $x : \mathbb{N} \to \mathbb{R}$ recursively by
+\[
+x_{n+1} := \frac{2 + x_n^2}{2 x_n}
+\]
+for $n \in \mathbb{N}$ while $x_0 = 2$.	
+Prove that the sequence $x: \mathbb{N} \to \mathbb{R}$ converges and determine its limit.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Determine whether the following sequences converge, diverge to $\infty$, diverge to $-\infty$ or diverge in a different way. In case the sequence converges, determine the limit.
+	
+	\begin{align*}
+		a_n & := \frac{1}{n^3} - 3 & b_n &:= \frac{5 n^5 + 2 n^2}{3n^5 + 7 n^3 + 4}& c_n &:= n - \sqrt{n}\\
+		d_n & := \frac{2^n}{n^{100}} & e_n & := \sqrt{n^2 + n} - n & f_n &:= \sqrt[n]{3 n^2}\\
+		g_n & := \frac{2^n + 5 n^{200} }{ 3^n + n^{10} } & h_n & := (-1)^n 3^n & i_n &:= \sqrt[n]{5^n + n^2}
+	\end{align*}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $a : \mathbb{N}\to \mathbb{R}$ be a sequence. Define the sequence $b : \mathbb{N} \to \mathbb{R}$ recursively through
+	\[
+	b_{n + 1} := \sin^2(a_n) b_n
+	\]
+	and $b_0 = 10$.
+	
+	Prove that the sequence $b$ converges.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Determine whether the following sequences converge, diverge to $\infty$, diverge to $-\infty$ or diverge in a different way. In case the sequence converges, determine the limit.
+	\begin{align*}
+	a_n &:= \frac{2 n^{3 + 1/n} + 4n + 7}{5 n^3 + 2 n + 3} &
+	b_n &:= n - \sqrt{n^2 - n} &
+	c_n &:= (-1)^n 7^n \\
+	d_n &:= \frac{3^n + 7^n}{7^n + 5 n^4} &
+	e_n &:= \sqrt[3n]{2 + n^2} &
+	f_n &:= n^4 - (-1)^n n^2 \\
+	g_n &:= \left(1 - \frac{1}{n}\right)^{n}
+	\end{align*}
+\end{orange_exercise}

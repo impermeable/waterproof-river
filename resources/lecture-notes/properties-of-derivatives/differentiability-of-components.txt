@@ -1,0 +1,29 @@
+\begin{proposition}
+	\label{pr:components-differentiable-function-differentiable}
+	Let $w_1, \dots, w_m$ be a basis of $W$.
+	
+	Then a function $f : \Omega \to W$ is differentiable in a point $a \in \Omega$ if and only if for every $i \in \{ 1, \dots, m\}$, the component function $f_i$ is differentiable in $a \in \Omega$. 
+	
+	Moreover, if the function $f$ is differentiable in $a \in \Omega$, then for every $v \in V$,
+	\[
+	(Df)_a(v) = \sum_{i=1}^m w_i (D f_i)_a(v).
+	\]
+\end{proposition}
+
+The proof of this proposition is the topic of Exercise \ref{ex:components-differentiable-function-differentiable}.
+
+\begin{corollary}
+	\label{co:components-differentiable-function-differentiable}
+	A function $f : \Omega \to \mathbb{R}^m$ is differentiable in a point $a \in \Omega$ if and only if for $i = 1, \dots, m$ the component function $f_i : \Omega \to \mathbb{R}$ given by $f_i = P^i \circ f$ is differentiable.
+	
+	Moreover, if $f$ is differentiable in $a$, then for all $v \in V$,
+	\[
+	(Df)_a (v) = \sum_{i=1}^m e_i (Df_i)_a(v)
+	= \big( (Df_1)_a(v), \cdots, (Df_m)_a(v) \big)
+	\]
+	where $e_i$ denote the standard unit vectors.
+	
+	If in fact $\Omega$ is a subset of $\mathbb{R}$, then 	\[
+	f'(a) = \big( f_1'(a), \cdots, f_m'(a) \big).
+	\]
+\end{corollary}

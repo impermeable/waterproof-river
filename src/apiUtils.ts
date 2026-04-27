@@ -25,3 +25,11 @@ export async function proofContextOrError(api: WaterproofAPI, marker: string) {
         return {error: `Unable to get proofContext from Waterproof, got error: \n${err}`};
     }
 }
+
+export async function execOrError(api: WaterproofAPI, step: string) {
+    try {
+        return (await api.execCommand(step));
+    } catch (err) {
+        return {message: `Executing '${step}' resulted in an error`, step, err};
+    }
+}

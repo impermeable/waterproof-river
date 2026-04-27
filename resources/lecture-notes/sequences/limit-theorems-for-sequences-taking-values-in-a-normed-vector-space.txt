@@ -1,0 +1,62 @@
+If we want to show that a sequence converges, or if we want to compute its limit, we don't always want to go back to the formal definition of a limit. Instead, we can use a whole collection of theorems such as the next. The first part of the next theorem says that the sum of two convergent sequences (taking values in normed vector spaces, after all we need to have a possibility to add elements) is itself convergent. Theorems like these are called \emph{limit theorems} or \emph{limit laws}.
+
+\begin{theorem}
+	\label{th:limit-theorems-vector-space}
+Let $(V, \| \cdot \|)$ be a normed vector space.
+Let $a : \mathbb{N} \to V$ and $b : \mathbb{N} \to V$ be two sequences.
+Assume that the limit $\lim_{n \to \infty} a_n$ exists and is equal to $p \in V$ and that the limit $\lim_{n \to \infty} b_n$ exists and is equal to $q \in V$. Let $\lambda : \mathbb{N} \to \mathbb{R}$ be a real-valued sequence. Let $\mu \in \mathbb{R}$. Assume that $\lim_{n \to \infty} \lambda_n = \mu$. Then
+\begin{enumerate}
+\item \label{it:limit-thm-sum} The limit $\lim_{n \to \infty} (a_n + b_n)$ exists and is equal to $p + q$.
+\item \label{it:limit-thm-scal-mult} The limit $\lim_{n \to \infty} (\lambda_n a_n)$ exists and is equal to $\mu p$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We leave the proof of (\ref{it:limit-thm-sum}) as an exercise and prove (\ref{it:limit-thm-scal-mult}), which is a bit more difficult.
+	
+We need to show that $\lim_{n \to \infty}(\lambda_n a_n) = \mu p$, i.e. we need to show that
+\[
+\begin{split}
+& \foralltext \epsilon > 0,\\
+& \quad \existstext N \in \mathbb{N}, \\
+& \quad \quad \foralltext n \geq N, \\
+& \quad \quad \quad \dist_{\| \cdot \|} (\lambda_n a_n, \mu p) < \epsilon.	
+\end{split}
+\]
+	
+Let $\epsilon > 0$.
+
+Since the sequence $\lambda : \mathbb{N} \to \mathbb{R}$ is convergent, it is bounded.
+Therefore there exists an $M > 0$ such that for all $n \in \mathbb{N}$,
+\[
+| \lambda_n | \leq M.
+\]
+
+Since $\lim_{n \to \infty} \lambda_n = \mu$, there exists an $N_0 \in \mathbb{N}$ such that for all $n \geq N_0$,
+\[
+\dist_{\mathbb{R}}(\lambda_n, \mu) = | \lambda_n - \mu | < \frac{\epsilon}{2(\| p \| + 1)}.
+\]	
+We have divided here by $(\| p \| + 1)$ rather than $\|p\|$ to not run into trouble (i.e.~to not divide by zero) when $\| p \| = 0$.
+
+Since $\lim_{n \to \infty} a_n = p$, there exists an $N_1 \in \mathbb{N}$ such that for all $n \geq N_1$, 
+\[
+\dist_{\| \cdot \|}(a_n, p) = \| a_n - p \| < \frac{\epsilon}{2M}.
+\]
+
+Choose $N:= \max(N_0, N_1)$.
+
+Let $n \geq N$. Then
+\[
+\begin{split}
+\| \lambda_n a_n - \mu p \|
+&= 
+\| \lambda_n a_n - \lambda_n p + \lambda_n p - \mu p \| \\
+& =\| \lambda_n (a_n - p) + (\lambda_n - \mu) p \| \\
+&\leq  \| \lambda_n ( a_n - p) \| + \| (\lambda_n - \mu) p \|\\
+&= | \lambda_n | \| a_n - p \| + | \lambda_n - \mu | \| p \| \\
+&\leq M \| a_n - p \| +  | \lambda_n - \mu | \| p \| \\
+&< M \cdot \frac{\epsilon}{2 M} + \frac{\epsilon}{2(\| p \| + 1)} \cdot \| p \|\\
+&< \epsilon.
+\end{split}
+\]
+\end{proof}

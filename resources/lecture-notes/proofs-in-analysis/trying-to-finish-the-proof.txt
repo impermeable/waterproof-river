@@ -1,0 +1,47 @@
+Where are we now? Our proof so far consists of 
+\begin{mcode}
+\begin{split}
+	& \text{Let } \epsilon > 0. \\
+	& \quad \text{Choose } n_0 := 10. \\
+	& \quad \quad \text{Indeed } n_0 \in \mathbb{N}.\\
+	& \quad \text{By the Archimedean property it holds that }\\
+	& \quad \quad \foralltext x \in \mathbb{R},\quad\quad\quad\quad\quad\quad\quad\quad (*)\\
+	& \quad \quad \quad \existstext k \in \mathbb{N}, x < k.\\
+	& \quad \text{Use } x := 15 \text{ in (} * \text{)}.\\
+	& \quad \quad \text{Indeed, } x \in \mathbb{R}.\\
+	& \quad \text{It holds that } \existstext k \in \mathbb{N}, x < k.\\
+	& \quad \text{Obtain such a } k.
+\end{split}
+\end{mcode}
+and now we need to prove the statement
+\begin{mcode}
+\begin{split}
+	&\text{for all } n \geq n_0, \\
+	&\quad |1/n - 0 | < \epsilon.
+\end{split}
+\end{mcode}
+with the only knowledge about $\epsilon$ that it is a (real) number larger than $0$, and that $n_0 = 10$.
+
+Let us stick to the recipe. We need to show a statement of the form 
+\begin{mcode}
+\text{for all } n \geq n_0
+\end{mcode}
+so we introduce $n$ by writing
+\begin{mcode}
+\text{Let } n \geq n_0
+\end{mcode}
+and continue proving the block $\{ |1/n - 0| < \epsilon \}$. 
+
+Of course, now we are in big trouble. Because we chose $n_0 = 10$, we can merely guarantee that
+\begin{mcode}
+|1/n - 0| = 1/n \leq 1/n_0 = 1/10.
+\end{mcode}
+But we do not know whether $\epsilon$ is larger than $1/10$ or not! All we know is that it is a positive real number. 
+
+We cannot prove that 
+\begin{mcode}
+| 1/n - 0 | < \epsilon
+\end{mcode}
+because we made a bad choice for $n_0$. This happens. It is almost impossible to figure out the proof `linearly', in a prearranged order of steps. To know how to choose $n_0$, you need to know your endgame, you already need to know how you will finish the proof. This means, you need to do a lot of scratchwork. 
+
+Another suspicious thing in the above proof is that we haven't used $k$ at all.

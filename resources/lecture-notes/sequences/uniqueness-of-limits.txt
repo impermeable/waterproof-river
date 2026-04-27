@@ -1,0 +1,45 @@
+\begin{proposition}[uniqueness of limits]
+	Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ be a sequence in $X$.
+	Assume that $p, q \in X$ and assume that 
+	\[
+	\lim_{n \to \infty} a_n = p \quad \text{ and } \quad \lim_{n \to \infty} a_n = q.
+	\]
+	Then $p = q$.
+\end{proposition}
+\begin{proof}
+We argue by contradiction.
+Suppose $p \neq q$.
+
+Set $\epsilon := \dist(p,q)/2 > 0$.
+Since $(a_n)$ converges to $p$, 
+\begin{optional_text}
+we know by the definition of convergence that
+\begin{equation}
+	\label{eq:uniqueness-limits-aux}
+\begin{split}
+& \foralltext \epsilon_1 > 0,\\
+&\quad \existstext N_1 \in \mathbb{N},\\
+&\quad\quad \foralltext n \geq N_1,\\
+&\quad\quad\quad \dist(a_n, p) < \epsilon_1.
+\end{split}
+\end{equation}
+Choose $\epsilon_1 := \epsilon$. Then we know that 
+\end{optional_text}
+
+there exists an $N_1 \in \mathbb{N}$ such that for every $n \geq N_1$, 
+\[
+\dist(a_n, p) < \epsilon.
+\]
+Since $(a_n)$ converges to $q$, there exists an $N_2 \in \mathbb{N}$ such that for every $n \geq N_2$,
+\[
+\dist(a_n, q) < \epsilon.
+\]
+Choose $N := \max(N_1, N_2)$. 
+Then 
+\[
+\dist(p, q) \leq \dist(p, a_N) + \dist(a_N, q) < 2 \epsilon = \dist(p, q)
+\]
+which is a contradiction.
+\end{proof}
+
+Again, the lighter inset around statement (\ref{eq:uniqueness-limits-aux}) above denotes optional text. As we progress in these notes, we will more and more often omit it, but in the early stages it shows the argumentation a bit more clearly.

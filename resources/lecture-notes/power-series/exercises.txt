@@ -1,0 +1,71 @@
+\begin{orange_exercise}
+	Give the Taylor series of the function 
+	\[
+	f(x) := \frac{1}{3x^2}
+	\]
+	around the point $c = 1$ and give its radius of convergence.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:sum-power-series}
+	Prove Proposition \ref{pr:sum-power-series}. 
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Now that the definitions of $\cos$ and $\sin$ are provided:
+\begin{enumerate}
+\item Prove using power series, (i.e. without using Proposition \ref{pr:diff-standard-functions}) that for all $x \in \mathbb{R}$,
+\[
+\cos'(x) = -\sin(x)
+\]
+and
+\[
+\sin'(x) = \cos(x).
+\]
+\item Show that for all $x \in \mathbb{R}$,
+\[
+\sin^2(x) + \cos^2(x) = 1.
+\]
+\end{enumerate}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Determine, as a power series around $0$, the solution to the differential equation
+\[
+x^2 f''(x) - 2 x f'(x) + (2 - x^2) f(x) = 0
+\]	
+with 
+\[
+f(0) = 0, \qquad f'(0) = 1, \qquad f''(0) = 0.
+\]
+and determine the radius of convergence of the power series.
+Hint, use the Ansatz
+\[
+f(x) := \sum_{k=0}^\infty a_k x^k
+\]
+and use the theorems about the sums of power series, products of power series and the identity theorem to determine the coefficients $a_k$.
+\end{orange_exercise}
+
+\begin{restatable}{orange_exercise}{reExRadiusPowerSeriesFromOtherSeries}
+
+Let $(a_k)$ be a sequence of real numbers such that the power series
+\[ \sum_{k=0}^\infty  a_k x^k\]
+has radius of convergence $4$.
+Let $(b_k)$ be a sequence of real numbers such that for all $k \in \mathbb{N}$,
+\[ |b_k| \leq \sqrt{|a_k|}. \]
+
+\begin{enumerate}
+	\renewcommand{\theenumi}{\alph{enumi}}
+	\item Prove that the radius of convergence of the power series 
+	\[ \sum_{k=0}^\infty b_k (x - 2)^k \]
+	is at least $2$.
+	You may use that for every sequence of real numbers $(c_k)$ and every $p > 0$, $\limsup_{k \to \infty} (c_k )^p = (\limsup_{k \to \infty} c_k)^p$
+	\item Consider the power series
+	\[f(x) = 1 + 2 \sum_{k=1}^\infty (-1)^k x^k. \]
+	Determine the coefficients $c_k$ of the power series 
+	\[ g(x) = \sum_{k=0}^\infty c_k x^k \]
+	such that for all $x \in (-1, 1)$,
+	\[ f(x) g(x) = 1\]
+\end{enumerate}
+
+\end{restatable}

@@ -1,0 +1,9 @@
+%
+%\begin{theorem}
+%For every $a, b \in \mathbb{R}$, it holds that
+%\[
+%|a + b| \leq |a| + |b|
+%\]
+%\end{theorem}
+%
+%

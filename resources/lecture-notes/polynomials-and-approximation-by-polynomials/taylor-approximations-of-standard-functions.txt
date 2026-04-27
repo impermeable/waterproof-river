@@ -1,0 +1,23 @@
+When we apply the theorems of the previous sections to the standard functions, we get the following approximations.
+
+\begin{corollary}
+	\label{co:standard-taylor-polynomials}
+For every $n \in \mathbb{N}$, it holds that
+\[
+\begin{split}
+\exp(x) & = \sum_{k=0}^{n} \frac{x^k}{k!} + O(|x|^{n+1})	\\
+\sin(x) &= \sum_{k=0}^{n} (-1)^k\frac{x^{2k+1}}{(2k+1)!} + O(|x|^{2n+3})\\
+\cos(x) &= \sum_{k=0}^n (-1)^k \frac{x^{2k}}{(2k)!} + O(|x|^{2n+2})\\
+\ln(1 + x) &= \sum_{k=1}^n (-1)^{k+1} \frac{1}{k}x^k + O(|x|^{n+1})\\
+\end{split}	
+\]
+\end{corollary}
+
+The notation
+\[
+f(x) = g(x) + O(|x|^N)
+\]
+should be read as that there exists a $C \geq 0$ and a $\delta > 0$ such that for all $x \in (-\delta, \delta)$,
+\[
+| f(x) - g(x) | \leq C |x|^N.
+\]

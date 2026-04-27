@@ -1,0 +1,15 @@
+As with many concepts in the course, continuity is conveniently probed with sequences.
+
+\begin{theorem}[Sequence characterization of continuity]
+	\label{th:sequence-char-cont}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be metric spaces.
+Let $D \subset X$ and let $f : D \to Y$ be a function.
+Let $a \in D$.
+The function $f$ is continuous in $a$ if and only if
+\[
+\begin{split}
+& \foralltext \text{ sequences } (x^{n}) \text{ in } D \text{ converging to } a,\\
+& \quad \lim_{n \to \infty} f(x^{n}) = f(a).
+\end{split}
+\]	
+\end{theorem}

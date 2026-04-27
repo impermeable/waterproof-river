@@ -1,0 +1,23 @@
+\begin{theorem}[Intermediate Value Theorem]
+	Let $f : [a, b] \to \mathbb{R}$ be continuous, and let $c \in \mathbb{R}$ be a value between $f(a)$ and $f(b)$. 
+	Then, there exists an $x \in [a, b]$ such that $f(x) = c$.
+\end{theorem}
+
+\begin{proof}
+	Let $f : [a, b] \to \mathbb{R}$ be continuous, and let $c \in \mathbb{R}$ be a value between $f(a)$ and $f(b)$. 
+	We need to find an $x \in [a, b]$ such that $f(x) = c$. Without loss of generality, assume that $f(a) < c$ (otherwise, if $f(a) = c$, then you are already done, or if $f(a) > c$ first consider $g = - f$). 
+	Now define 
+	\[
+	x := \sup \{y \in [a,b] \ | \ f(y) < c \}.
+	\]
+	We will show that $f(x) = c$.
+	First, we note that by properties of the supremum, there exists a sequence $(x_n)$ in $[a, x]$ such that $x_n \to x$ and $f(x_n) < c$ for every $n \in \mathbb{N}$. By continuity of $f$, it holds that
+	\[
+	f(x) = \lim_{n \to \infty} f(x_n) \leq c.
+	\]
+	Similarly, there is a sequence $(y_n)$ in $[x, b]$ converging to $x$ such that $f(y_n) \geq c$. By continuity of $f$, it holds that
+	\[
+	f(x) = \lim_{n \to \infty} f(y_n) \geq c.
+	\]
+	In conclusion, $f(x) = c$. 
+\end{proof}

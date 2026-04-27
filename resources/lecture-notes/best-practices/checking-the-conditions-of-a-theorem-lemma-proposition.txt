@@ -1,0 +1,8 @@
+If you want to use a theorem (or lemma, proposition etc.), first explicitly check all the assumptions, then afterwards you can use the conclusion of the theorem. A template is:
+\begin{mcode}
+	\begin{split}
+		& ... \textit{ check conditions of theorem } ...	\\
+		& \text{Therefore, by Theorem } \textit{(insert reference to theorem)} \\
+		& \qquad \text{ it holds that } (\textit{theorem conclusion}).
+	\end{split}
+\end{mcode}

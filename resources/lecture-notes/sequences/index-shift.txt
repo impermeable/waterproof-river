@@ -1,0 +1,10 @@
+The next proposition is another example of a theorem that allows you to conclude the existence of a certain limit without going back to the formal definition. You can use it when you know that a sequence converges, to conclude that the same sequence but with index shifted is also convergent.
+
+\begin{proposition}[Index shift]
+	\label{pr:index-shift}
+	Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ be a sequence in $X$. 
+	Let $k \in \mathbb{N}$ and $p \in X$.
+	Then the sequence $(a_n)$ converges to $p$ if and only if the sequence $(a_{n+k})_n$ (i.e. the sequence $n \mapsto a_{n + k}$) converges to $p$.
+\end{proposition}
+
+The proof of Proposition \ref{pr:index-shift} is the topic of Blue Exercise \ref{ex:index-shift}.

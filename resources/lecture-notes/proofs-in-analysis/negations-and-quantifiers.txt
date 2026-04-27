@@ -1,0 +1,18 @@
+We write the negation of a mathematical statement $( \textellipsis )$ as $\neg ( \dots )$. The so-called \emph{De Morgan's laws} specify how quantifiers behave under negation.
+
+The statement
+\begin{mcode}
+\neg \left( \foralltext a \in A, \ (\textellipsis) \right)
+\end{mcode}
+is equivalent to
+\begin{mcode}
+\existstext a \in A, \left( \neg ( \textellipsis )\right).
+\end{mcode}
+Similarly, the statement
+\begin{mcode}
+\neg \left( \existstext a \in A, \ ( \dots )\right)
+\end{mcode}
+is equivalent to
+\begin{mcode}
+\foralltext a \in A, \ ( \neg ( \dots ) ).
+\end{mcode}

@@ -1,4 +1,4 @@
-import { PromptElement, PromptPiece, AssistantMessage, PromptElementProps } from "@vscode/prompt-tsx";
+import { PromptElement, PromptPiece, PromptElementProps, UserMessage } from "@vscode/prompt-tsx";
 import { RiverBasic } from "./riverBasic";
 
 type SyntaxHelpProps = PromptElementProps<{
@@ -9,7 +9,7 @@ export class WaterproofSyntaxHelpPrompt extends PromptElement<SyntaxHelpProps> {
     render(): PromptPiece {
         return (
             <>
-            <AssistantMessage>
+            <UserMessage>
             <RiverBasic/>
             The student has requested you to help check the syntax of their Waterproof script. Waterproof found the following syntax errors:
             <br/>
@@ -32,7 +32,7 @@ export class WaterproofSyntaxHelpPrompt extends PromptElement<SyntaxHelpProps> {
             Make sure to output a JSON object that can be parsed to the following type: {String.raw`Array<{ to: { char: number, line: number }, from: { char: number, line: number }, message: string, fixed: string }>`}.
             <br/>
             
-            </AssistantMessage>
+            </UserMessage>
             </>
         );
     }

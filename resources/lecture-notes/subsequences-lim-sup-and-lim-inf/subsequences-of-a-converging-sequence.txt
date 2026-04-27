@@ -1,0 +1,34 @@
+\begin{proposition}
+	Let $(X, \dist)$ be a metric space.
+	Let $(a_n)$ be a sequence in $X$ converging to $p \in X$.
+	Then every subsequence of $(a_n)$ is convergent to $p$.
+\end{proposition}
+
+\begin{proof}
+	Let $(a_n)$ be a sequence converging to $p \in X$ and let $(a_{n_k})$ be a subsequence of $a$.
+	We need to show that for all $\epsilon > 0$ there exists a $k_0 \in \mathbb{N}$ such that for all $k \geq k_0$,
+	\[
+	\dist(a_{n_k}, p) < \epsilon.
+	\]	
+	Let $\epsilon > 0$. 
+	Because $(a_m)$ converges to $p$, there exists an $m_0 \in \mathbb{N}$ such that for all $m \geq m_0$,
+	\begin{equation}
+		\label{eq:in-pf-conv-subs-am-close}
+		\dist( a_m , p ) < \epsilon.
+	\end{equation}
+	Choose $k_0 := m_0$.
+	Let $k \geq k_0$.
+	Then
+	\[
+	n_k \geq n_{k_0} \geq k_0 = m_0
+	\]
+	where in the last inequality we made use of the fact that the index sequence $n: \mathbb{N} \to \mathbb{N}$ is strictly increasing.
+	Because $n_k \geq m_0$, it follows by (\ref{eq:in-pf-conv-subs-am-close}) that
+	\[
+	\dist(a_{n_k},p) < \epsilon.
+	\]
+\end{proof}
+
+%\begin{theorem}
+%Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ be a sequence with values in $X$. Let $p \in X$. Suppose that all subsequences of $a: \mathbb{N} \to X$ converge to $p$. Then $a: \mathbb{N} \to X$ itself converges to $p$ as well.	
+%\end{theorem}

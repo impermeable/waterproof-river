@@ -1,0 +1,27 @@
+\label{se:limit-laws-real-valued-functions}
+
+If we need to show that a limit exists, or if we need to compute its value, we usually try to avoid going back to the formal definition of a limit. Instead, just as we did when we were working with sequences, we prefer to rely on limit laws.
+
+The following theorem presents some limit laws for real-valued functions.
+
+\begin{theorem}[Limit laws for real-valued functions]
+	\label{th:limit-laws-real-valued-func}
+Let $(X, \dist)$ be a metric space, let $D$ be a subset of $X$ and assume that $a \in D'$.
+Let $f : D \to \mathbb{R}$ and $g : D \to \mathbb{R}$ be two real-valued functions and assume that $\lim_{x \to a} f(x)$ exists and equals $M \in \mathbb{R}$ and $\lim_{x \to a} g(x)$ exists and equals $L \in \mathbb{R}$. 
+Then
+\begin{enumerate}
+\item For every $m \in \mathbb{N}$, the limit $\lim_{x \to a} (f(x))^m$ exists and equals $M^m$.
+\item \label{it:limit-law-product-func} The limit $\lim_{x \to a} (f(x)g(x))$ exists and equals $M L$.
+\item If $L \neq 0$, the limit
+\[
+\lim_{x \to a} \frac{f(x)}{g(x)}
+\]
+exists and equals $M / L$.
+\item If for all $x \in D$, $f(x) \geq 0$, then for every $k \in \mathbb{N} \setminus \{0\}$,
+\[
+\lim_{x \to a} \sqrt[k]{f(x)} = \sqrt[k]{M}.
+\]
+\end{enumerate}
+\end{theorem}
+
+The proof of this theorem follows from the sequence characterization of limits (Theorem \ref{th:seq-char-limits-func}), and from limit laws for sequences (Theorem \ref{th:limit-laws-real-valued-seq}). The proof of part (\ref{it:limit-law-product-func}) will be the aim of Exercise \ref{ex:limit-law-product-func}.

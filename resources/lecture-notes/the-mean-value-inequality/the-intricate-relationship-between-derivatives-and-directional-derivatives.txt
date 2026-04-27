@@ -1,0 +1,34 @@
+\begin{warning}
+	There are functions $f: \Omega \to W$ that are {\bf not differentiable in a point $a$} even though for every $v \in V$, the directional derivative $(D_v f)_a$ exists. See for instance the next example.
+\end{warning}
+
+\begin{example}
+	Consider the following function $f: \mathbb{R}^2 \to \mathbb{R}$:
+	\[
+	f(x_1, x_2) :=
+	\begin{cases}
+		x_1, &x_2 \neq 0\\
+		0, &x_2 = 0.
+	\end{cases}
+	\]
+	Let us verify that for all $v \in \mathbb{R}^2$, the directional derivative $(D_v f)_0$ exists. Let $v \in \mathbb{R}^2$. If $v_2 \neq 0$, then
+	\[
+	\begin{split}
+		(D_v f)_0 &= \lim_{t \to 0} \frac{f(0 + t v) - f(0)}{t}\\
+		&= \lim_{t \to 0} \frac{t v_1 - 0}{t} \\
+		&= \lim_{t \to 0} v_1 \\
+		&= v_1.
+	\end{split}
+	\]
+	while if $v_2 = 0$ then
+	\[
+	\begin{split}
+		(D_v f)_0 &= \lim_{t \to 0} \frac{f(0 + t v) - f(0)}{t}\\
+		&= \lim_{t \to 0} \frac{0 - 0}{t} \\
+		&= 0.		
+	\end{split}
+	\]
+	In both cases, the directional derivative exists.
+	
+	We now claim that $f$ is {\bf not} differentiable in $0$. Indeed, \emph{if} $f$ would be differentiable in $0$, then the derivative $(Df)_0$ would be a linear map from $\mathbb{R}^2$ to $\mathbb{R}$. Since $(Df)_0(e_1) = 0$ and $(Df)_0(e_2)=0$, in fact $(Df)_0$  maps every vector to zero. In particular $(D_{(1,1)} f)_0 = 0$. However, our computation above shows that $(D_{(1,1)}f)_0 = 1$. This is a contradiction.
+\end{example}

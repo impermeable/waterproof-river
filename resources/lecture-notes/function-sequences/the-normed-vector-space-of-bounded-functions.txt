@@ -1,0 +1,74 @@
+\begin{definition}
+Let $D$ be a set. The normed vector space $(\mathcal{B}(D), \| \cdot \|_\infty)$ is defined as the vector space of \emph{bounded} functions from $D$ to $\mathbb{R}$ with norm $\| \cdot \|_\infty$ given by
+\[
+\| f \|_\infty = \sup_{x \in D} |f(x)|.
+\]
+\end{definition}
+
+The vector space $\mathcal{B}(D)$ is infinite-dimensional if $D$ has infinitely many elements.
+
+\begin{proposition}
+\label{pr:conv-infty-to-conv-uniform}
+Let $(f_n)$ be a sequence of functions from $D$ to $\mathbb{R}$ and let $g : D \to \mathbb{R}$ be a function.
+
+Then the sequence $(f_n)$ converges uniformly to $g$ if and only if there exists an $N \in \mathbb{N}$ such that for every $n \geq N$, the function $(f_n - g)$ is bounded, and such that the sequence $n \mapsto (f_{N+n} - g)$ converges to $0$ in $\mathcal{B}(D)$.
+\end{proposition}
+
+The nice feature about the previous proposition is that it can bring back a statement about uniform convergence of functions to a statement about sequences of real numbers, which are much easier to deal with.
+
+\begin{example}
+	Consider the sequence of functions $(f_n)$ from $[0, 1/2]$ to $\mathbb{R}$ given by
+	\[
+	f_n(x) := x^n + 1.
+	\]
+	Moreover, define the function $g : [0, 1/2] \to \mathbb{R}$ by $g(x) := 1$.
+	
+	We claim that the sequence $(f_n)$ converges uniformly to $g$.
+	
+	Note that for every $n\in \mathbb{N}$, the function $f_n - g$ is bounded, so by the previous proposition, Proposition \ref{pr:conv-infty-to-conv-uniform}, it suffices to show that $f_n - g$ converges to $0$ in $\mathcal{B}(D)$. 
+	
+	We need to show that
+	\[
+	\lim_{n \to \infty} \| f_n - g \|_\infty = 0.
+	\]
+	Note that this comes down to determining the limit of a real-valued sequence, which is something that by now we have much more experience with.
+	
+	We claim that for all $n \in \mathbb{N}$,
+	\begin{equation}
+		\label{eq:bound_supremum_norm_unif_conv_ex}
+	\| f_n - g - 0 \|_\infty \leq 2^{-n}.
+	\end{equation}
+	Let $n \in \mathbb{N}$. By definition of the infinity-norm, we need to show that
+	\[
+	\sup_{x \in [0, 1/2]} |f_n(x) - g(x)| \leq 2^{-n}.
+	\]
+	By definition of the supremum as the smallest lower bound, it then suffices to show that for all $x \in [0, 1/2]$,
+	\[
+	|f_n(x) - g(x)| \leq 2^{-n}.
+	\]
+	Now let $x \in [0, 1/2]$. Then indeed
+	\[
+	|f_n(x) - g(x)| = | 1 + x^n - 1 | = x^n \leq 2^{-n}
+	\]
+	since $x \leq 1/2$.
+	
+	This finishes the proof of our claim (\ref{eq:bound_supremum_norm_unif_conv_ex}).
+	
+	Hence, we find that for all $n \in \mathbb{N}$,
+	\[
+	0 \leq \| f_n - g \|_\infty \leq 2^{-n}.
+	\]
+	and by the squeeze theorem and standard limits, we conclude that
+	\[
+	\lim_{n \to \infty} \| f_n - g \|_\infty = 0.
+	\]
+\end{example}
+
+
+\begin{proposition}
+Let $(f_n)$ be a sequence of functions from a domain $D$ in the metric space $(X, \dist_X)$ to the metric space $(Y, \dist_Y)$ and let $g : D \to Y$ be a function. Then $(f_n)$ converges to $g$ uniformly if and only if there exists an $N \in \mathbb{N}$ such that for every $n \geq N$, the function $h_n$ given by 
+\[
+h_n(x) := \dist_Y(f_n(x), g(x))
+\]
+is bounded and the sequence $n \mapsto h_{N + n}$ converges to $0$ in $\mathcal{B}(D)$. 
+\end{proposition}

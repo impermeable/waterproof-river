@@ -1,0 +1,16 @@
+To effectively compute the value of integrals, we need some more tools. In fact, if possible, we would like to use the fundamental theorem of calculus in the computation. That theorem is however a statement about integrals in one dimension. We therefore need a way to use one-dimensional integrals in the computation of multi-dimensional integrals. The following theorem, called Fubini's theorem, provides such a way.
+
+\begin{theorem}[Fubini]
+	Let $R = A \times B$ be a rectangle in $\mathbb{R}^{d + m}$. Let $f : R \to \mathbb{R}$ be bounded and Riemann integrable on $R$, and suppose for every $x \in \mathbb{R}^{d}$ the function $h_x : \mathbb{R}^m \to \mathbb{R}$ defined by
+	\[
+	h_x (y) := f(x, y)
+	\]
+	is Riemann integrable. Then the function $F : \mathbb{R}^d \to \mathbb{R}$ given by
+	\[
+	F(x) := \int_{B} f(x, y) dy
+	\]
+	is Riemann integrable and
+	\[
+	\int_{R} f(z) dz = \int_{A} \left(\int_{B} f(x, y ) dy\right) dx
+	\]
+\end{theorem}

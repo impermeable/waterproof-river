@@ -1,0 +1,80 @@
+\subsection{Blue exercises}
+
+\begin{restatable}{blue_exercise}{reLinearMapsDifferentiable}
+	\label{ex:linear-maps-differentiable}
+	Let $A : V \to W$ be a linear map from a finite-dimensional normed vector space $(V, \| \cdot \|_V)$ to a normed vector space $(W, \| \cdot \|_W)$. Show that $A$ is differentiable on $V$.
+\end{restatable}
+
+\subsection{Orange exercises}
+
+\begin{restatable}{orange_exercise}{reRationalFunctionDeriv}
+	Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[
+	f(x_1, x_2) := 
+	\begin{cases}
+		\frac{(x_1)^4}{(x_1)^2 + (x_2)^2} & (x_1, x_2) \neq (0, 0) \\
+		0 & (x_1, x_2) = (0, 0).
+	\end{cases}
+	\]
+	\begin{enumerate}
+		\renewcommand{\theenumi}{(\alph{enumi})}
+		\item Determine $\frac{\partial f}{\partial x_1}(x)$ and $\frac{\partial f}{\partial x_2}(x)$ for all $x \neq (0, 0)$.
+		\item Prove that $\frac{\partial f}{\partial x_1}(0)$ and $\frac{\partial f}{\partial x_2}(0)$ exist and determine their value.
+		\item Give the Jacobian $[D f]_a$ for all $a \in \mathbb{R}^2$ (you may assume that $f$ is differentiable).
+		\item Let $v = (1, 2)$ and $a = (3, 1)$. Give $(D_v f)_a$ (you may {\bf not} assume that $f$ is differentiable) and verify that it equals
+		\[
+		(D_v f)_a = [D f]_a v.
+		\]
+		\item Prove that the function $f$ is differentiable in the point $(0, 0)$.
+	\end{enumerate}
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reRatFunDerTwoComp}
+	 Consider the function $f : \mathbb{R}^2 \to \mathbb{R}^2$ given by
+	 \[
+	 f(x_1, x_2) :=
+	 \begin{cases}
+	 	\left( \frac{(x_1)^3 (x_2)^3}{(x_1)^2 + (x_2)^2}, \sin((x_1)^2+x_2) \right) & (x_1, x_2) \neq (0, 0)\\
+	 	0 & (x_1, x_2) = (0, 0). 
+	 \end{cases}
+	 \]
+	 {\bf Hint:} make use of results that relate derivatives of components to derivatives of a function such as Proposition \ref{pr:rel-par-der-comp} and \ref{pr:rel-dir-der-comp}.
+	 \begin{enumerate}
+	 	\renewcommand{\theenumi}{(\alph{enumi})}
+	 	\item Determine $\frac{\partial f}{\partial x_1}(x)$ and $\frac{\partial f}{\partial x_2}(x)$ for all $x \neq (0, 0)$.
+	 	\item Prove that the partial derivatives $\frac{\partial f}{\partial x_1}(0)$ and $\frac{\partial f}{\partial x_2}(0)$ exist and determine their value.
+	 	\item Give the Jacobian $[D f]_a$ for all $a \in \mathbb{R}^2$ (you may assume that $f$ is differentiable).
+	 	\item Let $v = (-1, 3)$ and $a = (1, -1)$. Give $(D_v f)_a$ (you may not assume that $f$ is differentiable) and verify that it equals
+	 	\[
+	 	(D_v f)_a = [Df]_a v.
+	 	\]
+	 	\item Prove that the function $f_1$ is differentiable in the point $(0, 0)$.
+	 \end{enumerate}
+\end{restatable}
+
+\begin{orange_exercise}
+	Let $f : V \to \mathbb{R}$ be a differentiable function from a finite-dimensional normed vector space $(V, \| \cdot \|_V)$ to the normed vector space $(\mathbb{R}, | \cdot |)$. Assume that for all $a \in V$, $(Df)_a = 0$. Let $v \in V$. Show that $f(v) = f(0)$. (This would essentially show that $f$ is constant on $V$).
+	\begin{enumerate}
+	\item Define the function $\ell_v : \mathbb{R} \to V$ by $\ell(t) = t v$. Show that $\ell_v$ is differentiable.
+	\item Show that the function $g := f \circ \ell_v$ is differentiable and compute its derivative.
+	\item Conclude that $f(v) = g(1) = g(0) = f(0)$.
+	\end{enumerate}	
+\end{orange_exercise}
+
+\begin{restatable}{orange_exercise}{reRelationDiffWithPrimeNormed}
+	\label{ex:relation-diff-with-prime-normed}
+Prove Proposition \ref{pr:relation-diff-with-prime-normed}. You may assume that $W$ is finite-dimensional.
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reMatrixRepresentation}
+	\label{ex:matrix-representation}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two two-dimensional vector spaces with bases $v_1, v_2$ and $w_1, w_2$ respectively. Assume that a function $f : V \to W$ is differentiable in $0$ with
+	\[
+	(Df)_0 ( v_1 + v_2 ) = w_1
+	\]	
+	and
+	\[
+	(Df)_0 ( v_1 - 2 v_2) = w_1 - w_2.
+	\]
+	Give the matrix representation of the linear map $(Df)_0 : V \to W$ with respect to the bases $v_1, v_2$ and $w_1, w_2$.
+\end{restatable}

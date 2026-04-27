@@ -1,0 +1,24 @@
+Soon, we will define the partial derivatives, but let us already preview its consequences.
+Let $f : \Omega \to W$ be a function where $\Omega \subset \mathbb{R}^d$.
+Let $a \in \Omega$.
+Then the $i$th partial derivative of $f$ will just be the one-variable derivative of $f$ when viewed as a function of just the $i$th variable $x_i$, while keeping the other variables fixed, i.e.
+\[
+\frac{\partial f}{\partial x_i} (a) =
+\left.\frac{d}{dt} f(a_1, \dots, a_{i-1}, t, a_{i+1}, \dots, a_d)\right|_{t = a_i}.
+\]
+
+\begin{example}
+	Consider the function $f: \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[
+	f(x_1, x_2) = 3 x_1^2 + 2x_1 x_2 + 7 x_2^4.
+	\]	
+	Then we can compute the partial derivative $\frac{\partial f}{\partial x_1} (x_1, x_2)$ by just viewing the function $f$ as a function of $x_1$ only, keeping $x_2$ fixed, and taking the one-variable derivative with respect to $x_1$, i.e.
+	\[
+	\begin{split}
+	\frac{\partial f}{\partial x_1} (x_1, x_2)
+	&= \left. \frac{d}{dt} f(t, x_2)\right|_{t = x_1}\\
+	&= \left. \frac{d}{dt} (3 t^2 + 2 t x_2 + 7 x_2^4) \right|_{t = x_1}\\
+	&= 6 x_1 + 2 x_2.
+	\end{split}
+	\]
+\end{example}

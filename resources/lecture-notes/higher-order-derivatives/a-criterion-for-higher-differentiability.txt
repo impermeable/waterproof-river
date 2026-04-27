@@ -1,0 +1,6 @@
+The following theorem is often useful in practice to verify that a function is $n$ times differentiable.
+
+\begin{theorem}
+	\label{th:cont-criterion-higher-differentiability}
+	Let $f : \Omega \to W$ where $\Omega$ is an open subset of $\mathbb{R}^d$. If all partial derivatives of $f$ of order less than or equal to $n$ exist, and if all partial derivatives of order $n$ are continuous on $\Omega$, then $f$ is $n$ times differentiable on $\Omega$. 
+\end{theorem}

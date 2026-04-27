@@ -1,0 +1,158 @@
+\begin{lemma}
+Suppose a power series
+\[
+\sum_{k=0}^\infty a_k (x-c)^k
+\]	
+converges at a point $z \in \mathbb{R}$. Let $r > 0$ be such that $r < |z - c|$. Then the power series converges absolutely and uniformly on the interval $[c - r, c + r]$.
+\end{lemma}
+
+\begin{proof}
+We will apply the Weierstrass $M$-test. 
+
+Since the series
+\[
+\sum_{k=0}^\infty a_k (z - c)^k
+\]
+converges, the sequence $k \mapsto a_k (z-c)^k$ converges (to zero) and therefore it is bounded. In other words, there exists a $C > 0$ such that for all $k \in \mathbb{N}$,
+\[
+|a_k (z - c)^k| \leq C.
+\]
+
+Now note that for all $k \in \mathbb{N}$, and all $x \in [c - r, c + r]$,
+\begin{equation}
+	\label{eq:ordered-behavior-convergence-series}
+|a_k (x-c)^k| = |a_k| \left|\frac{x-c}{z-c} \right|^k |z - c|^k \leq C \left(\frac{r}{|z - c|}\right)^k =: M_k.
+\end{equation}
+
+Now note that since $r < |z - c|$, it follows that $r/|z -c| < 1$ so that
+\[
+\sum_{k=0}^\infty \left(\frac{r}{|z - c|}\right)^k
+\]
+is a standard convergent geometric series. By limit laws for series, the series
+\[
+\sum_{k=0}^\infty M_k = \sum_{k=0}^\infty C \left(\frac{r}{|z - c|}\right)^k
+\]
+is convergent as well.
+
+By the Weierstrass $M$-test, the function series
+\[
+\sum_{k=0}^\infty a_k (x-c)^k
+\]
+converges absolutely and uniformly on the interval $[c - r, c + r]$.
+\end{proof}
+
+\begin{corollary}
+For every power series 
+\[
+\sum_{k=0}^\infty a_k (x - c)^k
+\]
+around a point $c \in \mathbb{R}$ exactly one of the following occurs:
+\begin{enumerate}
+\item The series converges for $x = c$ and diverges for $x \neq c$. In this case we say that the radius of convergence of the power series is $0$.
+\item There exists an $R > 0$ such that for all $x \in (c - R, c + R)$ the power series converges and for all $x \in \mathbb{R} \backslash [c - R, c + R]$ the series diverges. In this case we say the radius of convergence equals $R$.
+\item The series converges for all $x \in \mathbb{R}$. In this case we say the radius of convergence is $\infty$.	
+\end{enumerate}	
+\end{corollary}
+
+The following proposition gives a way to determine the radius of convergence of a power series.
+
+\begin{proposition}
+	\label{pr:radius-of-convergence-limsup}
+Let
+\[
+\sum_{k=0}^\infty a_k (x - c)^k
+\]	
+be a power series around $c$ and define the (extended real) number
+\[
+L := \limsup_{k \to \infty} \sqrt[k]{|a_k|}
+\]
+Then
+\begin{enumerate}
+\item if $L = \infty$, then the radius of convergence of the power series is $0$,
+\item if $L \in (0,\infty)$, then the radius of convergence of the power series is $1/L$,
+\item if $L = 0$, then the radius of convergence of the power series is $\infty$.	
+\end{enumerate}
+\end{proposition}
+
+For the proof of the proposition, let us first give an alternative version of the root test, Theorem \ref{th:root-test}.
+
+\begin{theorem}[{Root test, $\limsup$ version}]
+	Let $(b_k)$ be a sequence of nonnegative real numbers.
+	\begin{enumerate}
+		\item If 
+		\[
+		\limsup_{k \to \infty} \sqrt[k]{b_k} < 1,
+		\]
+		then the series $\sum_k b_k$ converges.
+		\item If
+		\[
+		\limsup_{k \to \infty} \sqrt[k]{b_k} > 1
+		\]
+		then the series $\sum_k b_k$ diverges.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	First suppose that 
+	\[
+	\limsup_{k \to \infty} \sqrt[k]{b_k} < 1.
+	\]
+	Denote by $M := \limsup_{k \to \infty} \sqrt[k]{b_k}$. Then by the alternative characterization of the $\limsup$, there exists an $N \in \mathbb{N}$ such that for all $k \geq N$,
+	\[
+	\sqrt[k]{b_k} < M + \frac{1 - M}{2} = \frac{1 + M}{2} < 1.
+	\]
+	It follows by Theorem \ref{th:root-test} that the series $\sum_k b_k$ converges.
+	
+	Now suppose that
+	\[
+	\limsup_{k \to \infty} \sqrt[k]{b_k} = \infty.
+	\]
+	Then the sequence $(\sqrt[k]{b_k})$ is not bounded from above, and as a consequence the sequence $(b_k)$ is not bounded from above. Therefore, the series $\sum_k b_k$ diverges.
+	
+	If 
+	\[
+	M := \limsup_{k \to \infty} \sqrt[k]{b_k} \in (1, \infty)
+	\]
+	then by the alternative characterization of the $\limsup$, for every $K \in \mathbb{N}$, there exists an $\ell \geq K$ such that 
+	\[
+	\sqrt[\ell]{b_\ell} > 1.
+	\]
+	For such $\ell$, also $b_\ell > 1$. It follows that the sequence $(b_k)$ does not converge to zero, and therefore the series $\sum_k b_k$ diverges.
+\end{proof}
+
+With this version of the root test, we can now prove Proposition \ref{pr:radius-of-convergence-limsup}.
+
+\begin{proof}[Proof of Proposition \ref{pr:radius-of-convergence-limsup}]
+We would like to apply the root test. We therefore consider
+\[
+\limsup_{k \to \infty} \sqrt[k]{|a_k (x - c)^k|} = \limsup_{k \to \infty} \left(\sqrt[k]{|a_k|} |x - c|\right)
+\]	
+It is clear that the power series always converges for $x = c$.
+
+If $L = \infty$, and $x \neq c$, then 
+\[
+\limsup_{k \to \infty} \left( \sqrt[k]{|a_k|} |x - c| \right) = \infty
+\] and in particular the terms do not converge to zero. Therefore, if $L = \infty$, the power series only converges for $x = c$.
+
+If $L \in (0,\infty)$, the root test implies that the series converges if $|x - c| < 1/L$, then
+\[
+\limsup_{k \to \infty} \left( \sqrt[k]{|a_k|} |x - c| \right) < 1
+\]
+so that by the root test it follows that the series converges. On the other hand,if $L \in (0, \infty)$ and if $|x - c| > 1/ L$, then 
+\[
+\limsup_{k \to \infty} \left(\sqrt[k]{|a_k|} |x - c|\right) > 1
+\]
+and in particular the terms do not converge to zero. Therefore, the power series diverges.
+
+If $L = 0$, it follows from the root test that the series converges for all $x \in \mathbb{R}$.
+\end{proof}
+
+Finally, although Proposition \ref{pr:radius-of-convergence-limsup} in theory always works for determining the radius of convergence of a power series, it can be useful to instead directly use the ratio test for determining for which $x$ the power series converges absolutely, and determining from there the radius of convergence. This method sometimes fails, but when it works it can be quite a bit easier.
+
+%\begin{proposition}
+%Let 
+%\[
+%\sum_{k=0}^\infty a_k (x-c)^k
+%\]	
+%be a power series such that the radius of convergence is not equal to zero. Let $r \in \mathbb{R}$ be strictly smaller than the radius of convergence. Then the power series converges uniformly on the interval $[c-r, c+r]$.
+%\end{proposition}

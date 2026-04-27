@@ -1,0 +1,79 @@
+%
+%In this section we will give many examples of linear maps that are at the same time related to the choice of coordinates in the spaces $V$ and $W$.
+%
+%We first consider standard coordinate projections in $\mathbb{R}^m$.
+%
+%\begin{definition}[Coordinate projections]
+%	Let $i \in \{1, \dots, m\}$, and consider the map $P^i : \mathbb{R}^m \to \mathbb{R}$ given by
+%	\[
+%	P^i (x) = x_i.
+%	\]
+%	The map $P^i$ is called the projection to the $i$th coordinate.
+%\end{definition}
+%
+%\begin{proposition}
+%	The coordinate projections $P^i$ in the above definition are linear.
+%\end{proposition}
+%
+%\begin{proof}
+%	Indeed, for all $\lambda \in \mathbb{R}$ and $x \in \mathbb{R}^d$,
+%	\[
+%	P^i(\lambda x) = \lambda x_i = \lambda P^i(x)
+%	\]
+%	and for all $x, y \in \mathbb{R}^d$ 
+%	\[
+%	P^i(x + y) = x_i + y_i = P^i(x) + P^i(y).
+%	\]
+%\end{proof}
+%
+%Since $P^i$ is linear, it follows that the map $P^i$ is differentiable and $DP^i : \mathbb{R}^d \to \Lin(\mathbb{R}^d, \mathbb{R})$ is the constant map $a \mapsto P^i$.
+%
+%We will now discuss coordinates in arbitrary finite-dimensional vector spaces.
+%
+%Recall that $w_1, \dots, w_m$ forms a basis of a vector space $W$ if and only if for every $v \in W$, there are unique constants $x_1, \dots, x_m$ such that
+%\[
+%v = x_1 w_1 + \cdots + x_m w_m
+%\]
+%The numbers $x_i$ are called the \emph{coordinates} of the vector $v$ with respect to the basis $w_1, \dots w_m$. The map that assigns to every element $v$ in $W$ the coordinate vector $(x_1, \dots, x_m)$ with respect to the basis $w_1, \dots, w_m$ is in fact a linear map and is called the coordinate map.
+%
+%\begin{definition}[Coordinate map]
+%	Let $W$ be a finite-dimensional vector space and assume that $w_1, \dots, w_m$ is a basis of $W$. The map $\Psi : W \to \mathbb{R}^m$ that assigns to every $v \in W$ its coordinates with respect to the basis $w_1, \dots, w_m$ is called the \emph{coordinate map} with respect to the basis $w_1, \dots, w_m$.
+%\end{definition}
+%
+%\begin{proposition}
+%	The coordinate map $\Psi : W \to \mathbb{R}^m$ with respect to a basis $w_1, \dots, w_m$ is linear.
+%\end{proposition}
+%
+%As a consequence, the derivative $D \Psi: W \to \Lin(W, \mathbb{R}^m)$ is given by 
+%\[
+%(D\Psi)_a = \Psi
+%\]
+%for all $a \in W$.
+%
+%The component functions $\Psi_1, \dots \Psi_m$ of $\Psi$ are together sometimes called the dual basis of $w_1, \dots, w_m$. Here, by component functions we mean the functions $\Psi_i : W \to \mathbb{R}$ that are defined by $\Psi_i := P^i \circ \Psi$, i.e.
+%\[
+%\Psi = (\Psi_1, \dots, \Psi_m).
+%\]
+%
+%\begin{proposition}[Dual basis]
+%	If $W$ is a  finite-dimensional normed vector space, and $w_1, \dots, w_m$ is a basis of $W$, then there exist linear maps $\Psi_i : W \to \mathbb{R}$ for $i =1, \dots, m$ such that for all $v \in W$,
+%	\[
+%	v = \Psi_1(v) w_1 + \cdots + \Psi_m(v) w_m = \sum_{i=1}^m \Psi_i(v) w_i.
+%	\]
+%	Together, the functions $\Psi_1, \dots, \Psi_m$ form a basis of the vector space $\Lin(W, \mathbb{R})$ and they are called \emph{the dual basis} of $w_1, \dots, w_m$.
+%	
+%	Every $\Psi_i$ is a linear map from $W$ to $\mathbb{R}$, and
+%	\[
+%	\Psi_i(w_j) = \begin{cases}
+%		1 & \text{if } i = j,\\
+%		0 & \text{if } i \neq j.
+%	\end{cases}
+%	\]
+%\end{proposition}
+%\begin{proof}
+%	See e.g.~Theorem 1.6.7 in the Linear Algebra 2 lecture notes
+%\end{proof}
+%
+%Since $\Psi_i$ is linear, it is differentiable and $D\Psi_i: W \to \mathsf{Lin}(W, \mathbb{R})$ is the constant map $a \mapsto \Psi_i$.
+
+%

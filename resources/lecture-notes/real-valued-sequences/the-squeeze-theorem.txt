@@ -1,0 +1,67 @@
+\begin{theorem}[Squeeze theorem]
+	\label{th:squeeze-theorem}
+	Let $a, b, c : \mathbb{N} \to \mathbb{R}$ be three sequences. Suppose that there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, 
+	\[
+	a_n \leq b_n \leq c_n
+	\]
+	and assume $\lim_{n \to \infty} a_n = \lim_{n \to \infty} c_n = L$ for some $L \in \mathbb{R}$. 
+	Then the limit $\lim_{n\to \infty} b_n$ exists and is equal to $L$. 
+\end{theorem}
+
+\begin{proof}
+	Take three arbitrary sequences $a, b, c : \mathbb{N} \to \mathbb{R}$, and assume that there exists an $N \in \mathbb{N}$ such that for all $n \geq N$,
+	\[
+	a_n \leq b_n \leq c_n
+	\]
+	and that $\lim_{n \to \infty} a_n = \lim_{ n \to \infty} c_n = L$ for some $L \in \mathbb{R}$.
+	We need to show that
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext N_0 \in \mathbb{N},\\
+	&\quad\quad \foralltext n \geq N_0,\\
+	&\quad\quad\quad |b_n - L| < \epsilon.
+	\end{split}
+	\]
+	Take $\epsilon > 0$ arbitrary. Since $\lim_{n \to \infty} a_n = L$, there exists an $N_1 \in \mathbb{N}$ such that 
+	for all $n \geq N_1$, $|a_n - L| < \epsilon$. Since $\lim_{n \to \infty} c_n = L$, there exists an $N_2 \in \mathbb{N}$ such that for all $n \geq N_2$, $|c_n - L| < \epsilon$. Now define $N_0:= \max(N, N_1, N_2)$. Let $n \geq N_0$. Then
+	\[
+	L - \epsilon < a_n \leq b_n \leq c_n < L + \epsilon
+	\]
+	so that indeed, $|b_n - L| < \epsilon$. 
+\end{proof}
+
+The squeeze theorem is a great tool to show existence of limits and to compute limits for a sequences that can easily be compared to other sequences as in the next example.
+
+\begin{example}
+Consider the sequence $b : \mathbb{N} \to \mathbb{R}$ defined by
+\[
+b_n := \frac{\sin(n)}{n+1}.
+\]
+We can use the squeeze theorem to show that 
+\[
+\lim_{n \to \infty} b_n = 0.
+\]
+Because for every $n \in \mathbb{N}$, it holds that 
+\[
+-1 \leq \sin(n) \leq 1,
+\]
+we know that
+\[
+-\frac{1}{n+1} \leq \frac{\sin(n)}{n + 1}
+\leq \frac{1}{n+1}.
+\]
+We know by the standard limit in Example \ref{ex:seq-one-over-n} and by index shift (Proposition \ref{pr:index-shift}) that
+\[
+\lim_{n \to \infty} \frac{1}{n+1} = 0
+\]
+and we know by the limit theorems that then also
+\[
+\lim_{n \to \infty} - \frac{1}{n+1} = 0.
+\]
+It follows by the squeeze theorem that
+\[
+\lim_{n \to \infty} b_n = 0
+\]
+as well.
+\end{example}

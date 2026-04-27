@@ -55,10 +55,6 @@
         "isSticky": true,
         "commands": [
           {
-            "name": "question",
-            "description": "Ask a theory question"
-          },
-          {
             "name": "translateProof",
             "description": "Translate a handwritten proof into Waterproof"
           },
@@ -74,6 +70,31 @@
       }
     ],
     "languageModelTools": [
+      {
+        "name": "waterproof-tue_hint",
+        "modelDescription": "Generates a textual hint for the student based on the current proof state. Internally, this hint has been generated using the next step of the proof, but this next step is, for didactical reasons, not included in the output. The hint should be informative enough to help the student figure out the next step, but should not give away this next step. This tool should be used when the user asks for a hint or guidance on how to proceed with their proof. Only use when the user explicitly asks for help with the next step or a hint or otherwise indicates being stuck.",
+        "displayName": "Hint",
+        "toolReferenceName": "generateHint",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "waterproof-tue_theory_information",
+        "modelDescription": "Use this tool to retrieve information from the lecture notes on analysis. The lecture notes contain information on various mathematical concepts, theorems, and techniques that are relevant for solving problems in analysis. The tool takes a question as input and retrieves the most relevant information from the lecture notes to answer the question. Also use this tool to augment your knowledge on more general mathematical concepts when the user asks about them.",
+        "displayName": "Theory Information",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "description": "The question of the user. The system will determine what information from the lecture notes should be used to answer this question in the best way possible."
+            }
+          }
+        }
+      },
       {
         "name": "waterproof-tue_syntax_check",
         "modelDescription": "Analyzes the syntax errors in the current Waterproof document and provides feedback and suggestions on how to fix them. This tool should be used when the user asks about syntax errors or issues in their proof or in the file.",
@@ -95,13 +116,28 @@
           "type": "object",
           "properties": {}
         }
+      },
+      {
+        "name": "waterproof-tue_try_proof_step_at_cursor",
+        "modelDescription": "Executes a step in the proof (using Waterproof with Rocq) and returns the result of executing this step. This result will indicate whether the step could be executed and if the proof progressed or not. Use this tool if you are unsure about any Waterproof syntax or step, this tool will let you verify that what you are saying does make sense.",
+        "displayName": "Try Proof Step",
+        "toolReferenceName": "tryStep",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "step": {
+              "type": "string",
+              "description": "The step to try in the proof. Can be multiple steps if they are separated by a period (.)"
+            }
+          }
+        }
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "npm run typecheck && npm run lint && node esbuild.js",
-    "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
     "package": "npm run typecheck && npm run lint && node esbuild.js --production",

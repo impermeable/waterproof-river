@@ -1,0 +1,81 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+Let $(X, \dist_X)$ be $(\mathbb{R}^2, \dist_{\| \cdot \|_2})$ (i.e. the metric space associated to the normed vector space $(\mathbb{R}^2, \| \cdot \|_2)$) and let $(Y, \dist_Y)$ be $(\mathbb{R}, \dist_{\mathbb{R}})$. Let $D = B(0,1) \subset \mathbb{R}^2$. 
+Let $f : D \to \mathbb{R}$ be defined as
+\[
+f(x) := \begin{cases}
+	x_1^2 + x_2^2    &\text{if } x \neq (0, 0)\\
+	185 &\text{if } x = (0, 0).
+	\end{cases}
+\]
+Show that
+\[
+\lim_{x \to (0, 0)} f(x) \left( =  \lim_{x \to (0, 0)} x_1^2 + x_2^2 \right) = 0.
+\]
+
+
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Consider the function $f : D \to \mathbb{R}$ defined by
+\[
+f(x) = x\quad\quad\text{ for } x \in \mathbb{R}
+\]
+where $D = \mathbb{R}$.
+Prove that for every $a \in D$, the function $f$ is continuous in $a$ (when viewed as a function from $(\mathbb{R}, \dist_{\mathbb{R}})$ to $(\mathbb{R}, \dist_{\mathbb{R}}))$.
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Let $(X, \dist_X) := (\mathbb{R}, \dist_{\mathbb{R}})$ and set $D:= \mathbb{N} \subset \mathbb{R}$.
+Let $(Y, \dist_Y)$ be a metric space and let $a : \mathbb{N} \to Y$ be a function. Show that $a : \mathbb{N} \to Y$ is continuous (when viewed as a function defined on $D:=\mathbb{N}$ as a subset of the metric space $(X, \dist_X)$ mapping to the metric space $(Y, \dist_Y)$).
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces, and let $D \subset X$ be a subset of $X$. Let $f: D \to Y$ be a bounded function (i.e. $f(D)$ is a bounded subset of $(Y, \dist_Y)$) and let $a \in D \cap D'$.
+Define $\omega: (0,\infty) \to [0,\infty)$ by
+\[
+\omega(r) := \sup \{ \dist_Y(f(x), f(a)) \ | \ x \in D \text{ and } \dist_X( x, a ) < r \} .
+\]
+Suppose 
+\[
+\inf \{ \omega(r) \ | \ r \in(0,\infty) \} = 0.
+\]
+Show that $f: D \to Y$ is continuous in $a \in D \cap D'$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:lipschitz-implies-uniform}
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be metric spaces, let $D \subset X$ and let $f : D \to Y$. Assume that $f : D \to Y$ is \emph{Lipschitz continuous}, that means that there exists a constant $M > 0$ such that for all $x, z \in D$,
+	\[
+	\dist_Y(f(x), f(z)) \leq M \ \dist_X(x, z).
+	\]
+	Show that $f : D \to Y$ is uniformly continuous on $D$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[
+	f(x) =
+	\begin{cases}
+		\frac{3 (x_1)^2(x_2)^2}{(x_1)^4 + (x_2)^4}, &
+		(x_1, x_2) \neq (0, 0), \\
+		0, &
+		(x_1, x_2) = (0, 0).
+	\end{cases}
+	\]
+	Determine whether $f$ is continuous in the point $(0, 0)$ (considered as a function from the normed vector space $(\mathbb{R}^2 , \| \cdot \|_2)$ to the normed vector space $(\mathbb{R}, | \cdot |)$).
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[ f(x) = \begin{cases}
+		\frac{3 x_1 (x_2)^2 - 4 (x_1)^3}{x_1^2 + x_2^2}, &
+		(x_1, x_2) \neq (0, 0), \\
+		0, &
+		\text(x_1, x_2) = (0, 0).
+	\end{cases} \]
+	Determine whether the function $f$ is continuous in the point $(0, 0)$ (considered as a function from the normed vector space $(\mathbb{R}^2 , \| \cdot \|_2)$ to the normed vector space $(\mathbb{R}, | \cdot |)$).
+\end{orange_exercise}

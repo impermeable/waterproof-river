@@ -1,0 +1,54 @@
+I believe that one of the main difficulties of Analysis 1 and 2 is learning to deal with a large number of quantifiers (that is, larger than 1). Imagine that we need to show the following statement:
+\[
+\forall \epsilon > 0,
+\exists n_0 \in \mathbb{N},
+\forall n \geq n_0,
+| 1 / n - 0 | < \epsilon.
+\]
+
+%First of all, it helps me to put some extra brackets:
+%\[
+%\forall {\epsilon>0} :\ \left\{ \exists {n_0 \in \mathbb{N}} : \ \left\{ \forall {n \geq n_0} : \ \left\{ |1/n - 0| < \epsilon\right\} \right\} \right\}
+%\]
+%Everything that is contained between a pair of brackets, is a mathematical statement in itself.
+
+To clarify the nested structure of one mathematical statement inside the other, I like to use indentation, and I prefer to use words over quantifier-symbols
+\begin{mcode}
+\begin{split}
+	&\foralltext \epsilon > 0, \\
+	&\quad \existstext n_0 \in \mathbb{N},\\
+	&\quad \quad \foralltext n \geq n_0, \\
+	&\quad \quad \quad |1/n - 0| < \epsilon.
+\end{split}
+\end{mcode}
+
+%Alternatively we can use both brackets and indentation\footnote{It is not a coincidence that these look like Python, C++ or Java code. However, one shouldn't think of these statements as programs, but rather as types (such as integer, double, a function type that assigns integers to integers). You can then think of the proofs of these statements as computer programs.}.
+%\[
+%\begin{split}
+%	&\text{for all } \epsilon > 0 \\
+%	&\{ \\
+%	&\quad \text{there exists an } n_0 \in \mathbb{N} \text{ such that} \\
+%	&\quad \{ \\
+%	&\quad \quad \text{for all } n \geq n_0 \\ 
+%	&\quad \quad \{ \\
+%	&\quad \quad \quad |1/n - 0| < \epsilon\\
+%	&\quad \quad \} \\
+%	&\quad \}\\
+%	&\}
+%\end{split}
+%\]
+
+Such a statement looks complicated, and you may not know how to start a proof or how to continue. 
+
+But one of the main messages of this chapter is that the statement itself tells you how to start, and how to continue. In fact, the statement gives you a template, a {\color{blue}\emph{proof framework}}, where there are only a few things left for you to fill in. 
+
+The key to proving a mathematical statement involving many quantifiers is to prove it \emph{block by block}. I will explain how to directly prove ``for all" statements and ``there exists" statements (that is, without using a contradiction argument). As a running example, we will prove that
+\begin{mcode}
+\begin{split}
+	&\foralltext \epsilon > 0, \\
+	&\quad \existstext n_0 \in \mathbb{N},\\
+	&\quad \quad \foralltext n \geq n_0, \\
+	&\quad \quad \quad |1/n - 0| < \epsilon\\
+\end{split}
+\end{mcode}
+by peeling layer after layer of the statement.

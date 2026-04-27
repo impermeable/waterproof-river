@@ -1,4 +1,4 @@
-import { AssistantMessage, PromptElement, PromptElementProps } from "@vscode/prompt-tsx";
+import { PromptElement, PromptElementProps, UserMessage } from "@vscode/prompt-tsx";
 import { RiverBasic } from "./riverBasic";
 import { Tag } from "./tag";
 import { PreviousMistakes } from "./previousMistakes";
@@ -15,7 +15,7 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
 
         return (
             <>
-                <AssistantMessage>
+                <UserMessage>
                 <RiverBasic/>
                 The student is working on a proof in Waterproof. They have a proof idea that needs to be formalized using Waterproof syntax and tactics.
                 Your job is to given the idea of the student, output a valid version of their proof idea but translated to waterproof and verified using 
@@ -28,10 +28,11 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
                 - Use Waterproof tactics only.<br/>
                 - Important: When outputting code after the separator, output Waterproof only. Do not output any markdown decorations.<br/>
 
-                Start by outputting a description of how you got to the translated proof. This description should be clear to follow and indicate clearly how an idea for a proof should be translated into Waterproof.
+                Start by outputting a description of how you got to the translated proof. This description should address the student. Make sure that it is clear to follow and indicate clearly how the proof idea should be translated into Waterproof.
                 If possible refer to parts of the output as done in the example.
 
                 After you have outputted your description output the following seperator '-----' (five times the minus symbol) followed by a newline and then output the Waterproof proof that you translated from the students input.
+                Output only the proof steps, not the additional Rocq structure including `Proof.` and `Qed.`. If the student has already written some proof steps, include those in your translation but make sure to translate them to valid Waterproof syntax and tactics as well.
 
                 Here are some examples of student input and the output you should give.
                 <Tag name="example">
@@ -42,9 +43,9 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
                         ∀ x ∈ ℝ, (∃ y {">"} 10, y {"<"} x) ⇒ 10 {"<"} x.
                     </Tag>
                     <Tag name="river-output">
-                        To introduce an arbitrary real number $x$ use the `Take` tactic.<br/>
-                        To assume the premise of the assumption in the goal use `Assume`, you can give this assumption a label so you can refer back to it later in the proof.<br/>
-                        Finally, use the assumption use the `Obtain` tactic to obtain the value of $y$ that will allow you to complete the proof.<br/>
+                        To introduce an arbitrary real number $x$, we use the `Take` tactic.<br/>
+                        To make an assumption, we use the `Assume` tactic. You can give this assumption a label so you can refer back to it later in the proof.<br/>
+                        Finally, you can use the assumption with the `Obtain` tactic to obtain the value of $y$ that will allow you to complete the proof.<br/>
                         -----<br/>
                         Take x ∈ ℝ.<br/>
                         Assume that ∃ y {">"} 10, y {"<"} x as (i).<br/>
@@ -53,15 +54,17 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
                     </Tag>
                 </Tag>
 
-                Here is the handwritten proof that the student wants to translate into valid Waterproof
-                <Tag name="context-goal">
-                    {this.props.goal}
-                </Tag>
-                And here is the goal that they are working on.
+                The student is working on the following goal:
                 <Tag name="context-user-written-proof">
                     {this.props.userProof}
                 </Tag>
-                Finally, their current proof looks like:
+                So far, the student has managed to write the following proof.
+                Parts of this proof might already be valid Waterproof.
+                Others might not be, but still contain the correct ideas.
+                <Tag name="context-goal">
+                    {this.props.goal}
+                </Tag>
+                For context, the object below contains even more information about the current proof (state).
                 {/** Abstract this away to a prompt element */}
                 <Tag name="context-user-proof">
                     The object below contains the name of the lemma the student is working on, and the current proof so far. withCursorMarker contains a variant of the full current proof that the student is working on, plus an indication of where the user has placed the cursor at the moment of asking you for help.
@@ -73,7 +76,7 @@ export class WaterproofToWaterproofPrompt extends PromptElement<ToWaterproofProp
                 <br/>
                 
 
-                </AssistantMessage>
+                </UserMessage>
             </>
         );
     }

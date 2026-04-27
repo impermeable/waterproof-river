@@ -1,0 +1,24 @@
+\begin{theorem}[Inverse function theorem]
+	Let $\Omega \subset \mathbb{R}^m$ be open and let $h : \Omega \to \mathbb{R}^m$ be a function which is continuously differentiable. Suppose $b \in \Omega$ and suppose that $(Dh)_b$ is non-singular.
+	
+	Then there exists an $r_1 > 0$ and an $r_2 > 0$, and a continuously differentiable function $g : B(h(b), r_1) \to \mathbb{R}^m$ such that for all $x \in B(h(b), r_1)$ and all $y \in B(b, r_2)$,
+	\[
+	x = h(y) \qquad \text{ if and only if } \qquad y = g(x).
+	\]
+	Moreover, for all $x \in B(h(b), r_1)$,
+	\[
+	(Dg)_x = (Dh)_{g(x)}^{-1}.
+	\]
+	In particular, for $r_3>0$ small enough, the function $h$ restricted to $B(b, r_3)$ mapping to $h(B(b, r_3))$ is invertible with continuously differentiable inverse $g$.
+\end{theorem}
+
+\begin{proof}
+	The proof of the theorem follows from applying the Implicit Function Theorem to the function $F : \mathbb{R}^m \times \Omega \to \mathbb{R}^m$ given by
+	\[
+	F(x, y) := x - h(y)
+	\]
+\end{proof}
+
+The inverse function theorem is useful to conclude for instance that for $k \in \mathbb{N}$, the function $x \mapsto x^{1/k}$ is differentiable on the domain $(0, \infty)$.
+
+The implicit function theorem would also allow us to conclude that the function $\ln : (0, \infty) \to \mathbb{R}$ is differentiable on its domain, given that the exponentional function $\exp: \mathbb{R} \to \mathbb{R}$ is differentiable. But truly, we still haven't given a proper definition of the exponential function. The next chapters will allow us to provide such a definition.

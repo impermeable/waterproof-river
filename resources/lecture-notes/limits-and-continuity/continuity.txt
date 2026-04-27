@@ -1,0 +1,30 @@
+\begin{definition}[Continuity in a point]
+	% {\coqlib{Coq.Reals.Ranalysis1}{continuity\_pt}}
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces and let $D \subset X$ be a subset of $X$.
+	We say a function $f: D \to Y$ is \emph{continuous} in a point $a \in D \cap D'$ if
+	\[
+	\lim_{x \to a} f(x) = f(a).
+	\]
+	If $a \in D$ is an isolated point, i.e.~if $a \in D \setminus D'$, then we also say that $f$ is continuous in $a$.
+\end{definition}
+
+We say a function is continuous if it is continuous in every point in its domain.
+
+\begin{definition}[Continuity on the domain]
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces and let $D \subset X$ be a subset of $X$.
+	We say a function $f : D \to Y$ is \emph{continuous on} $D$ if $f$ is continuous in $a$ for every $a \in D$.
+\end{definition}
+
+Sometimes it is a bit cumbersome to make the distinction between isolated points and accumulation points. The following alternative characterization of continuity in a point circumvents this issue.
+
+\begin{proposition}[{Alternative $\epsilon-\delta$ characterization of a continuity in a point}]
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces and let $D \subset X$ be a subset of $X$. Let $a \in D$. Then the function $f$ is continuous in $a$ if and only if
+	\[
+	\begin{split}
+	& \foralltext \epsilon > 0,\\
+	& \quad \existstext \delta > 0, \\
+	& \quad\quad \foralltext x \in D, \\
+	& \quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta, \text{ then } \dist_Y(f(x), f(a)) < \epsilon.
+	\end{split}
+	\]
+\end{proposition}

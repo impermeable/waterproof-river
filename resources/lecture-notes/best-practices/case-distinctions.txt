@@ -1,0 +1,14 @@
+Sometimes you need to make a case distinction: you might for instance want to argue differently if a real number is strictly negative or positive. A template for a case distinction is as follows.
+\begin{mcode}
+	\begin{split}
+		&\text{Either } A, B \text{ or } C.\\
+		&\text{Case A.}\\
+		&\quad\quad \textellipsis \textit{proof in Case A} \textellipsis\\
+		&\text{Case B.}\\
+		&\quad\quad \textellipsis \textit{proof in Case B} \textellipsis\\
+		&\text{Case C.}\\
+		&\quad\quad \textellipsis \textit{proof in Case C} \textellipsis\\
+		&\textit{etc}\textellipsis	
+	\end{split}		
+\end{mcode}
+Make sure to really cover all possible cases.

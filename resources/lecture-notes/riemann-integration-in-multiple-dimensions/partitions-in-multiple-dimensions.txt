@@ -1,0 +1,18 @@
+\begin{definition}
+By a \emph{closed rectangle} in $\mathbb{R}^d$ we mean a set $R$ of the form
+\[
+R = [a_1, b_1] \times \cdots \times [a_d, b_d]
+\]
+\end{definition}
+
+\begin{definition}[Partition of a rectangle]
+Let
+\[
+R = [a_1, b_1] \times \cdots \times [a_d, b_d]
+\]
+be a closed rectangle. By a partition $Q$ of $R$ we mean a Cartesian product
+\[
+Q = P^1 \times \cdots \times P^d
+\]
+where for $i \in \{1, \dots, d\}$, the partition $P^i = \{ x^i_1, \dots, x^i_{n_i} \}$ is a partition of $[a_i, b_i]$.
+\end{definition}

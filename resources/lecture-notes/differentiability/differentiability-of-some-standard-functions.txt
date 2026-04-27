@@ -1,0 +1,33 @@
+We now record the fact that some functions, that you may know from Calculus, are differentiable on $\mathbb{R}$. Just like when we introduced Proposition \ref{pr:continuity-standard-function}, we are not even ready to define these functions, but I think it's useful to mention the result here anyways.
+
+\begin{proposition}
+For every $p \in \mathbb{R}$, the function $x \mapsto x^p$ is differentiable, with
+\[
+\frac{d}{dx} x^p = p \ x^{p-1}.
+\]
+\end{proposition}
+
+\begin{proposition}
+	\label{pr:diff-standard-functions}
+	The functions 
+	\begin{align*}
+		\mathrm{exp} &: \mathbb{R} \to \mathbb{R} & \ln &: (0,\infty) \to \mathbb{R}\\
+		\sin &: \mathbb{R} \to \mathbb{R} & \cos &: \mathbb{R} \to \mathbb{R}\\
+		\tan &: (-\pi/2, \pi/2) \to \mathbb{R} & \arctan &: \mathbb{R} \to \mathbb{R}	
+	\end{align*}
+	are all differentiable on their domain, while the functions
+	\begin{align*}
+		\arcsin &: [-1, 1] \to \mathbb{R}	& \arccos &: [-1, 1] \to \mathbb{R}
+	\end{align*}
+	are both differentiable on the interval $(-1, 1)$.
+	
+	The derivatives are given by:
+	\begin{align*}
+		\mathrm{exp}'(t) &= \exp(t) & \ln'(t) & = 1/ t\\
+		\sin'(t) &=\cos(t) & \cos'(t) &= -\sin(t)\\
+		\tan'(t) &= \frac{1}{\cos^2(t)} & \arctan'(t) & = \frac{1}{1 + t^2}\\
+		\arcsin'(t) &= \frac{1}{\sqrt{1 - t^2}} & \arccos'(t) &= - \frac{1}{\sqrt{1 - t^2}}
+	\end{align*}
+\end{proposition}
+
+We could also prove the chain rule, product, sum and quotient rules at this stage, but will do so only later in a somewhat larger generality. Nonetheless, in exercises you are free to use these theorems already.

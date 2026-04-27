@@ -1,0 +1,40 @@
+The main characters in analysis are therefore functions. We use the notation $f : X \to Y$ to indicate that $f$ is a function from a set $X$ to a set $Y$.
+I like to think of a function $f$ as a machine, with input from a set $X$ and output in a set $Y$. If you have ever written a computer program before, then it can also help to see the analogy with functions in computer science. They take in data of some type (such as the type of integers) and produce data of another type (such as strings).
+
+The most important example in this course for a set $Y$ is the set $\mathbb{R}$ of the real numbers.
+In the next chapter, we are going to be more precise about what the real numbers are, but for now
+we assume that you have a working knowledge. 
+
+Other examples of sets are the set of natural numbers $\mathbb{N}$, the empty set $\emptyset$ (which has no elements at all), the set of integers $\mathbb{Z}$, the set of rational numbers $\mathbb{Q}$, and of course any subsets of those, such as the following subset of $\mathbb{Z}$,
+\[
+\{ 2k \ | \ k \in \mathbb{Z} \}
+\]
+which is the set of all \emph{even} integers. More complicated examples of sets also exist: we can look at the set of all polynomials of degree at most $5$, or the set of all possible grammatically correct sentences in the English language, or the set of all movies on Netflix. Whenever you see the word ``set'', you can imagine any of these options. I also encourage you to think of options yourself, it can be helpful to be creative.
+
+Here are some examples of functions in mathematics.
+
+\begin{example}
+	The function $b : \mathbb{N} \to \mathbb{R}$ defined by
+	\[
+	b(n) := \frac{1}{1 + n^2}, \quad \text{ for } n \in \mathbb{N}
+	\] 
+	is an example of what we call a \emph{real-valued sequence}, or a \emph{sequence of real numbers}. 
+	In general, a \emph{real-valued sequence} is a function from the natural numbers $\mathbb{N}$ to the real numbers $\mathbb{R}$. 
+\end{example}
+
+\begin{example}
+	The function $b : \mathbb{N} \to \mathbb{N}$ defined by
+	\[
+	b(n) := n^3, \quad \text{ for } n \in \mathbb{N}
+	\]	
+	is an example of a \emph{sequence of natural numbers}.
+	In general, a \emph{sequence of natural numbers} is a function from the natural numbers $\mathbb{N}$ to the natural numbers $\mathbb{N}$.
+\end{example}
+
+\begin{example}
+	If $M$ is an $(n \times m)$ matrix, with $n$ rows and $m$ columns, then $L : \mathbb{R}^m \to \mathbb{R}^n$ defined by
+	\[
+	L(x) := M x
+	\]
+	is a function from $\mathbb{R}^m$ to $\mathbb{R}^n$.
+\end{example}

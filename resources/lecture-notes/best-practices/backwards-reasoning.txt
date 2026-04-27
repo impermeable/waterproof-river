@@ -1,0 +1,5 @@
+Sometimes you need to show a statement $B$, but it would follow directly from another statement $A$. In that case you could write
+\begin{mcode}
+	\text{It suffices to show } A.	
+\end{mcode}
+and continue showing $A$.

@@ -1,0 +1,11 @@
+The topological boundary of a set in a metric space is defined as those points that are neither in the interior of the set, nor in the interior of the complement of the set. For the subsets of $(\mathbb{R}^d, \| \cdot \|_2)$, this comes down to the following definition.
+
+\begin{definition}[Topological boundary]
+	Let $E$ be a subset of the normed vector space $(\mathbb{R}^d, \| \cdot \|)$. The boundary of $E$ is defined as
+	\[
+	\partial E := \mathbb{R}^d \setminus 
+	\big( (\mathrm{int} \ E  ) 
+	\cup
+	(\mathrm{int} (\mathbb{R}^d \setminus E)) \big).
+	\]
+\end{definition}

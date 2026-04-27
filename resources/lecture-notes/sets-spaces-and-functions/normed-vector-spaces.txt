@@ -1,0 +1,226 @@
+Great examples of metric spaces are (constructed from) normed vector spaces. If you have had a course in linear algebra, you will most likely have seen the following definition of a \emph{vector space}  over a field $\mathbb{K}$. In these lecture notes, we will mostly only consider vector spaces over $\mathbb{R}$, unless we explicitly indicate otherwise. It is not necessary to learn this definition by heart. What is important is to take away that a vector space over a field is a set, together with operations called scalar multiplication and addition, that together satisfy some properties.
+
+\begin{definition}[vector space]
+Let $\mathbb{K}$ be a field (or if you don't know what a field is, let $\mathbb{K}$ be the real or complex numbers or the rational numbers). A vector space $(V, \cdot, +, 0)$ over the field $\mathbb{K}$ is a set $V$, together with functions $\cdot : \mathbb{K} \times V \to V$ and $+ : V \times V \to V$ called scalar multiplication and addition, and a particular element $0 \in V$ such that the following properties are satisfied.
+\begin{enumerate}
+	\item (commutativity of addition) for all $v, w \in V$,
+	\[
+	v + w = w + v
+	\]
+	\item (associativity of addition) for all $u, v, w \in V$,
+	\[
+	u + (v + w) = (u + v) + w
+	\]
+	\item ($0$ is the unit for addition) for all $v \in V$,
+\[
+v + 0 = 0 + v = v
+\]
+
+	\item every vector $v$ has an opposite $(-v) \in V$, such that
+\[
+v + (-v) = 0.
+\]
+	\item ($1 \in \mathbb{K}$ is the unit for scalar multiplication) for all $v \in V$,
+\[
+1 \cdot v = v.
+\]
+	\item (associativity of scalar multiplication) for all $\lambda, \mu \in \mathbb{K}$ and all $v \in V$,
+\[
+\lambda \cdot (\mu \cdot v) = (\lambda \mu) \cdot v.
+\]
+	\item for all $v, w \in V$ and $\lambda \in \mathbb{K}$,
+	\[
+	\lambda \cdot ( v + w ) = \lambda \cdot v + \lambda \cdot w.
+	\]
+	\item for all $\lambda, \mu \in \mathbb{K}$ and all $v \in V$,
+	\[
+	(\lambda + \mu) \cdot v = \lambda v + \mu v.
+	\]
+\end{enumerate}
+\end{definition}
+
+One of the reasons that vector spaces are so important in analysis is that for functions defined on vector spaces, we can introduce the concept of \emph{differentiation}, while this is in general problematic for functions defined on metric spaces.
+
+\begin{definition}[norm]\label{de:norm}
+Let $V$ be a vector space.
+We say that a function $\| \cdot \| : V \to \mathbb{R}$ is a \emph{norm} if
+\begin{enumerate}
+\item (positivity) For all $v \in V$, it holds that $\| v \| \geq 0$.
+\item (non-degeneracy) For all $v \in V$, if $\| v \| = 0$ then $v = 0$.
+\item (absolute homogeneity) For all $\lambda \in \mathbb{R}$ and all $v \in V$ it holds that $\| \lambda v \| = |\lambda| \| v\|$.
+\item (triangle inequality) For all $v, w \in V$ it holds that 
+\[
+\|v + w \| \leq \| v \| + \|w\|.
+\]
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+Denote by $\mathbb{R}^d$ the vector space of column vectors of length $d$ with values in $\mathbb{R}$.
+For a vector $x \in \mathbb{R}^d$, denote its components by $x_1, \dots, x_d$.
+The Euclidean norm is defined as
+\[
+\| x \|_{2} := \sqrt{\sum_{i=1}^d x_i^2} = \sqrt{x_1^2 + x_2^2 + \cdots + x_d^2}.
+\]
+In fact, the norm $\| \cdot \|_2$ comes from an inner product: If we define the standard inner product
+\[
+(x, y) := \sum_{i=1}^d x_i y_i
+\]
+then $\|x\|_{2}^2 = (x, x)$.
+
+To show that the function $\|\cdot\|_2 : \mathbb{R}^d \to \mathbb{R}$ really gives a norm, we would need to prove that it satisfies the properties of a norm listed in Definition~\ref{de:norm}. Let us give the proof of two such properties.
+
+We first show positivity. We need to show that for all $x \in \mathbb{R}^d$, it holds that $\|x \|_2 \geq 0$. Let $x \in \mathbb{R}^d$.
+Then
+\[
+\|x \|_{2} := \sqrt{\sum_{i=1}^d x_i^2} \geq 0,
+\]
+because the range of the square root function is positive.
+
+We now prove the triangle inequality. The triangle inequality follows from the Cauchy-Schwarz inequality in linear algebra. Let $a, b \in \mathbb{R}^d$.
+Then
+\[
+\begin{split}
+	\| a + b \|_2^2 
+	&= \|a\|_2^2 + 2(a, b) + \|b \|_2^2\\
+	&\leq \|a\|_2^2 + 2 \|a \|_2 \|b\|_2 + \|b\|_2^2 \\
+	&=(\|a\|_2 + \|b\|_2)^2.
+\end{split}
+\]
+\end{example}
+
+\begin{example}
+	We now specify the above example to the case $d =1$. Then the vector space is $\mathbb{R}$ itself. The norm is given by
+\[
+\| x \|_2 = \sqrt{x^2} =
+\begin{cases}
+x,&\text{if } x \geq 0,\\
+-x,&\text{if } x < 0.	
+\end{cases}
+\]
+which is the absolute value of $x$. We will denote the norm by $| \cdot | : \mathbb{R} \to \mathbb{R}$. 
+\end{example}
+
+\begin{example}[$p$-norm]
+	In general, for $p \in [1, \infty)$, the $p$-norm on $\mathbb{R}^d$ is defined as the function $\| \cdot \|_p : \mathbb{R}^d \to \mathbb{R}$ given by
+\[
+\| x \|_p := \left( \sum_{i=1}^d |x_i|^p \right)^{1/p}.
+\]
+To show that this definition really gives a norm, one needs to verify the properties of a norm.
+Some properties, such as positivity, are easy to verify for this function.
+However, for proving the triangle inequality, we do not yet have the right tools available.
+\end{example}
+
+The following proposition tells us that if we have a normed vector space $(V, \| \cdot \|)$, we can also interpret it as a metric space.
+
+\begin{proposition}
+Let $(V, \| \cdot \|)$ be a normed vector space.
+Define the function $d_{\|.\|} : V \times V \to \mathbb{R}$ by
+\[
+d_{\| \cdot \|} (x, y) := \| x - y \|.
+\]
+Then $d_{\| \cdot \|}$ is a distance on $V$.
+\end{proposition}
+
+\begin{proof}
+We need to show that $d_{\| \cdot \|}$ satisfies all properties of a distance on $V$. We will check these properties one by one.
+
+First we check positivity. We need to show that
+\[
+\begin{split}
+&\foralltext v, w \in V \\
+&\quad d_{\| \cdot \|}(v, w) \geq 0.
+\end{split}
+\]	
+Since the statement we need to show starts with ``for all $v, w \in V$", we start by writing:
+
+Let $v, w \in V$. Then
+\[
+d_{\| \cdot\|}(v, w) = \| v - w \| \geq 0
+\]
+by positivity of the norm.
+
+We will now show non-degeneracy. We need to show that
+\[
+\begin{split}
+&\foralltext v, w \in V\\
+&\quad \text{if } d_{\| \cdot \|}(v, w) =0	\text{ then } v  = w.
+\end{split}
+\]
+Let $v, w \in V$. Then
+\[
+d_{\| \cdot \|}(v, w) = \| v - w \| = 0.
+\]
+It follows by non-degeneracy of the norm that $ v - w = 0$.
+We conclude that $v = w$.
+
+We will show symmetry. We need to show that
+\[
+\begin{split}
+&\foralltext v, w \in V \\
+&\quad d_{\| \cdot \|}(v, w) = d_{\| \cdot \| }(w, v).	
+\end{split}
+\]
+Let $v, w \in V$. 
+Then we use absolute homogeneity of the norm to find
+\[
+\begin{split}
+d_{\| \cdot \|}(v, w)
+&= \| v - w \| \\
+&= \| (-1) \cdot (w - v)\| \\
+&= | -1 | \| w - v\| \\
+&= \| w - v \| = d_{\| \cdot \|}(w, v).
+\end{split}
+\]
+
+We now show the triangle inequality. We need to show that
+\[
+\begin{split}
+&\foralltext u, v, w \in V\\
+&\quad d_{\| \cdot \|} (u, w) \leq d_{\| \cdot \|}(u, v) + d_{\| \cdot \|}(v, w).	
+\end{split}
+\]
+Let $u, v, w \in V$. Then
+\[
+\begin{split}
+d_{\| \cdot \|}(u, w) 
+& = \| u - w\| \\
+& = \|(u - v) + (v - w) \| \\
+& \leq \| u - v\| + \| v - w \| \\
+& = d_{\| \cdot \|}(u, v) + d_{\| \cdot \|}(v, w).	
+\end{split}
+\]
+
+We finally show reflexivity. We need to show that
+\[
+\begin{split}
+&\foralltext u \in V,\\
+&\quad d_{\| \cdot \|}(u, u) = 0.	
+\end{split}
+\]
+Let $u \in V$. Then by the absolute homogeneity of the norm,
+\[
+\begin{split}
+d_{\|\cdot\|} (u, u) 
+&= \| u - u \| \\
+&= \| 0 \cdot u \| \\
+&= | 0 | \cdot \| u \| \\
+&= 0 \cdot \| u\|\\
+&= 0.
+\end{split}
+\]
+\end{proof}
+
+Although strictly speaking, the metric space $(V, d_{\| \cdot \|})$ and $(V, \| \cdot \|)$ are different objects (one is a metric space and the other is a normed vector space), we will usually be a bit sloppy about this difference.
+
+\begin{remark}[Notation for Euclidean distance on $\mathbb{R}^d$ and $\mathbb{R}$]
+We will usually write $\dist_{\mathbb{R}^d}$ instead of $\dist_{\|\cdot \|_2}$ for the standard (Euclidean) distance on $\mathbb{R}^d$.	In particular, if $d \geq 2$, we have
+\[
+\dist_{\mathbb{R}^d}(v, w) = \| v - w \|_2 = \sqrt{\sum_{i=1}^d (v_i - w_i)^2}
+\]
+and if $d=1$ we just have
+\[
+\dist_{\mathbb{R}} = | v - w|.
+\]
+And if there is no room for confusion, we will just leave out the subscript altogether.
+\end{remark}
