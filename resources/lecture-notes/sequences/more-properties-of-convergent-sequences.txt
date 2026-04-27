@@ -1,0 +1,184 @@
+\begin{proposition}
+	\label{pr:conv-iff-dist-to-0}
+Let $(X, \dist)$ be a metric space and suppose that 
+$a : \mathbb{N} \to X$ is a sequence. Let $p \in X$.
+Then the sequence $a: \mathbb{N} \to X$ converges to $p$ if and only if the real-valued sequence 
+\[
+n \mapsto \dist(a_n, p)
+\]
+converges to $0$ in $\mathbb{R}$.
+\end{proposition}
+
+\begin{proof}
+	We define the real-valued sequence $(b_n)$ by
+	\[
+	b_n := \dist(a_n, p).
+	\]
+	We need to show that $(a_n)$ converges to $p$ if and only if $(b_n)$ converges to $0$.
+	
+	We first show ``only if". 
+	So assume that the sequence $a : \mathbb{N} \to X$ converges to $p$.
+	
+	
+	Let $\epsilon > 0$.
+	Since $(a_n)$ converges to $p$, there exists an $N_0 \in \mathbb{N}$ such that for all $n \geq N_0$, 
+	\[
+	\dist(a_n, p) < \epsilon.
+	\]
+	Choose $N := N_0$.
+	Let $n \geq N$. Then, 
+	\[
+	0 \leq \dist(a_n, p) < \epsilon
+	\]
+	so that indeed
+	\[
+	\dist_{\mathbb{R}}(\dist(a_n, p) , 0) = |\dist(a_n, p)|< \epsilon.
+	\]
+	
+	We now show the ``if" part of the statement.
+	We assume that $(b_n)$ converges to $0$ and we need to show that $(a_n)$ converges to $p$.
+	
+	Let $\epsilon > 0$.
+	
+	Since $(b_n)$ converges to zero, there exists an $N_1$ such that for all $n \geq N_1$,
+	\[
+	b_n = \dist_\mathbb{R}(b_n, 0) < \epsilon
+	\]
+	where the first equality holds because $b_n \geq 0$ for all $n \in \mathbb{N}$.
+	
+	Choose $N_0 := N_1$.
+	
+	Let $n \geq N_0$. Then
+	\[
+	\dist(a_n, p) = b_n < \epsilon.
+	\]
+\end{proof}
+
+\begin{proposition}[Convergent sequences are bounded]
+Let $(X, \dist)$ be a metric space. Let $a : \mathbb{N} \to X$ be a sequence in $X$ converging to $p \in X$.
+Then the sequence $a : \mathbb{N} \to X$ is bounded.	
+\end{proposition}
+
+\begin{proof}
+We need to show that
+\[
+\begin{split}
+& \existstext q \in X,\\
+&\quad \existstext M > 0,\\
+& \quad\quad \foralltext n \in \mathbb{N},\\
+&\quad \quad \quad \dist(a_n, q) \leq M.
+\end{split}
+\]	
+Choose $q := p$. Because the sequence $(a_n)$ converges to $p$, 
+\begin{optional_text}
+we know that
+\begin{equation}
+	\label{eq:conv-bounded-aux}
+\begin{split}
+&\foralltext \epsilon_1 > 0,\\
+&\quad \existstext 	N \in \mathbb{N},\\
+&\quad\quad \foralltext n \geq N,\\
+&\quad\quad\quad \dist(a_n, p) < \epsilon_1.
+\end{split}
+\end{equation}
+Choose $\epsilon_1 := 1$ in (\ref{eq:conv-bounded-aux}). Then
+\end{optional_text}
+there exists an $N \in \mathbb{N}$ such that for every $n \geq N$,
+\[
+\dist(a_n, p ) < 1.
+\]
+Choose
+\[
+M := \max(\dist(a_1, p), \dots, \dist(a_{N-1}, p), 1).
+\]
+Let $n \in \mathbb{N}$. We need to show that $\dist(a_n, p) \leq M$.
+We make a case distinction.
+
+In the case $n \leq N-1$, then
+\[
+\dist(a_{n}, p) \leq \max(\dist(a_1, p), \dots, \dist(a_{N-1}, p), 1) = M.
+\]
+In the case $n \geq N$, then
+\[
+\dist(a_n, p) < 1 \leq M.
+\]
+\end{proof}
+
+The following proposition is one of the strongest statements in this chapter, and if you look carefully you can show a few other propositions in this chapter by just appealing to the next proposition.
+
+\begin{proposition}
+	\label{pr:dist-seq-same-limit}
+Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ and $b : \mathbb{N} \to X$ be two sequences. Let $p \in X$ and suppose that $\lim_{n \to \infty} a_n = p$.	Then $\lim_{n \to \infty} b_n = p$ if and only if
+\[
+\lim_{n \to \infty} \dist(a_n, b_n) = 0.
+\]
+\end{proposition}
+
+\begin{proof}
+We first show the ``only if" direction. 
+Assume $\lim_{n \to \infty} b_n = p$. We need to show that
+\[
+\lim_{n \to \infty} \dist(a_n, b_n) = 0.
+\]
+Let $\epsilon > 0$.
+
+Because $\lim_{n \to \infty} a_n = p$, there exists an $N_0 \in \mathbb{N}$ such that for all $n \geq N_0$,
+\[
+\dist(a_n, p) < \frac{\epsilon}{2}.
+\]
+Because $\lim_{n \to \infty} b_n = p$, there exists an $N_1 \in \mathbb{N}$ such that for all $n \geq N_1$,
+\[
+\dist(b_n, p) < \frac{\epsilon}{2}.
+\]
+
+Choose $N := \max(N_0, N_1)$.
+
+Let $n \geq N$. Because then $n \geq N_0$ and $n \geq N_1$, we know 
+\[
+\begin{split}
+\dist(a_n, b_n)
+&\leq \dist(a_n, p) + \dist(p, b_n) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+\end{split}
+\]
+
+We now show the ``if" direction.
+Assume $\lim_{n \to \infty} \dist(a_n, b_n) = 0$.
+We need to show that $\lim_{n \to \infty} \dist(b_n, p) = 0$.
+
+Let $\epsilon > 0$.
+
+Because $\lim_{n \to \infty} a_n = p$, there exists an $N_0 \in \mathbb{N}$ such that for all $n \geq N_0$,
+\[
+\dist(a_n, p) < \frac{\epsilon}{2}.
+\]
+Because $\lim_{n \to \infty} \dist(a_n, b_n) = 0$, there exists an $N_2 \in \mathbb{N}$ such that for all $n \geq N_2$,
+\[
+\dist(a_n, b_n) = \dist_{\mathbb{R}} (\dist(a_n , b_n), 0) < \frac{\epsilon}{2}
+\]
+
+Choose $N := \max(N_0, N_2)$.
+
+Let $n \geq N$.
+
+Because $n \geq N_0$ and $n \geq N_2$, we find
+\[
+\begin{split}
+\dist(b_n, p) 
+&\leq \dist(b_n, a_n) + \dist(a_n, p) \\
+&= \dist(a_n, b_n) + \dist(a_n, p) \\
+&< \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.	
+\end{split}
+\]
+\end{proof}
+
+\begin{warning}
+I've added the next corollary later in the year 2021-2022 just for your convenience, just to highlight a consequence of the previous proposition.	
+\end{warning}
+
+\begin{proposition}[Eventually equal sequences have the same limit]
+	Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ and $b : \mathbb{N} \to X$ be two sequences such that there exists an $N \in \mathbb{N}$ such that for all $n \geq N$,
+	\[
+	a_n = b_n.
+	\]
+	Then the sequence $a : \mathbb{N} \to X$ converges if and only if the sequence $b : \mathbb{N} \to X$ converges. If the sequences converge, they have the same limit.	
+\end{proposition}

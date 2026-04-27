@@ -1,0 +1,13 @@
+In this short section, we define what it means for a subset of a metric space to be (sequentially) compact. We usually leave out the word `sequentially'.
+
+\begin{definition}[(sequential) compactness]
+Let $(X, \dist)$ be a metric space.
+We say a subset $K \subset X$ is \emph{(sequentially) compact} if every sequence $x : \mathbb{N} \to K$ in $K$ has a 
+converging subsequence $x \circ n$, converging to a point $z \in K$.
+\end{definition}
+
+The rest of the chapter will be devoted to deriving alternative characterizations of compactness. Especially in $(\mathbb{R}^d, \| \cdot \|)$, these alternative characterizations are a bit easier to deal with.
+
+%\begin{definition}
+%We say a subset $K \subset X$ is \emph{compact} if every open covering of $K$ has a finite sub-covering.	
+%\end{definition}

@@ -1,0 +1,39 @@
+Remember that analysis is for a large part about making rigorous statements about the approximate behavior of functions? The following definition is a rigorous statement about the behavior of a sequence $a: \mathbb{N} \to X$, where $(X, \dist)$ a metric space. The definition is a precise version of the following approximate statement: for large $n$, the distance between $a_n$ and $p$ is small.
+
+\begin{definition}
+Let $(X, \dist)$ be a metric space. We say that a sequence $a : \mathbb{N} \to X$ converges to a point $p \in X$ if
+\[
+\begin{split}
+&\foralltext \epsilon  > 0,\\
+&\quad  \existstext N \in \mathbb{N}, \\
+&\quad \quad \foralltext n \geq N, \\
+&\quad \quad \quad \dist(a_n, p) < \epsilon.
+\end{split}
+\]
+\end{definition}
+
+We sometimes write
+\[
+\lim_{n \to \infty} a_n = p
+\]
+to express that the sequence $(a_n)$ converges to $p$.
+
+\begin{example}
+Let's see what this definition looks like when the metric space $(X, \dist)$ is $(\mathbb{R}, \dist_{\mathbb{R}})$, where by $\dist_{\mathbb{R}}: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ we always mean the standard distance on $\mathbb{R}$ given by
+\[
+\dist_{\mathbb{R}}(x, y) = | x - y |.
+\]
+A sequence $a : \mathbb{N} \to \mathbb{R}$ then converges to $L \in \mathbb{R}$ if and only if
+\[
+\begin{split}
+& \foralltext \epsilon > 0,\\
+& \quad \existstext N \in \mathbb{N},\\
+& \quad\quad \foralltext n \geq N,\\
+&\quad\quad\quad |a_n - L| < \epsilon.
+\end{split}
+\]
+\end{example}
+
+\begin{definition}
+Let $(X, \dist)$ be a metric space. A sequence $a : \mathbb{N} \to X$ is called \emph{divergent} if it is not convergent.	
+\end{definition}

@@ -1,0 +1,10 @@
+%
+%The real numbers form a metric space.
+%
+%\begin{theorem}
+%	The function $\dR : \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ defined for every $a, b \in \mathbb{R}$ by
+%	\[
+%	\dR(a, b) := |a - b|
+%	\]
+%	is a distance function on $\mathbb{R}$.
+%\end{theorem}

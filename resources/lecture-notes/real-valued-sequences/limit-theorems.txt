@@ -1,0 +1,145 @@
+If you want to show that more complicated limits exist, and if you want to compute their value, you wouldn't want to have to use the definition all the time.
+Instead there are much more efficient methods to show that limits exist. They are called limit theorems.
+
+\begin{theorem}[Limit theorems for real-valued sequences]
+	\label{th:limit-laws-real-valued-seq}
+	Let $a : \mathbb{N} \to \mathbb{R}$ and $b: \mathbb{N} \to \mathbb{R}$ be two converging sequences, and let $c, d \in \mathbb{R}$ be 
+	real numbers such that
+	\[
+	\lim_{n \to \infty} a_n = c \quad \text{ and } \quad \lim_{n \to \infty} b_n = d.
+	\]
+	Then
+	\begin{enumerate}
+		\item \label{it:limit-thm-sum-reals} The limit $\lim_{n \to \infty} (a_n + b_n)$ exists and is equal to $c + d$.
+		\item \label{it:limit-thm-real-product} The limit $\lim_{n \to \infty} (a_n b_n)$ exists and is equal to $c \cdot d$.
+		\item \label{it:limit-thm-real-quotient} If $d \neq 0$, then the limit $\lim_{n \to \infty} (a_n / b_n)$ exists and is equal to $c / d$.
+		\item \label{it:limit-thm-powers} For every nonnegative integer $m \in \mathbb{N}$, the limit $\lim_{n \to \infty} (a_n)^m$ exists and is equal to $c^m$.
+		\item \label{it:roots} If for every $n \in \mathbb{N}$, the number $a_n$ is nonnegative, then for every positive integer $k \in \mathbb{N}\setminus\{0\}$, the limit $\lim_{n \to \infty} (a_n)^{1/k}$ exists and is equal to $c^{1/k}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Let us aim to prove	item (\ref{it:roots}).
+	We first show the statement for $c = 1$, then for every $k \in \mathbb{N}_+$, the limit $\lim_{n \to \infty} a_n^{1/k}$ exists and is equal to $1$.
+	
+	Let $\epsilon > 0$.
+	Define $\epsilon_0 := \min( \epsilon, 1/2)$. (We will prefer to work with $\epsilon_0$ over $\epsilon$ because we know that $\epsilon_0 \leq 1/2$, which will be convenient below when we want to take the $k$th root of $(1-\epsilon_0)$.)
+	Since $a_n \to c$ by assumption, there exists an $n_0 \in \mathbb{N}$ such that 
+	for every $n \geq n_0$,
+	\[
+	|a_n - 1| < \epsilon_0.
+	\]
+	Let $n \geq n_0$.
+	Then
+	\[
+	1 - \epsilon_0 < a_n < 1 + \epsilon_0
+	\]
+	and therefore
+	\[
+	1 - \epsilon_0 < \left(1 - \epsilon_0\right)^{1/k} < (a_n)^{1/k} <
+	\left(1 + \epsilon_0\right)^{1/k} < 1 + \epsilon_0.
+	\]
+	Hence,
+	\[
+	\left|(a_n)^{1/k} - 1 \right| < \epsilon_0 \leq \epsilon.
+	\]
+	
+	Now suppose $c > 0$. Then we define a new sequence $\tilde{a}: \mathbb{N} \to \mathbb{R}$ by $\tilde{a}_n = a_n / c$.
+	By item (\ref{it:limit-thm-real-quotient}) it holds that the sequence $\tilde{a}: \mathbb{N} \to \mathbb{R}$ converges to $1$. By the previous part of the proof, we find that
+	\[
+	\lim_{n \to \infty} (\tilde{a}_n)^{1/k} = 1.
+	\]
+	Note that $a_n = \tilde{a}_n \cdot c$, so that item (\ref{it:limit-thm-real-product}) implies that
+	\[
+	\lim_{n \to \infty} (a_n)^{1/k} = \lim_{n \to \infty} \left((\tilde{a}_n)^{1/k} c^{1/k}\right) = 
+	\left( \lim_{n \to \infty} (\tilde{a}_n)^{1/k} \right) \cdot \left( \lim_{n\to\infty} c^{1/k} \right) = c^{1/k}.
+	\]
+	
+	Finally, we consider the case $c = 0$. 
+	Let $\epsilon > 0$. Then we may choose an $N \in \mathbb{N}$ such that for all $n \geq N$, 
+	\[
+	|a_n|< \epsilon^k.
+	\]
+	Let $n \geq N$. Then,
+	\[
+	|(a_n)^{1/k} - 0^{1/k}| = |a_n|^{1/k} < \epsilon.
+	\]
+\end{proof}
+
+\begin{example}
+	Consider the sequence $a: \mathbb{N} \to \mathbb{R}$ defined (for $n \geq 1$), by
+	\[
+	a_n := 3 + \frac{1}{n^2} 
+	\]
+	
+	We claim that the sequence $a : \mathbb{N} \to \mathbb{R}$ converges and that the limit equals $3$.
+
+	We will use limit theorems to prove this claim.
+	
+	We know that the limit of the sequence $n \mapsto 1/n$ exists as this is a standard limit (see Example \ref{ex:seq-one-over-n}).
+	
+	\begin{optional_text}
+	The text here is optional, as on the one hand it is really required for a rigorous proof but on the other hand the amount to write down would be way too much for more involved limits.	
+		
+	By the limit theorem for powers, Theorem \ref{th:limit-laws-real-valued-seq}, item (\ref{it:limit-thm-powers}), it follows that the sequence $n \mapsto (1/n)^2$ also converges.
+	
+	We also know that the sequence $n \mapsto 3$ converges, as this is a constant sequence, see Proposition \ref{pr:limit-const-seq}.
+	\end{optional_text}
+	
+	By the limit theorem for the sum and the power, we conclude that the sequence $a : \mathbb{N} \to \mathbb{R}$ also converges and
+	\[
+	\begin{split}
+	\lim_{n \to \infty} a_n
+	&= 
+	\lim_{n \to \infty} \left( 3 + \frac{1}{n^2}\right)\\
+	&= \lim_{n \to \infty} 3 + \lim_{n \to \infty} \left(\frac{1}{n} \right)^2 \\
+	&= 3 + \left( \lim_{n \to \infty} \frac{1}{n} \right)^2\\
+	&= 3 + 0^2 = 3.
+	\end{split}
+	\]
+	(What one really needs to do, when leaving out the optional text, is to read the above chain of equalities from back to front, and making sure that all steps are justified. In particular, it is extremely important to verify that all involved limits exist.)
+\end{example}
+
+\begin{example}
+Consider the sequence $a : \mathbb{N} \to \mathbb{R}$ defined by
+\[
+a_n := \frac{3 n^2 + 5 n + 9}{ 2 n^2 + 3n + 7}
+\]	
+We claim that the sequence $a: \mathbb{N} \to \mathbb{R}$ converges, and that the limit equals $3/2$.
+
+When confronted with a sequence that is given as a fraction of two terms, the first thing to do is to divide numerator and denominator by the fastest growing term in $n$. In this case, we need to divide by $n^2$. We get
+\[
+a_n := \frac{3 + 5 \frac{1}{n} + 9 \frac{1}{n^2}}{ 2 + 3 \frac{1}{n} + 7 \frac{1}{n^2}}.
+\]
+
+We would like to use the limit theorem for quotients, namely Theorem \ref{th:limit-laws-real-valued-seq}, item (\ref{it:limit-thm-real-quotient}). However, to apply this limit theorem, we should really make sure that the limit of numerator and denominator exist, and that the limit of the denominator is not equal to $0$. Whereas the previous example had optional text to justify all the steps, here we leave it out. We will use the strategy described at the end of the previous example, to read chains of equalities backwards while making sure all involved limits exist.
+
+Note that the limit
+\[
+\lim_{n \to \infty} \frac{1}{n}
+\]
+exists, and equals $0$, as this is the standard limit from Example \ref{ex:seq-one-over-n}.
+
+By the limit theorems it follows that
+\[
+\begin{split}
+\lim_{n \to \infty} \left(2 + 3 \frac{1}{n} + 7 \frac{1}{n^2} \right)
+&= \lim_{n \to \infty} 2 + 3 \lim_{n \to \infty} \frac{1}{n} + 
+7 \left( \lim_{n \to \infty} \frac{1}{n} \right)^2 \\
+&= 2 + 0 + 0 = 2.
+\end{split}
+\]
+(Here, we read the chain of equalities backwards to make sure every step is justified.) Because $2 \neq 0$, we may now apply the limit theorem for the quotient, and find
+\[
+\begin{split}
+\lim_{n \to \infty} a_n
+&= \lim_{n \to \infty} \frac{3 + 5 \frac{1}{n} + 9 \frac{1}{n^2}}{ 2 + 3 \frac{1}{n} + 7 \frac{1}{n^2}}\\
+&= \frac{\lim_{n \to \infty} \left(3 + 5 \frac{1}{n} + 9 \frac{1}{n^2} \right)}{\lim_{n \to \infty} \left(2 + 3 \frac{1}{n} + 7 \frac{1}{n^2} \right)}\\
+&= \frac{\lim_{n \to \infty} 3 + 
+	5 \lim_{n \to \infty} \frac{1}{n} +
+    9  \left(\lim_{n \to \infty} \frac{1}{n} \right)^2}{2}\\
+&= \frac{3 + 0 + 0}{2} = 3/2.
+\end{split}
+\]
+(Again we read the chain of equalities backwards to make sure every step is justified.)
+\end{example}

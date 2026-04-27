@@ -1,0 +1,37 @@
+{\unichar{"221E}} or \texorpdfstring{$-\infty$}{-\unichar{"221E}}}
+
+\begin{definition}[divergence to $\infty$]
+	\label{de:func-div-to-infty}
+	Let $(X, \dist_X)$ be a metric space, let $D$ be a subset of $X$ and assume $a \in D'$.
+	Let $f : D \to \mathbb{R}$.
+	We say that $f$ diverges to $\infty$ in $a$ if
+	\[
+	\begin{split}
+		&\foralltext M \in \mathbb{R}, \\
+		&\quad \existstext \delta > 0, \\
+		&\quad\quad \foralltext x \in D, \\
+		&\quad\quad\quad 0 < \dist_X(x, a) < \delta \implies f(x) > M.
+	\end{split}
+	\]	
+\end{definition}
+
+\begin{definition}[divergence to $-\infty$]
+	Let $(X, \dist_X)$ be a metric space, let $D$ be a subset of $X$ and assume $a \in D'$.
+	Let $f : D \to \mathbb{R}$.
+	We say that $f$ diverges to $-\infty$ in $a$ if
+	\[
+	\begin{split}
+		&\foralltext M \in \mathbb{R}, \\
+		&\quad \existstext \delta > 0, \\
+		&\quad\quad \foralltext x \in D, \\
+		&\quad\quad\quad 0 < \dist_X(x, a) < \delta \implies f(x) < M.	
+	\end{split}
+	\]
+\end{definition}
+
+Using the extended real line, we can give an alternative characterization of divergence to $\infty$. This alternative characterization brings us back to the `usual' limits of functions between metric spaces as introduced in Definition \ref{de:limit-in-acc-point}.
+
+\begin{proposition}[Alternative characterization of divergence to $\infty$]
+Let $(X, \dist_X)$ be a metric space, let $D$ be a subset of $X$ and assume $a \in D'$. Let $f : D \to 	\mathbb{R}$.
+Then $f$ diverges to $\infty$ in $a$ (as described by Definition \ref{de:func-div-to-infty}) if and only if $f$ \emph{converges} in $a$ to the element $\infty \in \extR$ when viewed as a function mapping from $D$ as a subset of $(X, \dist_X)$ to the extended real line $(\extR, \dist_{\extR})$.
+\end{proposition}

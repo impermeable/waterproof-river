@@ -1,0 +1,88 @@
+\begin{theorem}[Sequence characterization of limits]
+	\label{th:seq-char-limits-func}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces. Let $D \subset X$.
+Let $f : D \to Y$ and let $a \in D'$. Let $q \in Y$.
+Then
+\[
+\lim_{x \to a} f(x) = q
+\]
+if and only if
+\[
+\begin{split}
+&\foralltext \text{ sequences } (x^n) \text{ in } D \setminus \{ a \} \text{ converging to } a,\\
+&\quad \lim_{n \to \infty} f(x^n) = q.
+\end{split}
+\]
+\end{theorem}
+
+\begin{proof}
+We will first show the ``only if" direction.
+
+So assume that $\lim_{x \to a} f(x) = q$. We need to show that
+\[
+\begin{split}
+	&\foralltext \text{ sequences } (x^n) \text{ in } D \setminus \{ a \} \text{ such that } \lim_{n \to \infty} x^n = a,\\
+	&\quad \lim_{n \to \infty} f(x^n) = q.
+\end{split}
+\]
+Take therefore a sequence $(x^n)$ in $D \setminus \{ a \}$ such that $\lim_{n \to \infty} x^n = a$. 
+
+We now need to show that $\lim_{n \to \infty} f(x^n) = q$, i.e.~we need to show that
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \existstext N \in \mathbb{N},\\
+&\quad\quad \foralltext n \geq N,\\
+&\quad\quad\quad \dist_Y(f(x^n), q) < \epsilon.	
+\end{split}
+\]
+
+Let $\epsilon > 0$.
+Because $\lim_{x \to a} f(x) = q$, there exists a $\delta > 0$ such that for all $x \in D$, if $0 < \dist_X(x, a) < \delta$ then 
+\[
+\dist_Y(f(x), q) < \epsilon.
+\]
+Choose such a $\delta > 0$.
+
+Because $\lim_{n \to \infty} x^n = a$, we know that there exists an $N \in \mathbb{N}$ such that for all $n \geq N$,
+\[
+\dist_X(x^n, a) < \delta.
+\]
+Choose such an $N \in \mathbb{N}$.
+
+Let $n \geq N$.
+Then because $\dist_X(x^n, a) < \delta$ indeed
+\[
+\dist_Y(f(x^n), q ) < \epsilon.
+\]
+This finishes the proof of the ``only if" direction.
+
+We will now show the ``if" direction. Assume that 
+\[
+\begin{split}
+	&\foralltext \text{ sequences } (x^n) \text{ in } D \setminus \{ a \} \text{ such that } \lim_{n \to \infty} x^n = a,\\
+	&\quad \lim_{n \to \infty} f(x^n) = q.
+\end{split}
+\]
+We will show that
+\[
+\lim_{x \to a} f(x) = q.
+\]
+We argue by contradiction.
+So assume there exists an $\epsilon > 0$ such that for all $\delta > 0$ there exists a point $x^* \in D$ such that $0 < \dist_X(x^*, a) < \delta$ but $\dist_Y(f(x^*), q) \geq \epsilon$. Choose such an $\epsilon > 0$. Then
+\begin{equation}
+	\label{eq:seq-char-lim}
+\begin{split}
+&\foralltext \delta > 0,\\
+&\quad \existstext x^* \in D,\\
+&\quad\quad (0 < \dist_X(x^*, a) < \delta) \text{ and } \dist_Y(f(x^*), q) \geq \epsilon.
+\end{split}	
+\end{equation}
+
+We are now going to define a sequence $(x^{n})$ in $D \setminus \{a\}$, converging to $a$.
+Let $n \in \mathbb{N}$. Choose $\delta := 2^{-n}$ in (\ref{eq:seq-char-lim}).
+Then we may obtain an $x^* \in D$ such that $0 < \dist_X(x^*, a) < 2^{-n}$ while
+$\dist_Y(f(x^*), q) \geq \epsilon$. Define $x^n := x^*$.
+
+Then the sequence $(x^n)$ is a sequence in $D \setminus \{ a\}$ converging to $a$, however it does not hold that $\lim_{ n \to \infty} f(x^{(n)}) = q$, which is a contradiction.
+\end{proof}

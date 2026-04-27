@@ -1,0 +1,10 @@
+Just as with limits of sequences, if we need to show that a certain limit exists or if we need to determine its value, we usually want to avoid going back to the formal definition. Instead, we would like to rely on limit laws like the following.
+
+\begin{theorem}
+Let $(X, \dist_X)$ be a metric space and let $(V, \| \cdot \|)$ be a normed vector space. Let $D \subset X$ and let $f : D \to V$ and $g : D \to V$ be two functions. Let $a \in D'$. Moreover, assume that the limit $\lim_{x \to a} f(x)$ exists and equals $p \in V$ and the limit $\lim_{x \to a} g(x)$ exists and equals $q \in V$.
+Let $\lambda \in \mathbb{R}$. Then
+\begin{enumerate}
+\item The limit $\lim_{x \to a} (f(x) + g(x))$ exists and equals $p + q$.
+\item The limit $\lim_{x \to a} (\lambda f(x))$ exists and equals $\lambda p$.	
+\end{enumerate}
+\end{theorem}

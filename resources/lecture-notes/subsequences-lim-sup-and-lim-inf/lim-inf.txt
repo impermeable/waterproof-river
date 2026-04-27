@@ -1,0 +1,57 @@
+Similarly to the lim sup, we can also define the lim inf. In some sense, 
+\[
+\liminf_{\ell \to \infty} a_\ell = - \limsup_{\ell \to \infty} (-a_\ell)
+\]
+
+More precisely, the lim inf is a function that takes in a real-valued sequence $a: \mathbb{N} \to \mathbb{R}$ and outputs 
+\begin{itemize}
+\item The symbol "$-\infty$" if the sequence is not bounded from below
+\item The symbol "$\infty$ if the sequence diverges to $\infty$, and otherwise
+\item the real number
+\[
+\begin{split}
+\liminf_{\ell \to \infty} a_\ell
+&:= \sup_{\ell \in \mathbb{N}} \inf_{k \geq \ell} a_k\\
+&= \lim_{\ell \to \infty} \left(\inf_{k \geq \ell} a_k \right).
+\end{split}
+\]	
+\end{itemize}
+
+Let us also record an alternative characterization of the lim inf.
+
+\begin{proposition}[Alternative characterization lim inf]
+	Let $a : \mathbb{N} \to \mathbb{R}$ be a real-valued sequence and let $M \in \mathbb{R}$.
+	Then $M$ equals $\liminf_{\ell \to \infty} a_\ell$ if and only if the following two conditions hold
+	\begin{enumerate}
+	\item 
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0, \\
+	&\quad \existstext N \in \mathbb{N},	\\
+	&\quad\quad \foralltext \ell \geq N,\\
+	&\quad\quad\quad a_\ell > M - \epsilon.
+	\end{split}
+	\]	
+	\item 
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \foralltext K \in \mathbb{N}, \\
+	&\quad\quad \existstext m \geq K,\\
+	&\quad\quad\quad a_m < M + \epsilon.	
+	\end{split}
+	\]
+	\end{enumerate}
+\end{proposition}
+
+
+
+\begin{theorem}
+	Let $a: \mathbb{N} \to \mathbb{R}$ be a real-valued sequence that is bounded below and does not diverge to $\infty$. Then $\liminf_{\ell \to \infty} a_\ell$ is a sequential accumulation point of the sequence $a$, i.e. there is a subsequence of $a$ that converges to $\liminf_{\ell \to \infty} a_\ell$.	
+\end{theorem}
+
+We can in fact show a bit more, namely that if $a : \mathbb{N} \to \mathbb{R}$ is bounded below and does not diverge $\infty$, the number $\liminf_{\ell \to \infty}$ is the smallest sequential accumulation point of the sequence $a: \mathbb{N} \to \mathbb{R}$. 
+
+\begin{theorem}
+	Let $a: \mathbb{N} \to \mathbb{R}$ be a real-valued sequence that is bounded below and does not diverge to $\infty$. Then $\liminf_{\ell \to \infty} a_\ell$ is the minimum of the set of sequential accumulation points of the sequence $a : \mathbb{N} \to \mathbb{R}$.	
+\end{theorem}

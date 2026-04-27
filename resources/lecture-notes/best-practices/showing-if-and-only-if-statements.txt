@@ -1,0 +1,6 @@
+If the statement that you need to show is an ``if and only if" statement, show the ``if"
+and ``only if" statements separately. You can write
+
+\begin{mcode}
+	\text{We show both directions.}
+\end{mcode}

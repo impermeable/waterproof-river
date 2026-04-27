@@ -1,0 +1,64 @@
+We first now give a definition of completeness for a \emph{metric space}.
+
+\begin{definition}
+Let $(X, \dist)$ be a metric space.
+We say that a subset $A \subset X$ is \emph{complete} (in $(X, \dist)$) if every Cauchy sequence in $A$ is convergent, with limit in $A$.	
+
+We also say the metric space $(X, \dist)$ itself is complete if $X$ is a complete subset of $X$ in $(X, \dist)$.
+\end{definition}
+
+Note that we have used the term `complete' various times in the lecture notes: completeness of a \emph{totally ordered field}, the series characterization of completeness in \emph{normed vector spaces} and now completeness of a \emph{metric space}. In the next section we will see that a normed vector space satisfies the series characterization of completeness if and only if the corresponding metric space is complete. What we will do next is show that the metric space $(\mathbb{R}, \dist_{\mathbb{R}})$ is complete (as a metric space). Under the hood, we really use the Completeness Axiom \ref{ax:completeness} for this: that axiom is really what makes everything work.
+
+\begin{theorem}
+The metric space $(\mathbb{R}, \dist_{\mathbb{R}})$ is complete.
+\end{theorem}
+
+\begin{proof}
+Let $a : \mathbb{N} \to \mathbb{R}$ be a Cauchy sequence.
+Because $a$ is a Cauchy sequence, it is in particular bounded.
+As a consequence, by Theorem \ref{th:subseq-to-lim-sup}, there is a subsequence $a \circ n$ such that $a \circ n$ converges to 
+\[
+\limsup_{k \to \infty} a_k.
+\]
+Finally, we know from Proposition \ref{pr:cauchy-seq-subseq} that if a subsequence of a Cauchy sequence converges, that then the whole sequence converges.
+Therefore, the sequence $a: \mathbb{N} \to \mathbb{R}$ is convergent.
+\end{proof}
+
+\begin{proposition}
+	\label{pr:Rd-complete}
+The metric space $(\mathbb{R}^d, \dist_{\| \cdot \|_2})$ is complete, where $\| \cdot \|_2$ is the Euclidean norm.
+\end{proposition}
+
+The proof of Proposition \ref{pr:Rd-complete} is the topic of Orange Exercise \ref{ex:Rd-complete}.
+
+\begin{proposition}
+	\label{pr:complete-implies-closed}
+Let $(X, \dist)$ be a metric space.
+Suppose $A \subset X$ is complete.
+Then $A$ is closed.	
+\end{proposition}
+\begin{proof}
+Let $(x_n)$ be a sequence in $A$, converging to a point $x^* \in X$.
+Then $(x_n)$ is a Cauchy sequence.
+Since $A$ is complete, the sequence $(x_n)$ is converging to a point $p \in A$.
+By uniqueness of limits, we know that $x^* = p$. We conclude that $x^* \in A$.	
+\end{proof}
+
+The following proposition says that a subset of a complete set is complete if and only if it is closed.
+
+\begin{proposition}
+	\label{pr:closed-in-complete-implies-complete}
+Let $(X, \dist)$ be a metric space and let $C \subset X$ be a complete subset.
+Let $A \subset C$ be a subset of $C$.
+Then, $A$ is complete if and only if $A$ is closed.	
+\end{proposition}
+
+\begin{proof}
+The ``only if" side of this proposition follows from Proposition \ref{pr:complete-implies-closed}.
+
+We will now show the ``if" part of the proposition.
+Suppose $A$ is closed.
+Let $(x_n)$ be a Cauchy sequence in $A$. Then $(x_n)$ is also a sequence in $C$.
+Since $C$ is complete, there exists a point $p \in C$ such that $(x_n)$ converges to $p$.
+Because $A$ is closed, in fact $p \in A$.
+\end{proof}

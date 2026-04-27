@@ -1,0 +1,17 @@
+The real numbers are a set, together with two operations called addition $(+)$ and multiplication $(\times)$ and an order $(\leq)$, that satisfy a whole list of properties. These properties are called \emph{axioms}.
+
+The axioms can be summarized as follows: the real numbers are a complete, totally ordered field.
+You may remember the concept of a \emph{field} from Set Theory and Algebra.
+A \emph{totally ordered} field is a field together with a total order such that the order and the field operations are compatible. The rational numbers with the standard addition, multiplication and order are an example of a totally ordered field. We will come to the exact meaning of `complete' in the next section, but let's already mention that a totally ordered field is called \emph{complete} if every non-empty, bounded-from-above subset of the totally ordered field has a \emph{least upper bound}. 
+
+
+
+At this stage we assume that complete, totally ordered fields exist. We choose one such complete ordered field and call it the real numbers and denote it by $\mathbb{R}$. Are there other possibilities then? Yes and not really. Yes, there are \emph{different} complete totally ordered fields satisfying all these axioms, but they are all \emph{essentially the same} in the sense that they are isomorphic as totally ordered fields. We will not show these statements in these notes. For the purpose of the notes it's enough to just make a choice of a complete ordered field and call it $\mathbb{R}$.
+
+Between various books there may be some slight difference in choice of axioms. Although the lists are different, they do specify (essentially) the same complete totally ordered field. In Abbott's book \cite{abbott2015understanding}, you can find the axioms of the real numbers in Section 8.6. 
+
+In proof assistants such as Waterproof, the axioms for the real numbers are also introduced and they are used as the fundamental building blocks on which the rest of the theory is formally built up. You can find a full list of possible axioms for the real numbers as they are used in Waterproof on the website:
+{\begin{center}
+\href{https://coq.inria.fr/library/Coq.Reals.Raxioms.html}{coq.inria.fr/library/Coq.Reals.Raxioms.html}.
+\end{center}
+}

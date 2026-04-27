@@ -1,0 +1,29 @@
+\begin{proposition}
+Let $(V, \| \cdot \|)$ be a normed vector space, and let $a : \mathbb{N} \to V$ be a sequence in $V$. Suppose the series $\sum_{n=0}^\infty a_n$ is convergent.
+Then
+\[
+\lim_{n \to \infty} a_n = 0.
+\]
+\end{proposition}
+
+\begin{proof}
+Suppose $\sum_{n=0}^\infty a_n$ is convergent to $L \in V$.
+Then
+\[
+a_n = S_{n} - S_{n-1} 
+\]
+where $S_n$ denotes the partial sum $\sum_{k=0}^n a_k$. 
+Because $S_n$ and $S_{n-1}$ are both convergent to $L$, the sequence $(a_n)$ is convergent as well and converges to $L - L = 0$.
+\end{proof}
+
+The following is a very simple, but often useful test for divergence.
+
+\begin{theorem}[Divergence test]
+	\label{th:divergence-test}
+Let $(V, \| \cdot \|)$ be a normed vector space, and let $a : \mathbb{N} \to V$ be a sequence in $V$.
+Suppose the limit $\lim_{n \to \infty} a_n$ does not exist or is not equal to $0$. Then the series 
+\[
+\sum_{n=0}^\infty a_n
+\]	
+is divergent.
+\end{theorem}

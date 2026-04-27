@@ -1,0 +1,33 @@
+\begin{definition}
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces and let $D \subset X$.
+	We say that a sequence of functions $f : \mathbb{N} \to (D \to Y)$ converges \emph{pointwise} to a function $f^* : D \to Y$ if 
+	\[
+	\begin{split}
+		&\foralltext x \in D, \\
+		&\quad \lim_{n \to \infty} f_n(x) = f^*(x).
+	\end{split}
+	\]
+\end{definition}
+
+\begin{example}
+We consider a case in which $(X, \dist_X) = (\mathbb{R}, \dist_{\mathbb{R}})$ and $D$ is the interval $[0, 1] \subset \mathbb{R}$. We consider the sequence of functions $f : \mathbb{N} \to ( [0, 1] \to \mathbb{R}) $ defined by
+\[
+f_n(x) = x^n.
+\]	
+Then the sequence $(f_n)$ converges pointwise to the funtion $f^* : [0, 1] \to \mathbb{R}$ defined by
+\[
+f^*(x) = \begin{cases}
+	0 & \text{ if } x \in [0, 1)\\
+	1 & \text{ if } x = 1.
+	\end{cases}
+\]
+
+To show this, let $x \in [0, 1]$. Then we consider two cases. In case $x \in [0, 1)$, then
+\[
+\lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} x^n = 0 = f^*(x)
+\]
+as this is a standard limit. In case $x =1$, then
+\[
+\lim_{n \to \infty} f_n(x) = \lim_{n\to \infty} 1^n = 1 = f^*(x).
+\]
+\end{example}

@@ -1,0 +1,20 @@
+The previous section also has an immediate consequence for the symmetry of higher-order derivatives. In fact, if $f$ is $n$ times differentiable in a point $a \in \Omega$, then for every permutation $\sigma : \{ 1, \dots, n \} \to \{ 1, \dots, n\}$ we have
+
+\[
+(D^n f)_a(v_1, v_2, \cdots, v_n) =
+(D^n f)_a(v_{\sigma(1)}, v_{\sigma(2)}, \cdots, v_{\sigma(n)})
+\]
+
+With the following definition, we can just express this by saying that if $f$ is $n$ times differentiable in a point $a$, that then $D^{n}f$ can be viewed as an element in the space of $n$-linear, symmetric maps $\mathsf{Sym}_n(V, W)$, where the space $\mathsf{Sym}_n(V, W)$ is defined as follows.
+
+\begin{definition}
+We denote by $\mathsf{Sym}_n(V, W)$ the collection of symmetric, $n$-linear maps from $V^{\times n}$ to $W$. That is, a map $\mathcal{S} : V^{\times n} \to W$ is in $\mathsf{Sym}_n(V, W)$ if and only if it is linear in every argument and if for every permutation  $\sigma : \{ 1, \dots, n \} \to \{ 1, \dots, n\}$ it holds that
+\[
+\mathcal{S}(v_1, \cdots, v_n) = \mathcal{S}(v_{\sigma(1)}, \cdots , v_{\sigma(n)}).
+\]
+\end{definition} 
+
+In conclusion, we may as well write
+\[
+D^n f : \Omega \to \Sym_n(V, W)
+\]

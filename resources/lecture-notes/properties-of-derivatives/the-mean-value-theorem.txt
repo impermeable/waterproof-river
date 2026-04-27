@@ -1,0 +1,42 @@
+\begin{theorem}[Rolle's theorem]
+	Let $f : [a, b] \to \mathbb{R}$ be continuous, assume that $f$ is differentiable on $(a, b)$ and that $f(a) = f(b)$.
+	Then there exists a $c \in (a, b)$ such that $f'(c) = 0$.
+\end{theorem}
+
+\begin{proof}
+	Since $f$ is continuous, it achieves both a maximum and a minimum on $[a, b]$ by the Extreme Value Theorem. 
+	Since $f(a) = f(b)$ either the minimum or the maximum is achieved in some $c \in (a, b)$.
+	By Theorem \ref{th:local-extremum-deriv-zero} it holds that $f'(c) = 0$.
+\end{proof}
+
+\begin{theorem}[Mean-value theorem]
+	Let $f : [a, b] \to \mathbb{R}$ be continuous, and assume that $f$ is differentiable on $(a, b)$.
+	Then there exists a $c \in (a, b)$ such that
+	\[
+	f'(c) = \frac{f(b) - f(a)}{b - a}.
+	\]
+\end{theorem}
+
+\begin{proof}
+	Define the function $g : [a, b] \to \mathbb{R}$ by
+	\[
+	g(x) = f(x) - \frac{x - a}{b - a} f(b) - \frac{b - x}{b - a} f(a).
+	\]
+	By the sum and product rules, the function $g$ is differentiable on $(a, b)$. By the rules for continuous functions, the function $g$ is also continuous on $[a, b]$.
+	Moreover,
+	\[
+	g(a) = g(b) = 0.
+	\]
+	It follows by Rolle's theorem that there exists a $c \in (a, b)$ such that
+	\[
+	g'(c) = 0.
+	\]
+	Then
+	\[
+	0 = g'(c) = f'(c) - \frac{1}{b-a} f(b) + \frac{1}{b-a} f(a) 
+	\]
+	so that indeed
+	\[
+	f'(c) = \frac{f(b) - f(a)}{b - a}.
+	\]
+\end{proof}

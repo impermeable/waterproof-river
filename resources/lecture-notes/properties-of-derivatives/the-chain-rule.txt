@@ -1,0 +1,150 @@
+\begin{theorem}[Chain rule]
+	\label{th:chain-rule}
+	Let $(U, \| \cdot \|_U)$, $(V, \| \cdot \|_V)$, and $(W, \|\cdot\|_W)$ be normed vector spaces.
+	
+	Let $\Omega \subset U$ and $E \subset V$ both be open. Let $f : \Omega \to V$ be such that $f(\Omega) \subset E$. Let $g: E \to W$.
+	
+	If $f$ is differentiable in a point $a \in \Omega$, and $g$ is differentiable in the point $f(a)$, then the function $g \circ f$ is differentiable in the point $a$.
+	
+	Moreover,
+	\[
+	(D(g \circ f))_{a} = (D g)_{f(a)} \circ (Df)_a.
+	\]
+\end{theorem}
+
+\begin{proof}
+	We need to show that there exists a linear map $A : U \to W$ such that, if we define the error function $\mathsf{Err}_a^{g \circ f} : D \to W$ by
+	\[
+	\mathsf{Err}_a^{g \circ f} (x) := (g \circ f) (x) - 
+	(g \circ f) (a) - A (x - a)
+	\]
+	that then
+	\[
+	\lim_{x \to a} \frac{\| \mathsf{Err}^{g \circ f}_a (x)\|_W}{\|x - a \|_U} = 0.
+	\]
+	
+	We choose $A := (Dg)_{f(a)} \circ (Df)_a$. This is indeed a bounded linear operator from $U$ to $W$.
+	
+	We need to show that
+	\[
+	\begin{split}
+		& \foralltext \epsilon > 0,\\
+		& \quad \existstext \delta > 0,\\
+		& \quad\quad \foralltext x \in \Omega,\\
+		& \quad\quad\quad \text{if } 0 < \| x - a \|_U < \delta,\\
+		& \quad\quad\quad\quad \text{then } \frac{\| \mathsf{Err}^{g \circ f}_a (x)\|_W}{\|x - a \|_U} < \epsilon.	
+	\end{split}
+	\]
+	
+	Let $\epsilon > 0$.
+	
+	According to the template, the next step would be to find a $\delta > 0$, but for this step we need quite some preparation. First of all it is helpful to define the error functions
+	\[
+	\mathsf{Err}^f_a(x) := f(x) - f(a) - (Df)_a (x - a)
+	\]
+	and
+	\[
+	\mathsf{Err}^g_{f(a)}(y) := g(y) - g(f(a)) - (Dg)_{f(a)} (y - f(a))
+	\]
+	
+	We can then make for $x \in \Omega$ the following computation
+	\[
+	\begin{split}
+		\mathsf{Err}^{g\circ f}_{a}(x) 
+		&= g(f(x)) - g(f(a)) - ((Dg)_{f(a)} \circ (Df)_a) (x - a)\\
+		&= (Dg)_{f(a)} (f(x) - f(a)) + \mathsf{Err}^{g}_{f(a)}(f(x)) \\
+		&\quad - (Dg)_{f(a)} ((Df)_a(x - a)) \\
+		&= \mathsf{Err}^{g}_{f(a)}(f(x)) \\
+		&\quad + (Dg)_{f(a)} \big(f(x) - f(a) - (Df)_a(x - a)\big)\\
+		&= \mathsf{Err}^{g}_{f(a)}(f(x)) + (Dg)_{f(a)} ( \mathsf{Err}_{a}^f (x) ).
+	\end{split}
+	\]
+	
+	Using the triangle inequality, we can then estimate
+	\begin{equation}
+		\label{eq:chain-rule-computation}
+		\begin{split}
+			\| \mathsf{Err}_{a}^{g \circ f} (x) \|_W
+			& = \| \mathsf{Err}_{f(a)}^g (f(x)) + (Dg)_{f(a)} ( \mathsf{Err}_a^f(x)) \|_W\\
+			& \leq \| \mathsf{Err}_{f(a)}^g(f(x)) \|_W + \| (Dg)_{f(a)} (\mathsf{Err}_a^f(x)) \|_W\\
+			& \leq \| \mathsf{Err}_{f(a)}^g(f(x)) \|_W + \| (Dg)_{f(a)} \|_{V \to W} \| \mathsf{Err}_a^f(x) \|_V
+		\end{split}
+	\end{equation}
+	
+	Our strategy will be to find a $\delta > 0$ such that for all $x \in \Omega$, if $0 < \| x - a\|_U < \delta$, the right-hand-side of (\ref{eq:chain-rule-computation}), and therefore also the left-hand-side, is less than $\epsilon$. Let's see how we can find such a $\delta > 0$.
+	
+	Because $g$ is differentiable in $f(a)$ with derivative $(Dg)_{f(a)}$, it holds that
+	\[
+	\lim_{y \to f(a)} \frac{\| \mathsf{Err}^g_{f(a)}(y) \|_{W}}{\| y - f(a) \|_V}  = 0.
+	\]
+	
+	Therefore, there exists a $\rho > 0$ such that for all $y \in E$, if $0 < \| y - f(a) \|_V < \rho$, then
+	\begin{equation}
+		\label{eq:chain-rule-est-err-g}
+		\frac{\| \mathsf{Err}^g_{f(a)}(y) \|_{W}}{\| y - f(a) \|_V} < \frac{\epsilon}{2( \| (Df)_a \|_{U \to V} + 1)}.
+	\end{equation}
+	Choose such a $\rho > 0$.
+	
+	Now define
+	\[
+	\epsilon_2 := \min\left(1, \frac{\epsilon}{2\|(Dg)_{f(a)} \|_{V \to W} + 1 }\right).
+	\]
+	Because $f$ is differentiable in $a$ with derivative $(Df)_a$, it holds that
+	\[
+	\lim_{x \to a} \frac{\|\mathsf{Err}^f_a(x) \|_V}{\|x - a \|_U} = 0.
+	\]
+	
+	
+	Therefore there exists a $\delta_1 > 0$ such that for all $x \in \Omega$, if $0 < \| x - a \|_U < \delta_1$ then
+	\[
+	\| \mathsf{Err}^f_a(x) \|_V < \epsilon_2 \| x - a \|_U.
+	\]
+	Choose such a $\delta_1 > 0$.
+	
+	Then, for $x \in \Omega$, if $0 < \| x - a \|_U < \delta_1$ also
+	\begin{equation}
+		\label{eq:chain-rule-fx-min-fa}
+		\begin{split}
+			\| f(x) - f(a) \|_V
+			&= \|(Df)_a(x- a) + \mathsf{Err}_a^f (x) \|_V \\
+			&\leq \| (Df)_a (x-a) \|_V + \| \mathsf{Err}_a^f(x) \|_V \\
+			& \leq \| (Df)_a \|_{U \to V} \| x - a \|_U + \epsilon_2 \| x - a\|_U.
+		\end{split}
+	\end{equation}
+	
+	Define
+	\[
+	\delta_2 := \frac{\rho}{1 + \|(Df)_a\|_{U \to V}}.
+	\]
+	
+	Choose $\delta := \min(\delta_1, \delta_2)$.
+	Let $x \in \Omega$. Assume $0 < \| x - a \|_U < \delta$. Then, it follows by (\ref{eq:chain-rule-fx-min-fa}) and the fact that $\epsilon_2 \leq 1$ that 
+	\[
+	\begin{split}
+		\|f (x) - f(a) \|_V
+		&\leq \| (Df)_a \|_{U \to V} \| x - a \|_U + \epsilon_2 \| x - a \|_U \\
+		& \leq (1 + \|(Df)_a \|_{U \to V} ) \| x - a \|_U \\
+		& < (1 + \|(Df)_a \|_{U \to V} ) \delta \leq \rho
+	\end{split}
+	\]
+	so that by estimate (\ref{eq:chain-rule-est-err-g}) it follows that
+	\[
+	\begin{split}
+		\| \mathsf{Err}^g_{f(a)}(f(x)) \|_W
+		&< \frac{\epsilon}{2 (\|(Df)_a\|_{U \to V} + 1)}\| f(x) - f(a) \|_V\\
+		&< \frac{\epsilon}{2} \| x - a \|_U.
+	\end{split}
+	\]
+	Therefore, using the result of our earlier computation (\ref{eq:chain-rule-computation})
+	\[
+	\begin{split}
+		\| \mathsf{Err}_{a}^{g \circ f} (x) \|_W
+		& \leq \| \mathsf{Err}_{f(a)}^g(f(x)) \|_W + \| (Dg)_{f(a)} \|_{V \to W} \| \mathsf{Err}_a^f(x) \|_V \\
+		& < \frac{\epsilon}{2} \|x - a \|_U + \epsilon_2 \| (Dg)_{f(a)} \|_{V \to W} \|x - a \|_U\\
+		& \leq \frac{\epsilon}{2} \|x - a \|_U \\
+		&\qquad + \frac{\epsilon}{2 \|(Dg)_{f(a)}\|_{V \to W} + 1} \| (Dg)_{f(a)} \|_{V \to W} \|x - a \|_U \\
+		& < \epsilon \| x - a \|_U.
+	\end{split}
+	\]
+	
+\end{proof}

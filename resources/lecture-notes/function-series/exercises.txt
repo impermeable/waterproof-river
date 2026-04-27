@@ -1,0 +1,76 @@
+\begin{orange_exercise}
+	\label{ex:conv-func-series-bounds-inf-norm}
+	\renewcommand{\theenumi}{\alph{enumi}}
+	Let $(f_k)$ be a sequence of continuously differentiable, bounded functions $\mathbb{R} \to \mathbb{R}$. Suppose that for all $k \in \mathbb{N}$,
+	\[
+	\| f_k \|_\infty \leq 1
+	\]	
+	and
+	\[
+	\| f_k' \|_\infty \leq 5
+	\]
+	\begin{enumerate}
+		\item Show that the function series 
+		\[
+		\sum_{k = 0}^\infty 2^{-k} f_k
+		\]	
+		converges pointwise to some function $s : \mathbb{R} \to \mathbb{R}$.
+		\item Show that the function $s : \mathbb{R} \to \mathbb{R}$ is differentiable.
+	\end{enumerate}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:div-test-B-D}
+	Let $D$ be a subset of $\mathbb{R}$, and let $(f_k)$ be a sequence of bounded functions from $D$ to $\mathbb{R}$, i.e. $(f_k)$ is a sequence in the normed vector space $(\mathcal{B}(D), \| \cdot \|_\infty)$. Assume that the series
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges uniformly.
+	Show that 
+	\[
+	\lim_{k \to \infty} \| f_k \|_\infty = 0.
+	\]
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:function-series-concrete}
+	\renewcommand{\theenumi}{\alph{enumi}}
+Consider the sequence of functions $(f_k)$ from $(0, \infty)$ to $\mathbb{R}$ given by
+\[
+f_k(x) = k^2 x^2 \exp( - k^2 x )
+\]
+\begin{enumerate}
+	\item Show that the series
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges uniformly to some function $s : (0, \infty) \to \mathbb{R}$.
+	
+	{\bf Hint:} Note that $f_k$ can be written as
+	\[
+	f_k(x) = \frac{1}{k^2} g(k^2 x)
+	\]
+	for some function $g: (0,\infty) \to (0,\infty)$. What is $g$?
+	\item Show that the function $s: (0, \infty) \to \mathbb{R}$ is continuous.
+	\item Show that the series
+	\[
+	\sum_{k=0}^\infty f_k'
+	\]
+	does \emph{not} converge uniformly on $(0, \infty)$.
+	\item Show that for every $a \in (0, \infty)$, the series
+	\[
+	\sum_{k=0}^\infty f_k'
+	\]
+	does converge uniformly on the interval $(a, \infty)$.
+	
+	{\bf Hint: } Note that there exists a $z \in \mathbb{R}$ such that for $b \geq z$, 
+	\[
+	b^2 \exp (- b) \leq \exp( - b / 2)
+	\]
+	Therefore, for $k$ large enough, it holds for all $x \in (a, \infty)$ that
+	\[
+	(k^2 x)^2 \exp (- k^2 x ) < \exp( - k^2 x / 2 ) 
+	\]
+	\item Show that the function $s : (0, \infty) \to \mathbb{R}$ is differentiable on $(0, \infty)$.
+\end{enumerate}
+\end{orange_exercise}

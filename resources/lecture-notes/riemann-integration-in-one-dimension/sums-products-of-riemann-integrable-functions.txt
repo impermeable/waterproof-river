@@ -1,0 +1,44 @@
+\begin{proposition}[{$\mathcal{R}[a, b]$ is a vector space}]
+Let $f, g : [a, b] \to \mathbb{R}$ be two bounded and Riemann-integrable functions.
+Then
+\begin{enumerate}
+\item The function $f + g$ is Riemann integrable and
+\[
+\int_a^b (f(x) + g(x))dx = \int_a^b f(x) dx + \int_a^b g(x) dx
+\]	
+\item For every $\lambda \in \mathbb{R}$, the function $\lambda f$ is Riemann integrable and
+\[
+\int_a^b (\lambda f(x))d x = \lambda \int_a^b f(x) dx.
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+If $f : [a, b] \to \mathbb{R}$ is bounded and Riemann integrable on $[a, b]$, then we define
+\[
+\int_b^a f(x) dx := - \int_a^b f(x) dx.
+\]
+\end{definition}
+
+\begin{proposition}[Further properties of the Riemann integral]
+	Let $f, g : [a, b] \to \mathbb{R}$ be two bounded and Riemann integrable functions.
+\begin{enumerate}
+\item We have
+\[
+\int_a^b 1 dx = b - a
+\]
+\item Monotonicity: if for all $x \in [a, b]$ it holds that $f(x) \leq g(x)$, then
+\[
+\int_a^b f(x) dx  \leq \int_a^b g(x) dx.
+\]
+\item Restriction: If $z \in (a, b)$, then $f$ is Riemann integrable on $[a, z]$ and on $[z, b]$ and
+\[
+\int_a^b f(x) dx = \int_a^z f(x) dx + \int_z^b f(x) dx.
+\]
+\item Triangle inequality: The function $|f|$ is Riemann integrable on $[a, b]$ and we have the following version of the triangle inequality
+\[
+\left| \int_a^b f(x) d x  \right| \leq \int_a^b | f(x) | dx
+\]
+\item The function $f g$ is Riemann integrable on $[a, b]$. 
+\end{enumerate}
+\end{proposition}

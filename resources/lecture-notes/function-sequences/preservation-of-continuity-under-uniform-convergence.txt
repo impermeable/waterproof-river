@@ -1,0 +1,58 @@
+\begin{theorem}
+\label{th:preservation-continuity}
+Let $(f_n)$ be a sequence of continuous functions from a domain $D$ in the metric space $(X, \dist_X)$ to the metric space $(Y, \dist_Y)$ that converges uniformly to a function $g : D \to Y$. Then the function $g$ is also continuous on $D$.
+\end{theorem}
+
+\begin{proof}
+We need to show that $g: D \to Y$ is continuous, so we need to show that for all $a \in D$, the function $g$ is continuous in $a$.
+
+Let $a \in D$. We need to show that
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \existstext \delta > 0, \\
+&\quad\quad \foralltext x \in D, \\
+&\quad\quad\quad \text{if } 0 < \dist_X(x, a) < \delta\\
+&\quad\quad\quad\quad \text{then } \dist_Y(g(x), g(a)) < \epsilon.
+\end{split}
+\]
+Let $\epsilon > 0$.
+Since the function sequence $(f_n)$ converges to $g$ uniformly, there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, and all $x \in D$
+\[
+\dist_Y(f_n(x), g(x)) < \frac{\epsilon}{3}.
+\]
+Choose such an $N \in \mathbb{N}$. Because the function $f_N$ is continuous, there exists a $\delta_0 > 0$ such that for all $x \in D$, if $0 < \dist_X(x, a) < \delta_0$, then
+\[
+\dist_Y(f_N(x), f_N(a)) < \frac{\epsilon}{3}.
+\]
+
+Choose $\delta := \delta_0$.
+
+Let $x \in D$. Assume that $0 < \dist_X(x, a) < \delta$. Then by the triangle inequality
+\[
+\begin{split}
+\dist_Y(g(x), g(a))
+&\leq \dist_Y(g(x), f_N(x)) + \dist_Y(f_N(x), f_N(a) )\\
+&\qquad + \dist(f_N(a), g(a))\\
+&< \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}\\
+&=\epsilon.
+\end{split}
+\]
+\end{proof}
+
+The previous theorem is sometimes very useful to rule out that a sequence of functions converges \emph{uniformly}. If the functions in the sequence are all continuous, but the pointwise limit is not continuous, then the sequence does not converge uniformly.
+
+\begin{example}
+Consider the sequence of functions $(f_n)$ from $[0, 1]$ to $\mathbb{R}$ defined by
+\[
+f_n(x) = x^n.
+\]
+We have seen that the pointwise limit is $g: [0, 1] \to \mathbb{R}$ given by
+\[
+g(x) := \begin{cases}
+0, & \text{if } x \in [0, 1)\\
+1, & \text{if } x = 1.
+\end{cases}
+\]
+Because the function $g$ is not continuous, but for every $n \in\mathbb{N}$ the function $f_n$ \emph{is} continuous (as it is a polynomial), we conclude that the sequence $(f_n)$ does not converge to $g$ uniformly.
+\end{example}

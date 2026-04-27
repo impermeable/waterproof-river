@@ -1,0 +1,48 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+	Let $a : \mathbb{N} \to \mathbb{R}$ be a real-valued sequence. Define the sequence $b : \mathbb{N} \to \mathbb{R}$ by
+	\[
+	b_n := a_{n + 1 } - a_n, \qquad \text{ for } n \in \mathbb{N}.
+	\]
+	\begin{enumerate}
+	\item Show that the series
+	\[
+	\sum_{n = 0}^\infty b_n
+	\]
+	converges if and only if the sequence $a$ converges. 
+	\item Show that if the sequence $a : \mathbb{N} \to \mathbb{R}$ converges, then
+	\[
+	\lim_{n \to \infty} a_n = a_0 + \sum_{n = 0}^\infty b_n
+	\]
+	\end{enumerate}
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Show part (\ref{it:sum-series}) of Theorem \ref{th:limit-laws-series}.
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+	We consider in this exercise sequences taking values in the normed vector space $(\mathbb{R}^2, \| \cdot \|_{2})$ (recall that this is $\mathbb{R}^2$ with the standard Euclidean norm).
+	Give an example of a sequence $a : \mathbb{N} \to \mathbb{R}^2$ such that
+	\begin{enumerate}
+	\item $\lim_{n \to \infty} a_n = 0$, 
+	\item $\sum_{n=1}^\infty a_n$ diverges.
+	\end{enumerate}
+	(As always, prove that your example satisfies these properties).
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Determine whether the following series converge or diverge. As always, give a proof of your statement.
+	
+	\begin{align*}
+	(a) \quad & \sum_{k=3}^\infty \frac{2}{k^3} &
+	(b) \quad & \sum_{k=1}^\infty k & 
+	(c) \quad & \sum_{k=1}^\infty \left(1 + \frac{1}{k} \right)^k\\
+	(d) \quad & \sum_{k=1}^\infty (-1)^k \left(\frac{1}{3} \right)^{2k} &
+	(e) \quad & \sum_{k=0}^\infty \frac{2k + 3}{(k+1)^2 (k+2)^2} &
+	(f) \quad & \sum_{k=1}^\infty \sqrt[k]{2^{-k} + 3}
+	\end{align*}
+\end{orange_exercise}

@@ -1,0 +1,27 @@
+\begin{theorem}[Limit laws series]
+	\label{th:limit-laws-series}
+	Let $(V, \| \cdot \|)$ be a normed vector space.
+Let $a : \mathbb{N} \to V$ and $b : \mathbb{N} \to V$ be two sequences. Suppose that the series
+\[
+\sum_{n=0}^\infty a_n \qquad \text{ and } \qquad \sum_{n=0}^\infty b_n
+\]	
+are convergent. Suppose $\lambda \in \mathbb{R}$. Then
+\begin{enumerate}
+\item \label{it:sum-series} The series
+\[
+\sum_{n=0}^\infty(a_n + b_n)
+\]	
+is convergent and converges to
+\[
+\sum_{n=0}^\infty a_n + \sum_{n=0}^\infty b_n.
+\]
+\item \label{it:lim-law-scal-series} The series
+\[
+\sum_{n=0}^\infty (\lambda a_n)
+\]
+is convergent and converges to 
+\[
+\lambda \sum_{n=0}^\infty a_n
+\]
+\end{enumerate}
+\end{theorem}

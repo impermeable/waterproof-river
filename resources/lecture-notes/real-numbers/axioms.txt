@@ -1,0 +1,19 @@
+%
+%
+%
+%
+%\subsection{Field axioms}
+%
+%\begin{axiom}[commutativity of addition]
+%	\[\forall a, b \in \mathbb{R}, a + b = b + a\]
+%\end{axiom}
+%
+%\begin{axiom}[associativity of addition]
+%	\[\forall a, b, c \in \mathbb{R}, (a + b) + c = a + (b + c)\]	
+%\end{axiom}
+%
+%\subsection{Order axioms}
+%
+%\subsection{Completeness axioms}
+%
+%

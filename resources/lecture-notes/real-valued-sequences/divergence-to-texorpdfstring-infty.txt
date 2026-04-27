@@ -1,0 +1,45 @@
+{\unichar{"221E}} and \texorpdfstring{$-\infty$}{-\unichar{"221E}}}
+
+\begin{definition}
+	We say a sequence $(a_n)$ \emph{diverges to $\infty$}, and write
+	\[
+	\lim_{n \to \infty} a_n = \infty
+	\]
+	if
+	\[
+	\begin{split}
+		&\foralltext M \in \mathbb{R}, \\
+		&\quad \existstext N \in \mathbb{N},\\
+		&\quad \quad \foralltext n \geq N, \\
+		&\quad \quad \quad a_n > M. 
+	\end{split}
+	\]
+	Similarly, we say a sequence $(a_n)$ \emph{diverges to $-\infty$}, and write
+	\[
+	\lim_{n \to \infty} a_n = -\infty
+	\]
+	if
+	\[
+	\begin{split}
+		&\foralltext M \in \mathbb{R}, \\
+		&\quad \existstext N \in \mathbb{N},\\
+		&\quad \quad \foralltext n \geq N, \\
+		&\quad \quad \quad a_n < M. 
+	\end{split}
+	\]
+\end{definition}
+
+\begin{proposition}
+	\label{pr:improper-divergence-boundedness}
+Let $a : \mathbb{N} \to \mathbb{R}$ be a sequence such that
+\[
+\lim_{n \to \infty} a_n = \infty.
+\]	
+Then the sequence $(a_n)$ is bounded from below.
+
+Similarly, let $b : \mathbb{N} \to \mathbb{R}$ be a sequence such that
+\[
+\lim_{n \to \infty} b_n = - \infty.
+\]
+Then the sequence $(b_n)$ is bounded from above.
+\end{proposition}

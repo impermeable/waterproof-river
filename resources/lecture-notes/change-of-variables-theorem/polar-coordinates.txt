@@ -1,0 +1,20 @@
+The transformation is given by the function
+\[
+\Phi_{\mathsf{pol}} : (0, \infty) \times (0, 2 \pi) \to \mathbb{R}^2
+\]
+defined by
+\[
+\Phi_{\mathsf{pol}}( r, \phi ) := (r \cos \phi, r \sin \phi) 
+\]
+
+Here,
+\[
+\det \ [D \Phi_{\mathsf{pol}}]_{(r, \phi)} = r
+\]
+
+In many situations in which one would like to change the polar coordinates to compute an integral, the Change-of-variables Theorem does not directly apply. The transformation from polar to Cartesian coordinates is so nice, however, that one can obtain a statement that can be applied more conveniently.
+
+A subset $E \subset (0,\infty) \times (0, 2\pi)$ is a Jordan set if and only if $\Phi_{\mathsf{pol}}(E)$ is a Jordan set. Moreover, if one of these holds, a function $f : \mathbb{R}^2 \to \mathbb{R}$ is Riemann integrable on $\Phi_{\mathsf{pol}}(E)$ if and only if $f \circ \Phi_{\mathsf{pol}}$ is Riemann integrable on $E$ and
+\[
+\int_{\Phi_{\mathsf{pol}}(E)} f(x) dx = \int_E f(\Phi_{\mathsf{pol}}(r, \phi)) r dr d\phi
+\]

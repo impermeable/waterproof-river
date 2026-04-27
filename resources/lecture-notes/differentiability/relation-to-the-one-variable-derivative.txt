@@ -1,0 +1,65 @@
+The following proposition relates the derivative to the derivative you are used to the one-variable derivative from Calculus.
+
+\begin{proposition}
+	\label{pr:relation-diff-with-prime}
+	Let $O \subset \mathbb{R}$ be an open subset of $\mathbb{R}$ and consider a function $f : O \to \mathbb{R}$ interpreted as a function from the subset $\Omega$ of the normed vector space $(\mathbb{R}, | \cdot |)$ to the normed vector space $(\mathbb{R}, | \cdot |)$. Let $s \in O$. Then $f$ is differentiable in $s$ if and only if the one-variable derivative
+	\[
+	f'(s) = \lim_{t \to s} \frac{f(t) - f(s)}{t - s}
+	\]
+	exists.
+	Moreover, if this one-variable derivative exists, then
+	\begin{equation}
+		\label{eq:rel-der-R1}
+	f'(s) = (Df)_s (\mathbf{e}_1) = (Df)_s(1).
+	\end{equation}
+\end{proposition}
+
+\begin{warning}
+	{\bf Warning: } It is good to take a moment and internalize the difference between the left-hand side and the right-hand side of (\ref{eq:rel-der-R1}). The left-hand side is a real number, the number $f'(s) \in \mathbb{R}$. The right-hand side is a linear map $(Df)_s : \mathbb{R} \to \mathbb{R}$ applied to the real number $e_1 = 1 \in \mathbb{R}$.
+\end{warning}
+
+\begin{example}
+	Consider the function $f : \mathbb{R} \to \mathbb{R}$ given by
+	\[
+	f(x) = x.
+	\]
+	You have probably learned that for every $a \in \mathbb{R}$, $f'(a) = 1$, with the same limit definition of $f'(a)$ as given above, and indeed
+	\[
+	\begin{split}
+		\lim_{x \to a} \frac{f(x) - f(a)}{x - a}
+		&= \lim_{x \to a} \frac{x - a}{x - a}\\
+		&= 1.
+	\end{split}
+	\]
+	We can then also write down the derivative $(Df)_a : \mathbb{R} \to \mathbb{R}$ which is a linear map from $\mathbb{R}$ to $\mathbb{R}$. To describe $(Df)_a$, we need to specify what it does to an element $h \in \mathbb{R}$, and again with the previous proposition we know that
+	\[ 
+	(Df)_a (h) = f'(a) \cdot h = h.
+	\]
+\end{example}
+
+The previous proposition can be generalized to the case in which the target is an arbitrary normed vector space.
+
+\begin{proposition}
+\label{pr:relation-diff-with-prime-normed}	
+Let $O \subset \mathbb{R}$ be open and consider a function $f : O \to W$ interpreted as a function from the subset $O$ of the normed vector space $(\mathbb{R}, | \cdot |)$ to a normed vector space $(W, \| \cdot \|_W)$. Let $s \in \Omega$. Then $f$ is differentiable in $s$ if and only if the one-variable derivative
+\begin{equation}
+	\label{eq:diff-quot-def-deriv}
+f'(s) = \lim_{t \to s} \frac{f(t) - f(s)}{t - s}
+\end{equation}
+exists. Moreover, if the one-variable derivative $f'(s)$ exists, then
+\[
+f'(s) = (Df)_s(\mathbf{e}_1) = (Df)_s(1).
+\]
+\end{proposition}
+
+The limit in (\ref{eq:diff-quot-def-deriv}) exists if and only if the limit
+\[
+\lim_{h \to 0} \frac{f(a + h) - f(a)}{h}
+\]
+exists, and then they have the same value.
+
+As an alternative notation, we will sometimes write
+\[
+\left.\frac{d}{dt} f(t) \right|_{t = a}
+\]
+instead of $f'(a)$.

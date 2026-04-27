@@ -1,0 +1,1 @@
+At the end of a proof in analysis, you often need to show an (in)equality. You can do so by chaining several (in)equalities together, of course making sure that they all hold.

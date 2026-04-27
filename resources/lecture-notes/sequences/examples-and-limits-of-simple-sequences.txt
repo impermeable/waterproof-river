@@ -1,0 +1,21 @@
+\begin{proposition}[The constant sequence]
+	\label{pr:limit-const-seq}
+Let $(X, \dist)$ be a metric space. Let $p \in X$ and assume that the sequence $(a_n)$ is given by $a_n = p$ for every $n \in \mathbb{N}$.
+We also say that $(a_n)$ is a constant sequence.
+Then $\lim_{n \to \infty} a_n = p$.
+\end{proposition}
+
+The proof of Proposition \ref{pr:limit-const-seq} is the content of Blue Exercise \ref{ex:limit-const-seq}.
+
+\begin{example}[a standard limit]
+	\label{ex:seq-one-over-n}
+Let $a : \mathbb{N} \to \mathbb{R}$ be a real-valued sequence such that 
+$a_n = 1/n$ for $n \geq 1$. Then $a : \mathbb{N} \to \mathbb{R}$ converges to $0$.
+\end{example}
+
+\begin{proof}
+	Let $\epsilon > 0$. Choose $N := \lceil 1/\epsilon \rceil + 1$. Take $n \geq N$. Then
+	\[
+	\dist_{\mathbb{R}}(a_n, 0) = |a_n - 0| = |1/n| = 1/n \leq 1/N < \epsilon.
+	\]	
+\end{proof}

@@ -1,0 +1,324 @@
+A homogeneous polynomial in $d$ variables of degree $k$ is a polynomial of which every term (i.e.~every monomial) has degree precisely $k$.
+For instance, the function 
+\[
+(x_1, x_2) \mapsto 3 x_1^4 x_2^1 + 2 x_1^3 x_2^2 + x_2^5
+\]
+is a homogeneous polynomial in two variables of degree $5$.
+
+\begin{definition}[multi-index]
+	A $d$-dimensional multi-index $\alpha$ of order $k \in \mathbb{N}$ is a map $\{1, \dots, d\} \to \mathbb{N}$ such that 
+	\[
+	\alpha_1 + \cdots + \alpha_d = k
+	\]
+	We write $|\alpha|$ for the order of a multi-index $\alpha$.
+\end{definition}
+
+If $\alpha$ is a multi-index, we use the notation
+\[
+x^{\alpha} = x_1^{\alpha_1} x_2^{\alpha_2} \cdots x_d^{\alpha_d}
+\]
+Similarly, for a function $f : \Omega \to W$ where $\Omega$ is a subset of $\mathbb{R}^d$, we will use the notation
+\[
+\frac{\partial^{|\alpha|} f}{\partial x^{\alpha}} := \left(\frac{\partial}{\partial x_1}\right)^{\alpha_1} \cdots \left(\frac{\partial}{\partial x_d} \right)^{\alpha_d} f
+\]
+
+We also define
+\[
+\alpha! := \alpha_1! \alpha_2! \cdots \alpha_d!
+\]
+
+Note that
+\[
+\frac{\partial^{|\alpha|}}{\partial x^\alpha}  x^{\alpha} = \alpha!
+\]
+This is maybe easier to appreciate in an example:
+\[
+\frac{\partial^{14}}{\partial x_1^3 \partial x_2^7 \partial x_3^4} \left((x_1)^3 (x_2)^7 (x_3)^4\right) = 3! 7! 4!
+\]
+
+
+This observation brings us to the following proposition.
+
+\begin{proposition}
+	Every homogeneous polynomial $f : \mathbb{R}^d \to \mathbb{R}$ of degree $n$ can be written uniquely as
+	\[
+	\sum_{|\alpha| = n} \frac{1}{\alpha!} s_\alpha x^{\alpha} 
+	\]
+	for some coefficients $s_\alpha \in \mathbb{R}$. Moreover, the coefficients $s_\alpha$ are precisely determined by
+	\[
+	s_\alpha = \frac{\partial^{|\alpha|} f}{\partial x^{\alpha}}(0).
+	\]
+\end{proposition}
+
+Before we prove the following proposition, the following definition will be useful.
+\begin{definition}
+Let $d, n \in \mathbb{N}$. Define the function $\boldsymbol{\alpha}$ that takes in elements $(j_1, \dots, j_n) \in \{1, \dots, d \}^n$ and returns the multi-index $\boldsymbol{\alpha}(j_1, \dots, j_n)$, that for $i = 1, \dots, d$ is given by
+\[
+\boldsymbol{\alpha}_i(j_1, \dots, j_n) := | \{ k \in \{ 1, \dots, n \} \ | \ 
+j_k = i \} |,
+\]
+in other words $\boldsymbol{\alpha}_i(j_1, \dots, j_n)$ is just the number of elements in $(j_1, \dots, j_n)$ that are equal to $i$.
+\end{definition}
+
+\begin{lemma}
+	\label{le:correspondence-hom-pol-sym-forms}
+	Let $V$ be a vector space with basis $v_1, \dots, v_d$ and corresponding coordinate map $\Phi : V \to \mathbb{R}^d$. Then there is a one-to-one correspondence between homogeneous polynomials of degree $n$ and $\mathsf{Sym}_n(V, \mathbb{R})$.
+	
+	More precisely, there is an invertible linear map $\mathcal{F}$ from $\mathsf{Sym}_n(V, \mathbb{R})$ to the vector space of homogeneous polyomials in $d$ variables of degree $n$ described as follows. The map $\mathcal{F}$ maps an $n$-linear symmetric map $\mathcal{S} \in \mathsf{Sym}_n(V, \mathbb{R})$ to the homogeneous polynomial $\mathcal{F}(\mathcal{S}) : \mathbb{R}^d \to \mathbb{R}$ given by
+	\[
+	\mathcal{F}(\mathcal{S})(x) = \frac{1}{n!}\mathcal{S}(\Phi^{-1}(x), \cdots, \Phi^{-1}(x)).\]
+	Then the following equality holds for all $x \in \mathbb{R}^d$
+	\[
+	\mathcal{F}(\mathcal{S})(x) = \frac{1}{n!}\mathcal{S}(\Phi^{-1}(x), \cdots, \Phi^{-1}(x)) = \sum_{|\alpha| = n} \frac{1}{\alpha!} x^{\alpha} S^{(\alpha)}
+	\]
+	where 
+	\[
+	S^{(\alpha)} := \mathcal{S}(v_{i_1}, v_{i_2}, \dots, v_{i_n})
+	\]
+	where $i_1, \cdots, i_n \in \{1, \dots, d\}$ are such that $v_1$ appears $\alpha_1$ times, $v_2$ appears $\alpha_2$ times etc. In particular,
+	\[
+	S^{(\alpha)} =  \frac{\partial^{|\alpha|} F}{\partial x^{\alpha} } (0).
+	\]
+	
+	
+	In particular, an element of $\mathsf{Sym}_n(V, \mathbb{R})$ is completely determined by the values on the diagonal, i.e.~if $\mathcal{S}, \mathcal{T} \in \mathsf{Sym}_n(V, \mathbb{R})$, then $\mathcal{S} = \mathcal{T}$ if and only if for all $v \in V$,
+	\[
+	\mathcal{S}(v, \cdots, v) = \mathcal{T} (v, \cdots, v).
+	\]
+\end{lemma}
+
+\begin{proof}
+	Let $v_1, \dots, v_d$ be a basis of $V$. By $n$-linearity of $\mathcal{S}$, the map $\mathcal{S}$ is completely determined by how $\mathcal{S}$ evaluates on basis vectors, i.e. by the values of
+	\[
+	\mathcal{S}\Big(v_{i_1}, \dots, v_{i_n}\Big) 
+	\]
+	where $i_1, \dots, i_n$ are indices in $\{1, \dots, d\}$. Moreover, because $\mathcal{S}$ is symmetric, it does not matter in which order the basis vectors appear. Therefore we may introduce for $\alpha$ a multi-index of order $n$ the notation
+	\[
+	\mathcal{S}^{(\alpha)} := \mathcal{S}\big( v_{i_1}, \cdots, v_{i_n} \big)
+	\]
+	where $i_1, \dots i_n$ are such that $v_1$ appears $\alpha_1$ times, $v_2$ appears $\alpha_2$ times, etc.. 
+	
+	If we now compute
+	\[
+	\mathcal{S}(u, \cdots, u)
+	\]
+	where $u := \sum_{j=1}^d x_j v_j$, we find
+	\begin{equation}
+	\label{eq:correspondence-polynomials-first-part-computation}
+	\begin{split}
+		&\frac{1}{n!}\mathcal{S}(u, \cdots, u) \\
+		&=
+		\frac{1}{n!}\mathcal{S} \left( \sum_{j_1=1}^d x_{j_1} v_{j_1}, \cdots, \sum_{j_n=1}^d x_{j_n} v_{j_n} \right)\\
+		&= \frac{1}{n!}\sum_{j_1=1}^d \cdots \sum_{j_n =1}^d x_{j_1} \cdots x_{j_n} \mathcal{S}\left(v_{j_1}, \cdots, v_{j_n} \right)
+	\end{split}
+	\end{equation}
+	We now use the notation
+	\[
+	\mathbf{1}[\boldsymbol{\alpha}(j_1, \dots, j_n) = \alpha] 
+	:=
+	\begin{cases}
+		1 &\text{if } \boldsymbol{\alpha}(j_1, \dots, j_n) = \alpha \\
+		0 & \text{otherwise}.
+	\end{cases}
+	\]
+	Note that for fixed $(j_1, \dots, j_n)$, there is only one multiindex $\alpha$ such that
+	\[
+	\boldsymbol{\alpha}(j_1, \dots, j_n) = \alpha
+	\]
+	from which we conclude that
+	\[
+	\sum_{|\alpha| = n} \mathbf{1}[\boldsymbol{\alpha}(j_1, \dots, j_n) = \alpha] = 1
+	\]
+	Therefore, we may continue in (\ref{eq:correspondence-polynomials-first-part-computation}) by
+	\[
+	\begin{split}
+		&\frac{1}{n!}\mathcal{S}(u, \cdots, u) \\
+		&= \frac{1}{n!}\sum_{j_1=1}^d \cdots \sum_{j_n =1}^d \sum_{|\alpha| = n} \mathbf{1}[\boldsymbol{\alpha}(j_1, \dots, j_n) = \alpha] x_{j_1} \cdots x_{j_n} \mathcal{S}\left(v_{j_1}, \cdots, v_{j_n} \right)\\
+		&= \frac{1}{n!}\sum_{j_1=1}^d \cdots \sum_{j_n =1}^d \sum_{|\alpha| = n} \mathbf{1}[\boldsymbol{\alpha}(j_1, \dots, j_n) = \alpha] x^\alpha \mathcal{S}^{(\alpha)}
+	\end{split}
+	\]
+	We now change the order of summation and find
+	\[
+	\begin{split}
+		&\frac{1}{n!}\mathcal{S}(u, \cdots, u) \\
+		&= \frac{1}{n!}\sum_{|\alpha| = n}  x^\alpha \mathcal{S}^{(\alpha)} \sum_{j_1=1}^d \cdots \sum_{j_n =1}^d \mathbf{1}[\boldsymbol{\alpha}(j_1, \dots, j_n) = \alpha] \\
+		&= \frac{1}{n!}\sum_{|\alpha| = n} {n \choose \alpha} x^\alpha \mathcal{S}^{(\alpha)}\\
+		&= \sum_{|\alpha| = n} \frac{1}{\alpha!} x^{\alpha} \mathcal{S}^{(\alpha)}.
+	\end{split}
+	\]
+	Therefore the coefficients $\mathcal{S}^{(\alpha)}$ can be read off by inspecting the polynomial $F : \mathbb{R}^d \to \mathbb{R}$ given by
+	\[
+	F(x) := \frac{1}{n!}\mathcal{S} (\Phi^{-1}(x), \cdots, \Phi^{-1}(x)) = \sum_{|\alpha| = n} \frac{1}{\alpha!} x^\alpha \mathcal{S}^{(\alpha)},
+	\]
+	or alternatively,
+	\[
+	\mathcal{S}^{(\alpha )} = \frac{1}{n!} \frac{\partial^{|\alpha|}}{\partial x^\alpha} F(0)
+	\]
+\end{proof}
+
+\begin{proposition}
+	Let $q : \mathbb{R}^d \to \mathbb{R}$ be a homogeneous polynomial of degree $k$. Define the polynomial $q_a : \mathbb{R}^d \to \mathbb{R}$ by
+	\[
+	q_a(x) := q(x - a).
+	\]
+	Then for all $b, x \in \mathbb{R}^d$,
+	\[
+	\frac{1}{k!}(D^k q_a)_b(x - a, \cdots, x - a) = q_a(x) = q(x - a).
+	\]
+\end{proposition}
+
+\begin{proof}
+	By the correspondence between homogeneous polynomials and symmetric multilinear forms in Lemma \ref{le:correspondence-hom-pol-sym-forms}, we know that there exists a symmetric multilinear form $\mathcal{S} : (\mathbb{R}^d)^{\times k} \to \mathbb{R}$ such that for all $x \in \mathbb{R}^d$,
+	\[
+	\frac{1}{k!}\mathcal{S}(x, \cdots, x) = q(x).
+	\]
+	Define $f : \mathbb{R}^d \to \mathbb{R}$ by
+	\[
+	f(x) := \frac{1}{k!} \mathcal{S}(x - a, \cdots, x - a) =
+	q(x - a).
+	\]
+	By the previous proposition, we find that for all $b \in \mathbb{R}^d$,
+	\[
+	(D^k q_a)_b = (D^k f)_b
+	= \mathcal{S}
+	\]
+	and therefore for all $b, x \in \mathbb{R}^d$,
+	\[
+	\frac{1}{k!}(D^k q_a)_b(x - a, \dots, x-a)
+	= q(x - a).
+	\]
+\end{proof}
+
+The previous proposition also implies in particular that when $q$ is a homogeneous polynomial of degree $k$, that then
+\[
+q(x) = \frac{1}{k!} (D^k q)_0(x, \cdots, x).
+\]
+
+\begin{example}
+	Let $f : \mathbb{R}^2 \to \mathbb{R}$, let $a \in \mathbb{R}^2$ and suppose we want to find a function $f : \mathbb{R}^2 \to \mathbb{R}$ such that for all $u \in \mathbb{R}^2$,
+	\[ (D^3 f)_a(u, u, u) = 2 (u_1)^2 (u_2).\]
+	Note that it is necessary for the right-hand side to be a homogenous polynomial of degree three, otherwise such an $f$ cannot be found. We call this homogeneous polynomial $q : \mathbb{R}^2 \to \mathbb{R}$, i.e. for all $x \in \mathbb{R}^2$,
+	\[
+	q(u) := 2 (u_1)^2 (u_2)
+	\]
+
+	We define $q_a : \mathbb{R}^2 \to \mathbb{R}$ by
+	\[
+	q_a := q(x - a)
+	\]
+
+	By the previous proposition, we know that 
+	\[
+	(D^3 \frac{1}{3!} q_a)_a = \frac{1}{3!}(D^3 q_a)_a = q_a.
+	\]
+	so we can choose $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[
+	f(x) := \frac{2}{3!} (x_1 - a_1)^2 (x_2 - a_2).
+	\]	
+%	By an earlier proposition, we know that
+%	\[
+%	q(u) = \sum_{| \alpha | = 3 } \frac{1}{\alpha!} s_\alpha u^\alpha
+%	\]
+%	where
+%	\[
+%	s_\alpha = \frac{\partial^3 q}{\partial x^\alpha}(0).
+%	\]
+%	
+%	We know by the previous proposition that if such a function $f$ exist that then for all $u \in \mathbb{R}^2$,
+%	\[ 
+%	\sum_{ |\alpha| = 3} \frac{1}{\alpha!} \frac{\partial^{|\alpha|}f}{\partial x^{\alpha}} (a) u^\alpha = \frac{1}{3!}(D^3 f)_a(u, u, u) = \frac{2}{3!} (u_1)^2 (u_2).
+%	\]
+%	If we compare the l\eft-hand side and right-hand side this may suggest us to find a function such that
+%	\[
+%	\frac{1}{3!}\frac{\partial^3 f}{(\partial x_1)^2 \partial x_2}(a) = \frac{2}{3!}.
+%	\]
+%	and all other partial derivatives in $a$ vanish. 
+%	Now the polynomial $f : \mathbb{R}^2 \to \mathbb{R}$
+%	given by
+%	\[
+%	f(x) \mapsto \frac{1}{3} (x_1 - a_1)^2 (x_2 - a_2)
+%	\]
+%	is such a polynomial.
+\end{example}
+
+\section*{Taylor's theorem in coordinates}
+
+We would now like to give a version of Taylor's theorem in coordinates. For that, we first need the following proposition.
+
+\begin{proposition}
+Let $\Omega \subset \mathbb{R}^d$ be open, let $a \in \Omega$ and suppose $f : \Omega \to \mathbb{R}^m$ is $n$ times differentiable in $a \in \Omega$. then for all $k = 1, \dots, n$ and all $x \in \mathbb{R}^d$,
+\[ 
+\frac{1}{k!} (D^k f)_a(x, \cdots, x) = \sum_{ |\alpha| = k} \frac{1}{\alpha!} \frac{\partial^{|\alpha|}f}{\partial x^{\alpha}} (a) x^\alpha.
+\]	
+\end{proposition}
+
+\begin{proof}
+Let $k \in \{ 1, \dots, n \}$. We have that
+\[
+\begin{split}
+\frac{1}{k!} (D^k f)_a (x, \cdots, x)
+&= \frac{1}{k!} (D^k f)_a \left(\sum_{j_1=1}^d x_{j_1} e_{j_1}, \dots, \sum_{j_k = 1}^n x_{j_d} e_{j_d}\right)\\
+&= \frac{1}{k!}\sum_{j_1 = 1}^d \cdots \sum_{j_k = 1}^d (D^k f)_a (x_{j_1} e_{j_1}, \dots, x_{j_k} e_{j_k})\\
+&= \frac{1}{k!}\sum_{j_1 = 1}^d \cdots \sum_{j_k = 1}^d x_{j_1} \cdots x_{j_k} (D^k f)_a (e_{j_1}, \dots, e_{j_k})\\
+&= \frac{1}{k!} \sum_{|\alpha| = k} {k \choose \alpha} \frac{\partial^k f}{\partial x^\alpha} (a) x^\alpha \\
+&= \sum_{|\alpha| = k} \frac{1}{\alpha!} \frac{\partial^k f}{\partial x^\alpha} (a) x^\alpha
+\end{split}
+\]
+\end{proof}
+
+We can now formulate Taylor's theorem in terms of coordinates.
+
+\begin{theorem}[Taylor's theorem in coordinates]
+	Let $\Omega \subset \mathbb{R}^d$ be open, let $a \in \Omega$ and suppose $f : \Omega \to \mathbb{R}^m$ is $n$ times differentiable in the point $a \in \Omega$. Then, defining the function
+	$\mathsf{Err}_{a, n} : \Omega \to \mathbb{R}^m$ by
+	\[
+	\mathsf{Err}_{a, n}(x) := f(x) - \left(f(a) + \sum_{1 \leq |\alpha| \leq n} \frac{1}{\alpha!} \frac{\partial^{|\alpha|}f}{\partial x^\alpha}(a) (x - a)^\alpha \right)
+	\]
+	we have that
+	\[
+	\lim_{ x \to a } \frac{\|\mathsf{Err}_{a, n}(x)\|_2}{\|x - a\|^n_2} = 0.
+	\]
+\end{theorem}
+
+\begin{definition}
+	Let $\Omega \subset \mathbb{R}^d$ be open, let $a \in \Omega$ and suppose $f : \Omega \to \mathbb{R}$ is $n$ times differentiable in the point $a \in \Omega$. Then the polynomial 
+	\[
+	f(a) + \sum_{1 \leq | \alpha | \leq n} \frac{1}{\alpha!} \frac{\partial^{|\alpha|}f}{\partial x^\alpha}(a) (x - a)^\alpha
+	\]
+	is called the $n$th order Taylor polynomial of $f$ around the point $a$. 
+\end{definition}
+
+In the context of Proposition \ref{pr:uniqueness-taylor-expansion}, if $g$ is an at most $n$th degree polynomial such that
+\[
+\lim_{x \to a} \frac{|f(x) - g(x) |}{\|f(x) - g(x)  \|_2^n} = 0
+\]
+then it is necessarily the Taylor polynomial of $f$.
+
+The approximation formula simplifies a bit if $f$ is just a function of one variable. 
+
+\begin{corollary}[Taylor's theorem for functions of one variable]
+	Let $\Omega \subset \mathbb{R}$ be open and let $f : \Omega \to \mathbb{R}$ be a function such that $f$ is $n$ times differentiable in a point $a \in \Omega$. Then there exists a function $\mathsf{Err}_{a, n} : \Omega \to \mathbb{R}$ such that
+	\[
+	f(x) = f(a) + \sum_{k=1}^n \frac{1}{k!} f^{(k)}(a) \cdot (x - a)^k + \mathsf{Err}_{a, n}(x)
+	\]
+	and such that 
+	\[
+	\lim_{x \to a} \frac{|\mathsf{Err}_{a, n}(x)|}{| x - a|^n} = 0.
+	\]
+\end{corollary}
+
+
+
+Here $f^{(1)}(a)$ is notation for $f'(a)$, $f^{(2)}(a)$ is notation for $f''(a)$ etc..
+
+Finally, we note that we can give an explicit expression for the error term if $f$ maps to $\mathbb{R}$ and $f$ has higher differentiability than the order of the Taylor polynomial.
+
+\begin{theorem}[Taylor's theorem with Lagrange remainder]
+Let $f : \Omega \to \mathbb{R}$ be $(n+1)$ times differentiable on $\Omega$. Let $a \in \Omega$. Then there exists a $\theta \in (0, 1)$ such that
+\[
+\begin{split}
+f(x) &= f(a) + \sum_{1 \leq |\alpha| \leq n} \frac{1}{\alpha!} \frac{\partial^{|\alpha|} f}{\partial x^{\alpha}} (x - a)^\alpha \\
+&+ \frac{1}{(n+1)!}(D^{n+1} f)_{a + \theta(x - a)} (x - a, \dots, x-a).
+\end{split}
+\]
+\end{theorem}

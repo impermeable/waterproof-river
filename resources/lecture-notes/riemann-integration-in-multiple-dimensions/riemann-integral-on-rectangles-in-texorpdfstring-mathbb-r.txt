@@ -1,0 +1,75 @@
+^d$}{\unichar{"211D}\unichar{"1D48}}}
+
+Riemann integrability of functions defined on a rectangle $R \subset \mathbb{R}^d$ is defined completely analogously to the Riemann integral for functions defined on an interval $[a, b]\subset \mathbb{R}$.
+
+\begin{definition}
+	Let $R \subset \mathbb{R}^d$ be a closed rectangle, 
+	\[
+	R = [a_1, b_1] \times [a_2, b_2] \times \cdots \times [a_d, b_d]
+	\]
+	let $f : R \to \mathbb{R}$ be a bounded function and let
+	\[
+	Q = P^1 \times \cdots \times P^d
+	\]
+	be a partition of $R$, where for every $j \in \{ 1, \cdots, d\}$,
+	\[
+	P^j = \{ x^j_0, x^j_1, \dots, x^j_{n_j} \}
+	\]
+	is a partition of $[a_j, b_j]$.	
+	
+	Then the \emph{upper sum} of $f$ with respect to $Q$ is defined as
+	\[
+	U(Q, f) := \sum_{k_1=1}^{n_1} \cdots \sum_{k_d = 1}^{n_d}
+	M_{k_1, \cdots, k_d} \Delta x^1_{k_1} \cdots \Delta x^d_{k_d}
+	\]
+	where $\Delta x^j_k := (x^j_k - x^j_{k-1})$ and 
+	\[
+	M_{k_1, \dots, k_d} := \sup_{x \in [x^1_{k_1-1}, x^1_{k_1}] \times \cdots \times [x^d_{k_d-1}, x^d_{k_d}]} f(x)
+	\]
+	
+	Similarly, we define the \emph{lower sum} of $f$ with respect to $Q$ as
+	\[
+	L(Q, f) := \sum_{k_1=1}^{n_1} \cdots \sum_{k_d = 1}^{n_d}
+	m_{k_1, \cdots, k_d} \Delta x^1_{k_1} \cdots \Delta x^d_{k_d}
+	\]
+	where 
+	\[
+	m_{k_1, \dots, k_d} := \inf_{x \in [x^1_{k_1-1}, x^1_{k_1}] \times \cdots \times [x^d_{k_d-1}, x^d_{k_d}]} f(x).
+	\]
+\end{definition}
+
+\begin{definition}
+	Let $R \subset \mathbb{R}^d$ be a closed rectangle, and let $f: R \to \mathbb{R}$ be a bounded function.
+	We define the upper Darboux integral of $f$ as
+	\[
+	\overline{\int_R} f d x := \inf \{U(P, f) \ | \ P \text{ partition of } R \}
+	\]	
+	and the lower Darboux integral of $f$ as
+	\[
+	\underline{\int_R} f dx := \sup \{ L(P, f) \ | \ P \text{ partition of } R \}
+	\]
+\end{definition}
+
+\begin{definition}
+	Let $R \subset \mathbb{R}^d$ be a closed rectangle and let $f: R \to \mathbb{R}$ be a bounded function.
+	We say $f$ is \emph{Riemann integrable} if 
+	\[
+	\overline{\int_R} f dx = \underline{\int_R} f dx.
+	\]
+	In this case we say that the \emph{Riemann integral} of $f$ equals this common value, i.e.
+	\[
+	\int_R f dx := \overline{\int_R} f dx = \underline{\int_R} f dx.
+	\]
+\end{definition}
+
+\begin{proposition}[Alternative characterization of Riemann integrability]
+	Let $R \subset \mathbb{R}^d$ be a closed rectangle and let $f : R \to \mathbb{R}$ be bounded.
+	Then $f$ is Riemann integrable if and only if
+	\[
+	\begin{split}
+		&\foralltext \epsilon > 0,\\
+		&\quad \existstext \text{a partition } P \text{ of } R, \\
+		&\quad\quad U(P, f) - L(P, f) < \epsilon.
+	\end{split}
+	\]
+\end{proposition}

@@ -1,0 +1,23 @@
+The following theorem is a direct consequence of Theorem \ref{th:preservation-differentiability} on the preservation of differentiability. 
+
+\begin{theorem}
+Let $(f_n)$ be a sequence of functions from $\Omega \subset \mathbb{R}$ to $\mathbb{R}$.
+Suppose
+\begin{enumerate}
+	\item for every $n \in \mathbb{N}$, the function $f_n$ is continuously differentiable on $\Omega$.
+	\item the function series
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges pointwise to a function $g : \Omega \to \mathbb{R}$.
+	\item the function series
+	\[
+	\sum_{k=0}^\infty f_k'
+	\]
+	converges uniformly.
+\end{enumerate}	
+Then the function $g$ is differentiable on $\Omega$ as well and for all $x \in \Omega$,
+\[
+g'(x) = \sum_{k=0}^\infty f_k'(x)  
+\]
+\end{theorem}

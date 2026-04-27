@@ -1,0 +1,9 @@
+Mathematical analysis is for a large part the rigorous study of the approximate behavior of functions. Consider for instance the function $b : \mathbb{N} \to \mathbb{Q}$ given by 
+\[
+b(n) := \frac{1}{n+1}.
+\]
+As $n$ becomes very large, the values $b(n)$ get very close to zero. Another example can be given for the function $f : \mathbb{Q} \to \mathbb{Q}$ given by 
+\[
+f(x) = x^2 + 2.
+\]
+As $x$ becomes very close to $1$, the values $f(x)$ get very close to $3$. But the terms that I used such as ``very large" and ``very close" do not have a precise meaning. In analysis, we introduce precise concepts such as limits, that allow you to make precise statements and give rigorous proofs.

@@ -1,0 +1,96 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+\label{ex:limit-law-product-func}
+Prove Part (\ref{it:limit-law-product-func}) of Theorem \ref{th:limit-laws-real-valued-func}.	
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Consider the function $f : \mathbb{R}^2 \setminus\{0\} \to \mathbb{R}$ defined by
+\[
+f(x) = \frac{\exp(x_1^2 - 3 x_2)}{x_1^2 + x_2^2 }.
+\]	
+Prove that $f : \mathbb{R}^2 \setminus\{0\} \to \mathbb{R}$ is continuous considered as a function mapping from the domain $\mathbb{R}^2\setminus\{0\}$ in the normed vector space $(\mathbb{R}^2, \| \cdot \|_2)$ to $(\mathbb{R}, | \cdot |)$. 
+{\bf Hint:} Argue very precisely, using the results in this chapter, but avoid going back to the definition.
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Consider the function $f : \mathbb{R} \to \mathbb{R}$ defined by $f(x) = x^2$. Prove that
+\[
+\lim_{x \to \infty} f(x) = \infty.
+\]
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+Show that the function $f : \mathbb{R}^2 \to \mathbb{R}$ defined by
+\[
+f(x) = 
+\begin{cases}
+\frac{x_1^4 + 2x_2^4}{x_1^2 + x_2^2}& (x_1, x_2) \neq (0, 0)\\
+0 & (x_1, x_2) = (0, 0) 	
+\end{cases}
+\]
+is continuous as a function from the normed vector space $(\mathbb{R}^2, \| \cdot \|_2)$ to the normed vector space $(\mathbb{R}, | \cdot |)$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $f : (0,\infty) \to \mathbb{R}$ be a continuous function (viewed as a function from the domain $(0,\infty)$ in the normed vector space $(\mathbb{R}, | \cdot |)$) such that
+\[
+\lim_{x \downarrow 0} f(x) = 1
+\]	
+and
+\[
+\lim_{x \to \infty} f(x) = -\infty.
+\]
+Show that there exists a $c \in (0,\infty)$ such that $f(c) = 0$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $f : \mathbb{R} \to \mathbb{R}$ be a function and let $a \in \mathbb{R}$. Let $L \in \mathbb{R}$.
+Show that 
+\[
+\lim_{x \to a} f(x) = L
+\]
+if and only if
+\[
+\lim_{x \downarrow a} f(x) = \lim_{x \uparrow a} f(x) = L.
+\]
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $(V, \| \cdot \|_A)$ be a {\bf finite-dimensional} normed vector space, let $D \subset V$ be a subset of $V$ and consider a function $f : D \to \mathbb{R}$. Let $a \in D$ and suppose $f$ is continuous in $a$ in the normed vector space $(V, \| \cdot \|_A)$. Let $\| \cdot \|_B : V \to \mathbb{R}$ be another norm on $V$. Show that $f$ is also continuous in $a$ in the normed vector space $(V, \| \cdot \|_B)$.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+\label{ex:operator-norm-is-norm}
+Prove Proposition \ref{pr:operator-norm-is-norm}.	
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $f : (-\infty, 3) \to \mathbb{R}$ be a continuous function (viewed as a function from the domain $(-\infty, 3)$ in the normed vector space $(\mathbb{R}, | \cdot |)$).
+	Assume that 
+	\[
+	\lim_{x \to - \infty} f(x) = \infty
+	\]	
+	and
+	\[
+	\lim_{x \uparrow 3} f(x) = \infty.
+	\]
+	Show that $f$ attains a minimum on the interval $(-\infty, 3)$. I.e., show that there exists a $c \in (-\infty, 3)$ such that for all $x \in (- \infty, 3)$,
+	\[
+	f(c) \leq f(x).
+	\]
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $f : \mathbb{R}^2 \to \mathbb{R}$ be given by
+\[
+f(x) :=
+\begin{cases}\frac{(x_1)^4 - 2 (x_2)^2}{(x_1)^4 + (x_2)^4} & (x_1, x_2) \neq (0, 0)\\
+0 & (x_1, x_2) = (0, 0).
+\end{cases}
+\]
+Either prove that the function $f$ is continuous  or prove that it is not continuous (where $f$ is viewed as a function from the domain $\mathbb{R}^2$ in the normed vector space $(\mathbb{R}^2, \| \cdot \|_2)$ to the normed vector space $(\mathbb{R}, |\cdot|)$).	
+\end{orange_exercise}

@@ -1,0 +1,134 @@
+Partial derivatives are special types of directional derivatives, for functions that are defined on the vector space $\mathbb{R}^d$.
+
+\begin{definition}
+	Let $f : \Omega \to W$ be a function defined on an open domain $\Omega \subset \mathbb{R}^d$.
+	The $i$th partial derivative in a point $a \in \Omega$, denoted by
+	\[
+	\frac{\partial f}{\partial x_i}(a),
+	\]	
+	is the directional derivative in the direction of the $i$th unit vector $\mathbf{e}_i$
+	\[
+	\frac{\partial f}{\partial x_i}(a) := (D_{\mathbf{e}_i} f)_a = \left.\frac{d}{dt} f(a + t \mathbf{e}_i) \right|_{t = 0} = \lim_{h \to 0} \frac{f(a + h \mathbf{e}_i) - f(a)}{h}.
+	\]
+	Here
+	\[ \mathbf{e}_i := \underset{1 \text{ in } i\text{th position}}{(0, \dots, 0, 1, 0 \dots, 0)}.\]
+\end{definition}
+
+%\begin{example}
+%	Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+%	\[
+%	f(x_1, x_2) = x_1^2 + 2 x_1 x_2 + 3 x_2^4.
+%	\]
+%	
+%	Let us determine whether the partial derivative
+%	\[
+%	\frac{\partial f}{\partial x_2}.
+%	\]
+%	exists in the point $a := (a_1, a_2)$.
+%	
+%	To do so, by definition, we need to see if the directional derivative of $f$ in the direction of $e_2$ in the point $a$, namely
+%	\[
+%	(D_{e_2} f)_a
+%	\]
+%	exists.
+%	
+%	By Definition \ref{de:dir-deriv}, we need to verify whether the derivative of the function $g : \mathbb{R} \to \mathbb{R}$
+%	defined by
+%	\[
+%	\begin{split}
+%		g(t)
+%		&:= (f \circ \ell_{a, e_2}) (t) = f(a + t e_2 )\\
+%		&= f\big(( a_1, a_2 + t )\big) = a_1^2 + 2 a_1 (a_2 + t) + 3 (a_2 + t)^4.
+%	\end{split}
+%	\]
+%	exists in the point $t = 0$. Since $g$ is a polynomial in one variable, it is indeed differentiable, and the derivative in the point $t = 0$ exists and 
+%	\[
+%	g'(0) = 2 a_1 + 12 a_2^3.
+%	\]
+%	Therefore, according to Definition \ref{de:dir-deriv}, the partial derivative of $f$ in the point $(a_1, a_2)$ exists and equals
+%	\[
+%	\frac{\partial f}{\partial x_2}(a) = (D_{e_2} f)_a = 2 a_1 + 12 a_2^3.
+%	\]
+%\end{example}
+
+In general, there are many different expressions for the partial derivative of a function in some point $a$. Here are a few of them
+\[
+\begin{split}
+	\frac{\partial f}{\partial x_i}(a) 
+	&:= (D_{\mathbf{e}_i} f)_a = \left. \frac{d}{dt} f(a + t \mathbf{e}_i) \right|_{t = 0}\\
+	&= \left. \frac{d}{dt} f(a_1 , \dots, a_{i-1}, a_i + t, a_{i+1}, \dots, a_d) \right|_{t = 0}\\
+	&= \left. \frac{d}{ds} f(a_1, \dots, a_{i-1}, s, a_{i+1}, \dots, a_d) \right|_{s = a_i}.
+\end{split}
+\]
+
+The moral of the last expression is very nice: to determine the partial derivative of $f$ in a point $a$, you keep all coordinates fixed except for the $i$th coordinate, and you then view the function as a function of only that $i$th coordinate. It then is a function of only one variable, and you can differentiate according to the one-variable definition in calculus.
+
+Let us record the statement in a proposition.
+
+\begin{proposition}
+	Let $f:\Omega \to W$ be a function from an open domain $\Omega$ in $\mathbb{R}^d$ to a (finite-dimensional) normed vector space $(W, \| \cdot \|_W)$. Let $a \in \Omega$.
+	
+	The $i$th partial derivative of $f$ in the point $a$ exists if and only if the function
+	\[
+	t \mapsto f(a_1, \dots, a_{i-1}, t, a_{i+1}, \dots, a_d)
+	\]
+	is differentiable in the point $a_i$, and in this case
+	\[
+	\frac{\partial f}{\partial x_i}(a) = \left. \frac{d}{dt} f(a_1, \dots, a_{i-1}, t, a_{i+1}, \dots, a_d) \right|_{t = a_i}
+	\]
+\end{proposition}
+
+\begin{example}
+	Consider again the function $f: \mathbb{R}^2 \to \mathbb{R}$ given by
+	\[
+	f(x_1, x_2) = x_1^2 + 2x_1 x_2 + 3 x_2^4.
+	\]	
+	By the previous proposition, to determine whether the partial derivative 
+	\[
+	\frac{\partial f}{\partial x_2} (x_1, x_2)
+	\]
+	exists in a point $(x_1, x_2)$ and to determine its value, we just verify that
+	\[
+	\left.\frac{d}{dt} f(x_1, t)\right|_{t = x_2} = \left.\frac{d}{dt} (x_1^2 + 2 x_1 t + 3 t^4)\right|_{t = x_2} = 2 x_1 + 12 x_2^3.
+	\]
+	We conclude that
+	\[
+	\frac{\partial f}{\partial x_2} (x_1, x_2) = 2 x_1 + 12 x_2^3.
+	\]
+\end{example}
+
+For a general function $f : \Omega \to W$ we similarly define the $i$th partial derivative as the directional derivative in the direction of the $i$th basis vector.
+
+\begin{definition}
+	Let $f : \Omega \to W$ be a function defined on an open domain $\Omega \subset V$.
+	The $i$th partial derivative in a point $a \in \Omega$, denoted by
+	\[
+	\frac{\partial f}{\partial x_i}(a),
+	\]	
+	is the directional derivative in the direction of the $i$th basis vector $\mathbf{v}_i$
+	\[
+	\frac{\partial f}{\partial x_i}(a) := (D_{\mathbf{v}_i} f)_a = \left.\frac{d}{dt} f(a + t \mathbf{v}_i) \right|_{t = 0} = \lim_{h \to 0} \frac{f(a + h \mathbf{v}_i) - f(a)}{h}.
+	\]
+\end{definition}
+
+The following proposition relates partial differentiability of a function to partial differentiability of its components.
+
+\begin{proposition}
+	\label{pr:rel-par-der-comp}
+	Let $f : \Omega \to W$. Let $i \in \{ 1, \dots, d\}$. The partial derivative $\frac{\partial f}{\partial x_i}(a)$ exists if and only if for every $j = 1, \dots, m$, the partial derivative $\frac{\partial f_j}{\partial x_i}(a)$ exists, and in that case
+	\[
+	\frac{\partial f}{\partial x_i}(a) = \frac{\partial f_1}{\partial x_i}(a) \mathbf{w}_1 + \dots + \frac{\partial f_m}{\partial x_i} (a) \mathbf{w}_m.
+	\]
+\end{proposition}
+
+If $W = \mathbb{R}^m$, the above just translates to
+\[
+\frac{\partial f}{\partial x_i}(a) =
+\left( 
+\begin{array}{c}
+\frac{\partial f_1}{\partial x_i}(a) \\
+\vdots \\
+\frac{\partial f_m}{\partial x_i}(a)
+\end{array}
+\right)
+\]

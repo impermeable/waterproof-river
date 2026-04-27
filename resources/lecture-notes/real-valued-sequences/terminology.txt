@@ -1,0 +1,38 @@
+Because the real numbers come with an order ($\leq$), we can define increasing, decreasing and monotone sequences.
+
+\begin{definition}[increasing, decreasing and monotone sequences]
+	We say a sequence $(a_n)$ is \emph{increasing} if for every $n \in \mathbb{N}$, $a_{n+1} \geq a_{n}$. We say it is \emph{strictly increasing} if for every $n \in \mathbb{N}$, $a_{n+1} > a_{n}$. Similarly, we say a sequence $a_{n}$ is \emph{decreasing} if for every $n \in \mathbb{N}$, $a_{n+1} \leq a_n$ and we say it is \emph{strictly decreasing} if for every $n \in \mathbb{N}$, $a_{n+1} < a_{n}$. We finally say a sequence is (strictly) \emph{monotone} if it is either (strictly) increasing or (strictly) decreasing.
+\end{definition}
+
+The main result of this chapter is that monotone, bounded sequences are convergent. In order to introduce what it means for a sequence to be bounded, we first introduce upper and lower bounds.
+
+\begin{definition}[upper bound and lower bound for a sequence]
+	We say that a number $M \in \mathbb{R}$ is an \emph{upper bound} for a sequence $a : \mathbb{N} \to \mathbb{R}$ if 
+	\[
+	\begin{split}
+	&\foralltext n \in \mathbb{N},\\
+	&\quad a_n \leq M.
+	\end{split}
+	\]	
+	We say a number $m \in \mathbb{R}$ is a \emph{lower bound} for a sequence $a : \mathbb{N} \to \mathbb{R}$ if
+	\[
+	\begin{split}
+	&\foralltext n \in \mathbb{N},\\
+	&\quad m \leq a_n.	
+	\end{split}
+	\]
+\end{definition}
+
+\begin{definition}
+	\label{de:seq-bounded-above-below}
+	We say a sequence $a: \mathbb{N} \to \mathbb{R}$ is \emph{bounded above} if there exists an $M \in \mathbb{R}$ such that $M$ is an upper bound for $a$.
+	
+	We say a sequence $a: \mathbb{N} \to \mathbb{R}$ is \emph{bounded below} if there exists an $m \in \mathbb{R}$ such that $m$ is a lower bound for $a$.
+\end{definition}
+
+In the previous chapter, we have already defined what it means for a sequence to be bounded. The next proposition relates the two definitions to each other.
+
+\begin{proposition}
+	\label{pr:boundedness-real-seq-alt}
+	Let $a : \mathbb{N} \to \mathbb{R}$ be a sequence. Then $a: \mathbb{N} \to \mathbb{R}$ is bounded (in the sense of Definition \ref{de:bounded-sequence}) if and only if it is both bounded above and bounded below (according to Definition \ref{de:seq-bounded-above-below}).
+\end{proposition}

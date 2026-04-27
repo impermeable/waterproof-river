@@ -1,0 +1,132 @@
+\begin{theorem}[Weierstrass M-test]
+	Let $(f_n)$ be a sequence of functions from $\Omega$ to $\mathbb{R}$, and suppose there exists a sequence of real numbers $(M_n)$ such that for all $n \in \mathbb{N}$, all $x \in \Omega$ it holds that
+	\[
+	| f_n(x) | \leq M_n
+	\]
+	and suppose the series
+	\[
+	\sum_{k=0}^\infty M_k
+	\]
+	converges.
+	
+	Then the function series
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges absolutely and uniformly on $\Omega$.
+\end{theorem}
+
+\begin{proof}
+	We first show that the function series 
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges absolutely. For that we need to show that for every $x \in \Omega$, the series
+	\[
+	\sum_{k=0}^\infty f_k(x)
+	\]
+	converges absolutely.
+	
+	Let $x \in \Omega$. By assumption, for every $k \in \mathbb{N}$, we have $|f_k(x) | \leq M_k$. Since the series 
+	\[
+	\sum_{k=0}^\infty M_k
+	\]
+	converges, it follows by the comparison test that also the series
+	\[
+	\sum_{k=0}^\infty |f_k(x)|
+	\]
+	converges. Hence, the series
+	\[
+	\sum_{k=0}^\infty f_k(x)
+	\]
+	converges absolutely.
+	
+	In particular, the series
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges pointwise to a function $s: \Omega \to \mathbb{R}$.
+	
+	We will now show that the series
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges to $s$ uniformly. Since the series 
+	\[
+	\sum_{k=0}^\infty M_k
+	\]
+	converges, we know that
+	\[
+	\lim_{\ell \to \infty} \sum_{k=\ell + 1}^\infty M_k = 0
+	\]
+	Let $x \in \Omega$. Then
+	\[
+	\begin{split}
+	| \sum_{k=0}^\ell f_k(x) - s(x) |
+	&= \left|\sum_{k=\ell+1}^\infty f_k(x) \right| \\
+	&\leq \sum_{k=\ell + 1}^\infty |f_k(x)| \\
+	&\leq \sum_{k=\ell + 1}^\infty M_k
+	\end{split}
+	\]
+	from which it follows that
+	\[
+	0 \leq \| \sum_{k=0}^\ell f_k - s \|_\infty \leq \sum_{k=\ell + 1}^\infty M_k
+	\]
+	and from the squeeze theorem we get that
+	\[
+	\lim_{\ell \to \infty} \| \sum_{k=0}^\ell f_k - s \|_\infty = 0.
+	\]
+	In other words, the series
+	\[
+	\sum_{k=0}^\infty f_k
+	\]
+	converges to $s$ uniformly.
+\end{proof}
+
+The statement of the above theorem is practically equivalent to the statement that the normed vector space of bounded functions on $\Omega$, denoted by $(\mathcal{B}(\Omega), \| \cdot \|_\infty)$, is complete.
+
+\begin{example}
+Consider the function series
+\[
+\sum_{k=0}^\infty \frac{x^k}{k!}.
+\]	
+We claim that for every $r >0 $, this series converges \emph{uniformly} on the interval $[-r, r]$.
+\end{example}
+
+\begin{proof}
+Let $r > 0$. To verify the claim, we will apply the Weierstrass $M$-test. The functions $f_k$ appearing in the theorem correspond to the functions
+\[
+f_k(x) = \frac{x^k}{k!}.
+\]
+We need to check all conditions in the Weierstrass $M$-test, so we need to define a sequence $(M_k)$ and verify for that choice that for all $x \in [-r, r]$ and all $k \in \mathbb{N}$,
+\[
+|f_k(x) | \leq M_k,
+\]
+and in addition we would need to verify that the series
+\[
+\sum_{k=0}^\infty M_k
+\]
+converges.
+
+First we note that for all $k \in \mathbb{N}$ and for all $x \in [-r, r]$,
+\[
+|f_k(x) | = \frac{|x|^k}{k!} \leq \frac{r^k}{k!}.
+\]
+Therefore, we choose for $(M_k)$ the sequence 
+\[
+M_k := \frac{r^k} { k!}.
+\]
+We then indeed find that for all $k \in \mathbb{N}$ and for all $x \in [-r, r]$,
+\[
+| f_k(x) | \leq M_k.
+\]
+We can verify by the ratio test that the series
+\[
+\sum_{k=0}^\infty M_k = \sum_{k=0}^\infty \frac{r^k}{k!}
+\]
+converges. It follows from the Weierstrass M-test that the function series
+\[
+\sum_{k=0}^\infty \frac{x^k}{k!}
+\]
+converges uniformly on the interval $[-r, r]$.
+\end{proof}

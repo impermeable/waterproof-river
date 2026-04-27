@@ -1,0 +1,95 @@
+In the proposition below, we use the definitions
+\[
+A + B = \{ a + b \ | \ a \in A, b \in B\}
+\]
+and 
+\[
+\lambda A = \{ \lambda a \ | \ a \in A \}
+\]
+for subsets $A, B \subset \mathbb{R}$ and a scalar $\lambda \in \mathbb{R}$.
+
+\begin{proposition}
+	\label{pr:comp-rules-sup-inf}
+	Let $A, B, C, D$ be nonempty subsets of $\mathbb{R}$.
+	Assume that $A$ and $B$ are bounded from above and $C$ and $D$ are bounded from below.
+	Then
+\begin{enumerate}
+\item \label{it:comp-rule-sum-sup}$\sup (A + B) = \sup A + \sup B$
+\item $\inf (C + D) = \inf C + \inf D$
+\item \label{it:comp-rule-mult-sup} for all $\lambda \geq 0$, $\sup (\lambda A) = \lambda \sup A$
+\item for all $\lambda \geq 0$, $\inf (\lambda C) = \lambda \inf C$
+\item \label{it:comp-rule-refl-sup} $\sup (- C) = - \inf C$
+\item \label{it:comp-rule-refl-inf} $\inf (- A) = - \sup A$
+\end{enumerate}	
+\end{proposition}
+
+\begin{proof}
+	We first show (\ref{it:comp-rule-sum-sup}) in the list above.
+	We set $M := \sup A + \sup B$ and will show that $M$ is indeed the supremum of the set $A + B$.
+	
+	By the alternative characterization of the supremum (Proposition \ref{pr:alt-char-sup}) it suffices to show that
+	\begin{enumerate}
+		\item $M$ is an upper bound for $A$ + $B$
+		\item for all $\epsilon > 0$, there exists $c \in A + B, c > M - \epsilon$.
+	\end{enumerate}
+	items (\ref{it:alt-sup-1}) and (\ref{it:alt-sup-2}) of the alternative characterization of the supremum in Proposition \ref{pr:alt-char-sup}.
+	
+	We first show item (i).
+	We need to show that
+	\[
+	\begin{split}
+	& \foralltext c \in A + B,\\
+	& \quad c \leq M.		
+	\end{split}
+	\]
+	Let $c \in A + B$.
+	Then there exists an $a \in A$ and a $b \in B$ such that $c = a + b$. Obtain such $a$ and $b$.
+	Since $\sup A$ is an upper bound for $A$, and $\sup B$ is an upper bound for $B$, 
+	it holds that $a \leq \sup A$ and $b \leq \sup B$.
+	Therefore
+	\[
+	c = a + b \leq \sup A + \sup B = M
+	\]
+	which was what we wanted to show.
+	
+	We will now show (ii), namely that
+	\[
+	\begin{split}
+	& \foralltext \epsilon > 0,\\
+	& \quad \existstext c \in A + B,\\
+	& \quad \quad c > M - \epsilon.
+	\end{split}
+	\]
+	Let $\epsilon > 0$. By item (\ref{it:alt-sup-2}) of the characterization of $\sup A$ in Proposition \ref{pr:alt-char-sup},	
+	
+	\begin{optional_text}
+	we know that
+	\begin{equation}
+		\label{eq:in-comp-rule-sum-aux}
+	\begin{split}
+	& \foralltext \epsilon_1 > 0, \\
+	& \quad \existstext a \in A, \\
+	& \quad \quad a > \sup A - \epsilon_1.
+	\end{split}
+	\end{equation}
+	Use $\epsilon_1 := \epsilon / 2$ in (\ref{eq:in-comp-rule-sum-aux}). Indeed, $\epsilon / 2 > 0$.
+	Then 
+	\end{optional_text}
+	
+	it holds that there exists an $a \in A$ such that $a > \sup A - \epsilon / 2$. Obtain such an $a$.
+	
+	Similarly, there exists a $b \in B$ such that $b > \sup B - \epsilon / 2$. Obtain such a $b$.
+	
+	Choose $c := a + b$. Then
+	\[
+	c = a + b > \sup A - \epsilon / 2 + \sup B - \epsilon / 2 = \sup A + \sup B - \epsilon = M - \epsilon.
+	\]
+	
+	Item (\ref{it:comp-rule-refl-sup}) was shown in the proof of Lemma \ref{le:exists-llb}. 
+	
+	The other items are left as exercises.
+\end{proof}
+
+A remark about the presentation of the proof above: The text in the lighter gray inset around statement (\ref{eq:in-comp-rule-sum-aux}) is optional. Once we get more skilled in proving, we will usually omit it. The omission makes the proof a bit shorter and perhaps easier to read, while if you have seen this type of argument a few times, you will know what lines to insert to make the proof more detailed.
+
+%

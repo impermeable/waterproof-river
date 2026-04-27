@@ -1,0 +1,17 @@
+\begin{proposition}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces and let $K \subset X$ be a compact subset of $X$. 
+Let $f : K \to Y$ be continuous on $K$. Then $f(K)$ is a compact subset of $Y$.
+\end{proposition}
+
+\begin{proof}
+It suffices to show that for every sequence $(y_n)$ in $f(K)$ there is a subsequence $(y_{n_k})$ and a point $p \in f(K)$ such that $y_{n_k} \to p$ as $k \to \infty$.
+
+Let $(y_n)$ be a sequence in $f(K)$. 
+Then there exists a sequence $(x_n)$ such that $y_n = f(x_n)$ for every $n \in \mathbb{N}$.
+Because $K$ is compact, there exists a point $z \in K$ and a subsequence $(x_{n_k})$ such that the subsequence converges to $z$.
+Because $f$ is continuous, we find
+\[
+\lim_{k \to \infty} y_{n_k} = \lim_{k \to \infty} f(x_{n_k}) = f(z) \in f(K).
+\]
+Therefore the subsequence $(y_{n_k})$ of $y_n$ converges to the point $f(z)$ in $f(K)$, which shows that $f(K)$ is compact.
+\end{proof}

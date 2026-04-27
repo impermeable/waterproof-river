@@ -1,0 +1,1 @@
+Always start by writing down what is {\bf given} and what you need {\bf to show}.

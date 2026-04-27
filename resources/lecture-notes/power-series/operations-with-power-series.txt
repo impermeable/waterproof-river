@@ -1,0 +1,81 @@
+\begin{proposition}[Sums of power series]
+	\label{pr:sum-power-series}
+	Let 
+	\[
+	\sum_{k=0}^\infty a_k (x - c)^k \qquad \text{ and } \qquad \sum_{k=0}^\infty b_k (x - c)^k
+	\]
+	be two power series around $c$, with radii of convergence $R_1$ and $R_2$ respectively. The sum of these functions is the power series
+	\[
+	\sum_{k=0}^\infty (a_k + b_k) (x - c)^k
+	\]
+	and the radius of convergence $R$ for this new power series satisfies
+	\[
+	R \geq \min(R_1, R_2).
+	\] 
+\end{proposition}
+
+\begin{proposition}[Products of power series]
+	\label{pr:product-power-series}
+Let
+\[
+\sum_{k=0}^\infty a_k (x - z)^k \qquad \text{ and } \qquad 
+\sum_{k=0}^\infty b_k (x - z)^k
+\]
+be two power series around a point $z \in \mathbb{R}$ with radii of convergence $R_1$ and $R_2$ respectively. Then the product of the two power series is again a power series
+\[
+\sum_{k=0}^\infty c_k (x - z)^k
+\]
+where
+\[
+c_k := \sum_{\ell = 0}^k a_\ell b_{k - \ell}.
+\]
+The radius of convergence $R$ of this new power series satisfies
+\[
+R \geq \min(R_1, R_2).
+\]
+\end{proposition}
+
+\begin{proof}
+It suffices to show that for all $x \in \mathbb{R}$ such that $|x - z | < \min(R_1, R_2)$,  the power series 
+\[
+\sum_{k=0}^\infty c_k (x - z)^k
+\]	
+converges and 
+\[
+\sum_{k=0}^\infty c_k (x- z)^k = \left(\sum_{k=0}^\infty a_k (x - z)^k \right) \left(\sum_{k=0}^\infty b_k (x- z)^k \right)
+\]
+Let therefore $x \in \mathbb{R}$ be such that $| x - z | < \min(R_1, R_2)$. We can now choose $A_k := a_k (x - z)^k$ and $B_k := b_k(x - z)^k$ in Theorem \ref{th:cauchy-product}. It follows from the theorem that with 
+\[
+\begin{split}
+C_k &:= \sum_{\ell = 0}^k A_\ell B_{k - \ell} = \sum_{\ell = 0}^k a_\ell b_{k - \ell} (x -  z)^\ell (x - z)^{k - \ell}\\
+&= c_k (x - z)^k
+\end{split}
+\]
+we have that the series
+\[\sum_{k=0}^\infty C_k  = \sum_{k=0}^\infty c_k (x - z)^k
+\]
+converges and indeed
+\[
+\sum_{k=0}^\infty c_k  (x - z)^k = \left(\sum_{k=0}^\infty a_k (x - z)^k \right) \left(\sum_{k=0}^\infty b_k (x- z)^k \right).
+\]
+\end{proof}
+
+\begin{example}
+	Let us use the previous proposition to prove that for all $x \in \mathbb{R}$,
+	\[
+	\exp(x) \exp(x) = \exp(2 x).
+	\]
+
+	By the previous proposition and the fact that the radius of convergence of the power series defining the exponential function is $\infty$, it follows that the product of the two power series is given by
+	\[
+	\begin{split}
+	\exp(x) \exp(x)
+	&=
+	\sum_{k=0}^\infty \left(\sum_{\ell = 0}^k \frac{1}{\ell!}\frac{1}{(k-\ell)!} \right) x^k\\
+	&=\sum_{k=0}^\infty \left(\sum_{\ell = 0}^k {k \choose \ell} 1^k 1^{k - \ell}\right) \frac{x^k}{k!}\\
+	&= \sum_{k=0}^\infty 2^k \frac{x^k}{k!}\\
+	&= \sum_{k=0}^\infty\frac{(2x)^k}{k!} = \exp (2x)
+	\end{split}
+	\]
+	where we used the binomial formula.
+\end{example}

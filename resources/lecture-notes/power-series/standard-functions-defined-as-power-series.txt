@@ -1,0 +1,31 @@
+\begin{proposition}
+The power series
+\[
+\sum_{k=0}^\infty \frac{1}{k!} x^k
+\]
+has radius of convergence $R = \infty$.
+\end{proposition}
+
+\begin{definition}
+The function $\exp : \mathbb{R} \to \mathbb{R}$ is defined as the power series
+\[
+\exp(x) := \sum_{k=0}^\infty \frac{1}{k!} x^k.
+\]	
+It has radius of convergence $R = \infty$.
+\end{definition}
+
+\begin{definition}
+The function $\sin: \mathbb{R} \to \mathbb{R}$ is defined as the power series
+\[
+\sin(x) := \sum_{k=0}^\infty (-1)^k \frac{1}{(2k+1)!} x^{2k+1}
+\]	
+It has radius of convergence $R = \infty$.
+\end{definition}
+
+\begin{definition}
+The function $\cos: \mathbb{R} \to \mathbb{R}$ is defined as the power series
+\[
+\cos(x) := \sum_{k=0}^\infty (-1)^k \frac{1}{(2k)!} x^{2k}.
+\]	
+It has radius of convergence $R = \infty$.
+\end{definition}

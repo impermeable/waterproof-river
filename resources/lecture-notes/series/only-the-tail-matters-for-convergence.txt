@@ -1,0 +1,95 @@
+\begin{lemma}
+	\label{le:tail-series}
+	Let $(V, \| \cdot \|)$ be a normed vector space and let $a : \mathbb{N} \to V$ be a sequence taking values in $V$.
+	Let $K, L \in \mathbb{N}$. The series 
+	\[
+	\sum_{n=K}^\infty a_n
+	\]	
+	is convergent if and only if the series
+	\[
+	\sum_{n=L}^\infty a_n
+	\]
+	is convergent. Moreover, if either of the series converges, and $K < L$, then
+	\begin{equation}
+		\label{eq:relation-infinite-tails}
+	\sum_{n=K}^\infty a_n = \sum_{n=K}^{L-1} a_n + \sum_{n=L}^\infty a_n
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+Without loss of generality, we may assume that $K < L$.
+We then know that for all $n \geq L$,
+\[
+S_K^n = \sum_{k=K}^{L - 1} a_k + S_L^n.
+\]	
+Suppose that the series 
+\[
+\sum_{n=L}^\infty a_n
+\]
+is convergent.
+By definition, this means that the sequence $(S^n_L)_n$ converges.
+By limit theorems, it follows that $S_K^n$ converges as well, and
+\[
+\begin{split}
+\sum_{k = K}^\infty a_k 
+& = \lim_{n \to \infty} \sum_{k = K}^n a_k \\
+& = \sum_{k=K}^{L-1} a_k + \lim_{n \to \infty} S_L^n \\
+& = \sum_{k=K}^{L - 1} a_k + \sum_{k = L}^\infty a_k.
+\end{split}
+\]
+which shows the equality (\ref{eq:relation-infinite-tails}).
+
+Similarly, suppose that the series
+\[
+\sum_{n=K}^\infty a_n
+\]
+is convergent. By definition, this means that the sequence $(S^n_K)_n$ converges.
+Since 
+\[
+S^n_L = S^n_K - \sum_{k=K}^{L-1} a_n
+\]
+it follows again by limit theorems that the sequence $(S^n_L)_n$ converges. 
+\end{proof}
+
+\begin{proposition}
+	\label{pr:tail-converges-to-zero}
+Let $a : \mathbb{N} \to V$ be a sequence, let $M \in \mathbb{N}$ and assume that the series
+\[
+\sum_{k=M}^\infty a_k
+\]	
+is convergent. Then
+\[
+\lim_{m \to \infty} \sum_{k=m}^\infty a_k = 0.
+\]
+\end{proposition}
+
+\begin{proof}
+The sequence of partial sums $n \mapsto S_M^n$ is convergent, with limit
+\[
+L := \sum_{k=M}^\infty a_k.
+\]
+We know by Lemma \ref{le:tail-series} that for $m > M$
+\[
+\sum_{k=M}^\infty a_k = \sum_{k=m}^\infty a_k + \sum_{k=M}^{m-1} a_k.
+\]
+Rearranging terms, we find
+\[
+\sum_{k=m}^\infty a_k = \sum_{k=M}^\infty a_k - \sum_{k=M}^{m-1} a_k.
+\]
+By using limit theorems and index shift we find that the right-hand side converges to $0$ as $m \to \infty$.
+\end{proof}
+
+\begin{proposition}[Index shift for series]
+	Let $a: \mathbb{N} \to V$ be a sequence, let $M \in \mathbb{N}$ and let $\ell \in \mathbb{N}$. Then the series
+	\[
+	\sum_{k=M}^\infty a_k
+	\]
+	converges if and only if
+	\[
+	\sum_{k=M}^\infty a_{k + \ell}
+	\]
+	converges. Moreover, if either series converges,
+	\[
+	\sum_{k=M}^\infty a_{k + \ell} = \sum^\infty_{k=M + \ell} a_k.
+	\]
+\end{proposition}

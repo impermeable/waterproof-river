@@ -1,0 +1,78 @@
+\begin{theorem}
+	\label{th:local-extremum-deriv-zero}
+	Let $\Omega$ be an open subset of a normed vector space $V$. Suppose $f : \Omega \to \mathbb{R}$ is differentiable in $a \in \Omega$.
+	Suppose that $f(a)$ is a local maximum or minimum, i.e. suppose there exists an $r > 0$ such that either
+	\[
+	\begin{split}
+		&\foralltext x \in B(a, r),\\
+		&\quad f(x) \leq f(a)
+	\end{split}
+	\]
+	or 
+	\[
+	\begin{split}
+		&\foralltext x \in B(a, r),\\
+		&\quad f(x) \geq f(a).
+	\end{split}
+	\]
+	Then $(Df)_a = 0$.
+\end{theorem}
+
+\begin{proof}
+	We will show the statement for the case in which $f$ attains a local maximum in $a$. In that case, there exists an $r > 0$ such that $f(x) \leq f(a)$ for all $x \in B(a, r)$.
+	Because $f$ is differentiable in $a$,
+	\[
+	f(x) = f(a) + (Df)_a (x - a) + \mathsf{Err}_a^f(x)
+	\]
+	where
+	\begin{equation}
+		\label{eq:local-extremum-derivative-0-limit}
+		\lim_{x \to a} \frac{|\mathsf{Err}_a^f(x)|}{\| x - a \|_V} = 0.
+	\end{equation}
+	We argue by contradiction, so suppose $(Df)_a \neq 0$, i.e. suppose $(Df)_a$ is not the zero map. Then there exists a vector $u \in V$ such that
+	\[
+	(Df)_a (u) \neq 0.
+	\]
+	We choose such a $u$ and define $v$ to be either equal to $u / \| u \|_V$ or to $- u / \| u \|_V$, in such a way that
+	\[
+	(Df)_a(v) > 0.
+	\]
+	Note also that by the homogeneity of the norm,
+	\[
+	\| v \|_V = \left\| \frac{u }{\| u \|_V} \right\|_V = \frac{1}{\|u \|_V}\| u \|_V = 1.
+	\]
+	The intuition behind the rest of the proof is that $f$ evaluated in points in the direction of $v$, close enough to $a$, is larger than $f(a)$.
+	
+	By (\ref{eq:local-extremum-derivative-0-limit}) there exists an $\delta > 0$ such that for all $x \in \Omega$, if $0 < \| x - a \|_V < \delta$ then
+	\begin{equation}
+		\label{eq:local-extremum-error-ratio}
+		\frac{|\mathsf{Err}_a^f(x)|}{\| x - a \|_V} < \frac{1}{2}|(Df)_a (v)|
+	\end{equation}
+	Now choose $\rho := \frac{1}{2} \min(r, \delta)$ and define
+	\[
+	y := a + \rho v.
+	\]
+	Then by positive homogeneity of the norm and the fact that $\| v \|_V = 1$,
+	\[
+	0 <\|y - a \|_V = \left\|\rho v \right\|_V = \rho \| v \|_V = \rho = \frac{1}{2}\min(r, \delta).
+	\]
+	Therefore on the one hand $\|y - a \|_V < r$ and thus $f(y) \leq f(a)$, but on the other hand $\|y - a \|_V < \delta$ and thus
+	\[
+	\begin{split}
+		f(y)
+		&= f(a) + (Df)_a(y - a) + \mathsf{Err}_a^f(y) \\
+		&= f(a) + (Df)_a \left(\rho v \right) + \mathsf{Err}_a^f(y)\\
+		&= f(a) + \rho(Df)_a \left(v\right) + \mathsf{Err}_a^f(y)\\
+		&\geq f(a) + \rho (Df)_a \left(v\right) - |\mathsf{Err}_a^f(y)|.
+	\end{split}
+	\]
+	We now use (\ref{eq:local-extremum-error-ratio}) to find
+	\[
+	\begin{split}
+		f(y) &\geq f(a) + \rho (Df)_a \left(v\right) - \frac{1}{2}|(Df)_a (v)| \| y - a \|_V\\
+		&= f(a) + \rho(Df)_a \left(v\right) - \frac{\rho}{2}|(Df)_a (v)|\\
+		&= f(a) + \frac{\rho}{2} (Df)_a(v) > f(a) 
+	\end{split}
+	\]
+	which is a contradiction.
+\end{proof}

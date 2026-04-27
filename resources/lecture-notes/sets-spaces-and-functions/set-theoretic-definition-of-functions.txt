@@ -1,0 +1,2 @@
+Just so you have seen it before, let us also mention the strict mathematical definition of functions in set theory. 
+Within set theory, a function $f: X \to Y$ between two sets $X$ and $Y$ is defined as a subset (let's call it $F$) of the Cartesian product $X \times Y$, such that for every $x \in X$, there is exactly one $y \in Y$ such that $(x, y) \in F$. We usually write this unique value $y$ as $f(x)$.

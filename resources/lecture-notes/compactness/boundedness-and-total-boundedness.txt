@@ -1,0 +1,123 @@
+We first define what it means for a subset of a metric space to be bounded. This definition has many similarities with the definition of boundedness for sequences.
+
+\begin{definition}[bounded sets]
+	\label{de:bounded-set}
+	Let $(X, \dist)$ be a metric space. We say that a subset $A \subset X$ is \emph{bounded} if
+	\[
+	\begin{split}
+	&\existstext q \in X, \\
+	&\quad \existstext M > 0,\\
+	&\quad\quad \foralltext p \in A,\\
+	&\quad\quad\quad \dist(p, q) \leq M.
+	\end{split}
+	\]
+\end{definition}
+
+Just as with the concept of boundedness for sequences, in normed vector spaces boundedness has a somewhat easier alternative characterization.
+
+\begin{proposition}
+\label{pr:bounded-sets-normed-vector}
+Let $(V, \| \cdot \|)$ be a normed vector space. A subset $A \subset V$ is bounded if and only if
+\[
+\begin{split}
+&\existstext M > 0,\\
+&\quad \foralltext v \in A,\\
+&\quad\quad \| v \| \leq M.
+\end{split}
+\]	
+\end{proposition}
+
+We will now define what it means for a subset to be totally bounded. Intuitively, it means that for every radius $r>0$ (which could be extremely small) the subset can be covered with only a \emph{finite} number of balls with radius $r$.
+
+\begin{definition}[totally bounded sets]
+Let $(X, \dist)$ be a metric space.
+We say that a subset $A \subset X$ is \emph{totally bounded} if
+\[
+\begin{split}
+&\foralltext r > 0, \\
+&\quad \existstext N \in \mathbb{N}, \\
+&\quad \quad \existstext p_1, \dots, p_N \in X, \\
+&\quad \quad \quad A \subset \bigcup_{i=1}^N B(p_i, r).	
+\end{split}
+\]
+\end{definition}
+
+In the next proposition we will see that ``total boundedness'' is a stronger property than just ``boundedness''.
+
+\begin{proposition}
+	\label{pr:totally-bounded-implies-bounded}
+	Let $(X, \dist)$ be a metric space and let $A$ be a subset of $X$. If $A$ is totally bounded, it is bounded.
+\end{proposition}
+
+\begin{proof}
+	Assume $A$ is totally bounded. We need to show that $A$ is bounded, i.e.~we need to show that 
+	\[
+	\begin{split}
+		&\existstext q \in X, \\
+		&\quad \existstext M > 0,\\
+		&\quad\quad \foralltext p \in A,\\
+		&\quad\quad\quad \dist(p, q) \leq M.
+	\end{split}
+	\]
+	Because $A$ is totally bounded, we may obtain an $N \in \mathbb{N}$ and points $p_1, \dots, p_N \in X$ such that
+	\[
+	A \subset \bigcup_{i=1}^N B(p_i, 1).
+	\]
+	Choose $q:= p_1$.
+	
+	Choose $M := \max( \dist(p_2, p_1), \dots, \dist(p_N, p_1)) + 1$.
+	
+	Let $p \in A$. Then there exists an $i \in \{1, \dots, N\}$ such that $p \in B(p_i, 1)$. It follows that
+	\[
+	\begin{split}
+	\dist(p, q) &= \dist(p, p_1) \\
+	&\leq \dist(p, p_i) + \dist(p_i, p_1) \\
+	&\leq 1 +  \max( \dist(p_2, p_1), \dots, \dist(p_N, p_1)) \\
+	&= M.
+	\end{split}
+	\]
+\end{proof}
+
+In the special case of the normed vector space $(\mathbb{R}^d, \| \cdot \|_2)$, however, a subset is totally bounded if and only if it is bounded.
+
+\begin{proposition}
+	\label{pr:Rd-bounded-iff-totally-bounded}
+	Consider now the normed vector space $(\mathbb{R}^d, \| \cdot \|_2)$. A subset $A \subset \mathbb{R}^d$ is bounded in $(\mathbb{R}^d, \| \cdot \|_2)$ if and only if it is totally bounded.
+\end{proposition}
+\begin{proof}
+	The ``if" direction follows from the previous theorem.
+	
+	Let us prove the ``only if" direction. Suppose $A \subset \mathbb{R}^d$ is bounded. Then we may obtain an $M > 0$ such that for all $x \in A$, $\|x \|_2 \leq M$.
+	We need to show that 
+	\[
+	\begin{split}
+		&\foralltext r > 0, \\
+		&\quad \existstext N \in \mathbb{N}, \\
+		&\quad \quad \existstext p_1, \dots, p_N \in \mathbb{R}^d, \\
+		&\quad \quad \quad A \subset \bigcup_{i=1}^N B(p_i, r).	
+	\end{split}
+	\]
+	Let $r > 0$. Define $\delta := r/(2\sqrt{d})$. To choose $N \in \mathbb{N}$ and the points $p_1, \dots, p_N$ we are going to make a large grid. We define the set
+	\[
+	G := [-M, M]^d \cap (\delta\mathbb{Z})^d.
+	\]
+	These are all points in $\mathbb{R}^d$ of which the coordinates are an integer multiple of $\delta$, and lie between $-M$ and $M$.
+	Note that $G$ is a finite set, so we can choose an $N \in \mathbb{N}$ and points $p_1, \dots, p_N$ such that
+	\[
+	G = \{ p_1, \dots, p_N\}.
+	\]
+	Now let $a \in A$. It suffices to show that there exists a point $g \in G$ such that
+	\[
+	\dist(a, g) < r.
+	\]
+	We can express $a$ in its components in $\mathbb{R}^d$ as $a = (a_1, \dots, a_d)$.
+	We can then define the point
+	\[
+	g := \left( \delta \lceil a_1 / \delta\rceil, \dots, \delta \lceil a_d / \delta \rceil \right)
+	\]
+	in $G$. Note that for all $i \in \{1, \dots, d\}$, $|g_i - a_i| \leq \delta$.
+	Therefore
+	\[
+	\| g - a \|_2 = \sqrt{ \sum_{i=1}^d (g_i - a_i)^2 } \leq \sqrt{\sum_{i=1}^d \delta^2} = \sqrt{d} \delta \leq \frac{r}{2} < r.
+	\]
+	\end{proof}

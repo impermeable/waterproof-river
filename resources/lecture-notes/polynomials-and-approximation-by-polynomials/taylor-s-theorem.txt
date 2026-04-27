@@ -1,0 +1,81 @@
+When a function $f$ is $n$ times differentiable in a point, it can be approximated well by its Taylor expansion.
+
+\begin{definition}[Taylor expansion]
+	Let $f : \Omega \to W$ be $n$ times differentiable in a point $a \in \Omega$. Then the function $T_{a, n} : V \to W$ given by
+	\[
+	T_{a, n}(x) := f(a) + \sum_{k=1}^n \frac{1}{k!} (D^k f)_a (x - a, \cdots, x-a)
+	\]
+	is called the $n$th order Taylor expansion of $f$ around $a$.
+\end{definition}
+
+Taylor's theorem says that the Taylor expansion provides a good approximation.
+
+\begin{theorem}
+	\label{th:taylor-theorem}
+	Let $\Omega \subset V$ be open, let $a \in \Omega$ and suppose $f : \Omega \to W$ is $n$ times differentiable in a point $a \in \Omega$. Then there exists a function $\mathsf{Err}_{a, n} : \Omega \to W$ such that
+	\[
+	f(v) = f(a) + \sum_{k=1}^n \frac{1}{k!} (D^k f)_a (v- a, \cdots, v-a) + \mathsf{Err}_{a, n}(v).
+	\]
+	and such that 
+	\[
+	\lim_{ v \to a } \frac{\| \mathsf{Err}_{a, n}(v) \|_W}{\|v - a\|^n_V} = 0.
+	\]
+\end{theorem}
+
+Before we prove Taylor's theorem, let's record the following proposition. It allows us to determine the derivatives of the Taylor expansion of $f$ around $a$, and in particular it allows us to conclude that the derivatives up to order $n$ of the Taylor expansion $T_{a, n}$ of $f$ of order $n$ in the point $a$ are exactly the same as those of $f$ in $a$, while the derivatives of order higher than $n$ all vanish.
+
+\begin{proposition}
+	\label{pr:derivatives-symmetric-forms}
+	Let $a \in V$, let $k \in \mathbb{N}\setminus\{0\}$, let $\mathcal{S} \in \mathsf{Sym}_k(V, W)$ and consider the function $f : V \to W$ defined by
+	\[ f(x) := \frac{1}{k!}\mathcal{S}(x - a, \dots, x-a) \]	
+	Then
+	\begin{enumerate}
+		\item for all $b \in V$,
+		\[
+		(D^k f)_b = \mathcal{S}
+		\]
+		\item for all $b \in V$ and all $j > k$,
+		\[ 
+		(D^j f)_b = 0,
+		\]
+		\item for all $b \in V$ and all $j < k$ and all $u_1, \dots, u_j \in V$,
+		\[
+		(D^j f)_b(u_1, \cdots, u_j) = \frac{1}{(k-j)!} \mathcal{S}(u_1, \cdots, u_j, b - a, \cdots, b - a).
+		\]
+	\end{enumerate}
+\end{proposition}
+
+We can prove the above proposition for instance with help of the correspondence between homogeneous polynomials and symmetric multilinear forms of Lemma \ref{le:correspondence-hom-pol-sym-forms}. The first approach is illustrated by Exercise \ref{ex:derivatives-homogeneous-polynomials}, while the latter approach is illustrated by Exercise \ref{ex:derivs-2-lin-map}. 
+
+We will now give a sketch of the proof of Taylor's theorem.
+
+\begin{proof}[Proof of Theorem \ref{th:taylor-theorem}]
+	We give a sketch of the proof. First of all, by using the previous proposition we may without loss of generality assume that $f(a) = 0$ and that all derivatives of $f$ up to and including order $n$ vanish (because otherwise we just consider the function $g := f - T_{a, n}$).
+	By repeatedly applying the Mean-Value Inequality we then find that
+	\[
+	\begin{split}
+		\|f(v) - f(a) \|_W
+		& \leq \sup_{\tau \in (0, 1)} \| (D f)_{(1- \tau) a + \tau v} \|_{V \to W} \| v - a \|_V \\
+		&\leq \sup_{\tau \in (0, 1)} \| (D^2 f)_{(1 - \tau)a + \tau v}\|_{\mathsf{Sym}_2(V, W)} \| v - a \|_V^2 \\
+		&\leq \cdots\\
+		&\leq \sup_{\tau \in (0, 1)} \|(D^{n-1} f )_{(1-\tau)a + \tau v}\|_{\mathsf{Sym}_{n-1}(V, W)} \| v - a \|^{n-1}_V\\
+	\end{split}
+	\]	
+	and therefore
+	\[
+	\|f(v) - f(a) \|_W \leq \sup_{\tau \in (0, 1)} \|\mathsf{Err}^{D^{n-1}f}_{a}((1 - \tau)a + \tau v) \|_{\mathsf{Sym}_{n-1}(V, W)} \|v-a \|_V^{n-1}.
+	\]
+\end{proof}
+
+The following proposition is in some sense a uniqueness statement about the Taylor expansion.
+
+\begin{proposition}
+	\label{pr:uniqueness-taylor-expansion}
+	Suppose $f : \Omega \to W$ and $g : \Omega \to W$ are both $n$ times differentiable in $a \in \Omega$ and 
+	\[
+	\lim_{x \to a} \frac{\|f(x) - g(x) \|_W}
+	{\| x - a \|_V^n} = 0.
+	\]
+	Then for all $k = 0, \dots, n$,
+	\[ (D^k f)_a = (D^k g)_a. \]
+\end{proposition}

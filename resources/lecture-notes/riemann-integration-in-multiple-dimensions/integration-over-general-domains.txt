@@ -1,0 +1,24 @@
+\begin{definition}[Integration over bounded subsets]
+	Let $E$ be a bounded subset of $\mathbb{R}^d$. We say that a function $f : E \to \mathbb{R}$ is integrable on $E$ if, with $R$ some rectangle in $\mathbb{R}^d$ containing $E$, the function $f_E : R \to \mathbb{R}$ defined by
+	\[
+	f_E(x) := 
+	\begin{cases}
+		f(x) &\text{if } x \in E,\\
+		0 &\text{if } x \notin E
+	\end{cases}
+	\]
+	is integrable on $R$. Moreover, we define
+	\[
+	\int_E f(x) dx := \int_R f_E (x) dx
+	\]
+\end{definition}
+
+The above definition is actually independent of the choice of rectangle $R$ that contains $E$. 
+
+\begin{definition}
+Let $E \subset \mathbb{R}^d$. We say that $E$ is a \emph{Jordan set} if the topological boundary $\partial E$ of $E$ has Jordan content zero.
+\end{definition}
+
+\begin{proposition}
+Let $R \subset \mathbb{R}^d$ be a closed rectangle and assume that $E \subset R$ is a bounded subset of $\mathbb{R}^d$ and assume $E$ is a Jordan set. Let $f$ be a bounded and Riemann integrable function on $R$. Then $f$ is integrable on $E$. 
+\end{proposition}

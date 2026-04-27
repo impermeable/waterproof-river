@@ -1,0 +1,47 @@
+\begin{tabular}{lp{0.4\textwidth}p{0.4\textwidth}}
+	& When you want to prove it: & When you know it's true and you want to use it: \\
+	$\forall a \in A, \textellipsis$ &
+	\begin{minipage}{0.4\textwidth}
+		\begin{mcode}
+			\begin{split}
+				&\\
+				&\text{Let } a \in A.\\
+				&\text{\emph{Continue proving }} \textellipsis\\
+				&\\
+			\end{split}
+		\end{mcode}
+	\end{minipage}
+	&
+	\begin{minipage}{0.4\textwidth}
+		\begin{mcode}
+			\begin{split}
+				&\\
+				&\text{Use } a := \_\_ \ \text{ in } (*).\\
+				&\quad \text{Indeed, } \_\_ \in A. \\
+				&\text{It holds that } \textellipsis.
+			\end{split}
+		\end{mcode}
+	\end{minipage}\\
+	$\exists a \in A, \textellipsis$ &
+	\begin{minipage}{0.4\textwidth}
+		\begin{mcode}
+			\begin{split}
+				&\\
+				&\text{Choose } a := \_\_ \ .\\
+				&\quad \text{Indeed, } a \in A. \\
+				&\text{\emph{Continue proving } } \textellipsis
+			\end{split}
+		\end{mcode}
+	\end{minipage}
+	&
+	\begin{minipage}{0.4\textwidth}
+		\begin{mcode}
+			\begin{split}
+				&\\
+				&\text{Obtain such an } a \in A.\\
+				&\\
+				&\\
+			\end{split}
+		\end{mcode}
+	\end{minipage}
+\end{tabular}

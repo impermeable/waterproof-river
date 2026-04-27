@@ -1,0 +1,21 @@
+a there-exists statement}\label{it:bp-using-exists}
+If you know that a there-exists statement such as
+\begin{mcodenumbered}
+	\label{eq:exists-statement-to-use}
+	\begin{split}
+		& \existstext a \in A, \\
+		&\qquad (\ldots)
+	\end{split}
+\end{mcodenumbered}
+holds, you can {\bf use} it as follows
+\begin{mcode}
+	\text{Obtain an } a \in A \text{ according to } (\ref{eq:exists-statement-to-use})
+\end{mcode}
+or as 
+\begin{mcode}
+	\text{Obtain an } a \in A \text{ such that } (\ldots) \text{ according to } (\ref{eq:exists-statement-to-use})
+\end{mcode}
+or just
+\begin{mcode}
+	\text{Obtain such an } a \in A.
+\end{mcode}

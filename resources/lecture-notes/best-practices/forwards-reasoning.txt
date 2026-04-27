@@ -1,0 +1,5 @@
+Perhaps more often than \emph{backwards reasoning} you would like to apply \emph{forward reasoning}. You usually do so in the middle of a proof, stating a new fact that can be derived from your earlier conclusions.
+
+\begin{mcode}
+	\text{It holds that } A.	
+\end{mcode}

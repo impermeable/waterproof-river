@@ -1,0 +1,9 @@
+If you need to show a statement of the form
+\begin{mcode}
+	\text{if } A \text{ then } B	
+\end{mcode}
+start with writing
+\begin{mcode}
+	\text{Assume } A.
+\end{mcode}
+and continue showing $B$.

@@ -1,0 +1,60 @@
+The following proposition follows directly from the differentiability theorem.
+
+\begin{proposition}
+	\label{pr:differentiation-power-series}
+Let 
+\[
+\sum_{k=0}^\infty a_k (x - c)^k
+\]	
+be a power series with radius of convergence $R$. Then, the power series is differentiable on the interval $(c - R, c + R)$ and on this interval, its derivative equals the power series
+\[
+\sum_{\ell=0}^\infty (\ell + 1) a_{\ell+1} (x-c)^{\ell}
+\]
+which has the same radius of convergence.
+\end{proposition}
+
+\begin{corollary}
+Let
+\[
+\sum_{k=0}^\infty a_k (x - c)^k
+\]	
+be a power series with radius of convergence $R$. Then the power series is infinitely many times differentiable on the interval $(c - R, c + R)$, and for every $\ell \in \mathbb{N}$, the $\ell$th derivative has the same radius of convergence.
+\end{corollary}
+
+\begin{theorem}[Identification of coefficients]
+Let $R>0$ and let $f : (c - R, c + R) \to \mathbb{R}$ be given by a power series
+\[
+f(x) := \sum_{k=0}^\infty a_k (x - c)^k.
+\]	
+Then for all $k \in \mathbb{N}$,
+\[
+a_k = \frac{f^{(k)}(c)}{k!}.
+\]
+\end{theorem}
+
+\begin{proof}
+	It follows by Proposition \ref{pr:differentiation-power-series} (and a proof by induction) that for all $\ell \in \mathbb{N}$ and for all $x \in (c - R, c+R)$,
+	\[
+	f^{(\ell)} (x) = \sum_{k=\ell}^\infty \frac{k!}{(k-\ell)!} a_k (x - c)^{k-\ell}.
+	\]
+	In particular, by substituting $x = c$, we find for all $\ell \in \mathbb{N}$,
+	\[
+	f^{(\ell)}(c) = \ell! a_\ell
+	\]
+	from which the conclusion follows.
+\end{proof}
+
+\begin{theorem}[Identity theorem for power series]
+Let $R> 0$ and let $f, g : (c - R, c+ R) \to \mathbb{R}$ be given by power series
+\[
+f(x) = \sum_{k=0}^\infty a_k (x- c)^k \qquad \text{ and } \qquad g(x) = \sum_{k=0}^\infty b_k(x - c)^k
+\]
+and assume for all $x \in (c - R, c+R)$,
+\[
+f(x) = g(x).
+\]
+Then for all $k \in \mathbb{N}$,
+\[
+a_k = b_k.
+\]
+\end{theorem}

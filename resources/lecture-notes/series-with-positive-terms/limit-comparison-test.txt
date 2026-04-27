@@ -1,0 +1,141 @@
+As a motivation for the next theorem, consider the series
+\[
+\sum_{k=2}^\infty \frac{k}{k^2+1}
+\]
+Just as in the previous example, the terms 
+\[
+\frac{k}{k^2 + 1}
+\]
+are very close to $1/k$ for large $k$, so we might still expect that the series diverges, because the standard harmonic series diverges as well. However, in contrast to the previous example, the terms
+\[
+\frac{1}{k}
+\]
+are \emph{larger} than the terms $\frac{k}{k^2+1}$. That means we cannot apply the Comparison Test directly. There is however a very convenient way around it: this way is industrialized by the following theorem.
+
+\begin{theorem}[Limit comparison test]
+	\label{th:lim-comparison}
+	Let $a: \mathbb{N} \to [0, \infty)$ and $b : \mathbb{N} \to (0, \infty)$ be two sequences.
+	
+	\begin{enumerate}
+	\item \label{it:lim-comparison-convergence} Assume the series $\sum b_k$ {\bf converges} and assume the limit 
+	\[
+	\lim_{n \to \infty} \frac{a_n}{b_n}
+	\]
+	exists (i.e. the sequence $n \mapsto a_n/b_n$ converges). Then the series $\sum a_k$ converges as well.
+	\item \label{it:lim-comparison-divergence} Assume the series $\sum b_k$ {\bf diverges} and assume that either the limit
+	\[
+	\lim_{n \to \infty} \frac{a_n}{b_n}
+	\]
+	exists and is {\bf strictly larger than zero}, or that 
+	\[
+	\lim_{n \to \infty} \frac{a_n}{b_n} = \infty.
+	\]
+	Then the series $\sum a_k$ diverges as well.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We show item (\ref{it:lim-comparison-convergence}).
+Assume $\sum b_k$ converges and that the limit 
+\[
+\lim_{n \to \infty} \frac{a_n}{b_n}
+\]
+exists. Let's call the limit $L \in [0,\infty)$. 
+
+Since 
+\[
+\lim_{n \to \infty} \frac{a_n}{b_n} = L
+\]
+\begin{optional_text}
+we have that
+\begin{equation}
+\label{eq:lim-comp-limit-def}	
+\begin{split}
+& \foralltext \epsilon > 0,\\
+&\quad \existstext N \in \mathbb{N}, \\
+&\quad\quad \foralltext n \geq N, \\
+&\quad\quad\quad \left|\frac{a_n}{b_n} - L \right| < \epsilon.	
+\end{split}
+\end{equation}	
+Choose $\epsilon := 1$ in (\ref{eq:lim-comp-limit-def}). Then
+\end{optional_text} 
+there exists an $N \in \mathbb{N}$ such that for all $n \geq N$,
+\[
+\left| \frac{a_n}{b_n} - L \right| < 1.
+\]
+Choose such an $N$. 
+We claim for all $n \geq N$, 
+\[
+a_n \leq b_n (L + 1).
+\]
+Indeed let $n \geq N$.
+Then 
+\[
+\frac{a_n}{b_n} - L < 1
+\]
+so that
+\[
+a_n < b_n (L + 1).
+\]
+
+Since the series $\sum b_k$ converges, by the limit laws for series, Theorem \ref{th:limit-laws-series}, the series
+\[
+\sum_{k=N}^\infty b_k (L+1)
+\]
+converges as well.
+
+Therefore by the comparison test, Theorem \ref{th:comparison-test}, we find that the series
+\[
+\sum_{k=N}^\infty a_k
+\]
+converges as well.
+\end{proof}
+
+\begin{example}
+Let us see how we can use the limit comparison test to conclude that the series
+\[
+\sum_{k=2}^\infty \frac{k}{k^2 + 1}
+\]	
+diverges.
+
+For this, we will apply part (\ref{it:lim-comparison-divergence}) of the Limit Comparison Test, Theorem \ref{th:lim-comparison}. 
+
+We use sequences  $a : \mathbb{N} \to (0,\infty)$ and $b : \mathbb{N} \to (0,\infty)$ defined for $k \geq 2$ by
+\[
+a_k := \frac{k}{k^2 + 1}
+\]
+and
+\[
+b_k := \frac{1}{k}.
+\]
+(In general, for the comparison sequence $b_k$ it is good to try a sequence for which you understand well whether the corresponding series diverges or converges, while at the same time you believe, have the intuition, the inkling or the guess that $a_k$ and $b_k$ are close for $k$ large.)
+Then
+\[
+\frac{a_k}{b_k} = \frac{\frac{k}{k^2+1}}{\frac{1}{k}} = \frac{1}{1 + \frac{1}{k^2}}.
+\]
+By limit laws, we find that the limit of the denominator is $1$, i.e.
+\[
+\lim_{k \to \infty} \left(1 + \frac{1}{k^2} \right) = \lim_{k\to \infty} 1 + \lim_{k \to \infty} \frac{1}{k^2} = 1 + 0 = 1.
+\]
+Therefore, we may apply the limit law for the quotient and conclude that
+\[
+\lim_{k \to \infty} \frac{a_k}{b_k} = \frac{1}{\lim_{k \to \infty} \left(1 + \frac{1}{k^2} \right)} = \frac{1}{1} = 1.
+\]
+The series $\sum_{k=2}^\infty \frac{1}{k}$ diverges and therefore it follows from the Limit Comparison Test that the series
+\[
+\sum_{k=2}^\infty a_k = \sum_{k=2}^\infty \frac{k}{k^2 +1}
+\]
+diverges as well.
+\end{example}
+
+Let me also say a word about a crucial technique we used in Theorem \ref{th:lim-comparison}: we used that because the sequence $a_n/b_n$ converges to $L$, there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, 
+\[
+L - 1 < \frac{a_n}{b_n} < L + 1
+\]
+This expresses that we have some pretty good control on the terms $\frac{a_n}{b_n}$ when $n$ is larger than or equal to $N$. \
+
+Similarly, it is maybe good to ponder about the fact that if a sequence $c : \mathbb{N} \to \mathbb{R}$ converges to some $L \in \mathbb{R}$, that then there exists an $N_1 \in \mathbb{N}$ such that for all $n \geq N_1$,
+\[
+L - \frac{1}{58249104762} < c_n < L + \frac{1}{58249104762}.
+\]
+The number $\frac{1}{58249104762}$ was a random result of fingers hitting the keyboard. It is true that the existence of such an $N_1$ is a fairly direct consequence of the definition of convergence of a sequence, yet sometimes it takes some time getting used to what such a definition can actually do for you.

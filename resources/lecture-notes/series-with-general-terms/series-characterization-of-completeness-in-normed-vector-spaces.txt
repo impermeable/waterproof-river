@@ -1,0 +1,62 @@
+\begin{definition}
+	Let $(V, \| \cdot \|)$ be a normed vector space. Let $a : \mathbb{N} \to V$ be a sequence in $V$. We say the series
+	\[
+	\sum_{k=0}^\infty a_k
+	\]	
+	converges \emph{absolutely} if
+	\[
+	\sum_{k=0}^\infty \| a_k \|
+	\]
+	converges.
+\end{definition}
+
+\begin{definition}[Series characterization of completeness]
+	We say a normed vector space $(V, \| \cdot \|)$ satisfies the \emph{series characterization of completeness} if every series in $V$ that is absolutely convergent is also convergent.
+\end{definition}
+
+In a later chapter, we will prove the following proposition.
+\begin{proposition}
+	\label{pr:fin-dim-norm-vec-complete}
+	Every finite-dimensional normed vector space satisfies the series characterization of completeness.
+\end{proposition}
+
+In particular, $\mathbb{R}^d$ endowed with the standard Euclidean norm satisfies the series characterization of completeness, and $(\mathbb{R} , | \cdot | )$ satisfies the series characterization of completeness.
+
+\begin{example}
+Consider the series
+\[
+\sum_{k=1}^\infty \frac{\sin(k)}{k^2}.
+\]	
+Since this is not an alternating series, we cannot apply the Leibniz test. However, for every $k \in \mathbb{N} \setminus\{0\}$, we have
+\[
+\left|\frac{\sin(k)}{k^2} \right| \leq \frac{1}{k^2}.
+\]
+The series 
+\[
+\sum_{k=1}^\infty \frac{1}{k^2}
+\]
+is a standard hyperharmonic series, of which we know that it converges. By the Comparison Test, we conclude that the series
+\[
+\sum_{k=1}^\infty \left| \frac{\sin(k)}{k^2} \right|
+\]
+converges as well.
+
+Therefore, the series
+\[
+\sum_{k=1}^\infty \frac{\sin(k)}{k^2}
+\]
+converges {\bf absolutely}. Because $(\mathbb{R}, | \cdot |)$ is complete, we find that
+\[
+\sum_{k=1}^\infty \frac{\sin(k)}{k^2}
+\]
+converges.
+\end{example}
+
+\begin{definition}
+Let $(V, \| \cdot \|)$ be a normed vector space and let $a : \mathbb{N} \to V$ be a sequence. We say that a series
+\[
+\sum_{k=0}^\infty a_k
+\]
+converges \emph{conditionally} if it
+converges, but doesn't converge absolutely.
+\end{definition}

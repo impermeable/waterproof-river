@@ -1,0 +1,42 @@
+\begin{proposition}
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be metric spaces and let $D \subset X$ be a subset of $X$. 
+	Let $f : D \to Y$ be a function on $D$.
+Let $a \in D'$ and assume 
+\[
+\lim_{x \to a} f(x) = p \qquad \text{and} \qquad \lim_{x \to a} f(x) = q
+\]	
+for points $p, q \in Y$. Then $p = q$.
+\end{proposition}
+\begin{proof}
+Suppose $p \neq q$.
+Choose $\epsilon := \dist_Y(p, q)/2$.
+Then there exists a $\delta_1 > 0$ such that for all $x \in D$, if $0 < \dist_X(x, a) < \delta_1$ then
+\[
+\dist_Y(f(x), p) < \epsilon = \frac{\dist_Y(p,q)}{2}
+\]
+and there exists a $\delta_2 > 0$ such that for all $x \in D$, if $0 < \dist_X(x, a) < \delta_2$ then
+\[
+\dist_Y(f(x), q) < \epsilon = \frac{\dist_Y(p, q)}{2}.
+\]
+Choose such $\delta_1 > 0$ and $\delta_2 > 0$.
+
+Now define $\delta := \min(\delta_1, \delta_2) > 0$. 
+Because $a$ is an accumulation point of $D$, there exists a point $b \in B(a, \delta)$.
+Then 
+\[
+\dist_Y(f(b), p) < \frac{\dist_Y(p,q)}{2}
+\]
+and
+\[
+\dist_Y(f(b), q) < \frac{\dist_Y(p,q)}{2}.
+\]
+Therefore by the triangle inequality
+\[
+\begin{split}
+\dist_Y(p, q) &\leq \dist_Y(p, f(b)) + \dist_Y(f(b), q) \\
+&< \frac{\dist_Y(p,q)}{2} + \frac{\dist_Y(p,q)}{2}\\
+&= \dist_Y(p,q).
+\end{split}
+\]
+which gives a contradiction.
+\end{proof}

@@ -1,0 +1,26 @@
+The \emph{Extreme Value Theorem} states that a continuous, real-valued function defined on a non-empty, compact domain $K$ always attains both a maximum and minimum on $K$. This is quite special, because the concepts of maxima and minima come with large alarm bells: maxima and minima may not always exist and one usually needs to be very careful about this fact. And indeed, there are \emph{discontinuous} functions defined on \emph{compact} domains that neither attain a maximum nor a minimum. And there are \emph{continuous} functions defined on \emph{non-compact} domains that neither attain a maximum nor a minimum. However, continuous functions that are defined on a compact set always attain a maximum and a minimum.
+
+\begin{theorem}[The Extreme Value Theorem]
+	Let $(X, \dist)$ be a metric space, let $K \subset X$ be a nonempty, compact subset and let $f: K \to \mathbb{R}$ be continuous.
+	Then $f$ attains a maximum and a minimum on $K$.
+\end{theorem}
+\begin{proof}
+	Since $f$ is continuous and $K$ is compact, the image $f(K)$ is compact as well.
+	Therefore, the set $f(K)$ is bounded, and $M := \sup f(K)$ is well-defined.
+	We can construct a sequence $(x_n)$ in $K$ such that
+	\[
+	\lim_{n \to \infty} f(x_n) = M.
+	\]
+	Because $K$ is compact, the sequence $(x_{n})$ has a converging subsequence $(x_{n_k})$, to $y \in K$.
+	Because $f$ is continuous,
+	\[
+	\lim_{k \to \infty} f(x_{n_k}) = f(y).
+	\]
+	On the other hand, the sequence $(f(x_{n_k}))$ is a subsequence of the sequence $f(x_n)$, so that
+	\[
+	M = \lim_{n \to \infty} f(x_n) = \lim_{k\to\infty} f(x_{n_k}) = f(y).
+	\]
+	In conclusion, $f$ attains its maximum in $y$.
+	
+	The fact that $f$ attains a minimum on $K$ now follows from the fact that the (continuous) function $-f : K \to \mathbb{R}$ attains a maximum on $K$.
+\end{proof}

@@ -1,0 +1,21 @@
+\subsection{Blue Exercises}
+
+
+\begin{blue_exercise}
+Determine whether the following series converge or diverge.
+\begin{align*}
+(a)\quad& \sum_{k=1}^\infty \frac{3^k k}{(2k+1)!} &
+(b)\quad& \sum_{k=10}^\infty	\frac{k + 2}{k^3 - 6} \\
+(c)\quad& \sum_{k=2}^\infty \frac{1}{\sqrt{k + 1}} &
+(d)\quad& \sum_{k=3}^\infty \frac{1}{k^{100}} 3^k
+\end{align*}	
+\end{blue_exercise}
+
+\subsection{Orange Exercises}
+
+\begin{orange_exercise}
+Let $c: \mathbb{N} \to (0,\infty)$ be a sequence taking on only strictly positive values, and assume that $c : \mathbb{N} \to (0,\infty)$ converges to $3/2$. Determine whether the following series diverges or converges
+\[
+\sum_{k=1}^\infty \frac{1}{k^{(c_k)}}.
+\]	
+\end{orange_exercise}

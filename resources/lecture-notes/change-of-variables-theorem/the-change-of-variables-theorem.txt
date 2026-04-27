@@ -1,0 +1,14 @@
+\begin{theorem}[Change-of-variables theorem]
+Let $\Omega \subset \mathbb{R}^d$ be open. 
+Let $E \subset \Omega$ be a Jordan set such that also its closure $\bar{E} \subset \Omega$. Let $\Phi : \Omega \to \mathbb{R}^d$ be continuously differentiable and injective.
+Assume that also the inverse function $\Phi^{-1}$ is differentiable.
+
+Assume that $f : \Phi(E) \to \mathbb{R}$ is integrable on $\Phi(E)$ and assume that $f \circ \Phi$ is integrable on $E$.
+
+Then
+\[
+\int_{\Phi(E)} f(x) dx = \int_{E} f(\Phi(y)) \big| \det([D \Phi]_y) \big| dy.
+\]
+\end{theorem}
+
+We will review in this chapter a few standard transformations, and therefore standard applications of the change-of-variables theorem. These involve transformations from and to polar, cylindrical and spherical coordinates. It is important to know these transformations, and the corresponding determinants of the Jacobians, by heart.

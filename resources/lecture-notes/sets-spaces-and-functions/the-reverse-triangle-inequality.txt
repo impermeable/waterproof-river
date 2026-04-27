@@ -1,0 +1,29 @@
+\begin{lemma}[Reverse triangle inequality]
+	\label{le:reverse-triangle-ineq}
+	Let $(V, \| \cdot \|)$ be a normed vector space. Then for all $v, w \in V$,
+	\[
+	| \| v \| - \| w \| | \leq \| v - w \|.
+	\]
+\end{lemma}
+\begin{proof}
+	Let $v, w \in V$. Define $a := v - w$ and $b := w$. It follows by the triangle inequality that
+	\[
+	\|a + b \| \leq \| a \| + \| b\|
+	\]
+	so that
+	\[
+	\| v \| \leq \| v - w \| + \| w \|
+	\]
+	and 
+	\[
+	\| v \| - \| w \| \leq \| v - w \|.
+	\]
+	Similarly,
+	\[
+	\| w \| - \| v \| \leq \| w - v \| = \| v -  w\|.
+	\]
+	We conclude that
+	\[
+	| \| v \| - \| w \| | \leq \| v - w \|.
+	\]
+\end{proof}

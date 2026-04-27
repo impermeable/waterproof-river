@@ -1,0 +1,53 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+Let $a, b \in \mathbb{R}$ be two real numbers such that $a < b$. Prove that the interval $[a, b]$ is a compact subset of the normed vector space $(\mathbb{R}, | \cdot | )$.	
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Let $(X, \dist)$ be a metric space and let $a: \mathbb{N} \to X$ be a sequence in $X$. Show that the sequence $a: \mathbb{N} \to X$ is \emph{bounded} (according to Definition \ref{de:bounded-sequence}) if and only if the set 
+\[
+A := \{ a_n \ | \ n \in \mathbb{N} \}
+\]	
+is bounded (according to Definition \ref{de:bounded-set}).
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+Consider the metric space $((0,1), \dist)$, where $(0, 1)$ denotes the interval from 0 to 1 and $\dist(x,y) = |x - y|$.
+Prove that $(0,1)$ is a closed and bounded subset of the metric space $((0,1), \dist)$. Also prove that $(0,1)$ is not a \emph{compact} subset of the metric space $((0, 1), \dist)$.
+\end{orange_exercise}
+
+The moral of this exercise is that the Heine-Borel theorem (Theorem \ref{th:heine-borel}) is an alternative characterization of compactness in $(\mathbb{R}^d, \| \cdot \|_2)$: for other metric spaces or normed vector spaces it does not hold that subsets are compact if and only if they are closed and bounded. 
+
+\begin{orange_exercise}
+Let $(X, \dist)$ be a metric space and let $K \subset X$ be a compact subset. Let $a : \mathbb{N} \to X$ be a sequence with values in $X$, such that 
+\begin{equation}
+	\label{eq:ex-inf-many}
+\begin{split}
+&\foralltext N \in \mathbb{N},\\
+&\quad \existstext \ell \geq N,\\
+&\quad\quad a_\ell \in K.	
+\end{split}
+\end{equation}
+(this is formal equivalent way of saying that there are infinitely many $\ell \in \mathbb{N}$ such that $a_\ell \in K$).
+
+The exercise consists of two parts:
+\begin{enumerate}
+\item Use (\ref{eq:ex-inf-many}) to inductively define an index sequence $n :\mathbb{N} \to \mathbb{N}$ such that for every $k \in \mathbb{N}$, $a_{n_k} \in K$. See the best practices on how to set up such an inductive definition.
+\item Use the fact that $K$ is compact to show that there is a point $p \in K$ and a subsequence of $a: \mathbb{N} \to X$ converging to $p$.
+\end{enumerate}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Consider the sets 
+\[
+A := \{ (x_1, x_2) \in \mathbb{R}^2 \mid x_1 - x_2 = 1 \}
+\]	
+and
+\[
+B := \{ (x_1, x_2) \in \mathbb{R}^2 \mid (x_1)^2 + (x_2)^2 \leq 1\}
+\]
+Prove that the set $A \cap B$ is compact (as a subset of the normed vector space $(\mathbb{R}^2, \| \cdot \|_2)$).
+\end{orange_exercise}

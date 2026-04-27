@@ -1,0 +1,27 @@
+\begin{example}[Harmonic series]
+	The series
+	\[
+	\sum_{k=1}^\infty \frac{1}{k}
+	\]
+	diverges.
+\end{example}
+
+\begin{proof}
+	Consider for every $\ell \in \mathbb{N}$ the partial sum
+	\[
+	S_{2^\ell} = \sum_{k=1}^{2^\ell} \frac{1}{k}.
+	\]
+	Note that for $k \in \{ 2^\ell + 1, \dots, 2^{\ell+1} \}$ we have that
+	\[
+	\frac{1}{k} \geq \frac{1}{2^{\ell + 1}}.
+	\]
+	We can conclude that
+	\[
+	S_{2^{\ell+1}} - S_{2^\ell} \geq 2^\ell \times \frac{1}{2^{\ell+1}} = \frac{1}{2}.
+	\]
+	We can show by induction that 
+	\[
+	S_{2^\ell} \geq \frac{\ell}{2}.
+	\]
+	Note also that the sequence of partial sums $(S_n)$ is increasing. Therefore, the sequence of partial sums $(S_n)$ diverges to infinity.
+\end{proof}

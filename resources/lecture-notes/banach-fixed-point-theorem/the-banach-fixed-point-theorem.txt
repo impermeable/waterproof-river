@@ -1,0 +1,132 @@
+\begin{definition}[Contraction]
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be metric spaces. Let $D \subset X$ be a subset of $X$ and let $f : D \to Y$ be a function. We say that $f$ is a contraction if there exists a $\kappa \in [0, 1)$ such that for all $x, z \in D$, it holds that
+\[
+\dist_Y( f(x), f(z) ) \leq \kappa \dist_X(x, z).
+\]
+If $f$ satisfies this inequality for all $x, z$, and a constant $\kappa \in [0, 1)$, then we will also sometimes say that $f$ is a $\kappa$-contraction.
+\end{definition}
+
+We first formulate the theorem for arbitrary metric spaces. Afterwards, we give a version for $\mathbb{R}^d$.
+
+\begin{theorem}[Banach fixed point theorem, metric space version]
+Let $(X, \dist_X)$ be a metric space. Let $D \subset X$ be a non-empty and complete subset of $X$.
+Let $f : D \to D$ be a function, let $\kappa \in [0, 1)$ and assume that for all $x, z \in D$, it holds that
+\[
+\dist_X(f(x), f(z) ) \leq \kappa \ \dist_X(x, z).
+\]
+Then there exists a unique point $p \in D$ such that $f(p) = p$.
+
+Moreover, for all $q \in D$, if we define the sequence $(x^{(n)})_n$ by
+\begin{equation}
+	\label{eq:banach-fixed-point-iteration}
+\begin{split}
+x^{(0)} &:= q\\
+x^{(n+1)} &:= f(x^{(n)})\qquad \text{ for } n \in \mathbb{N}.
+\end{split}
+\end{equation}
+Then the sequence $(x^{(n)})_n$ converges to $p$, and for all $n \in \mathbb{N}$,
+\begin{equation}
+\label{eq:banach-a-priori}
+\dist_X(x^{(n)}, p) \leq \frac{\kappa^n}{1 - \kappa} \dist_X(x^{(1)}, x^{(0)}).
+\end{equation}
+\end{theorem}
+
+Before given the proof of the theorem, we first formulate a version in case $X$ is just $\mathbb{R}^d$. Because every closed subset of $\mathbb{R}^d$ is complete, we get the following theorem.
+
+\begin{theorem}[Banach fixed point theorem, $\mathbb{R}^d$ version]
+Let $D \subset \mathbb{R}^d$ be closed and non-empty. Let $f : D \to D$ be a function, let $\kappa \in [0, 1)$ and assume that for all $x, z \in D$, it holds that
+\[
+\| f(x) - f(z)  \|_2 \leq \kappa \ \| x - z \|_2.
+\]
+Then there exists a unique point $p \in D$ such that $f(p) = p$.
+
+Moreover, for all $q \in D$, if we define the sequence $(x^{(n)})_n$ by
+
+\begin{equation}
+	\begin{split}
+		x^{(0)} &:= q\\
+		x^{(n+1)} &:= f(x^{(n)})\qquad \text{ for } n \in \mathbb{N}.
+	\end{split}
+\end{equation}
+Then the sequence $(x^{(n)})_n$ converges to $p$, and for all $n \in \mathbb{N}$,
+\begin{equation}
+	\| x^{(n)} -  p \|_2 \leq \frac{\kappa^n}{1 - \kappa} 
+	\|x^{(1)} -  x^{(0)}\|_2.
+\end{equation}
+\end{theorem}
+
+
+\begin{proof}[Proof of the metric space version of the Banach Fixed Point theorem]
+	We will first show that $f$ has at most one fixed point. To this end, let $z \in X$ be a fixed point of $f$, i.e.~$f(z) = z$, and let $p \in X$ be another fixed point of $f$. We need to show that $z = p$. 
+	Because $z$ and $p$ are fixed points, we find that
+	\[
+	\dist_X(p, z) = \dist_X(f(p), f(z)) \leq \kappa \dist_X(p, z)
+	\]
+	so that
+	\[
+    (1-\kappa) \dist_X(p, z) = 0
+	\]
+	and therefore $\dist_X(p,z) = 0$, from which it indeed follows that $p = z$.
+	
+	We will now show that for all $q \in D$, the sequence $(x^{(n)})_n$ defined inductively by (\ref{eq:banach-fixed-point-iteration}) converges to a fixed point $p \in D$. From this, of course, it follows immediately that such a fixed point exists.
+	
+	Let $q \in D$.
+	
+	Now define the sequence $(x^{(n)})_n$ inductively according to (\ref{eq:banach-fixed-point-iteration}), i.e.
+	\[
+	\begin{split}
+		x^{(0)} &:= q\\
+		x^{(n+1)} &:= f(x^{(n)})\qquad \text{ for } n \in \mathbb{N}.	
+	\end{split}
+	\]
+	
+	Then for all $n \in \mathbb{N}$,
+	\begin{equation}
+	\begin{split}
+	\dist_X(x^{(n+2)},x^{(n+1)})
+	&= \dist_X(f(x^{(n+1)}), f(x^{(n)} ) )\\
+	&\leq \kappa \ \dist_X( x^{(n+1)}, x^{(n)} )
+	\end{split}
+	\end{equation}
+	It follows by induction that for all $n \in \mathbb{N}$ it holds that
+	\begin{equation}
+	\label{eq:in-banach-fixed-point-est-n}
+	\begin{split}
+	\dist_X(x^{(n+1)}, x^{(n)}) \leq \kappa^n \dist_X(x^{(1)}, x^{(0)})	
+	\end{split}
+	\end{equation}
+	By the triangle inequality, for all $m, n \in \mathbb{N}$ with $m \leq n$,
+	\[
+	\begin{split}
+	\dist_X(x^{(n)}, x^{(m)})
+	&\leq \dist_X(x^{(n)}, x^{(n-1)} ) + \cdots + \dist_X(x^{(m+1)}, x^{(m)})\\
+	&= \sum_{\ell=m}^{n-1} \dist_X( x^{(\ell+1)}, x^{(\ell)} ) \\
+	&\leq \sum_{\ell=m}^{n-1} \kappa^\ell \dist_X(x^{(1)}, x^{(0)})\\
+	&= \frac{\kappa^m - \kappa^n}{1 - \kappa} \dist_X(x^{(1)}, x^{(0)} )\\ 
+	&\leq \frac{\kappa^m}{1 - \kappa} \dist_X(x^{(1)}, x^{(0)} ).
+	\end{split}
+	\]
+	Therefore, the sequence $(x^{(n)})$ is a Cauchy sequence. Since $D$ is complete, it follows that $(x^{(n)})$ is convergent, to some $p \in D$ say.
+	
+	We will now show that $f(p) = p$. For this, we first write inequality (\ref{eq:in-banach-fixed-point-est-n}) as
+	\[
+	\dist_X( f(x^{(n)}), x^{(n)}) \leq \kappa^n \dist_X(x^{(1)}, x^{(0)}).
+	\]
+	Since the sequence $(x^{(n)})$ converges to $p$, it follows for instance from Proposition \ref{pr:dist-seq-same-limit} that also the sequence $(f(x^{(n)}))$ converges to $p$. On the other hand, $f$ is Lipschitz continuous and therefore continuous (see Exercise \ref{ex:lipschitz-implies-uniform}) so that by the sequence characterization of continuity we know that
+	\[
+	p = \lim_{n \to \infty} f(x^{(n)}) = f(p).
+	\]
+	
+	Note that for all $m, n \in \mathbb{N}$, with $m > n$,
+	\[
+	\begin{split}
+	\dist_X(p,  x^{(n)}) 
+	&\leq \dist_X(p, x^{(m)}) + \dist_X(x^{(m)}, x^{(n)})\\
+	&\leq \dist_X(p, x^{(m)}) + \frac{\kappa^n}{1 - \kappa} \dist_X(x^{(1)}, x^{(0)}).
+	\end{split}
+	\]
+	By taking the limit $m \to \infty$, we find that
+	\[
+	\dist_X(p, x^{(n)} ) \leq \frac{\kappa^n}{1 - \kappa} \dist_X(x^{(1)}, x^{(0)}).
+	\]
+\end{proof}

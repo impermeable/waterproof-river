@@ -1,0 +1,1 @@
+Indicate whether a statement that you write down is a statement you want to show, or whether it is a statement that you assume, or  whether it is a consequence of your earlier derivations.

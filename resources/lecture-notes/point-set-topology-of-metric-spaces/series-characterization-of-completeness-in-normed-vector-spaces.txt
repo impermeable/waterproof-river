@@ -1,0 +1,111 @@
+%\begin{definition}
+%Let $(V, \| \cdot \|)$ be a normed vector space. Let $a : \mathbb{N} \to V$ be a sequence in $V$. We say the series
+%\[
+%\sum_{k=0}^\infty a_k
+%\]	
+%converges \emph{absolutely} if
+%\[
+%\sum_{k=0}^\infty \| a_k \|
+%\]
+%converges.
+%\end{definition}
+
+We will now show that a normed vector space satisfies the series characterization of completeness if and only if the corresponding metric space is complete. We already know that $(\mathbb{R}^d, \| \cdot \|)$ is complete, therefore after we have proved the theorem we know that if a series in $(\mathbb{R}^d, \| \cdot \|)$ converges absolutely then it also converges.
+
+\begin{theorem}
+	\label{th:series-char-completeness}
+Let $(V, \| \cdot \|)$ be a normed vector space.
+Then $(V, \| \cdot \|)$ is complete if and only if every absolutely converging series is convergent.	
+\end{theorem}
+
+\begin{proof}
+We first show that `only if' direction.
+Suppose $(V, \| \cdot \|)$ is complete.
+Let $a : \mathbb{N} \to V$ be a sequence and suppose the series
+\[
+\sum_{k=0}^\infty \| a_k \|
+\]	
+is convergent. Consider also the sequence of partial sums
+\[
+S^n := \sum_{k=0}^n a_k.
+\]
+We are going to show that $(S^n)$ is a Cauchy sequence.
+Let $\epsilon > 0$.
+Since the series
+\[
+\sum_{k=0}^\infty \|a_k\|
+\]
+converges, we know by Proposition \ref{pr:tail-converges-to-zero} that
+\[
+\lim_{N \to \infty} \sum_{k=N}^\infty \|a_k\| = 0.
+\]
+Choose $N \in \mathbb{N}$ such that
+\[
+\sum_{k=N}^\infty \|a_k\| < \epsilon.
+\]
+Let $m, n \geq N$. Assume without loss of generality that $n > m$. Then
+\[
+\| S^n - S^m \| = \left\| \sum_{k=m+1}^n a_k \right\| \leq \sum_{k=m+1}^n \|a_k\| \leq \sum_{k=m+1}^\infty \|a_k\| < \epsilon.
+\]
+We have shown that $(S^n)$ is a Cauchy sequence. Since $(V, \| \cdot \|)$ was assumed to be complete, the sequence $(S^n)$ is convergent.
+
+We now show the `if' direction.
+Suppose that every absolutely converging series in $V$ is convergent.
+Let $a: \mathbb{N} \to V$ be a Cauchy sequence.
+We need to show that $a : \mathbb{N} \to V$ is convergent.
+
+We can construct a subsequence such that
+\[
+\| a_{n_{k+1}} - a_{n_k} \| \leq 2^{-k}.
+\]
+Define the sequence $b: \mathbb{N} \to V$ by
+\[
+b_k := a_{n_{k+1}} - a_{n_k}.
+\]
+Then the series
+\[
+\sum_{k=0}^\infty \| b_k \|
+\]
+is convergent by comparison with the converging series
+\[
+\sum_{k=0}^\infty 2^{-k}.
+\]
+It follows that the series
+\[
+\sum_{k=0}^\infty b_k 
+\]
+is convergent. Note that the partial sums corresponding to this series are
+\[
+S^\ell = \sum_{k=0}^\ell b_k = a_{n_{\ell+1}} - a_{n_0}.
+\]
+It follows by limit theorems that the sequence $(a_{n_\ell})$ is convergent.
+Then it follows by Proposition \ref{pr:cauchy-seq-subseq} that the sequence $(a_m)$ converges as well.
+\end{proof}
+
+\begin{corollary}
+Let $a : \mathbb{N} \to \mathbb{R}$ be a real-valued sequence. Suppose the series
+\[
+\sum_{n=0}^\infty a_n
+\]	
+converges absolutely, i.e. the series
+\[
+\sum_{n=0}^\infty | a_n |
+\]
+converges. Then also the series
+\[
+\sum_{n=0}^\infty a_n
+\]
+converges.
+\end{corollary}
+
+\begin{example}
+The series
+\[
+\sum_{k=1}^\infty (-1)^k \frac{1}{k^2}
+\]	
+converges, because it converges absolutely. Indeed,
+\[
+\sum_{k=1}^\infty \left|(-1)^k \frac{1}{k^2} \right| = \sum_{k=1}^\infty \frac{1}{k^2}
+\]
+is a standard converging hyperharmonic series.
+\end{example}

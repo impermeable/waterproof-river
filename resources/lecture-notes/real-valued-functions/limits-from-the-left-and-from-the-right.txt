@@ -1,0 +1,35 @@
+\begin{definition}[Limit from the left]
+	Let $(Y, \dist_Y)$ be a metric space, and let $D \subset \mathbb{R}$ be a subset of $\mathbb{R}$.
+	Let $f: D \to Y$ be a function.
+	Let $a \in \mathbb{R}$ be such that $a \in ((-\infty, a) \cap D)'$, i.e.~such that $a$ is an accumulation point of the set $(-\infty, a) \cap D$ in the metric space $(\mathbb{R}, \dist_{\mathbb{R}})$. Let $q \in Y$. We say that $f(x)$ \emph{converges to $q$ as $x$ approaches $a$ from the left (or from below)}, and write
+	\[
+	\lim_{x \uparrow a} f(x) = q  \quad \left( \text{or sometimes } \lim_{x \to a^-} f(x) = q \right)
+	\]
+	if
+	\[
+	\begin{split}
+		&\foralltext \epsilon > 0,\\
+		&\quad \existstext \delta > 0,\\
+		&\quad\quad \foralltext x \in D \cap (-\infty, a),\\
+		&\quad\quad\quad 0 < \dist_{\mathbb{R}} (x, a) < \delta \implies \dist_Y( f(x) , q) < \epsilon.
+	\end{split}
+	\]
+\end{definition}
+
+\begin{definition}[Limit from the right]
+	Let $(Y, \dist_Y)$ be a metric space, and let $D \subset \mathbb{R}$ be a subset of $\mathbb{R}$.
+	Let $f: D \to Y$ be a function.
+	Let $a \in \mathbb{R}$ be such that $a \in ((a, \infty) \cap D)'$, i.e.~such that $a$ is an accumulation point of the set $(a, \infty) \cap D$ in the metric space $(\mathbb{R}, \dist_{\mathbb{R}})$. Let $q \in Y$. We say that $f(x)$ \emph{converges to $q$ as $x$ approaches $a$ from the right (or from above)}, and write
+	\[
+	\lim_{x \downarrow a} f(x) = q \quad \left( \text{or sometimes } \lim_{x \to a^+} f(x) = q \right)
+	\]
+	if
+	\[
+	\begin{split}
+		&\foralltext \epsilon > 0,\\
+		&\quad \existstext \delta > 0,\\
+		&\quad\quad \foralltext x \in D \cap (a, \infty),\\
+		&\quad\quad\quad 0 < \dist_{\mathbb{R}} (x, a) < \delta \implies \dist_Y( f(x) , q) < \epsilon.
+	\end{split}
+	\]
+\end{definition}

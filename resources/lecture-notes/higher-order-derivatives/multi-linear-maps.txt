@@ -1,0 +1,122 @@
+The space $\mathsf{Lin}_n(V, W)$ is a bit cumbersome to work with, but we may equivalently interpret elements from $\mathsf{Lin}_n(V, W)$ as so-called \emph{multi-linear} maps from the $n$-fold Cartesian product
+\[
+V^{\times n} = \underset{n \text{ times}}{V \times \cdots \times V}
+\]
+to $W$. 
+
+\begin{definition}[Multi-linear maps]
+A map $L : V^{\times n} \to W$ is called multi-linear, or $n$-linear, if for every $i\in \{ 1, \dots, n\}$ and every $v_1, \dots, v_{i-1}, v_{i+1}, \dots, v_n \in V$, the map
+\[
+u \mapsto L(v_1, \dots, v_{i-1} , u, v_{i+1}, \dots, v_n)
+\]	
+(which is a map from the vector space $V$ to the vector space $W$) is linear. We will denote the vector space of $n$-linear maps from $V^{\times n}$ to $W$ by $\mathsf{MLin}(V^{\times n}, W)$.
+\end{definition}
+
+The statement that we may equivalently interpret elements from $\mathsf{Lin}_n(V, W)$ as multi-linear maps, precisely means that there is an invertible linear map from $\mathsf{Lin}_n(V, W)$ to $\mathsf{MLin}(V^{\times n}, W)$ that preserves norm (with the choice of norm on $\mathsf{MLin}(V^{\times n}, W)$ that we will give later). Intuitively, this has as a consequence that for all accounts and purposes these two spaces are the same.
+
+The linear map$\mathcal{J}_n$ that brings elements in $\mathsf{Lin}_n(V,W)$ to multilinear maps in $\mathsf{MLin}(V^{\times n}, W)$ is given by
+\[
+(\mathcal{J}_n A)(v_1, \dots, v_n) = A(v_1)(v_2) \cdots (v_n).
+\]
+More precisely, we define the map $\mathcal{J}_n$ inductively, namely
+\[
+\mathcal{J}_1 A := A
+\]
+while for $n \in \mathbb{N} \setminus\{0\}$,
+\[
+(\mathcal{J}_{n+1} A)(v_1, \cdots, v_{n+1}) :=
+\mathcal{J}_n (A(v_1))(v_2, \cdots, v_{n+1})
+\]
+
+We define the following norm on the space $\mathsf{MLin}(V^{\times n}, W)$ of multi-linear maps from $V^{\times n}$ to $W$:
+\begin{equation}
+	\label{eq:norm-multilin}
+\|L \|_{\mathsf{MLin}(V^{\times n}, W)} = \sup_{\|v_1\|_V, \dots, \|v_n\|_V \leq 1} \|L(v_1, \dots, v_n) \|_W
+\end{equation}
+
+We also define inductively the maps $\mathcal{K}_{n}: \mathsf{MLin}(V^{\times n}, W) \to \mathsf{Lin}_n(V, W)$, which will turn out to be the inverses of the map $\mathcal{J}_n$. We define
+\[
+\mathcal{K}_1 B = B
+\]
+and
+\[
+(\mathcal{K}_{n+1} B )(v_1) = \mathcal{K}_n (B (v_1, \cdots)).
+\]
+\begin{proposition}
+Then $\mathcal{J}_n$ is invertible with inverse $\mathcal{K}_n$, and it preserves the norm.
+\end{proposition}
+\begin{proof}
+	We are going to prove this by induction.
+	
+	For $n = 1$, the maps $\mathcal{J}_n$ and $\mathcal{K}_n$ are both just the identity map. Therefore it is clear that they are each others inverses. They also preserve the norm, because the norm $\| \cdot \|_{V \to W}$ and $\| \cdot \|_{\mathsf{Mlin}(V^{\times 1}, W)}$ are actually the same.
+	
+	Now let $n \in \mathbb{N} \setminus\{0\}$ and assume the statement is proven for $\mathcal{J}_n$.
+	We will first show that $\mathcal{K}_{n+1} \circ \mathcal{J}_{n+1}$ is the identity.
+	
+	Let $A \in \mathsf{Lin}_{n+1}(V, W)$ and let $v_1 \in V$. Then 
+	\[
+	\begin{split}
+		(\mathcal{K}_{n+1}\circ \mathcal{J}_{n+1}(A)) (v_1)
+		&= \Big(\mathcal{K}_{n+1} ( \mathcal{J}_{n+1}(A) ) \Big)(v_1)\\
+		&= \mathcal{K}_{n} \Big(\mathcal{J}_{n+1}(A)(v_1, \cdots)\Big) \\
+		&= \mathcal{K}_{n}(\mathcal{J}_n (A(v_1)))\\
+		&= A(v_1).
+	\end{split}
+	\]
+	We will now show that $\mathcal{J}_{n+1} \circ \mathcal{K}_{n+1}$ is the identity. Let $v_1 \in V$ and let $B \in \mathsf{MLin}(V^{\times (n+1)}, W)$. Then 
+	\[
+	\begin{split}
+		(\mathcal{J}_{n+1} (\mathcal{K}_{n+1} (B)))
+		(v_1, \cdots)
+		&= \mathcal{J}_n\left( (\mathcal{K}_{n+1} B)(v_1) \right)\\
+		&= \mathcal{J}_n\left(\mathcal{K}_n (B (v_1, \cdots ))\right)\\
+		&= B(v_1, \cdots).
+	\end{split}
+	\]
+	Finally, $\mathcal{J}_{n+1}$ preserves the norm since
+	\[
+	\begin{split}
+		\| A \|_{\mathsf{Lin}_{n+1}(V, W)} &= \sup_{\| v_1 \|_V \leq 1} \| A (v_1) \|_{\mathsf{Lin}_n(V, W)}\\
+		&= \sup_{\| v_1 \|_V \leq 1} \| \mathcal{J}_n (A (v_1)) \|_{\mathsf{MLin}(V^{\times n}, W)}\\
+		&= \sup_{\| v_1 \|_V \leq 1} \sup_{\|v_2 \|_V \leq 1, \dots, \| v_{n+1} \|_V \leq 1}
+		\| \mathcal{J}_{n}(A(v_1))(v_2, \dots, v_{n+1}) \|_{W}\\
+		&= \sup_{\| v_1 \|_V \leq 1} \sup_{\|v_2 \|_V \leq 1, \dots, \| v_{n+1} \|_V \leq 1}
+		\| \mathcal{J}_{n+1}A(v_1, v_2, \dots, v_{n+1}) \|_{W}\\
+		&= \| \mathcal{J}_{n+1} A \|_{\mathsf{MLin}(V^{\times(n+1)}, W)}.
+	\end{split}
+	\]
+	
+	
+%	 we need to construct a map $A \in \mathsf{Lin}_{n+1}(V, W)$. Hence we need to describe what $A$ does to a vector $v_1 \in V$.
+%	
+%	\[
+%	A(v_1) = \mathcal{K}_n ( B(v_1, \cdots ) ).
+%	\]
+%	
+%	We show that 
+%	
+%
+%	
+%	We use induction to show that $\mathcal{J}_n$ preserves norm. We show this by induction. The map $\mathcal{J}_1$ preserves the norm as it is practically the identity map. 
+%	
+%	Now let $n \in \mathbb{N}$ and assume that $\mathcal{J}_n$ preserves the norm. Then
+	
+%		&= \sup_{\|v_1\|_V \leq 1} \| \mathcal{J}_n (A(v_1)) \|_{\mathsf{MLin}(V^{\times (n)})}\\
+%
+%		&= \sup_{\| v_1 \|_V \leq 1} 
+%		\sup_{\|v_2 \|_V \leq 1, \dots, \| v_{n+1} \|_V \leq 1}} \| A(v_1) \|
+%	\end{split}	
+%	\]
+\end{proof}
+
+As a consequence of the previous proposition, it doesn't really matter whether we view a map as an element of $\mathsf{Lin}_n(V, W)$ or as an element of $\mathsf{MLin}(V^{\times n}, W)$.
+
+We will therefore just leave out the explicit application of $\mathcal{J}_n$, i.e.~we write $A$ instead of $\mathcal{J}_n(A)$ and use notation
+\[
+A(v_1, \dots, v_n)
+\]
+and
+\[
+A(v_1) \cdots (v_n)
+\]
+interchangeably.

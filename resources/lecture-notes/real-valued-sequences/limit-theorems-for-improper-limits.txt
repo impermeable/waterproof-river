@@ -1,0 +1,25 @@
+\begin{theorem}
+Let $a, b, c, d : \mathbb{N} \to \mathbb{R}$ be four sequences such that
+\[
+\lim_{n \to \infty} a_n = \infty \quad \text{ and } \quad 
+\lim_{n \to \infty} c_n = - \infty,
+\]
+the sequence $(b_n)$ is bounded from below and the sequence $(d_n)$ is bounded from above.
+Let $\lambda : \mathbb{N} \to \mathbb{R}$ be a sequence bounded below by some $\mu > 0$. 
+Then
+\begin{enumerate}
+\item $\lim_{n \to \infty} (a_n + b_n) = \infty$.
+\item $\lim_{n \to \infty} (c_n + d_n) = - \infty$.
+\item $\lim_{n \to \infty} (\lambda_n a_n) = \infty$.
+\item $\lim_{n \to \infty} (\lambda_n c_n) = - \infty$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+	\label{pr:characterizations-improper-divergence}
+Let $a: \mathbb{N} \to \mathbb{R}$ be a real-valued sequence. Let $b : \mathbb{N} \to (0,\infty)$ be a real-valued sequence taking on only strictly positive values. Then
+\begin{enumerate}
+\item \label{it:div-plus-minus-infty} $\lim_{n \to \infty} a_n = \infty$ if and only if $\lim_{n \to \infty} (- a_n) = - \infty$.
+\item \label{it:improper-to-zero} $\lim_{n \to \infty} b_n = \infty$ if and only if $\lim_{n \to \infty} \frac{1}{b_n} = 0$.
+\end{enumerate}	
+\end{proposition}

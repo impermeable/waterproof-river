@@ -1,0 +1,39 @@
+We will now introduce the concept of the \emph{directional derivative}, which can be viewed as the rate of change of a function when varying the input in a certain direction.
+
+\begin{definition}[Directional derivative]
+	\label{de:dir-deriv}
+	Let $f: \Omega \to W$ be a function from an open domain $\Omega$ in a finite-dimensional normed vector space $V$ to a finite-dimensional normed vector space $W$. Let $a \in \Omega$ and $v \in V$.
+	
+	The \emph{directional derivative} of $f$ in the point $a$ in the direction of $v$ is the limit
+	\[
+	(D_v f)_a := \lim_{h \to 0} \frac{f(a + h v)- f(a)}{h}.
+	\]
+\end{definition}
+
+Note that we can also view the limit, and therefore the directional derivative, as the following (one-variable) derivative of a function of one variable
+\[
+(D_v f)_a = \left. \frac{d}{dt} f(a + t v)\right|_{t = 0}.
+\]
+
+To get some intuition for the directional derivative, it may be useful to imagine some open set $\Omega \subset \mathbb{R}^2$, and interpret it as coordinates in some mountainous area, and interpret $f : \Omega \to \mathbb{R}^2$ assigning to every coordinate $x \in \Omega$ in the landscape the height of the mountain $f(x)$. The directional derivative at $a$ in the direction $v$ is then the rate of change of the height $f$ when one passes the point $a$ with velocity $v$.
+
+Note also that in the special, one-dimensional, case, i.e. $d = 1$, then,
+\[
+f'(s) = (D_{\mathbf{e}_1} f)_s
+\]
+since
+\[
+f'(s) = \lim_{h \to 0} \frac{f(s + h) - f(s)}{h} =
+\lim_{h \to 0} \frac{f(s + h \mathbf{e}_1) - f(s)}{h} = (D_{\mathbf{e}_1} f)_s
+\]
+noting that the standard unit vector $\mathbf{e}_1$ just corresponds to the number $1$.
+
+Since the directional derivative can be viewed as a one-variable derivative of a certain function, Proposition \ref{pr:components-one-variable} immediately yields the following proposition.
+
+\begin{proposition}
+	\label{pr:rel-dir-der-comp}
+	Let $f : \Omega \to W$. The directional derivative $(D_v f)_a$ exists if and only if for every $j = 1, \dots, m$, the derivative $(D_v f_j)_a$ exists, and in that case
+	\[
+	(D_v f)_a = (D_v f_1)_a \mathbf{w}_1 + \dots + (D_v f_m)_a \mathbf{w}_m.
+	\]
+\end{proposition}

@@ -1,0 +1,20 @@
+To get a useful concept of a limit in a point $p \in X$, the point $p$ needs to be an \emph{accumulation point} of the domain $D$ of the function.
+
+\begin{definition}[Accumulation points]
+	%\coqlib{Coq.Reals.Rlimit}{adhDa}
+	Let $(X, \dist_X)$ be a metric space and let $D\subset X$ be a subset of $X$. We say a point $p \in X$ is an \emph{accumulation point} of the set $D$ if
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext x \in D,\\
+	&\quad\quad 0 < \dist_X(x, p) < \epsilon.
+	\end{split}
+	\]
+	We denote the set of accumulation points of a set $D$ by $D'$.
+\end{definition}
+
+Note that accumulation points of a set $D$ do not have to lie in the set $D$ themselves. If a point does lie in $D$, but is not an accumulation point, then we call it an isolated point.
+
+\begin{definition}[Isolated points]
+	Let $(X, \dist)$ be a metric space and let $D \subset X$ be a subset of $X$. We say a point $a \in D$ is an \emph{isolated point} if it is not an accumulation point, i.e.~ if $a \in D \setminus D'$.
+\end{definition}

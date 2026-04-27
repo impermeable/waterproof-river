@@ -1,0 +1,37 @@
+Higher order derivatives are defined inductively.
+If $f : \Omega \to W$ is differentiable on a domain $\Omega \subset V$, then the derivative \emph{itself} can be interpreted as a function
+\[
+(Df) : \Omega \to \Lin(V, W)
+\]
+i.e.~it is a function from $\Omega$ to $\Lin(V, W)$. Because $\Lin(V, W)$ is a finite-dimensional vector space again, we can use the definition of differentiability to check whether the function $(Df) : \Omega \to \Lin(V, W)$ is differentiable in a point $a$. If so, we denote the derivative of $(Df)$ in the point $a$ by $(D (D f))_a$.
+
+If $(D f)$ is differentiable in every point $a$ in $V$, then we say $f$ is twice differentiable, and the second derivative is a function
+\[
+(D (D f)) : \Omega \to \Lin(V, \Lin(V, W)).
+\]
+Similarly, the third derivative is a function
+\[
+(D (D (D f))) : \Omega \to \Lin(V, \Lin(V, \Lin(V, W))).
+\]
+
+The general definition can be given by induction. We first define the space $\mathsf{Lin}_n(V, W)$ inductively.
+\begin{definition}
+We set $\mathsf{Lin}_1(V, W) := \mathsf{Lin}(V, W)$ and for every $n \in \mathbb{N}\setminus \{0\}$, we define $\mathsf{Lin}_{n+1}(V, W) := \mathsf{Lin}(V, \mathsf{Lin}_n(V, W))$.
+\end{definition}
+
+\begin{definition}[Higher-order derivatives]
+Let $n \in \mathbb{N} \setminus \{0, 1\}$. Suppose $f : \Omega \to W$ is $n$ times differentiable on a ball $B(a, r) \subset \Omega$. We then say that $f$ is $(n+1)$ times differentiable in the point $a$ if the function
+\[
+D^{n} f : B(a, r) \to \Lin_n(V, W)
+\]
+is differentiable in $a$. The $(n+1)$th derivative in the point $a$ is then defined as
+\[
+(D^{n+1} f)_a := (D(D^{n}f))_a \in \mathsf{Lin}_{n+1}(V, W).
+\]
+\end{definition}
+
+The following theorem gives an alternative characterization of higher-order differentiability.
+
+\begin{theorem}
+	The function $f : \Omega \to W$ is $(n + 1)$ times differentiable in $a$ if and only if it is $n$-times differentiable and all $n$-th order partial derivatives are differentiable in $a$.
+\end{theorem}

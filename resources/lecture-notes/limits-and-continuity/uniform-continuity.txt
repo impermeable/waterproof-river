@@ -1,0 +1,82 @@
+\begin{definition}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be metric spaces and let $D \subset X$ be a non-empty subset.
+We say that $f: D \to Y$ is \emph{uniformly continuous} on $D$ if
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+& \quad \existstext	\delta > 0,\\
+& \quad \quad \foralltext p, q \in D,\\
+& \quad \quad \quad 0 < \dist_X(p,q) < \delta \implies \dist_Y(f(p), f(q)) < \epsilon. 
+\end{split}
+\]	
+\end{definition}
+
+The following proposition shows that \emph{uniform continuity} is a stronger property than continuity.
+
+\begin{proposition}
+\label{pr:uniform-cont-implies-cont}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be metric spaces and let $D \subset X$ be a non-empty subset.
+Let $f : D \to Y$ be uniformly continuous on $D$. Then $f$ is continuous on $D$.	
+\end{proposition}
+
+\begin{proof}
+We need to show that for all $a \in D$ the function $f$ is continuous in $a$.
+
+If $a \in D \setminus D'$, then $f$ is continuous in $a$ by definition.
+Let $a \in D'$. We need to show that
+\[
+\lim_{x \to a} f(x) = f(a).
+\]
+Let $\epsilon > 0$.
+Since $f$ is uniformly continuous, there exists a $\delta > 0$ such that for all $p, q \in D$,
+\[
+0 < \dist_X(p, q) < \delta \implies \dist_Y (f(p), f(q)) < \epsilon. 
+\]
+Choose such a $\delta > 0$.
+
+Let $p \in D$. Assume that $0 < \dist_X(p, a) < \delta$. Then
+\[
+\dist_Y(f(p), f(a)) < \epsilon.
+\]
+Therefore, $f$ is continuous in $a$.
+\end{proof}
+
+Although uniform continuity is stronger than continuity, if a function is continuous on a compact set, it is even uniformly continuous.
+
+\begin{theorem}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be metric spaces, let $K \subset X$ be compact and let $f : K \to Y$ be continuous on $K$.
+Then $f$ is uniformly continuous on $K$.	
+\end{theorem}
+
+\begin{proof}
+We argue by contradiction.
+Suppose $f$ is not uniformly continuous.
+Then there exists an $\epsilon > 0$ such that for every $\delta > 0$, there exist points $x, y \in K$ with $0 < \dist_X(x, y) < \delta$ yet $\dist_Y(f(x), f(y)) \geq \epsilon$.
+We will now use this to construct sequences $(p_n)$ and $(q_n)$ in $K$.
+
+We define these as follows. For $n \in \mathbb{N}$, we know that there exist points $p_n, q_n \in K$ with 
+\[
+0 < \dist_X(p_n, q_n) < \frac{1}{n}
+\]
+yet $\dist_Y(f(p_n), f(q_n)) \geq \epsilon$.
+
+Because $K$ is compact, there exists a subsequence $(p_{n_k})$ of $(p_n)$ converging to some point $a \in K$.
+Since $0 < \dist_X(p_n, q_n) < \frac{1}{n}$, it follows by the triangle inequality that
+\[
+\begin{split}
+0 \leq \dist_X(a, q_{n_k})
+&\leq \dist_X(a, p_{n_k}) + \dist_X(p_{n_k}, q_{n_k})\\
+&< \dist_X(a, p_{n_k}) + \frac{1}{n_k} 
+\end{split}
+\]
+so that by the squeeze theorem and Proposition \ref{pr:conv-iff-dist-to-0} we conclude that $(q_{n_k})$ converges to $a$ as well. 
+Since $f$ is continuous in $a$, we know that
+\[
+\lim_{k \to \infty} \dist_Y(f(p_{n_k}), f(a)) = \lim_{k \to \infty} \dist_Y(f(q_{n_k}), f(a)) = 0.
+\]
+As a consequence, there exists a $k$ such that
+\[
+\dist_Y \left( f(p_{n_k}), f(q_{n_k}) \right) < \epsilon,
+\]
+which is a contradiction.
+\end{proof}

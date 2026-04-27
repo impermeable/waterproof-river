@@ -1,0 +1,51 @@
+\begin{definition}[Volume of a rectangle]
+	Let 
+	\[
+	R = [a_1, b_1] \times \cdots [a_d, b_d] \subset \mathbb{R}^d
+	\]
+	be a rectangle.
+	Then the volume of $R$ is defined as 
+	\[
+	\Vol(R) := (b_1 - a_1) (b_2 - a_2) \cdots (b_d - a_d).
+	\]
+\end{definition}
+
+\begin{definition}
+We say that a closed rectangle $R \subset \mathbb{R}^d$ is a \emph{cube} if all sides have the same length, i.e. if
+\[
+R = [a_1, b_1] \times \cdots \times [a_d, b_d]
+\]	
+then for all $i, j \in \{1, \dots, d\}$, 
+\[
+b_i - a_i = b_j - a_j.
+\]
+\end{definition}
+
+\begin{definition}
+We say that a subset $S \subset \mathbb{R}^d$ has \emph{Jordan content zero} if
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\qquad \existstext N \in \mathbb{N},\\
+&\qquad\qquad \mathrm{there} \ \mathrm{exist} \ \mathrm{rectangles }\ R_1, \dots, R_N,\\
+&\qquad\qquad\qquad S \subset \bigcup_{i=1}^N R_i \qquad \text{ and } 
+\qquad \sum_{i=1}^N \Vol{R_i} < \epsilon.	
+\end{split}
+\]
+\end{definition}
+
+\begin{lemma}
+Suppose a set $S \subset \mathbb{R}^d$ has Jordan content zero. Then for all $\epsilon > 0$, there exists an $M \in \mathbb{N}$ and cubes $Q_1, \dots, Q_M$, such that
+\[
+S \subset \bigcup_{i=1}^M Q_i \qquad \text{ and } \qquad \sum_{i=1}^M \Vol{Q_i} < \epsilon.
+\]	
+\end{lemma}
+
+\begin{proposition}
+Let $S \subset \mathbb{R}^d$ be a subset with Jordan content zero and let $F : S \to \mathbb{R}^d$ be Lipschitz. Then $F(S)$ has Jordan content zero. 
+\end{proposition}
+
+\begin{proposition}
+Let $E$ be a bounded subset on $\mathbb{R}^d$, and let $F : E \to \mathbb{R}^{d + m}$ be Lipschitz where $m \geq 1$. 
+Then $F(E)$, as a subset of $\mathbb{R}^{d + m}$, has Jordan content zero.
+\end{proposition}

@@ -1,0 +1,18 @@
+I would like to give two perspectives on what is a mathematical proof.
+
+The first perspective is that a proof is a rigorous, precise argumentation why a certain mathematical statement is true.
+The argumentation uses statements that are just assumed to be true (they are called axioms), uses statements that are already proven before (lemmas, propositions, theorems), and then follows very specific rules to deduce new statements, rules such as if $A \implies B$ and $B \implies C$ then $A \implies C$.
+These rules are the rules of \emph{logic}, and to a certain extent they agree with common sense.
+However, some of the rules of logic actually take some getting used to, especially if they involve many quantifiers.
+
+My personal experience is that especially in the initial stages of learning how to prove mathematical statements, instead of thinking in terms of truth, i.e.~instead of trying to use common sense to figure out why an argument shows that a statement is true, it is helpful to learn by heart the expectations on what is a proof, and to try to satisfy those expectations when you write proofs yourself. In other words, it is helpful to learn how to learn how to write down a proof framework.
+
+This brings me to the second perspective on mathematical proofs. From this perspective, a proof as written down in mathematical books can be seen as \emph{pseudocode} that explains how one could construct a \emph{formal proof}. A \emph{formal proof} is in itself a mathematical object, in fact it can be stored as (represented by) a computer program.
+For every mathematical statement, there are extremely precise rules that a \emph{formal proof} should satisfy. These are again the rules of logic. As a consequence, the same rules dictate structure for the pseudocode. One of your main tasks in this course is therefore to learn what are the expectations on the pseudocode, i.e.~to given a certain mathematical statement, learn what kind of pseudocode passes as a proof of the statement. The proof framework can be seen as the pseudocode, with some gaps left to fill in.
+
+In the rest of this chapter, I will try to briefly explain the expectations on proofs, the expectations on pseudocode, and getting to a proof framework. I will do so alongside an example. A more structured guide for proving mathematical statements is given as a list of ``best practices'' in Appendix \ref{ch:best-practices}. Moreover, the proof framework and the best practices are all also reflected in Waterproof.
+When you practice in Waterproof, you practice making proof frameworks. Try to see the connections with the explanations in this chapter and with the best practices.
+
+\paragraph{Best practices.}
+
+Just like big software companies have best practices for writing code, with the aim of having well-maintainable code with a minimal amount of bugs, in this course we have a set of best practices for writing proofs. These best practices are recorded in Appendix \ref{ch:best-practices}. If we all try to adhere to the best practices, authors are helped in structuring their proofs, and readers, reviewers and authors are all helped in understanding the proofs.

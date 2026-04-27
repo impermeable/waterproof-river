@@ -1,0 +1,3 @@
+Before going on with the lecture notes, I'd like to introduce the global context that I will use most often, so that we don't have to introduce it again for every definition, lemma etc. I will usually not reintroduce these variables, but only indicate deviations from it.
+
+We will consider two normed vector spaces $(V, \|\cdot \|_V)$ and $(W, \| \cdot \|_W)$ and a function $f : \Omega \to W$ where $\Omega \subset V$ is an open subset of $V$. We will from now assume that $V$ and $W$ are finite-dimensional, and we will denote by $v_1, \dots, v_d$ a basis in $V$, with corresponding coordinate map $\Phi$, and by $w_1, \dots, w_m$ a basis in $W$ with corresponding coordinate map $\Psi$.

@@ -1,0 +1,21 @@
+\begin{definition}
+Let $(V, \| \cdot \|)$ be a normed vector space and let $a : \mathbb{N} \to V$ be a sequence in $V$.
+Let $K \in \mathbb{N}$.
+We say that a series 
+\[
+\sum_{n=K}^\infty a_n
+\]
+is \emph{convergent} if the associated \emph{sequence of partial sums} $S_K : \mathbb{N} \to V$, i.e. the sequence $(S_K^n)_{n \in \mathbb{N}}$ converges. 
+The term $S_K^n$ is, for $n \in \mathbb{N}$, defined as
+\[
+S_K^n := \sum_{k=K}^n a_k
+\]
+
+If $K = 0$, we usually just write $S^n$ or even $S_n$ instead of $S^n_0$.
+
+If the series $\sum_{n=K}^\infty a_n$ is convergent, the \emph{value} of the series is by definition equal to the limit of the sequence of partial sums, i.e.
+
+\[
+\sum_{k=K}^\infty a_k := \lim_{n \to \infty} S_K^n = \lim_{n \to \infty} \sum_{k=K}^n a_k.
+\]
+\end{definition}

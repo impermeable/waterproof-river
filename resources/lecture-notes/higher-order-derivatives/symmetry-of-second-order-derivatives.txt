@@ -1,0 +1,202 @@
+\begin{lemma}
+	Let $f : \Omega \to W$ be a function defined on an open domain $\Omega \subset V$.
+	Let $a \in \Omega$ and assume that $f$ is twice differentiable in $a$. Then for all $u, v \in V$,
+	\[
+	(D^2 f)_a (u, v) = (D^2 f)_a (v, u).
+	\]
+\end{lemma}
+
+%\begin{proof}
+%	By subtracting a polynomial from $f$ we may assume without loss of generality that $Df = 0$, $(Df)(v)(v) = 0$, $(D f)(w)(w) = 0$ and $(Df)_a(v)(w) =0$. We then need to show that $(Df)_a (w) (v) = 0$. We also can assume that $v$ and $w$ are independent.
+%	
+%	We argue by contradiction, so suppose that $(Df)_a (w)(v) = \delta \neq 0$. Then there exists an $r > 0$ such that for all $(y, z) \in B(0, r) \subset \mathbb{R}^2$ we have
+%	\[
+%	\|\mathsf{Err}_a^{Df} (a + y v + z w)\|_{V \to \mathbb{R}} < \frac{\delta}{8 (\|v \| + \|w\| )^2 } \| y v  + z w \|_V .
+%	\]
+%	Choose $s = t = r/2$. 
+%	
+%	We now write
+%	\[
+%	\begin{split}
+%		&(f(a + s v + t w ) - f(a + s v) ) + f(a + s v) - f(a) \\
+%		&= (f(a + s v + t w) - f(a + t w) ) + f(a + t w) - f(a)
+%	\end{split}
+%	\]
+%	
+%	By the chain rule and the mean value theorem, there exist $\sigma, \tau, \zeta, \xi \in (0,1)$ such that
+%	\[
+%	t(Df)_{a + sv + \tau w} (w) + s(Df)_{a + \sigma v}(v) = s (Df)_{a + \zeta v + t w}(v) + t (Df)_{a + \xi w}(w)
+%	\]
+%	By the definition of the second derivative (as the derivative of the first derivative), we write this as
+%	\[
+%	\begin{split}
+%		&t[(Df)_a + (D(Df))_a (s v + \tau w) + \mathsf{Err}^{Df}_a(a + sv + \tau w)](w)\\
+%		&\quad + s[(Df)_a + (D(Df))_a(\sigma v) + \mathsf{Err}^{Df}_a(a + \sigma v)](v)\\
+%		&= s[(Df)_a + (D(Df))_a (\zeta v + t w) + \mathsf{Err}^{Df}_a(a + \zeta v + t w)](v)\\
+%		&\quad + t[(Df)_a + (D(Df))_a(\xi w) + \mathsf{Err}^{Df}_a(a + \xi w)](w)
+%	\end{split}
+%	\]
+%	By our assumption on $f$, we find
+%	\[
+%	\begin{split}
+%		&s t(D(Df))_a(v)(w) + t \mathsf{Err}^{Df}_a(a + sv + \tau w)(w)
+%		+ s\mathsf{Err}^{Df}_a(a + \sigma v)(v)\\
+%		& = s t (D (Df))_a (w)(v) + s\mathsf{Err}^{Df}_a(a + \zeta v + t w) (v) + t\mathsf{Err}^{Df}_a(a + \xi w)(w) 
+%	\end{split}
+%	\]
+%	
+%	Therefore
+%	\[
+%	\begin{split}
+%		|s t \delta|
+%		&= |s t (D(Df))_a(w)(v)| \\
+%		&\leq t \|\mathsf{Err}_a^{Df}(a + s v + \tau w) \|_{V\to\mathbb{R}} \| w \|  \\
+%		&\leq + s \\
+%		&\leq 4 \frac{\delta}{8} \frac{r^2}{4}
+%	\end{split}
+%	\]
+%	which is a contradiction.
+%\end{proof}
+
+\begin{proof}
+We will show that for all $u, v \in V$, the limit
+\begin{equation}
+	\label{eq:symmetry-fin-diff-form-t}
+\lim_{t \to 0} \frac{1}{t^2} \left(f(a + t u + t v) - f(a + tu) - f(a + t v) + f(a) \right)
+\end{equation}
+exists and is equal to
+\[
+(D^2f)_a(u, v)
+\]
+Note that the expression in (\ref{eq:symmetry-fin-diff-form-t}) remains the same when $u$ and $v$ are interchanged, so that the limit is also equal to
+\[
+(D^2 f)_a(v, u).
+\]
+From there, we conclude that $(D^2 f)_a (u, v) = (D^2 f)_a (v, u)$.
+
+Consider now for $s, t$ real numbers (that are small enough so that $a + s u + t v \in \Omega$) the expression
+\[
+\begin{split}
+&\|f(a + s u + t v) - f(a + s u) - f(a + t v) + f(a) - s t (D^2 f)_a(u, v)\|_W\\
+&=\| f(a + s u + t v) - s t (D^2 f)_a (u, v) - f(a + s u) - f(a + t v) + f(a) \|_W
+\end{split}
+\]
+By the Mean-Value Inequality, applied to the function 
+\[
+g(t) := f(a + s u + t v) - s t (D^2 f)_a (u, v) - f(a + t v)
+\]
+we find that
+\begin{equation}
+\label{eq:comp-symmetry}
+\begin{split}
+&\| f(a + s u + t v) - s t (D^2 f)_a (u, v) - f(a + s u) - f(a + t v) + f(a) \|_W\\
+&= \|g(t) - g(0) \|_W \\
+&\leq \sup_{\tau \in (-|t|, |t|)} \| (Df)_{a + su + \tau v}(v) - s (D^2f)_a (u, v) - (Df)_{a + \tau v}(v) \|_W | t |\\
+\end{split}
+\end{equation}
+We now use the differentiability of the function $(Df) : \Omega \to \Lin(V, W)$ in the point $a$ so that
+\[
+\begin{split}
+(Df)_{a + su + \tau v}
+= (Df)_a + (D(Df))_a (su + \tau v) + \mathsf{Err}_a^{Df} (a + su + \tau v)
+\end{split}
+\]
+and 
+\[
+(Df)_{a + \tau v} = (Df)_a + (D(Df))_{a} (\tau v) + \mathsf{Err}_a^{Df}(a + \tau v)
+\]
+Note that the left-hand side and right hand side of these equations are linear maps. We apply these linear maps to the vector $v \in V$ and find
+\[
+\begin{split}
+	(Df)_{a + su + \tau v}(v)
+	&:= (Df)_a(v) + (D(Df))_a (su + \tau v)(v) \\
+	&\qquad + \mathsf{Err}_a^{Df} (a + su + \tau v) (v)\\
+	&= (Df_a)(v) + s (D^2 f)_a (u, v) + \tau (D^2 f)_a(v, v) \\
+	&\qquad + \mathsf{Err}_a^{Df} (a + su + \tau v) (v)
+\end{split}
+\]
+and 
+\[
+\begin{split}
+(Df)_{a + \tau v}(v) &:= (Df)_a(v) + (D(Df))_{a} (\tau v)(v) + \mathsf{Err}_a^{Df}(a + \tau v)(v)\\
+&:= (Df)_a(v) + \tau (D^2f)_a(v, v) + \mathsf{Err}_a^{Df}(a + \tau v)(v).
+\end{split}
+\]
+We now continue from the final line in the computation (\ref{eq:comp-symmetry})
+\[
+\begin{split}
+&\sup_{\tau \in (-|t|, |t|)} \| (Df)_{a + su + \tau v}(v) - s (D^2f)_a (u, v) - (Df)_{a + \tau v}(v) \|_W | t |\\
+&=\sup_{\tau \in (-|t|, |t|)} \| \mathsf{Err}_{a}^{Df}(a + su + \tau v)(v)- \mathsf{Err}_a^{Df}(a + \tau v)(v) \|_W |t|\\
+&\leq \sup_{\tau \in (-|t|, |t|)} \left( \big\| \mathsf{Err}_{a}^{Df}(a + su + \tau v) \big\|_{V \to W} 
+    + \big\|\mathsf{Err}_a^{Df}(a + \tau v) \big\|_{V \to W} \right) |t| \| v \|_V.
+\end{split}
+\]
+It follows that for $t \neq 0$,
+\[
+\begin{split}
+&\left\| \frac{1}{t^2}\left(f(a + s u + t v) - f(a + s u) - f(a + t v) + f (a) \right) - (D^2 f)_a(u, v) \right\|_W\\
+&\leq \frac{1}{|t|} \sup_{\tau \in (-|t|, |t|)} \left( \left\| \mathsf{Err}_{a}^{Df}(a + t u + \tau v) \right\|_{V \to W} 
++ \left\|\mathsf{Err}_a^{Df}(a + \tau v) \right\|_{V \to W} \right) \| v \|_V
+\end{split}
+\]
+and observe that the limit of the right-hand side as $t\to 0$ is indeed $0$.
+\end{proof}
+
+%\begin{proof}
+%	We write
+%	\[
+%	\begin{split}
+%		&(f(a + s v + t w ) - f(a + s v) ) + f(a + s v) - f(a) \\
+%		&= (f(a + s v + t w) - f(a + t w) ) + f(a + t w) - f(a)
+%	\end{split}
+%	\]
+%	\[
+%	\begin{split}
+%	&(Df)_{a + sv}(t w) + \mathsf{Err}_{a + sv}^f (a + s v + t w)\\
+%	&+ (Df)_{a}(sv) + \mathsf{Err}_{a}^f(a + s v)\\
+%	&= (Df)_{a+tw}(sv) + \mathsf{Err}_{a + tw}^f(a + sv + tw)\\
+%	&\quad + (Df)_{a}(t w) + \mathsf{Err}_{a}^f(a + t w).
+%	\end{split}
+%	\]
+%	
+%	\[
+%	\begin{split}
+%	&(Df)_a(tw) + (D(Df))_{a}(s v)(t w) + \mathsf{Err}_{a}^{Df}(a + sv)(t w) + \mathsf{Err}_{a + sv}^f (a + s v + t w)\\
+%	&+ (Df)_{a}(sv) + \mathsf{Err}_{a}^f(a + s v)\\
+%	&= (Df)_a(sv) + (D(Df))_a(t w)(s v) + \mathsf{Err}_a^{Df}(a + t w)(sv) + \mathsf{Err}_{a + tw}^f(a + sv + tw)\\
+%	&\quad + (Df)_{a}(t w) + \mathsf{Err}_{a}^f(a + t w).
+%	\end{split}
+%	\]
+%	
+%	\[
+%	\begin{split}
+%	& (D(Df))_a(sv)(tw) - (D(Df))_a(tw)(sv) 	\\
+%	&= - \mathsf{Err}_{a}^{Df}(a + sv)(t w) - \mathsf{Err}_{a + sv}^f (a + s v + t w) - \mathsf{Err}_{a}^f(a + s v)\\
+%	&\quad + \mathsf{Err}_a^{Df}(a + t w)(sv) + \mathsf{Err}_{a + tw}^f(a + sv + tw) + \mathsf{Err}_{a}^f(a + t w)
+%	\end{split}
+%	\]
+%	
+%	We now choose $s = t$ and divide by $t^2$,
+%	\[
+%	\begin{split}
+%	&(D(Df))_a(v)(w) - (D(Df))_a(w)(v) \\
+%	&= ...	
+%	\end{split}
+%	\]
+%	
+%	
+%	
+%	and use that the limit as $t \to 0$ of the right-hand side is $0$ to find that
+%	\[
+%	(D(Df))_a(v)(w) - (D(Df))_a(w)(v) = 0.
+%	\]
+%	To check that the right-hand side indeed vanishes as $t \to 0$, we use Lemma \ref{le:err-estimate-due-to-MVI}, which itself is a consequence of the Mean-Value Inequality.
+%	That lemma implies that
+%	\[
+%	\|\mathsf{Err}_{a + s v}^f(a + s v + t w)\|_W \leq \sup_{\xi \in B(0, \|(s, t) \|_2 ) } \| (Df)_\xi - (Df)_{a + s v} \|_{V \to W} s t \| v \|_V \|w \|_V
+%	\]
+%	with similar estimates for the other error terms of $f$. For the error terms with $Df$, we find
+%	\[
+%	\|\mathsf{Err}_{a}^{Df}(a + s v)(t w)\|_W \leq  \|\mathsf{Err}_{a}^{Df}(a + s v) \|_{V \to W}(t w).
+%	\]
+%\end{proof}

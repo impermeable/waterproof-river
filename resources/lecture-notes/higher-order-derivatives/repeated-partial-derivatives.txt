@@ -1,0 +1,31 @@
+For functions defined on a subset of $\mathbb{R}^d$, we can relate $n$th order derivatives to partial derivatives of partial derivatives of partial derivatives ($n$ times).
+
+
+In particular if a function $f : \Omega \to W$, with $\Omega \subset \mathbb{R}^d$, is $n$ times differentiable, then all partial derivatives up to order $n$ exist. For instance, if $f$ is $3$ times differentiable in a point $a \in \Omega$, then
+\[
+(D^3f)_a (e_1, e_5, e_2) = \left(\frac{\partial}{\partial x_1} \frac{\partial}{\partial x_5} \frac{\partial}{\partial x_2} f\right)(a).
+\]
+
+\begin{example}
+	Let again $f : \mathbb{R}^2 \to \mathbb{R}$ be given by
+	\[
+	f(x_1, x_2) := 2 (x_1)^2 + (x_2)^3.
+	\]
+	Let's compute $\frac{\partial^2f}{\partial x_1 \partial x_2}(x)$. Then we first compute
+	\[
+	\frac{\partial f}{\partial x_2}(x) = 6(x_1)^2 (x_2)^2.
+	\]
+	Next, we compute
+	\[
+	\begin{split}
+	\frac{\partial^2 f}{\partial x_1 \partial x_2}(x)
+	&= \frac{\partial}{\partial x_1} \frac{\partial f}{\partial x_2} (x) \\
+	&= \frac{\partial}{\partial x_1}  6 (x_1)^2 (x_2)^2 \\
+	&= 12 x_1 (x_2)^2.
+	\end{split}
+	\]
+	Note that this is also the coefficient in front of the $u_2 v_1$ term in the expression for $(D_v (D_u f))_x$ in Example~\ref{ex:repeated-partial-derivs}, and that is not a coincidence since
+	\[
+	\frac{\partial^2 f}{\partial x_1 \partial x_2}(x) = (D^2 f)_x(e_1, e_2) = (D_{e_1}(D_{e_2} f))_x.
+	\]
+\end{example}

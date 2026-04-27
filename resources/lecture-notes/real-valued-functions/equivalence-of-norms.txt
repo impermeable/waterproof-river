@@ -1,0 +1,118 @@
+Using the Extreme Value Theorem, we can finally prove a beautiful statement that implies that for many purposes, on finite-dimensional vector spaces, the choice of norm is not so important. Precisely, we will show that any two norms are \emph{equivalent}, which is a concept specified precisely in the following definition.
+
+\begin{definition}[Equivalent norms]
+	Let $V$ be a vector space and let $\| \cdot \|_A$ and $\| \cdot \|_B$ be two different norms on $V$.
+	We say that the norms $\| \cdot \|_A$ and $\| \cdot \|_B$ are \emph{equivalent} if there exist constants $c_1 > 0$ and $c_2 > 0$ such that for all $x \in V$
+	\[
+	c_1 \| x \|_A \leq \| x\|_B \leq c_2 \| x \|_A.
+	\]
+\end{definition}
+
+We will now show that any two norms on a \emph{finite-dimensional} vector space are equivalent. 
+
+\begin{theorem}[Equivalence of norms on finite-dimensional vector spaces]
+	Let $V$ be a finite-dimensional vector space and let $\| \cdot \|_A$ and $\|\cdot\|_B$ be two norms on $V$.
+	Then the norms $\| \cdot \|_A$ and $\| \cdot \|_B$ are equivalent.
+\end{theorem}
+
+\begin{proof}
+Because $V$ is assumed to be finite-dimensional, there exists a basis $v_1, \dots v_d$ in $V$ where $d \in \mathbb{N}$ is the dimension of $V$.
+Define the linear map $L : \mathbb{R}^d \to V$ by
+\[
+L(x) := x_1 v_1 + \cdots + x_d v_d.
+\]
+We claim that $L$ is continuous.
+To show this, we will use Exercise \ref{ex:lipschitz-implies-uniform} and show that $L$ is even Lipschitz continuous, therefore uniformly continuous and therefore (by Proposition \ref{pr:uniform-cont-implies-cont}) continuous.
+Indeed, let $x, y \in \mathbb{R}^d$. Then
+\[
+\begin{split}
+\| L(y - x) \|_A
+&= \| (y_1 - x_1) v_1 + \cdots + (y_d - x_d) v_d \|_A\\
+&\leq \sum_{i=1}^d |y_i - x_i| \| v_i \|_A\\
+&\leq \left( \max_{i=1, \dots, d} \| v_i \|_A \right) \sum_{i=1}^d 1 \cdot |y_i - x_i|\\
+&\leq \left( \max_{i=1, \dots, d} \| v_i \|_A \right) \|(1, \dots, 1) \|_2 \| y - x \|_2\\
+&= \left( \max_{i=1, \dots, d} \| v_i \|_A \right) \sqrt{d} \| y - x \|_2 
+\end{split}
+\]
+where in the last inequality we used the Cauchy-Schwarz inequality. We have shown that $L$ is Lipschitz continuous.
+
+Note that the unit sphere
+\[
+S = \{ (x_1, \dots, x_d)^T \in \mathbb{R}^d \ | \  x_1^2 + \cdots + x_d^2 = 1 \}
+\]
+in $\mathbb{R}^d$ is compact by the Heine-Borel theorem, because it is a bounded and closed subset of $\mathbb{R}^d$.
+
+The function $f : \mathbb{R}^d \to \mathbb{R}$ given by
+\[
+f(x) = (\| \cdot \|_A \circ L) (x)= \| L (x) \|_A
+\]
+is continuous, as it is a composition of two continuous functions.
+
+By the Extreme Value Theorem, the function $f$ attains a maximum and a minimum on $S$.
+
+We claim that $\min_{x \in S} f(x)$ is strictly positive. It is clear that it is larger than or equal to zero. Suppose it is equal to zero. Then there exists an $x \in S$ such that 
+\[
+\| x_1 v_1 + \cdots + x_d v_d \|_A = 0
+\]
+By the property of the norm, it follows that
+\[
+x_1 v_1 + \cdots + x_d v_d = 0
+\]
+But since $v_1, \cdots, v_d$ is a basis, it follows that
+\[
+x_1 = \cdots = x_d = 0.
+\]
+This is a contradiction, because $x$ was supposed to be a point on the unit sphere $S$.
+
+We conclude that for all $s \in S$,
+\[
+0 < \min_{x \in S} f(x) \leq \| L( s) \|_A \leq \max_{x \in S} f(x)
+\]
+
+Now let $y \in \mathbb{R}^d \setminus \{ 0 \}$.
+Then the point $y / \| y \|_2$ is in $S$. Therefore
+\[
+\min_{x \in S } f(x) \leq \left\| L \left(\frac{y}{\| y\|_2}\right) \right\|_A \leq \max_{x \in S} f(x).
+\]
+By multiplying these inequalities by $\| y\|_2$ and using the homogeneity of the norm, we find that
+\[
+\left( \min_{x \in S } f(x) \right) \| y \|_2 
+\leq \| L (y) \|_A 
+\leq \left( \max_{x \in S} f(x) \right) \| y\|_2.
+\]
+
+Because $v_1, \dots, v_d$ is a basis, the map $L$ is bijective. It follows that there exist constants $c_3> 0$ and $c_4> 0$ such that for all $v \in V$,
+\[
+c_3 \| L^{-1}( v) \|_2 
+\leq \| v \|_A 
+\leq c_4 \| L^{-1}( v )\|_2.
+\]
+
+Similarly, there exist constants $c_5, c_6 > 0$ such that for all $v \in V$
+\[
+c_5 \| L^{-1}( v) \|_2 
+\leq \| v \|_B 
+\leq c_6 \| L^{-1} (v) \|_2.
+\]
+
+We conclude that there exist constants $c_1, c_2> 0$ such that for all $v \in V$,
+\[
+c_1 \| v \|_A \leq \| v \|_B \leq c_2 \| v \|_A.
+\]
+\end{proof}
+
+The equivalence of norms on finite-dimensional vector spaces has many important consequences. Let us mention a few. The first is that every finite-dimensional normed vector space is complete.
+
+\begin{theorem}
+Let $(V, \| \cdot \|)$ be a finite-dimensional normed vector space.
+Then $(V , \| \cdot \|)$ is complete.	
+\end{theorem}
+
+From this theorem it also follows (by the series characterization of completeness in Theorem \ref{th:series-char-completeness}) that every absolutely converging series in a finite-dimensional normed vector space is converging: a statement that we announced as Proposition \ref{pr:fin-dim-norm-vec-complete}.
+
+Another consequence of the equivalence of norms on finite-dimensional vector spaces is that in a finite-dimensional normed-vector space, a subset is compact if and only if it is closed and bounded.
+
+\begin{theorem}[Heine-Borel Theorem for finite-dimensional normed vector spaces]
+Let $(V, \| \cdot \|)$ be a finite-dimensional vector space.
+Then a subset $A \subset V$ is compact if and only if it is closed and bounded.	
+\end{theorem}

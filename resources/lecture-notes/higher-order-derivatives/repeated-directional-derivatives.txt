@@ -1,0 +1,49 @@
+If $f : \Omega \to W$ is a function, defined on an open subset $\Omega$ of $V$, if $v_1 \in V$ and the directional derivative $(D_{v_1} f)_a$ exists in every point $a \in \Omega$, then we can build the function
+\[
+(D_{v_1} f) : \Omega \to W, \qquad a \mapsto (D_{v_1} f)_a
+\]
+that maps $a \in \Omega$ to $(D_{v_1} f)_a \in W$. Now we can continue and take a new direction $v_2 \in V$ and check if the directional derivatives of the function $(D_{v_1} f)$ in the direction of $v_2$ exists in the point $a$. In notation, we can check whether the directional derivative
+\[
+(D_{v_2} (D_{v_1} f))_a
+\]
+exists. We call this a two-fold directional derivative. If it exists for every $ a\in \Omega$, then we can consider the function
+\[
+(D_{v_2} (D_{v_1} f)) : \Omega \to W, \qquad a \mapsto (D_{v_2}(D_{v_1} f))_a
+\]
+and see if directional derivatives of this function exist to get three-fold directional derivatives. Continuing in this way, we generally obtain $n$-fold directional derivatives. In a next section bit, we will define the $n$-th derivative $(D^n f)_a$, which will be related as follows: for all $v_1, \dots, v_n \in V$,
+\[
+(D^{n} f)_a (v_{n}, v_{n-1}, \cdots , v_2, v_1) = (D_{v_n} (D_{v_{n-1}}  \cdots (D_{v_2} ( D_{v_1} f )) \cdots ))_a.
+\]	
+
+In particular, we will have for all $v \in V$,
+\[
+(D^n f)_a (v, \cdots, v) = \left.\frac{d^n}{dt^n} f(a + t v)\right|_{t = 0}
+\]
+
+\begin{example}
+	\label{ex:repeated-partial-derivs}
+	Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ defined by
+	\[
+	f(x_1, x_2) := 2 (x_1)^2 (x_2)^3.
+	\]
+	
+	Let $u, v \in \mathbb{R}^2$ and say we aim to compute $D_v(D_u f)$. Then we first compute for $x \in \mathbb{R}^2$,
+	\[
+	\begin{split}
+	(D_u f)_x
+	&= \left. \frac{d}{dt} 2(x_1 + t u_1)^2 (x_2 + t u_2)^3 \right|_{t = 0} \\
+	&= 4 x_1 (x_2)^3 u_1 + 6 (x_1)^2 (x_2)^2 u_2.
+	\end{split}
+	\]
+	Next, we find that for all $x \in \mathbb{R}^2$,
+	\[
+	\begin{split}
+	(D_v (D_u f))_x
+	&= \left. \frac{d}{dt} (D_u f)_{x + tv}\right|_{t = 0} \\
+	&= \left. \frac{d}{dt} 4 (x_1 + t v_1) (x_2 + t v_2)^3 u_1 \right|_{t = 0} \\
+	&\qquad     + \left.\frac{d}{dt} 6 (x_1 + t v_1)^2 (x_2 + t v_2)^2 u_2 \right|_{t = 0}\\
+	&= 4 (x_2)^3 u_1 v_1 + 12 x_1 (x_2)^2 u_1 v_2 \\
+	&\qquad + 12 x_1 (x_2)^2 u_2 v_1 + 12 (x_1)^2 x_2 u_2 v_2.
+	\end{split}
+	\]
+\end{example}

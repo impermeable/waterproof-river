@@ -1,0 +1,19 @@
+The transformation is given by the function
+\[
+\Phi_{\mathsf{sph}} : (0,\infty) \times (0, 2\pi) \times (0,\pi) \to \mathbb{R}^3
+\]
+given by
+\[
+\Phi_{\mathsf{sph}}(\rho, \phi, \theta) := (\rho \cos \phi \sin \theta, \rho \sin \phi \sin \theta, \rho \cos \theta)
+\]
+
+Here,
+\[
+\det \ [D \Phi_{\mathsf{sph}}]_{(\rho, \phi, \theta)} = \rho^2 \sin \theta.
+\]
+
+A subset $E \subset (0,\infty) \times (0, 2\pi) \times (0,\pi)$ is a Jordan set if and only if $\Phi_{\mathsf{sph}}(E)$ is a Jordan set. Moreover, if one of these holds, a function $f : \mathbb{R}^3 \to \mathbb{R}$ is Riemann integrable on $\Phi_{\mathsf{sph}}(E)$ if and only if $f \circ \Phi_{\mathsf{sph}}(E)$ is Riemann integrable on $E$ and
+\[
+\int_{\Phi_{\mathsf{sph}}(E)} f(x) dx 
+= \int_E f(\Phi_{\mathsf{sph}}(r, \phi, \theta)) r^2 \sin \theta dr d\phi d\theta.
+\]

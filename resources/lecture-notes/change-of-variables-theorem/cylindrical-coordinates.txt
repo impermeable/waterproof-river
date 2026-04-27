@@ -1,0 +1,19 @@
+The transformation is given by the function
+\[
+\Phi_{\mathsf{cyl}} : (0, \infty) \times (0, 2 \pi) \times \mathbb{R} \to \mathbb{R}^3
+\]
+defined by
+\[
+\Phi_{\mathsf{cyl}}(r, \phi, z) := (r \cos \phi, r \sin \phi, z)
+\]
+
+Here,
+\[
+\det \ [D \Phi_{\mathsf{cyl}}]_{(r, \phi, z)} = r
+\]
+
+A subset $E \subset (0,\infty) \times (0, 2\pi) \times \mathbb{R}$ is a Jordan set if and only if $\Phi_{\mathsf{cyl}}(E)$ is a Jordan set. Moreover, if one of these holds, a function $f : \mathbb{R}^3 \to \mathbb{R}$ is Riemann integrable on $\Phi_{\mathsf{cyl}}(E)$ if and only if $f \circ \Phi_{\mathsf{cyl}}$ is Riemann integrable on $E$ and
+\[
+\int_{\Phi_{\mathsf{cyl}}(E)} f(x) dx 
+= \int_E f(\Phi_{\mathsf{cyl}}(r, \phi, z) )r dr d\phi dz
+\]

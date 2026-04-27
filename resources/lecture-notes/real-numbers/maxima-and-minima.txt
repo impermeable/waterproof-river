@@ -1,0 +1,41 @@
+In this section we say something about the relationship between the supremum and the maximum, and between the infimum and the minimum. 
+
+\begin{definition}[maximum and minimum]
+Let $A \subset \mathbb{R}$ be a subset of the real numbers.
+We say that $y \in A$ is the \emph{maximum} of $A$, and write $y = \max A$, if
+\[
+\begin{split}
+&\foralltext a \in A,\\
+&\quad a \leq y.
+\end{split}
+\]
+We say that $x \in A$ is the \emph{minimum} of $A$, and write $x = \min A$, if
+\[
+\begin{split}
+	&\foralltext a \in A,\\
+	&\quad x \leq a.
+\end{split}
+\]
+\end{definition}
+One of the very important aspects of the above definition is that the minima and maxima are always elements of the set itself. 
+
+\begin{warning}
+{\bf Warning:} even if a set $A \subset \mathbb{R}$ is non-empty and bounded from above, a maximum may not always exist. Similarly, even if a set $A \subset \mathbb{R}$ is non-empty and bounded from below, a minimum may not always exist.
+\end{warning}
+
+\begin{proposition}
+Let $A$ be a subset of $\mathbb{R}$.
+If $A$ has a maximum, then $A$ is non-empty and bounded from above, and $\sup A = \max A$. 
+If $A$ has a minimum, then $A$ is non-empty and bounded from below, and $\inf A = \min A$.	
+\end{proposition}
+
+\begin{proposition}
+	\label{pr:sup-in-set-gives-max}
+Let $A$ be a subset of $\mathbb{R}$. Assume that $A$ is non-empty and bounded from above. 
+If $\sup A \in A$ then $A$ has a maximum and $\max A = \sup A$.	
+\end{proposition}
+
+\begin{proposition}
+Let $A$ be a subset of $\mathbb{R}$. Assume that $A$ is non-empty and bounded from below.
+If $\inf A \in A$ then $A$ has a minimum and $\min A = \inf A$.
+\end{proposition}

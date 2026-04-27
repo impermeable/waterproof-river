@@ -1,0 +1,20 @@
+{n}-fold directional derivatives}
+
+It is a bit difficult sometimes to interpret $n$th order derivatives, but it gets easier if we relate them to directional derivatives. 
+
+The following proposition states that if a function $f$ is $n$ times differentiable, then also all $n$-fold directional derivatives exist and the $n$th derivative and the $n$-fold directional derivatives have a simple relationship to each other.
+\begin{proposition}
+	Suppose a function $f : \Omega \to W$ is $n$ times differentiable in a point $a \in \Omega$. Then all directional $n$-fold derivatives exist in $a$ and for all $v_1, \dots, v_n \in V$,
+	\[
+	(D^{n} f)_a (v_{n}, v_{n-1}, \cdots , v_2, v_1) = (D_{v_n} (D_{v_{n-1}}  \cdots (D_{v_2} ( D_{v_1} f )) \cdots ))_a.
+	\]	
+\end{proposition}
+
+If we take all directional derivatives in the same direction, we get the following result
+
+\begin{proposition}
+	Suppose a function $f : \Omega \to W$ is $n$ times differentiable in a point $a \in \Omega$. Then for all $v \in V$,
+	\[
+	(D^n f)_a(v, \cdots, v) = \left.\frac{d^n}{dt^n} f(a + t v)\right|_{t = 0}.
+	\]
+\end{proposition}

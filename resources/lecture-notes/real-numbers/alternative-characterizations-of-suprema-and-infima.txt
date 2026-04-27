@@ -1,0 +1,102 @@
+In this section we provide alternative characterizations of suprema and infima. These alternative characterizations are usually easier to use in proofs than the definitions. We will give an example at the end of this section.
+
+\begin{proposition}[alternative characterization of supremum]
+	\label{pr:alt-char-sup}
+Let $A \subset \mathbb{R}$ and let $M \in \mathbb{R}$.
+Then ($A$ is non-empty and bounded from above and $M$ is the supremum of $A$) if and only if
+\begin{enumerate}
+\item \label{it:alt-sup-1} $M$ is an upper bound for $A$, and
+\item \label{it:alt-sup-2}
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \existstext a \in A,\\
+&\quad\quad a > M - \epsilon.	
+\end{split}
+\]
+\end{enumerate}
+\end{proposition}
+
+The proof of Proposition \ref{pr:alt-char-sup} is the content of Exercise \ref{ex:alt-char-sup}.
+
+\begin{proposition}[alternative characterization of infimum]
+	\label{pr:alt-char-inf}
+Let $A \subset \mathbb{R}$ and let $m \in \mathbb{R}$.
+Then ($A$ is non-empty and bounded from below and $m$ is the infimum of $A$) if and only if
+\begin{enumerate}
+\item $m$ is a lower bound for $A$, and
+\item
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \existstext a \in A,\\
+&\quad\quad a < m + \epsilon.
+\end{split}
+\]	
+\end{enumerate}
+\end{proposition}
+
+These alternative characterizations of the supremum and infimum really provide a standard way to determining the supremum and infimum of subsets of the real line. Sometimes there may be a more creative argument for determining the supremum or infimum, but the alternative characterization usually provides a decent and solid route to the argument.
+
+\begin{example}
+Consider the following set
+\[
+\begin{split}
+A
+&:=(1, 4) \cup (5, 7) \cup (8, 9)
+\end{split}
+\]	
+We claim that $\inf A = 1$.
+
+We will use the alternative characterization of the infimum. Hence we need to show that
+\begin{enumerate}
+\item $1$ is a lower bound for $A$
+\item 
+\[
+\begin{split}
+&\foralltext \epsilon > 0\\
+&\qquad \existstext a \in A \\
+&\qquad\qquad a < 1 + \epsilon.	
+\end{split}
+\]
+\end{enumerate}
+We first show (i). We need to show that for all $a \in A$, $1 \leq a$. 
+Because we need to show a \emph{for-all} statement, we start with:
+
+Let $a \in A$.
+Then $a \in (1, 4)$ or $a \in (5, 7)$ or $a \in (8, 9)$, and in all cases, $1 \leq a$.
+
+We now show (ii). Because we need to show a \emph{for-all} statement, we start with:
+Let $\epsilon > 0$.
+Now we need to show that there exists $a \in A$ such that 
+\[
+a < 1 + \epsilon
+\]
+Therefore the next step is to choose an $a \in A$, in the hope that we can then show that $a < 1 + \epsilon$. This is often the trickiest part in the proof. It is very important that the choice for $a$ that we make, is actually an element of $A$.
+
+Here's the danger: We often think of $\epsilon$ as small, and if $\epsilon$ \emph{is} strictly less than $6$, the number
+\[
+1 + \epsilon/2
+\]
+is indeed in the interval $(1, 4)$, and therefore it is an element of $A$. However, $\epsilon$ could also be very large, for instance $\epsilon = 1000$, and then 
+\[
+1 + \epsilon/2 = 501 \notin A.
+\]
+Therefore in general
+\[
+1 + \epsilon/2 \notin A.
+\]
+This happens a lot, that there is an initial idea which is almost ok, but it doesn't quite work. In that case we can adapt. One way is as follows:
+
+Choose 
+\[
+a := \min \left( 1 + \epsilon/2, 2\right)
+\]
+In that case, we know that $a$ is always between $1$ and $2$, and therefore $a \in A$. What we now need to do is show that $a < 1 + \epsilon$.
+
+For this we write a small chain of inequalities. Indeed, it holds that
+\[
+a = \min \left(1 + \epsilon/2, 2 \right)
+\leq 1 + \epsilon/2 < 1 + \epsilon.
+\]
+\end{example}

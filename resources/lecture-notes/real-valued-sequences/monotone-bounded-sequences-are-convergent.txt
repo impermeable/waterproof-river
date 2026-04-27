@@ -1,0 +1,45 @@
+\begin{theorem}
+	Let $(a_n)$ be an increasing sequence that is bounded from above.
+	Then $(a_n)$ is convergent and 
+	\[
+	\lim_{n \to \infty} a_n = \sup_{n \in \mathbb{N}} a_n \quad \Big(= \sup \ \{ a_n \ | \ n \in \mathbb{N} \} \Big)
+	\]	
+\end{theorem}
+
+\begin{proof}
+	Because the sequence $(a_n)$ is bounded from above, we know that the supremum
+	\[
+	\sup_{n \in \mathbb{N}} a_n 
+	\]
+	exists. To not get too lengthy expressions, we write
+	\[
+	L := \sup_{n \in \mathbb{N}} a_n.
+	\]
+	We need to show that for all $\epsilon > 0$, there exists a $N \in \mathbb{N}$ such that for all 
+	$n \geq N$,
+	\[
+	\left| a_n - L  \right| < \epsilon.
+	\]
+	Let $\epsilon > 0$. Then, by the definition of the supremum, there exists a $k \in \mathbb{N}$ such that
+	\[
+	L - \epsilon < a_k.
+	\]
+	Choose $N := k$.
+	Let $n \geq N$. Because the sequence $(a_\ell)$ is increasing, we find that
+	\[
+	a_n \geq a_N = a_k > L - \epsilon.
+	\]
+	Because of the definition of $L$, we also know that $a_n \leq L < L + \epsilon$. Summarizing,
+	\[
+	| a_n - L | < \epsilon.
+	\]
+\end{proof}
+
+\begin{theorem}
+	\label{th:decr-seq-bdd-below}
+	Let $(a_n)$ be a decreasing sequence that is bounded from below.
+	Then $(a_n)$ is convergent and
+	\[
+	\lim_{n \to \infty} a_n = \inf_{n \in \mathbb{N}} a_n.
+	\]	
+\end{theorem}

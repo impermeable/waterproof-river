@@ -1,0 +1,172 @@
+\begin{definition}
+A \emph{partition} $P$ of an interval $[a, b]$ (with $n$ intervals) is a subset $\{x_0, x_1, \dots, x_n \} \subset [a, b]$ such that $a = x_0 < x_1< \dots < x_n = b$. 
+\end{definition}
+
+\begin{definition}
+Let $f : [a, b] \to \mathbb{R}$ be a bounded function and let $P = (x_0, x_1, \dots, x_n)$ be a partition of $[a, b]$.
+Then the upper sum of $f$ with respect to $P$ is defined as
+\[
+U(P, f) := \sum_{k=1}^n M_k \Delta x_k
+\]
+where $\Delta x_k := (x_k - x_{k-1})$ and 
+\[
+M_k := \sup_{x \in [x_{k-1}, x_k]} f(x)
+\]
+
+Similarly, we define the lower sum of $f$ with respect to $P$ as
+\[
+L(P, f) := \sum_{k=1}^n m_k \Delta x_k
+\]
+where 
+\[
+m_k := \inf_{x \in [x_{k-1}, x_k]} f(x).
+\]
+\end{definition}
+
+\begin{definition}
+Let $\tilde{P}$ be a partition of $[a, b]\subset \mathbb{R}$. A partition $P$ is called a \emph{refinement} of $\tilde{P}$ if $\tilde{P} \subset P$. 
+
+If $\tilde{P}$ and $\tilde{Q}$ are two partitions of $[a, b]$. Then a partition $P$ is called a \emph{common refinement} of $\tilde{P}$ and $\tilde{Q}$ if $P$ is both a refinement of $\tilde{P}$ and a refinement of $\tilde{Q}$.	
+\end{definition}
+
+Note that two partitions $\tilde{P}$ and $\tilde{Q}$ always have a common refinement $P$: For $P$ one could just take $\tilde{P} \cup \tilde{Q}$. 
+
+\begin{proposition}
+For every bounded $f : [a, b] \to \mathbb{R}$ and every partition $P$ of $[a, b]$, we have
+\[
+L(P, f) \leq U(P, f).
+\]	
+\end{proposition}
+\begin{proof}
+Let $P := \{ x_0, x_1, \dots, x_n\}$ be a partition of $[a, b]$. Then
+\[
+\begin{split}
+L(P, f)= \sum_{k=1}^n m_k \Delta x_k
+&\leq \sum_{k=1}^n M_k \Delta x_k = U(P, f)
+\end{split}
+\]	
+because
+\[
+m_k = \inf_{x \in [x_{k-1}, x_k]} f(x) 
+\leq \sup_{x \in [x_{k-1}, x_k]} f(x)
+= M_k.
+\]
+\end{proof}
+
+\begin{proposition}
+Let $f : [a, b] \to \mathbb{R}$ be bounded, and let $P$ and $Q$ be partitions of $[a, b]$ such that $Q$ is a refinement of $P$. Then
+\[
+L(P, f) \leq L(Q, f) \leq U(Q, f) \leq U(P, f)
+\]
+\end{proposition}
+
+\begin{definition}
+Let $f: [a, b] \to \mathbb{R}$ be a bounded function.
+We define the upper Darboux integral of $f$ as
+\[
+\overline{\int_a^b} f d x := \inf \{U(P, f) \ | \ P \text{ partition of } [a, b] \}
+\]	
+and the lower Darboux integral of $f$ as
+\[
+\underline{\int_a^b} f dx := \sup \{ L(P, f) \ | \ P \text{ partition of } [a, b] \}
+\]
+\end{definition}
+
+\begin{proposition}
+Let $f : [a, b] \to \mathbb{R}$ be a bounded function. Then
+\[
+\underline{\int_a^b} f dx
+\leq \overline{\int_a^b} f d x.
+\]	
+\end{proposition}
+
+We are most interested in those functions for which the upper Darboux integral agrees with the lower Darboux integral. We will call those functions \emph{Riemann integrable}.
+
+\begin{definition}[Riemann integrability and the Riemann integral]
+Let $f: [a, b] \to \mathbb{R}$ be a bounded function.
+We say $f$ is \emph{Riemann integrable} if 
+\[
+\overline{\int_a^b} f dx = \underline{ \int_a^b} f dx.
+\]
+In this case we say that the \emph{Riemann integral} of $f$ equals this common value, i.e.
+\[
+\int_a^b f dx := \overline{\int_a^b} f dx = \underline{\int_a^b} f dx.
+\]
+\end{definition}
+
+\begin{proposition}[Alternative characterization of Riemann integrability]
+	\label{pr:alt-char-Riem-int}
+	Let $f : [a, b] \to \mathbb{R}$ be bounded.
+	Then $f$ is Riemann integrable if and only if
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext \text{a partition } P \text{ of } [a,b], \\
+	&\quad\quad U(P, f) - L(P, f) < \epsilon.
+	\end{split}
+	\]
+\end{proposition}
+
+\begin{proof}
+First suppose that $f$ is Riemann integrable.
+We need to show that	
+\[
+\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext \text{a partition } P \text{ of } [a,b], \\
+	&\quad\quad U(P, f) - L(P, f) < \epsilon.
+\end{split}
+\]
+
+Let $\epsilon > 0$.
+There exists a partition $\tilde{P}$ of $[a, b]$ such that
+\[
+U(\tilde{P}, f) < \int_a^b f(x) dx + \epsilon/2.
+\]
+Moreover, there exists a partition $\tilde{Q}$ of $[a, b]$ such that
+\[
+L(\tilde{Q}, f) > \int_a^b f(x) dx - \epsilon/2.
+\]
+Define the partition $P$ of $[a, b]$ as $P := \tilde{P} \cup \tilde{Q}$. 
+Then $P$ is a common refinement of $\tilde{P}$ and $\tilde{Q}$, i.e. it is both a refinement of $\tilde{P}$ and it is a refinement of $\tilde{Q}$. Therefore,
+\[
+\begin{split}
+\int_a^b f(x) dx - \epsilon / 2&
+< L(\tilde{Q}, f) \\
+&\leq L(P, f)\leq U(P, f) \leq U(\tilde{P}, f) \\
+&< \int_a^b f(x) dx + \epsilon/2
+\end{split}
+\]
+It follows that
+\[
+U(P, f) - L(P, f) < \epsilon.
+\]
+
+Now suppose that 
+\[
+\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext \text{a partition } P \text{ of } [a,b], \\
+	&\quad\quad U(P, f) - L(P, f) < \epsilon.
+\end{split}
+\]
+We need to show that $f$ is Riemann integrable. Suppose not, then we may set
+\[
+\epsilon := \overline{\int_a^b} f(x) dx 
+- \underline{\int_a^b}f(x) dx > 0.
+\]
+Then by assumption there exists a partition $P$ such that
+\[
+U(P, f) - L(P, f) < \epsilon.
+\]
+But then 
+\[
+\epsilon = \overline{\int_a^b} f(x) dx 
+- \underline{\int_a^b}f(x) dx 
+< U(P, f) - L(P, f) < \epsilon.
+\]
+\end{proof}
+
+\begin{definition}
+We denote the set of bounded, Riemann-integrable functions $f:[a, b] \to \mathbb{R}$ by $\mathcal{R}[a, b]$.
+\end{definition}

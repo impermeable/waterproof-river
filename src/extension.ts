@@ -5,6 +5,8 @@ import { handleHelp, handleSyntaxHelp, handleToWaterproof } from "./handlers";
 import { ToolCallRound, ToolResultMetadata, ToolUserPrompt, TsxToolUserMetadata } from "./prompts/toolCalls";
 import { HintTool, ProofContextTool, SyntaxHelpTool, TryStepTool } from "./tools";
 import { satisfies } from 'semver';
+import { TheoryTool } from './tools/theoryTool';
+import { LectureNotesRetriever } from './retrieval';
 
 
 class RiverExtension implements Disposable {
@@ -43,6 +45,7 @@ class RiverExtension implements Disposable {
 		this.push(lm.registerTool("waterproof-tue_syntax_check", new SyntaxHelpTool(this.api, this.collection)));
 		this.push(lm.registerTool("waterproof-tue_proof_context", new ProofContextTool(this.api)));
 		this.push(lm.registerTool("waterproof-tue_try_proof_step_at_cursor", new TryStepTool(this.api)));
+		this.push(lm.registerTool("waterproof-tue_theory_information", new TheoryTool(new LectureNotesRetriever(this.context))));
 	}
 
 	async clearDiagnostics() {

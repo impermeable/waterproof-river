@@ -1,0 +1,128 @@
+As a first consequence of the Mean-Value Inequality, let us show that functions with continuous partial derivatives are continuously differentiable. This is quite useful, because this way, in order to conclude that a function is differentiable, it suffices to show that the partial derivatives exist and that they are continuous.
+
+Let's first define what it means for a function to be continuously differentiable.
+
+\begin{definition}
+We say a function $f: \Omega \to W$ is continuously differentiable if it is differentiable and its derivative $(Df) : \Omega \to \mathsf{Lin}(V, W)$ is a continuous function on $\Omega$.	
+\end{definition}
+
+We are now ready to state the proposition.
+
+\begin{proposition}
+	Let $f : \Omega \to W$ be a function defined on some open set $\Omega \subset \mathbb{R}^d$ and let $a \in \Omega$. 
+	Assume that there exists a radius $r > 0$ such that for all $x \in B(a, r)$, and for all $i \in \{ 1, \dots, d\}$, the partial derivative
+	\[
+	\frac{\partial f}{\partial x_i}(x)
+	\]
+	exists and the function
+	\[
+	\frac{\partial f}{\partial x_i} : \Omega \to W
+	\]
+	is continuous on $B(a, r)$.
+	
+	Then the function $f$ is continuously differentiable on $B(a, r)$.
+\end{proposition}
+
+%The proof of the proposition is a direct consequence of the following lemma.
+%
+%\begin{lemma}
+%	Let $f : \Omega \to \mathbb{R}$ be a function defined on some open set $\Omega \subset \mathbb{R}^d$ and let $a \in \Omega$.
+%	Assume that for all $x \in B(a, r)$ and for all $i \in \{1, \dots, d\}$, the partial derivative
+%	\[
+%	\frac{\partial f}{\partial x_i}(x)
+%	\]
+%	exists and the function
+%	\[
+%	\frac{\partial f}{\partial x_i}
+%	\]
+%	is continuous on $\Omega$,
+%	\[
+%	\frac{\partial f}{\partial x_i}(a) = 0
+%	\]
+%	and $f(a) = 0$.
+%	
+%	Then the function $f$ is differentiable in $a$. 
+%\end{lemma}
+
+\begin{proof}	
+	We need to show that for all $b \in B(a, r)$, the function $f$ is differentiable in $b$.
+	Define $\rho := r - \| b - a \|_2$. Then $B(b, \rho) \subset B(a, r)$ and therefore the partial derivatives exist and are continuous on $B(b, \rho)$.
+	
+	As a possible candidate for the derivative, we define the linear map $L_b : \mathbb{R}^d \to W$ by
+	\[
+	L_b (v) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(b) v_i.
+	\]
+	
+	Now define the error function $\mathsf{Err}^f_b : \Omega \to W$ by
+	\[
+	\mathsf{Err}^{f}_b (x) = f(x) - (f(b) + L_b(x - b)).
+	\]
+	According to the definition of differentiability, in order to show that the linear map $L_b$ is the derivative of $f$ in $b\in \Omega$, we need to show that
+	\[
+	\lim_{x \to b} \frac{\|\mathsf{Err}^f_b(x) \|_W}{\|x - b \|_2} = 0.
+	\]
+	Let $\epsilon > 0$.
+	
+	By assumption, for every $i \in \{1, \dots, d \}$, the partial derivative
+	\[
+	\frac{\partial f}{\partial x_i} : \Omega \to W
+	\]
+	is continuous. Therefore, by the definition of continuity, for every $i \in \{ 1, \dots, d\}$ there exists a $\delta_i > 0$ such that for all $z \in B(b, \delta_i)$,
+	\[
+	\left\|\frac{\partial f}{\partial x_i}(z) - \frac{\partial f}{\partial x_i}(b)  \right\|_W < \frac{\epsilon}{d}.
+	\]
+	Choose such $\delta_i$ and choose
+	\[
+	\delta := \min(\delta_1, \dots, \delta_d , \rho).
+	\]
+	Now let $x \in B(b, \delta)$. To show that $\mathsf{Err}_b^f(x)$ is small, we are going to apply the Mean-Value Inequality (a few times), on paths that are parallel to the axes in $\mathbb{R}^d$.
+	
+	We define the points
+	\[
+	\begin{split}
+		y^0 &:= (b_1, \dots, b_d)\\
+		y^j &:= (x_1, \dots, x_j, b_{j+1}, b_{j+2}, \dots, b_d )\\
+		y^d &:= (x_1, \dots, x_d)
+	\end{split}
+	\]
+	and write
+	\[
+	\begin{split}
+		\mathsf{Err}^f_b(x)
+		&= f(x) - f(b) - \sum_{i=1}^d \frac{\partial f}{\partial x_i}(b) (x_i - b_i) \\
+		&= \sum_{i=1}^d \Big(f(y^i) - f(y^{i-1}) \Big)- \sum_{i=1}^d \frac{\partial f}{\partial x_i}(b) (x_i - b_i).
+	\end{split}
+	\]
+	We now apply the Mean-Value Inequality to the functions $g_i$ given by
+	\[
+	g_i(t) = f(x_1, \dots, x_{i-1}, t, b_{i+1}, \dots, b_d) - \frac{\partial f}{\partial x_i}(b) (t - b_i)
+	\]
+	and find that 
+	\[
+	\begin{split}
+		\| \mathsf{Err}^f_b(x)\|
+		&\leq \sum_{i=1}^d \sup_{z \in B(b, \delta)} \left\| \frac{\partial f}{\partial x_i} (z) - \frac{\partial f}{\partial x_i} (b) \right\|_W |x_i - b_i|\\
+		&< \frac{\epsilon}{d} \sum_{i=1}^d |x_i - b_i|\\
+		&\leq \frac{\epsilon}{d} d \|x - b \|_2\\
+		&= \epsilon \|x - b \|_2.
+	\end{split}
+	\]
+	
+	Now that we know that the function $f$ is differentiable, we also know that
+	\[
+	(Df)_b\big((x_1, \dots, x_d) \big) = \frac{\partial f}{\partial x_1}(b) x_1 + \cdots + \frac{\partial f}{\partial x_d}(b) x_d.
+	\]
+	and therefore, for $c \in B(a, r)$, using first the triangle inequality and then the Cauchy-Schwarz inequality
+	\[
+	\begin{split}
+	\| \big((Df)_c - (Df)_b\big)(x_1, \dots, x_d) \|_{W}
+	&\leq \sum_{i=1}^d \left\| \frac{\partial f}{\partial x_i} (c) - \frac{\partial f}{\partial x_i} (b) \right\|_W |x_i|\\
+	&\leq \sqrt{\sum_{i=1}^d \left\| \frac{\partial f}{\partial x_i} (c) - \frac{\partial f}{\partial x_i} (b) \right\|_W^2} \| x \|_2
+	\end{split}
+	\]
+	It follows that
+	\[
+	\|(Df)_c - (Df)_b \|_{V \to W} \leq \sqrt{\sum_{i=1}^d \left\| \frac{\partial f}{\partial x_i} (c) - \frac{\partial f}{\partial x_i} (b) \right\|_W^2  }
+	\]
+	so that the continuity of $(Df)$ follows from the continuity of the partial derivatives.
+\end{proof}

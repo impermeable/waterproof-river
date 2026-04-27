@@ -1,0 +1,26 @@
+Before we state the implicit function theorem, it would be good to explain some notation.
+
+We will be considering continuously differentiable functions $f : \Omega \subset \mathbb{R}^{d + m} \to \mathbb{R}^m$. It is good to think of the vector space $\mathbb{R}^{d+m}$ as the vector space $\mathbb{R}^d \oplus \mathbb{R}^m$, i.e. as the vector space of pairs $(x, y)$ of vectors $x \in \mathbb{R}^d$ and $y \in \mathbb{R}^m$.
+
+The implicit function theorem comes to rescue in the following situation: when we want to know that there exists a function $g$ that satisfies for (some) $x\in \mathbb{R}^d$,
+\begin{equation}
+	\label{eq:implicit-def-g}
+f(x, g(x)) = 0
+\end{equation}
+and when we want to know that $g$ has nice properties, i.e. that $g$ itself is continuously differentiable. Rather than giving a functional description of $g$, the function $g$ is what-is-called \emph{implictly defined} by the equation (\ref{eq:implicit-def-g}).
+
+\begin{example}
+A standard example is when $f : \mathbb{R}^{1 + 1} \to \mathbb{R}$ is the function $f((x, y)) = x^2 + y^2 - 1$, and we would like to write `$y$ in terms of $x$`. More precisely, we would like to find a function $g $ such that
+\[
+f((x, g(x))) = x^2 + (g(x))^2 - 1 = 0.
+\]
+We immediately see two issues here:
+\begin{itemize}
+	\item Such a function $g$ cannot be defined for all $x$ (the equation has no solutions if $|x| > 1$),
+	\item and for $|x| < 1$, there are always two possible solutions.
+\end{itemize}
+\end{example}
+
+The first issue will be addressed by assumptions in the implicit function theorem: the theorem will need a good starting position, i.e. a point $(a, b)$ such that $f(a, b) = 0$, but it will also need a condition on the derivative of $f$ in the point $(a, b)$. This condition will prohibit us from applying the theorem in the problematic points $(1,0)$ and $(-1, 0)$ in the example above.
+
+The second issue will be addressed by the conclusions in the implicit function theorem: it only makes statements about points close to $(a, b)$.

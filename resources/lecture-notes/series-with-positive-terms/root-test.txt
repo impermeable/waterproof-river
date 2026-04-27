@@ -1,0 +1,49 @@
+\begin{theorem}[Root Test]
+	\label{th:root-test}
+	Let $(a_n)$ be a sequence of nonnegative real numbers. 
+	\begin{enumerate}
+		\item If there exists an $N \in \mathbb{N}$ and a $q \in (0,1)$ such that for all $n \geq N$, $\sqrt[n]{a_n} \leq q$, then the series $\sum a_n$ converges.
+		\item If there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, $\sqrt[n]{a_n} \geq 1$, then the series $\sum a_n$ diverges.
+	\end{enumerate}	
+\end{theorem}
+
+\begin{proof}
+	Suppose there exists an $N \in \mathbb{N}$ and a $q \in (0,1)$ such that for all $n \geq N$, it holds that
+	\[
+	\sqrt[n]{a_n} \leq q.
+	\]
+	Then for all $n \geq N$, it holds that
+	\[
+	0 \leq a_n \leq q^n.
+	\]
+	The series 
+	\[
+	\sum_{n=N}^\infty q^n
+	\]
+	converges as it is a standard geometric series and $q \in (0,1)$.
+	
+	Therefore, the series
+	\[
+	\sum_{n=N}^\infty a_n
+	\]
+	converges by the comparison test, Theorem \ref{th:comparison-test}. Finally, then the sequence
+	\[
+	\sum_{n=0}^\infty a_n
+	\]
+	converges as well by Lemma \ref{le:tail-series}.
+\end{proof}
+
+\begin{corollary}[Root Test, limit version]
+	Let $(a_n)$ be a sequence of nonnegative real numbers.
+	\begin{itemize}
+		\item If $\lim_{n \to \infty} \sqrt[n]{a_n} = q$ and $q \in [0, 1)$, then the series $\sum_k a_k$ converges.
+		\item If $\lim_{n \to \infty} \sqrt[n]{a_n} = q$ with $q \in (1, \infty)$ or if $\lim_{n \to \infty} \sqrt[n]{a_n} = \infty$, then the series $\sum_k a_k$ diverges.
+	\end{itemize}
+\end{corollary}
+
+\begin{warning}
+	{\bf Warning} We cannot conclude anything about the convergence of a series $\sum_k a_k$ if
+	\[
+	\lim_{n \to \infty} \sqrt[n]{a_n} = 1.
+	\]
+\end{warning}

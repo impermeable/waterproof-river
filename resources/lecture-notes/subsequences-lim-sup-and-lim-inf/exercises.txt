@@ -1,0 +1,102 @@
+\subsection{Blue exercises}
+
+\begin{blue_exercise}
+	Consider the set $A := \{a, b,\cdots ,z\}$ of letters in the english alphabet and let $\alpha : \mathbb{N} \to A$ be a sequence of which the first terms are (in the order in which you would normally read, first from left to right, and then from top to bottom. The lines have no particular meaning, they are just there to help the counting, and remember that we use the convention that $0 \in \mathbb{N}$ so $\alpha_0 = r$, $\alpha_1 = j$ etc.)
+	
+	\[
+	\begin{array}{ccccc|ccccc}
+		r & j & z & b & a & g & w & q & o & r \\
+		x & o & l & b & d & x & s & l & e & e \\
+		u & h & g & c & e & c & k & v & n & i \\
+		v & c & n & i & l & t & j & n & h & c \\
+		  \hline
+		e & e & i & u & s & u & m & e & c & t \\
+		c & r & y & o & b & v & n & d & f & d \\
+		b & d & h & z & f & a & z & s & l & i \\
+		h & f & k & s & o & x & c & f & n & o \\
+		\hline
+		a & x & c & n & d & i & a & d & c & l \\
+		e & u & y & i & j & s & c & v & i & k \\
+		m & s & g & n & o & c & d & n & f & g \\ 			
+	\end{array}
+	\]
+	
+	Let $\nu: \mathbb{N} \to \mathbb{N}$ be the index sequence defined by $\nu_\kappa := \kappa + 5$ and let $\mu : \mathbb{N} \to \mathbb{N}$ be the index sequence defined by $\mu_\kappa := 3\kappa$.
+	
+	Write down the first $33$ terms of the sub-subsequence $(\alpha_{\nu_{\mu_\kappa}})_\kappa$ of the sequence $(\alpha_\kappa)_\kappa$.
+	
+\end{blue_exercise}
+
+\begin{blue_exercise}
+	Let $(X, \dist)$ be a metric space.
+	Let $a : \mathbb{N} \to X$ be a sequence, and let $n : \mathbb{N} \to \mathbb{N}$ be an index sequence. Suppose that the subsequence $a \circ n$ converges. Show that every subsequence of $a \circ n$ is convergent.
+\end{blue_exercise}
+
+\begin{blue_exercise}
+	Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ and $b : \mathbb{N} \to X$ be two sequences, such that $a : \mathbb{N} \to X$ converges to some $p \in X$.
+	
+	Now consider the following sequence $c : \mathbb{N} \to X$, defined by
+	\[
+	c_k := \begin{cases}
+		a_k & \text{if } k \text{ even}\\
+		b_k & \text{if } k \text{ odd}.
+		\end{cases}
+	\]
+	Show that $p$ is an accumulation point of $c : \mathbb{N} \to X$. (See Definition \ref{de:seq-acc-point}).
+\end{blue_exercise}
+
+\subsection{Orange exercises}
+
+\begin{orange_exercise}
+	Let $(X, \dist)$ be a metric space and let $a : \mathbb{N} \to X$ be a sequence with values in $X$. Let $p \in X$. Suppose that every subsequence of $a: \mathbb{N} \to X$ has itself a subsequence that converges to $p$. Show that $a: \mathbb{N} \to X$ itself converges to $p$ as well.
+	
+	{\bf Hint:} Argue by contradiction, and use a similar proof technique as Theorem \ref{th:subseq-to-lim-sup}.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:lim-limsup-liminf}
+	Prove Proposition \ref{pr:lim-limsup-liminf}.
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $P : \mathbb{N} \to \{ {\color{blue}\mathsf{blue}} , {\color{orange}\mathsf{orange}} \}$ be a sequence taking values in the set with exactly the two elements ${\color{blue}\mathsf{blue}}$ and ${\color{orange}\mathsf{orange}}$. Assume that
+\[
+\begin{split}
+&\foralltext k \in \mathbb{N},\\
+&\quad \existstext m \geq k,\\
+&\qquad P_m = {\color{blue} \mathsf{blue}}.
+\end{split}
+\]
+Show that there is a subsequence of $P : \mathbb{N} \to \{ {\color{blue}\mathsf{blue}} , {\color{orange}\mathsf{orange}} \}$ for which every term equals ${\color{blue}\mathsf{blue}}$ by going through the following steps:
+\begin{enumerate}
+\item Inductively define an index sequence $n : \mathbb{N} \to \mathbb{N}$ such that for all $k \in \mathbb{N}$, $P_{n_k} = {\color{blue}\mathsf{blue}}$ following the template in the Best Practices item (\ref{it:inductive-construction}):
+\begin{enumerate}
+\item First define $n_0 \in \mathbb{N}$ appropriately and prove that $P_{n_0} = {\color{blue} \mathsf{blue}}$.
+\item For $k \in \mathbb{N}$, with $n_0, \dots, n_k$ defined, define $n_{k+1}$ appropriately, and prove that $n_{k+1} > n_k$ and 
+\[
+P_{n_{k+1}} = {\color{blue} \mathsf{blue}}.
+\]
+\end{enumerate}
+\item Conclude your proof by saying that the sequence $P \circ n$ is a subsequence of $P$ and that by construction, for all $k \in \mathbb{N}$,
+\[
+P_{n_k} = {\color{blue}\mathsf{blue}}.
+\]
+\end{enumerate}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+Let $a : \mathbb{N} \to \mathbb{R}$ be a sequence with (at least) two sequential accumulation points $p, q \in \mathbb{R}$ (with $p \neq q$). Prove that the sequence $a : \mathbb{N} \to \mathbb{R}$ does not converge.	
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $a : \mathbb{N} \to \mathbb{R}$ be a sequence converging to $0$. Prove that there exists a subsequence $b$ of $a$ such that for every $\ell \in \mathbb{N}$,
+	\[ |b_\ell| < \frac{1}{2^\ell}. \]	
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	Let $a : \mathbb{N} \to \mathbb{R}$ be a sequence such that
+	\[ \liminf_{\ell \to \infty} a_\ell = -\infty.\]
+	
+	Prove that there exists a subsequence $b$ of $a$ such that
+	\[ \lim_{\ell \to \infty} b_\ell = -\infty. \]
+\end{orange_exercise}

@@ -1,0 +1,103 @@
+\begin{example}
+Consider the function
+\[
+F : [0, 1]^2 \to \mathbb{R}^2
+\]
+given by
+\[
+F((x_1, x_2)) := \left( \frac{1}{6}(x_2)^2 + \frac{1}{3} x_1, \frac{1}{\pi}\arctan(x_1) +\frac{1}{2}\right) 
+\]
+
+We would like to show that there is a unique fixed point $q$ of the function $F$ in the set $[0,1]^2$ (i.e. $F(q) = q$). To do this, we would like to apply Banach's fixed point theorem, so we need to check the conditions of the theorem.
+
+First note that $[0, 1]^2$ is closed.
+
+We will now show that the range of $F$ is contained in $[0, 1]^2 \subset \mathbb{R}^2$. 
+
+Let $(x_1, x_2) \in [0, 1]^2$. 
+Then
+\[
+0 \leq F_1((x_1, x_2)) = \frac{1}{6}(x_2)^2 + \frac{1}{3} x_1 \leq \frac{1}{6} + \frac{1}{3} < 1
+\]
+and because for all $z \in \mathbb{R}$, $- \pi/2 < \arctan(z) < \pi/2$
+\[
+F_2((x_1, x_2)) = \frac{1}{\pi} \arctan(x_1) + \frac{1}{2} < \frac{1}{\pi} \frac{\pi}{2} + \frac{1}{2} = 1
+\]
+and 
+\[
+F_2((x_1, x_2)) = \frac{1}{\pi} \arctan(x_1) + \frac{1}{2} > -\frac{1}{\pi} \frac{\pi}{2} + \frac{1}{2} = 0.
+\]
+So indeed $F$ maps into $[0, 1]^2$.
+
+We will now show that $F$ is a contraction. In fact we will show that for all $x, y \in [0, 1]^2$,
+\[
+\| F(x) - F(y) \|_2 \leq \kappa \| x - y\|_2
+\]
+with $\kappa = \frac{1}{3}\sqrt{3}$, so indeed $\kappa$ is strictly smaller than $1$.
+
+In proving such an inequality, the Mean-Value Inequality will often play an important role.
+
+\[
+\begin{split}
+| F_1((x_1, x_2)) - F_1((y_1, y_2))|
+&= \left| \frac{1}{6}(x_2)^2 + \frac{1}{3} x_1 - \frac{1}{6} (y_2)^2 - \frac{1}{3} y_1 \right|\\
+&\leq \left| \frac{1}{6}\left((x_2)^2 - (y_2)^2 \right) \right| + 
+\left| \frac{1}{3} (x_1 - y_1) \right| \\
+&= \frac{1}{6} |x_2 - y_2 | |x_2 + y_2| + \frac{1}{3} |x_1 - y_1|\\
+&\leq \frac{1}{6} |x_2 - y_2| (|x_2 | + |y_2|) + \frac{1}{3} |x_1 - y_1|\\
+&\leq \frac{1}{3} |x_2 - y_2| + \frac{1}{3} |x_1 - y_1|
+\end{split}
+\]
+We now use the inequality that for all $a, b \in \mathbb{R}$,
+\[
+(a + b)^2 \leq 2a^2 + 2 b^2,
+\]
+(which follows from the Cauchy-Schwarz inequality).
+
+It follows that
+\[
+|F_1((x_1, x_2)) - F_1((y_1, y_2))|^2 \leq \frac{2}{9} ((x_1 - y_1)^2 + (x_2 - y_2)^2)
+\]
+
+\[
+| F_2((x_1, x_2)) - F_2((y_1, y_2)) |
+= \left| \frac{1}{\pi} \arctan(x_1) - \frac{1}{\pi}\arctan(y_1) \right|
+\]
+To estimate this, we can use the mean-value inequality. Since for all $t \in \mathbb{R}$,
+\[
+0 \leq \arctan'(t) = \frac{1}{1 + t^2} \leq 1
+\]
+the Mean-Value inequality yields that for all $a, b \in \mathbb{R}$, if $a < b$ then
+\[
+\begin{split}
+| \arctan(a) - \arctan(b)|
+&\leq \sup_{t \in (a, b)} |\arctan'(t)| (b - a) \\
+&\leq 1 \cdot |b - a|.
+\end{split}
+\]
+Because this inequality is symmetric in $a$ and $b$, we actually don't need the assumption that $a < b$, and we have that for all $a, b \in \mathbb{R}$,
+\[
+| \arctan(a) - \arctan(b) | \leq | b - a|.
+\]
+It follows that
+\[
+\begin{split}
+| F_2((x_1, x_2)) - F_2((y_1, y_2)) |
+&= \left| \frac{1}{\pi} \arctan(x_1) - \frac{1}{\pi}\arctan(y_1) \right|\\
+&= \frac{1}{\pi} | \arctan(x_1) - \arctan(y_1) | \\
+&\leq \frac{1}{\pi} | x_1 - y_1|
+\end{split}
+\]
+
+Therefore
+\[
+\begin{split}
+\| F((x_1, x_2)) - F((y_1, y_2))\|_2^2 &
+= |F_1((x_1, x_2)) - F_1((y_1, y_2))|^2 \\
+&\quad + |F_2((x_1, x_2)) - F_2((y_1, y_2))|^2\\
+&\leq \frac{2}{9} ((x_1-y_1)^2 + (x_2 - y_2)^2) + \frac{1}{\pi^2} (x_1 - y_1)^2\\
+&\leq \frac{2}{9} ((x_1-y_1)^2 + (x_2 - y_2)^2) + \frac{1}{9} (x_1 - y_1)^2\\
+&\leq \frac{1}{3} \| (x_1, x_2) - (y_1, y_2)\|_2^2.
+\end{split}
+\]
+\end{example}

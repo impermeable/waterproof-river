@@ -1,0 +1,9 @@
+\begin{definition}[The derivative as a function]
+	Let $f : \Omega \to W$ be a function from an open domain $\Omega$ in a finite-dimensional normed vector space $(V, \| \cdot \|_V)$ to a finite-dimensional normed vector space $(W, \| \cdot \|_W)$. Suppose that $f$ is differentiable on $\Omega$, (i.e. suppose that for every $a \in \Omega$, the function $f$ is differentiable in $a$).
+	
+	Then we define the \emph{derivative of} $f$ as the function 
+	\[
+	D f : \Omega \to \mathsf{Lin}(V, W)
+	\]
+	that maps every $a \in \Omega$ to the derivative of $f$ in $a$, i.e.~to $(Df)_a \in \mathsf{Lin}(V, W)$.
+\end{definition}

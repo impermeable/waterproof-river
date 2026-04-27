@@ -1,0 +1,14 @@
+%
+%\begin{definition}
+%	The absolute value of a real number $x \in \mathbb{R}$, written as $| x |$, is defined as
+%	\[
+%	|x| := \begin{cases}
+%	x & \text{if } x \geq 0,\\
+%	-x & \text{if } x < 0. 
+%	\end{cases}
+%	\]
+%\end{definition}
+%
+%Given that the \emph{definition} of the absolute value is given as a case distinction, as long as we do not have other characterizations we will necessarily need to use this case distinction also in proofs about absolute values, such as the triangle inequality.
+%
+%

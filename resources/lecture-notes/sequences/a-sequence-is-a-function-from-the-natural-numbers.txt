@@ -1,0 +1,23 @@
+Let $X$ be a set, for instance $X = \mathbb{R}$. A sequence in $X$ is just a function from the natural numbers $\mathbb{N}$ to $X$. We will use the convention that the natural numbers $\mathbb{N}$ include $0$.
+
+\begin{definition}
+Let $X$ be a set. A \emph{sequence} $a:\mathbb{N} \to X$ in $X$ is a function from the natural numbers $\mathbb{N}$ to $X$.
+\end{definition}
+
+\begin{example}
+Consider the set $X := \{\mathsf{red}, \mathsf{yellow}, \mathsf{blue} \}$ of primary colors. The function $a : \mathbb{N} \to X$ defined by
+\[
+a(n) := \begin{cases}
+\mathsf{blue}, & \text{if } n \text{ is odd},\\
+\mathsf{red}, & \text{if } n \text{ is even},	
+\end{cases}
+\]	
+is an example of a sequence in $X$.
+\end{example}
+
+We really want to stress the point of view here that a sequence, for instance a sequence $a : \mathbb{N} \to \mathbb{R}$ of real numbers, is really a function. In practice, we often write $(a_n)_{n \in \mathbb{N}}$, $(a_n)$, $(a^{(n)})$, or 
+\[
+a_0, a_1, a_2, a_3, \dots
+\]
+
+For $k \in \mathbb{N}$, the term $a_k$ is called an \emph{element} of the sequence. It is also referred to as the $k$th element. Moreover, $k$ is called the \emph{index} of the element $a_k$.

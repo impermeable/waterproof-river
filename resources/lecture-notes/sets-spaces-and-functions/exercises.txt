@@ -1,0 +1,129 @@
+Please read also the following chapter and the best practices in Appendix \ref{ch:best-practices} {\bf before} attempting the next exercises. In particular, please follow the best practices in writing down your solutions.
+
+\subsection{Blue exercises} 
+
+The following exercises are also available in Waterproof.
+
+\begin{blue_exercise}
+	\label{ex:pullback-distance}
+	Let $(Y, \dist_Y)$ be a metric space.
+	Let $X$ be a set.
+	Let $f : X \to Y$ be injective.
+	Define $d: X \times X \to \mathbb{R}$ by
+	\[
+	d(x, z) := \dist_Y(f(x), f(z)), \qquad \text{for all } x, z \in X.
+	\]
+	Show that the function $d$ is a distance on $X$.
+\end{blue_exercise}
+
+\begin{blue_exercise}
+Let $(X, \dist)$ be a metric space.
+Let $A \subset X$ be a subset.
+Define the function $\dist|_A : A \times A \to \mathbb{R}$ by
+\[
+\dist|_A (x, y) := \dist(x, y), \qquad \text{for all } x , y \in A.
+\]
+Then $\dist|_A$ is called the restriction of $\dist$ to $A$.
+Show that $\dist|_A$ is a distance on $A$.
+\end{blue_exercise}
+
+\begin{blue_exercise}
+	Consider the function $d : \mathbb{Z} \times \mathbb{Z} \to \mathbb{R}$ defined by
+	\[
+	d(a, b) = 
+	\begin{cases}
+		0, &\text{if } a = b,\\
+		3, &\text{if } a \neq b.
+	\end{cases}
+	\]
+	Show that $d$ is a distance function on $\mathbb{Z}$.
+\end{blue_exercise}
+
+
+\subsection{Orange exercises}
+
+%\begin{orange_exercise}
+%	Let $f : [0,\infty) \to [0,\infty)$ be such that $f(0) = 0$ and such that $f$ is concave, which means that 
+%	\[
+%	\begin{split}
+%		& \foralltext x, y \in [0,\infty), \\
+%		& \quad \foralltext \lambda \in (0, 1),\\
+%		& \quad \quad f(\lambda x + (1 - \lambda) y ) \geq \lambda f (x) + (1- \lambda) f (y).	
+%	\end{split}
+%	\]
+%	\begin{enumerate}
+%		\item Show that 
+%		\[
+%		\begin{split}
+%			&\foralltext	s, t \in (0,\infty), \\
+%			&\quad \frac{f(s + t)}{s + t} \leq \frac{f(s)}{s}.
+%		\end{split}
+%		\] 
+%		\item Show that
+%		\[
+%		\begin{split}
+%			&\foralltext s, t \in (0,\infty), \\
+%			&\quad \frac{f(s + t) - f(t)}{s} \leq \frac{f(s + t)}{s + t}.
+%		\end{split}
+%		\]
+%		\item Show that
+%		\[
+%		\begin{split}
+%			&\foralltext s, t \in [0,\infty), \\
+%			&\quad f(s + t) \leq f(s) + f(t).
+%		\end{split}
+%		\]
+%	\end{enumerate}
+%\end{orange_exercise}
+
+\begin{restatable}{orange_exercise}{reSquarerootDistance}
+	\label{ex:square-root-distance}
+	Let $(X, \dist)$ be a metric space. Define $d : X \times X \to \mathbb{R}$ by
+	\[
+	d(x, y) = \sqrt{\dist(x, y)}.
+	\]
+	Show that $d$ is a distance on $X$.
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reConvexityNorm}
+	\label{ex:convexity-norm}
+Let $(V, \| \cdot \|)$ be a normed vector space.
+We say a subset $U \subset V$ is convex if
+\[
+\begin{split}
+&\foralltext x, y \in U, \\
+&\quad \foralltext \lambda \in (0, 1),\\	
+&\quad\quad \lambda x + (1-\lambda) y \in U.
+\end{split}
+\]
+Let $z \in V$ and $r > 0$. Recall Definition \ref{de:open-ball} of the open ball $B(z, r)$. Show that $B(z, r)$ is convex.
+\end{restatable}
+
+\begin{restatable}{orange_exercise}{reMaxDistance}
+	\label{ex:max-distance}
+Let $X$ be a set, and let the two functions $\dist_1, \dist_2 : X \times X \to \mathbb{R}$ be two distances on $X$.
+
+Prove that the function $d : X \times X \to \mathbb{R}$ defined by
+\[ d(x, y) := \max(\dist_1(x, y), \dist_2(x, y)) \]
+is also a distance on $X$.
+
+You can go through the following steps.
+\begin{enumerate}
+	\renewcommand{\theenumi}{(\alph{enumi})}
+	\item Can you make a drawing of the situation?
+	\item {\color{blue} Warm-up:}
+	\begin{enumerate}
+		\renewcommand{\theenumii}{\roman{enumii}}
+		\item Let $a, b \geq 0$. Why is $\max(a, b) \geq 0$?
+		\item Let $x, y \in 0$. What must be true about $\dist_1(x, y)$ and $\dist_2(x, y)$ if $d(x, y) = 0$, given that $d(x, y) = \max(\dist_1(x, y), \dist_2(x, y))$?
+		\item What does it mean that $d_1$ is symmetric? Since $\dist_1$ and $\dist_2$ are symmetric, what must be true about
+		\[ \max(\dist_1(x, y), \dist_2(x, y)) ?\]
+		\item Main inequality. Let $a, b, c, d \geq 0$. Why is
+		\[\max(a + c, b + d) \leq \max(a, b) + \max(c, d)?\]
+	\end{enumerate}
+	\item Write down what you need to show in order to show for something to be a distance. In case you do not remember by heart, have another look at the definition of distance.
+	\item In the previous step, you should have a list of properties. Now prove these properties one by one, following the best practices. Remember to introduce your variables.
+	\item Label your proof with the steps from the best practices.
+	\item What if $\max$ would be $\min$? Would you still be able to show that this is a distance?
+\end{enumerate}
+\end{restatable}

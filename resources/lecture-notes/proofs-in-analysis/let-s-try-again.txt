@@ -1,0 +1,121 @@
+We need to show 
+\begin{mcode}
+\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext n_0 \in \mathbb{N}, \\
+	&\quad \quad \foralltext n \geq n_0, \\ 
+	&\quad \quad \quad |1/n - 0| < \epsilon
+\end{split}
+\end{mcode}
+so we first need to {\bf prove a ``for all" statement} and therefore write 
+\begin{mcode}
+\text{Let } \epsilon > 0.
+\end{mcode}
+and continue with the proof of the indented statement 
+\begin{mcode}
+\begin{split}
+	&\quad \text{there exists an } n_0 \in \mathbb{N} \text{ such that} \\
+	&\quad \quad \text{for all } n \geq n_0 \\ 
+	&\quad \quad \quad |1/n - 0| < \epsilon.
+\end{split}
+\end{mcode}
+We are wiser now, and will aim to choose $n_0$ using the Archimedean property.
+To prepare that, we write
+\begin{mcode}
+	\begin{split}
+		&\text{By the Archimedean property it holds that }\\
+		&\quad \foralltext x \in \mathbb{R},\quad\quad\quad\quad\quad\quad\quad\quad (*)\\
+		&\quad \quad \existstext k \in \mathbb{N}, x < k.
+	\end{split}
+\end{mcode}
+
+We now {\bf use this ``for all" statement} by writing
+\begin{mcode}
+	\begin{split}
+	&\text{Use } x := 1/\epsilon \text{ in (} * \text{)}.\\
+	&\quad \text{Indeed, } x \in \mathbb{R}.\\
+	&\text{It holds that } \existstext k \in \mathbb{N}, x < k.
+	\end{split}
+\end{mcode}
+We cannot choose $n_0$ yet the way we want to, because we haven't introduced / obtained $k$ yet.
+But we can easily {\bf use the previous ``there exists" statement } by
+\begin{mcode}
+	\text{Obtain such a k}.
+\end{mcode}
+Now we can finally embark on {\bf proving the ``there exists" statement} and choose $n_0$ by writing
+\begin{mcode}
+\begin{split}
+&\text{Choose } n_0 := k.\\
+&\text{Indeed, } n_0 \in \mathbb{N}.
+\end{split}
+\end{mcode}
+and continue with the proof of
+\begin{mcode}
+\begin{split}
+	&\quad \quad \text{for all } n \geq n_0, \\ 
+	&\quad \quad \quad |1/n - 0| < \epsilon.
+\end{split}
+\end{mcode}
+Next, we need to embark on {\bf proving a ``for all" statement} again, so we write
+\begin{mcode}
+\text{Let } n \geq n_0.
+\end{mcode}
+and we are ready to, once again, try to prove that
+\begin{mcode}
+|1/n - 0| < \epsilon.
+\end{mcode}
+Now it is time to insert the chain of inequalities
+\begin{mcode}
+\begin{split}
+	&\text{We conclude that } \\
+	&\quad |1/n - 0 | = 1/n \leq 1/n_0 = 1/k < 1 / (1 / \epsilon) = \epsilon.
+\end{split}
+\end{mcode}
+This finishes the proof. If we write everything in one go it works as follows.
+\begin{mcode}
+	\begin{split}
+		& \text{Let } \epsilon > 0. \\
+		& \quad \text{By the Archimedean property it holds that }\\
+		& \quad \quad \foralltext x \in \mathbb{R},\quad\quad\quad\quad\quad\quad\quad\quad (*)\\
+		& \quad \quad \quad \existstext k \in \mathbb{N}, x < k.\\
+		& \quad \text{Use } x := 1/\epsilon \text{ in (} * \text{)}.\\
+		& \quad \quad \text{Indeed, } x \in \mathbb{R}.\\
+		& \quad \text{It holds that } \existstext k \in \mathbb{N}, x < k.\\
+		& \quad \text{Obtain such a } k. \\
+		& \quad \text{Choose } n_0 := k. \\
+		& \quad \quad \text{Indeed } n_0 \in \mathbb{N}.\\
+		& \quad \text{We conclude that } \\
+		& \quad \quad |1 / n - 0 | \leq 1 / n_0 = 1 / k < 1 / (1 / \epsilon) = \epsilon.
+	\end{split}
+\end{mcode}
+The statement we proved already suggested to us the {\color{blue} \emph{proof framework}}
+\begin{mcode}
+\begin{split}
+	&\text{Let } \epsilon > 0. \\
+	&\quad \text{Choose } n_0 := \_ \ .\\
+	&\quad \quad \text{Indeed, } ?n_0? \in \mathbb{N}. \\
+	&\quad \text{Let } n \geq ?n_0?. \\
+	&\quad \quad \text{We conclude that} \\
+	&\quad\quad \quad |1 - 1/n| \quad \ldots \quad < \quad \ldots \quad \epsilon.
+\end{split}
+\end{mcode}
+Or, if you already know that the Archimedean property is going to play a role, the longer {\color{blue} \emph{proof framework}}
+\begin{mcodenumbered}\label{eq:example-proof-framework}
+	\begin{split}
+		&\text{Let } \epsilon > 0. \\
+		& \quad \text{By the Archimedean property it holds that }\\
+		& \quad \quad \foralltext x \in \mathbb{R},\quad\quad\quad\quad\quad\quad\quad\quad (*)\\
+		& \quad \quad \quad \existstext k \in \mathbb{N}, x < k.\\
+		& \quad \text{Use } x := \_ \ \text{ in (} * \text{)}.\\
+		& \quad \quad \text{Indeed, } ?x? \in \mathbb{R}.\\
+		& \quad \text{It holds that } \existstext k \in \mathbb{N}, ?x? < k.\\
+		& \quad \text{Obtain such a } k. \\
+		&\quad \text{Choose } n_0 := \_ \ .\\
+		&\quad \quad \text{Indeed, } ?n_0? \in \mathbb{N}. \\
+		&\quad \text{Let } n \geq ?n_0?. \\
+		&\quad \quad \text{We conclude that} \\
+		&\quad\quad \quad |1 - 1/n| \quad \ldots \quad < \quad \ldots \quad \epsilon.
+	\end{split}
+\end{mcodenumbered}
+
+We filled it in by choosing $n_0$ appropriately, and making a correct estimate.

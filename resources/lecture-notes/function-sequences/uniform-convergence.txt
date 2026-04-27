@@ -1,0 +1,50 @@
+\begin{definition}
+	Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces and let $D \subset X$.
+	We say that a sequence of functions $f: \mathbb{N} \to (D \to Y)$ converges \emph{uniformly} to a function $f^* : D \to Y$ if
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0, \\
+	& \quad \existstext N \in \mathbb{N}, \\
+	& \quad \quad \foralltext n \geq N,\\
+	& \quad \quad \quad \foralltext x \in D,\\
+	&\quad \quad \quad \quad \dist_Y(f_n(x), f^*(x)) < \epsilon.	
+	\end{split}
+	\]
+\end{definition}
+
+\begin{proposition}
+Let $(X, \dist_X)$ and $(Y, \dist_Y)$ be two metric spaces, let $D \subset X$, and assume that a sequence of functions $f: \mathbb{N} \to (D \to Y)$ converges uniformly to a function $f^* : D \to Y$. Then $(f_n)$ converges to $f^*$ pointwise on $D$.	
+\end{proposition}
+
+\begin{proof}
+We need to show that $(f_n)$ converges pointwise to $f^*$.
+That means that we need to show that
+\[
+\begin{split}
+&\foralltext x \in D, \\
+&\quad \lim_{n \to \infty} f_n(x) = f^*(x).	
+\end{split}
+\]	
+Let $x \in D$. We need to show that for every $\epsilon > 0$, there exists an $N_1 \in \mathbb{N}$ such that for all $n \geq N_1$, 
+\[
+\dist_Y(f_n(x), f^*(x)) < \epsilon.
+\]
+
+Let $\epsilon > 0$.
+Since $(f_n)$ converges to $f^*$ uniformly, there exists an $N \in \mathbb{N}$ such that for all $n \geq N$ and for all $p \in D$,
+\[
+\dist_Y(f_n(p), f^*(p)) < \epsilon.
+\]
+Choose $N_1 := N$.
+Let $n \geq N_1$.
+Then, since $n \geq N$, also
+\[
+\dist_Y(f_n(x) , f^*(x)) < \epsilon.
+\]
+\end{proof}
+
+The previous proposition has a simple consequence that is very useful in practice. Suppose for instance that you need to check whether a sequence of functions converges uniformly, and you already know that the sequence converges \emph{pointwise} to a function $f^*$. Then you only need to check whether the sequence of functions converges uniformly to $f^*$.
+
+\begin{corollary}
+Suppose a sequence of functions $f : \mathbb{N} \to (D \to Y)$ converges \emph{pointwise} to a function $f^*: D \to Y$. Then $(f_n)$ converges uniformly on $D$ if and only if $(f_n)$ converges uniformly to $f^*$ on $D$.	
+\end{corollary}

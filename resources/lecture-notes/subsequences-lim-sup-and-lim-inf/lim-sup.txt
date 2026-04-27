@@ -1,0 +1,261 @@
+In this section we are going to define a function (called the lim sup) that takes in a real-valued sequence and outputs either
+\begin{itemize}
+\item the symbol ``$\infty$" if the sequence is not bounded from above
+\item the symbol ``$-\infty$", if the sequence diverges to $-\infty$
+\item a real number otherwise.
+\end{itemize}
+
+
+Consider a real-valued sequence $(a_n)$ that is bounded from above and does not diverge to $-\infty$.
+We can then define a new sequence
+\[
+k \mapsto \sup_{n \geq k} a_n.
+\]
+Note that this sequence is decreasing, because for larger $k$ the supremum is taken over a smaller set. We will show in the lemma below that then the sequence $k \mapsto \sup_{n \geq k} a_n$ is also bounded from below. 
+
+Therefore, the sequence $k \mapsto \sup_{n \geq k} a_n$ has a limit, and the limit is in fact equal to the infimum of the sequence. This limit is called the $\limsup$
+\[
+\begin{split}
+	\limsup_{n \to \infty} a_n &:= 
+	\inf_{k \in \mathbb{N}} \sup_{n \geq k} a_n\\
+	&= \lim_{k \to \infty} \left( \sup_{n \geq k} a_n \right).
+\end{split}
+\]
+
+We still need to show the announced lemma.
+
+\begin{lemma}
+	Let $a : \mathbb{N} \to \mathbb{R}$ be a sequence that is bounded from above and does not diverge to $-\infty$.
+	Then the sequence $k \mapsto \sup_{n \geq k} a_n$ is bounded from below.
+\end{lemma}
+\begin{proof}
+We argue by contradiction. Suppose therefore that the sequence $k \mapsto \sup_{n \geq k} a_n$ is not bounded from below. We are going to show that the sequence $a_n$ diverges to $-\infty$, which would indeed be a contradiction.
+
+We will show that 
+\[
+\begin{split}
+&\foralltext M \in \mathbb{R} \\
+&\quad \existstext N \in \mathbb{N} \\
+&\quad\quad \foralltext n \geq N,\\
+&\quad\quad\quad a_n < M.
+\end{split}
+\]
+Let $M \in \mathbb{R}$.
+Since the sequence $k \mapsto \sup_{n \geq k} a_n$ is not bounded from below, there exists an $m \in \mathbb{N}$, such that
+\[
+\sup_{n \geq m} a_n < M
+\]
+Choose $N := m$. Let $n \geq N$. Then
+\[
+a_n \leq \sup_{\ell \geq m} a_\ell < M.
+\]
+This finishes our proof that $(a_n)$ diverges to $-\infty$, and we have derived a contradiction. Hence the sequence $k \mapsto \sup_{n \geq k} (a_n)$ is in fact bounded from below.
+\end{proof}
+
+%\begin{lemma}
+%	Let $b : \mathbb{N} \to \mathbb{R}$ be decreasing. Then exactly one of the following holds: either $b$ is bounded from below or it diverges to $-\infty$.
+%\end{lemma}
+%\begin{proof}
+%	Suppose $b$ is bounded from below. Then it is a decreasing sequence that is bounded from below, and therefore it is convergent (recall Theorem \ref{th:decr-seq-bdd-below}). In particular, in this case it {\bf does not} diverge to $-\infty$.
+%	
+%	Now suppose $b$ is not bounded from below. We need to show that it diverges to $-\infty$. That is, we need to show that 
+%	\[
+%	\begin{split}
+%	&\foralltext M \in \mathbb{R} \\
+%	&\quad \existstext N \in \mathbb{N} \\
+%	&\quad\quad \forall n \geq N \\
+%	&\quad\quad\quad a_n < M.
+%	\end{split}
+%	\]
+%	Let $M \in \mathbb{R}$. 
+%	Because $b$ is not bounded from below, 
+%	\begin{optional_text}
+%		We know that
+%	\begin{equation}
+%		\label{eq:in-dich-decr-bounded}
+%	\begin{split}
+%	&\foralltext M_1 \in \mathbb{R} \\
+%	& \quad \existstext m \in \mathbb{N} \\
+%	& \qquad b_m < M_1.
+%	\end{split}
+%	\end{equation}
+%	Choose $M_1 := M$ in \ref{eq:in-dich-decr-bounded}, then we know that
+%	\end{optional_text}
+%	there exists an $m \in \mathbb{N}$ such that $b_m < M$. Choose such an $m$.
+%	
+%	Choose $N := m$. 
+%	
+%	Let $n \geq N$. Because $b_n$ is decreasing, we find that $b_n \leq b_N$. Therefore indeed
+%	\[
+%	b_n \leq b_N = b_m < M
+%	\]
+%	which was what we needed to show.
+%\end{proof}
+
+\begin{proposition}[Alternative characterization of $\limsup$]
+Let $(a_n)$ be a real-valued sequence. Let $M \in \mathbb{R}$.
+Then $M \in \mathbb{R}$ equals $\limsup_{\ell \to \infty} a_\ell$ if and only if the following two conditions hold:
+\begin{enumerate}
+\item \label{it:charlimsup1} 
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \existstext N \in \mathbb{N},\\
+&\quad\quad \foralltext \ell \geq N,\\
+&\quad\quad\quad a_\ell < M + \epsilon.
+\end{split}
+\]
+\item \label{it:charlimsup2}
+\[
+\begin{split}
+&\foralltext \epsilon > 0,\\
+&\quad \foralltext k \in \mathbb{N},\\
+&\quad\quad \existstext m \geq k,\\
+&\quad\quad\quad a_m > M - \epsilon.
+\end{split}
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Let $M \in \mathbb{R}$.
+We first show that if $M = \limsup_{n \to \infty} a_n$, then the conditions (\ref{it:charlimsup1}) and (\ref{it:charlimsup2}) hold.
+Assume $M = \limsup_{n \to \infty} a_n$. Then by definition of the lim sup, it follows that $a: \mathbb{N} \to \mathbb{R}$ is bounded from above and does not diverge to $-\infty$. 
+
+We will now show (\ref{it:charlimsup1}).
+Let $\epsilon > 0$.
+We need to show that there exists a $N \in \mathbb{N}$ such that for all $\ell \geq N$, it holds that $a_\ell < M + \epsilon$.
+
+By the definition of $\limsup_{\ell \to \infty} a_\ell$ as $\inf_{\ell \in \mathbb{N}} \sup_{k \geq \ell} a_k$, there exists an $\ell_0 \in \mathbb{N}$ such that 
+\[
+\sup_{k \geq \ell_0} a_k < M + \epsilon.
+\]
+Choose $N := \ell_0$. Let $\ell \geq N$. Then by the previous inequality we conclude that
+\[
+a_\ell < M + \epsilon.
+\]
+
+We will now show (\ref{it:charlimsup2}).
+Let $\epsilon > 0$. Let $k \in \mathbb{N}$. We need to show that there exists an $m \geq k$ such that $a_m > M - \epsilon$. By the definition of $\limsup_{\ell \to \infty} a_\ell$ as $\inf_{\ell \in \mathbb{N}} \sup_{k \geq \ell} a_k$, we know that 
+\[
+\sup_{n \geq k} a_n \geq M.
+\]
+Therefore, there exists an $m \geq k$ such that 
+\[
+a_m > \sup_{n \geq k} a_n - \epsilon \geq M - \epsilon.
+\]
+
+We will now show that if $M \in \mathbb{R}$ satisfies 
+conditions (\ref{it:charlimsup1}) and (\ref{it:charlimsup2}), that 
+then $M$ equals $\limsup_{\ell \to \infty} a_\ell$.
+
+Assume $M$ satisfies conditions (\ref{it:charlimsup1}) and (\ref{it:charlimsup2}).
+
+We first need to settle that $a: \mathbb{N} \to \mathbb{R}$ is bounded from above and does not diverge to $-\infty$.
+
+We will show that $a: \mathbb{N} \to \mathbb{R}$ is bounded from above. By (\ref{it:charlimsup1}), we may obtain an $N \in \mathbb{N}$ such that for all $\ell \geq N$, $a_\ell < M + 1$. Choose $L := \max(a_0, a_1, \dots, a_{N-1}, M+1)$. Then for all $\ell \in \mathbb{N}$, it holds that $a_\ell \leq L$. Hence $L$ is an upper bound for $a: \mathbb{N} \to \mathbb{R}$ and $a: \mathbb{N} \to \mathbb{R}$ is indeed bounded.
+
+We will now show that $a: \mathbb{N} \to \mathbb{R}$ does not diverge to $-\infty$. We argue by contradiction. Suppose $a: \mathbb{N} \to \mathbb{R}$ diverges to $-\infty$. Then there exists an $N_0 \in \mathbb{N}$ such that for all $\ell \geq N_0$, $a_\ell < M - 1$. However, by (\ref{it:charlimsup2}) there exists an $m \geq N_0$ such that $a_m > M - 1$. This is a contradiction.
+
+It now follows that $\limsup_{\ell \to \infty} a_\ell = \inf_{k \in \mathbb{N}} \sup_{n \geq k} a_n$. We therefore need to show that
+\[
+M = \inf_{k \in \mathbb{N}} \sup_{n \geq k} a_n.
+\]
+We first show that for every $k \in \mathbb{N}$,
+\[
+M \leq \sup_{n \geq k} a_n.
+\]
+Let $k \in \mathbb{N}$. 
+Note that it suffices to show that for every $\epsilon > 0$ 
+\[
+M - \epsilon < \sup_{n \geq k} a_n
+\]
+Let $\epsilon > 0$. 
+By (\ref{it:charlimsup2}) we know that there exists an $m \geq k$ such that
+\[
+M - \epsilon < a_m.
+\]
+Therefore also 
+\[
+M - \epsilon < \sup_{n \geq k} a_n
+\]
+
+Finally, we show that for every $\epsilon > 0$,
+there exists a $k \in \mathbb{N}$ such that
+\[
+\sup_{n \geq k} a_n < M + \epsilon
+\]
+Let $\epsilon > 0$.
+By condition (\ref{it:charlimsup1}) we know that there exists an $n_0 \in \mathbb{N}$ such that for all $n \geq n_0$,
+\[
+a_n < M + \epsilon/2
+\]
+Choose $k := n_0$.
+Then 
+\[
+\sup_{n \geq k} a_n \leq M + \epsilon/2 < M + \epsilon.
+\]
+\end{proof}
+
+\begin{theorem}
+	\label{th:subseq-to-lim-sup}
+Let $a: \mathbb{N} \to \mathbb{R}$ be a real-valued sequence that is bounded from above and does not diverge to $-\infty$. Then $\limsup_{\ell \to \infty} a_\ell$ is a (sequential) accumulation point of the sequence $a$, i.e.~there exists a subsequence of $a$ that converges to $\limsup_{\ell \to \infty} a_\ell$.
+\end{theorem}
+\begin{proof}
+We denote $\limsup_{k \to \infty} a_k$ by $M$.
+	
+We need to find an index sequence $n: \mathbb{N} \to \mathbb{N}$ such that
+\[
+\lim_{k \to \infty} a_{n_k} = M.
+\]
+We do this inductively. We first know that there exists an $m_0$ such that for all $m \geq m_0$,
+\[
+a_m \leq M + 1/1.
+\]
+Then we know there exists an $n_0$ such that $n_0 > m_0$ and
+\[
+M - 1/1 < a_{n_0}
+\]
+Because $n_0 > m_0$, we also know that
+\[
+a_{n_0} < M + 1/1
+\]
+
+Suppose now that $n_{\ell-1}$ is defined for some $\ell \in \mathbb{N}\setminus \{0\}$.
+We are going to define $n_{\ell}$.
+We know that there exists an $m_\ell \in \mathbb{N}$ such that for every $m \geq m_\ell$,
+\[
+a_m \leq M + \frac{1}{\ell + 1}.
+\]
+Now, there exists an $n_{\ell} \geq \max(n_{\ell-1}, m_\ell) + 1$ such that 
+\[
+M - \frac{1}{\ell + 1} < a_{n_\ell}
+\]
+and because $n_\ell > m_\ell$, we also know that
+\[
+a_{n_\ell} < M + \frac{1}{\ell + 1}.
+\]
+
+By construction, we know that $n: \mathbb{N} \to \mathbb{N}$ is strictly increasing. In other words, we know that it is an index sequence.
+Also by construction, we know that for all $\ell \in \mathbb{N}$,
+\[
+M - \frac{1}{\ell+1} < a_{n_\ell} < M + \frac{1}{\ell + 1}.
+\]
+By the squeeze theorem, we know that the $\lim_{\ell \to \infty} a_{n_\ell}$ exists and equals $M$.
+\end{proof}
+
+The previous theorem has the following consequence, which is a key fact in analysis.
+
+\begin{corollary}[Bolzano-Weierstrass]
+	Every bounded, real-valued sequence has a subsequence that converges in $(\mathbb{R}, \dist_{\mathbb{R}})$.
+\end{corollary}
+
+Theorem \ref{th:subseq-to-lim-sup} shows that if a sequence $a: \mathbb{N} \to \mathbb{R}$ is bounded from above and does not diverge to infinity, the number $\limsup_{\ell \to \infty} a_\ell$ is a sequential accumulation point. However, we can derive more: in fact it is the maximum of the set of accumulation points.
+
+\begin{theorem}
+Suppose a sequence $a : \mathbb{N} \to \mathbb{R}$ is bounded from above and does not diverge to $-\infty$. Then 
+\[
+\limsup_{\ell \to \infty} a_\ell
+\]	
+is the maximum of the set of sequential accumulation points.
+\end{theorem}

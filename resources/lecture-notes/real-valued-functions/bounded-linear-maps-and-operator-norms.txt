@@ -1,0 +1,193 @@
+We close this chapter with a section about linear maps from one normed vector space to another. We will show that linear maps are continuous if and only if they are bounded. Moreover, we will see that a linear map defined on a \emph{finite-dimensional} vector space is always bounded, and therefore always continuous.
+
+Let us first give the definition of a linear map.
+
+\begin{definition}[Linear map]
+	Let $V$ and $W$ be two vector spaces. A function $L : V \to W$ is called a \emph{linear map} if both
+	\begin{enumerate}
+		\item for all $a , b \in V$,
+		\[
+		L(a + b) = L(a) + L(b)
+		\]
+		\item for all $\lambda \in \mathbb{R}$ and $a \in V$,
+		\[
+		L(\lambda a) = \lambda L(a).
+		\]
+	\end{enumerate}	
+\end{definition}
+
+Now we will define what it means for a linear map to be bounded.
+
+\begin{definition}[Bounded linear map]
+	Let $(V, \| \cdot \|_V)$ and\\ $(W, \| \cdot \|_W)$ be two normed vector spaces. We say that a linear map $L : V \to W$ is \emph{bounded} if the image under $L$ of the closed unit ball
+	\[
+	\bar{B}_V(0, 1) = \{ v \in V \ |\ \| v \|_V \leq 1 \}
+	\]
+	is a bounded subset of $(W, \| \cdot \|_W)$, i.e. if
+	\[
+	L(\bar{B}_V(0,1))
+	\]
+	is a bounded subset of $(W, \| \cdot \|_W)$.
+\end{definition}
+
+The following is an alternative characterization of boundedness of linear maps. It is usually a bit easier to deal with.
+
+\begin{proposition}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two normed vector spaces.
+	A linear map $L : V \to W$ is bounded if and only if there exists an $M > 0$ such that for all $v \in V$,
+	\[
+	\| L (v) \|_W \leq M \| v \|_V.
+	\]
+\end{proposition}
+
+\begin{proposition}
+The space of bounded linear maps between one normed vector space to another is itself again a vector space, that we denote by $\mathsf{BLin}(V, W)$. Addition and scalar multiplication are defined pointwise, that means that if $L: V \to W$ and $K : V \to W$ are two linear maps and $\lambda \in \mathbb{R}$ is a scalar, then the linear map $L + K : V \to W$ is defined by
+\[
+(L + K)(v) = L(v) + K(v)
+\]
+and the map $\lambda L : V \to W$ is defined by
+\[
+(\lambda L)(v) = \lambda (L(v)).
+\]
+The zero-element in this vector space $\mathsf{BLin}(V, W)$ is the map that maps every vector to the zero-element of $W$.
+\end{proposition}
+
+We would like to be able to talk about the \emph{norm} of such a linear map. We now introduce one such norm, called the operator norm.
+
+\begin{proposition}
+	\label{pr:operator-norm-is-norm}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two normed vector spaces. Consider the vector space $\mathsf{BLin}(V, W)$ of bounded linear maps $L : V \to W$. Then the function $\| \cdot \|_{V \to W} : \mathsf{BLin}(V, W) \to \mathbb{R}$ defined by
+	\[
+	\| L \|_{V \to W} := \sup_{x \in \bar{B}_V(0,1)} \| L (x) \|_W
+	\]	
+	is a norm on $\mathsf{BLin}(V, W)$.
+\end{proposition}
+
+The proof of Proposition \ref{pr:operator-norm-is-norm} is the topic of Exercise \ref{ex:operator-norm-is-norm}.
+
+\begin{definition}
+	The norm $\| \cdot \|_{V \to W}$ on the vector space $\mathsf{BLin}(V, W)$ is called the \emph{operator norm}.	
+\end{definition}
+
+\begin{proposition}
+	\label{pr:alt-char-op-norm}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two normed vector spaces. 
+	Let $L : V \to W$ be a bounded linear map. Then for all $v \in V$,
+	\[
+	\| L (v) \|_W \leq \| L \|_{V \to W} \| v \|_V
+	\]
+	and in fact
+	\begin{equation}
+		\label{eq:alt-char-op-norm}
+	\| L \|_{V \to W} = \min \{ C \geq 0 \ | \ \text{for all } v \in V, \| L (v)\|_W \leq C \| v \|_V \}.
+	\end{equation}
+\end{proposition}
+
+\begin{proof}
+	Let $v \in V$. If $v = 0$, then indeed 
+	\[
+	\| L (v) \|_W = \| 0 \|_W = 0 \leq \|L \|_{V \to W} \| 0 \|_V = \|L \|_{V \to W} \| v \|_V.
+	\]
+	If $v \neq 0$, then define $x := v / \| v \|_V$. Then $x \in \bar{B}_V(0,1)$ because
+	\[
+	\|x \|_V = \left\| \frac{v}{\| v \|_V}\right\|_V = \frac{1}{\| v \|_V} \| v \|_V = 1.
+	\]
+	It follows that
+	\[
+	\| L (x) \|_W  \leq \sup_{z \in \bar{B}_V(0,1)} \|L(z) \|_W = \|L\|_{V \to W}. 
+	\]
+	Therefore
+	\[
+	\| L (v) \|_W = \left\|L (\|v\|_V x) \right\|_W = \| v \|_V \left\| L(x) \right\|_V \leq \| L \|_{V \to W} \| v \|_V.
+	\]
+	
+	To show (\ref{eq:alt-char-op-norm}), let $C \geq 0$ be a constant such that for all $v \in V$, $\|L (v) \|_W \leq C \|v\|_V$. 
+	Then for all $x \in \bar{B}_V(0,1)$, since $\|x\|_V \leq 1$, it holds that $\|L (x)\|_W \leq C \|x \|_V \leq C$.
+	Therefore $C$ is an upper bound for the set
+	\[
+	\{ \|L(x)\|_W \ | \ x \in \bar{B}_V(0, 1) \}
+	\]
+	and since $\|L \|_{V \to W}$ is the smallest upper bound of this set, we conclude that $\|L \|_{V \to W} \leq C$.
+\end{proof}
+
+\begin{theorem}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two normed vector spaces and assume that $V$ is finite-dimensional.
+	Let $L : V \to W$ be a linear map. Then $L$ is bounded.	
+\end{theorem}
+
+\begin{proof}
+	Since $V$ is finite-dimensional, we may select a basis $v_1, \dots, v_d$ of $V$, where $d$ is the dimension of $V$.
+	Define the map $\iota : \mathbb{R}^d \to V$ by
+	\[
+	\iota(x) = x_1 v_1 + \dots + x_d v_d.
+	\]
+	The map $\iota$ is a bijective linear map, and therefore its inverse $\iota^{-1}$ is a bijective linear map as well: it is the map that assigns to a vector $v$ its components $x_1, \dots, x_d$ with respect to the basis $v_1, \dots, v_d$. Because $\iota^{-1}$ is injective, the function
+	\[
+	\| \cdot \|_2 \circ \iota^{-1}
+	\]
+	is a norm on $V$.
+	By the equivalence of norms, there exists a constant $C > 0$ such that for every $v \in V$,
+	\[
+	\| \iota^{-1} (v) \|_2 \leq C \| v \|_V.
+	\]
+	Let $v \in \bar{B}(0,1)$. Define
+	\[
+	x := \iota^{-1} (v).
+	\]
+	Then
+	\[
+	\begin{split}
+		\| L (v) \|_W
+		&= \| L (x_1 v_1 + \dots + x_d v_d) \|_W\\
+		&\leq |x_1| \| L (v_1)\|_W + \cdots + |x_d | \| L (v_d) \|_W \\
+		&\leq \left(\sum_{i = 1}^d |x_i| \right) \max_{j = 1, \dots, d} \| L (v_j) \|_W\\
+		&\leq \left( \max_{j = 1, \dots, d } \| L (v_j) \|_W \right) \sqrt{d} \| x \|_2\\
+		&\leq \left( \max_{j = 1, \dots, d } \| L (v_j) \|_W \right) \sqrt{d} C \| v \|_V
+	\end{split}
+	\]
+\end{proof}
+
+\begin{theorem}
+	Let $(V, \| \cdot \|_V)$ and $(W, \| \cdot \|_W)$ be two normed vector spaces.
+	Let $L : V \to W$ be a linear map.	
+	The function $L$ is continuous if and only if it is bounded.
+\end{theorem}
+\begin{proof}
+	We first show the ``only if" direction.
+	Assume therefore that $L : V \to W$ is continuous.
+	Then $L$ is in particular continuous in $0 \in V$. Therefore, there exists a $\delta > 0$ such that for all $v \in V$, if $0 < \| v \|_V < \delta$, then $\| L v \|_W < 1$.
+	Choose such a $\delta > 0$.
+	
+	Choose $M := 2 / \delta$. Let $v \in \bar{B}(0, 1)$. If $v = 0$, then $\|Lv \|_W = 0 < M$. Suppose now $v \neq 0$. We also know that $\|v\|_V < 2$. It follows that
+	\[
+	\| L v \|_W = \frac{2\delta}{2\delta}\left\| L (v) \right\|_W = \frac{2}{\delta} \left\| L (\delta v / 2) \right\|_W < \frac{2}{\delta} \cdot 1 = \frac{2}{\delta} = M.
+	\]
+	
+	We now show the ``if" direction. Because $L$ is bounded, there exists an $M > 0$ such that for all $v \in V$,
+	\[
+	\| L( v) \|_W \leq M \| v \|_V.
+	\]
+	Now let $v \in V$ and let $u : \mathbb{N} \to V$ be a sequence in $V$ converging to $v$.
+	Then 
+	\[
+	\begin{split}
+		0
+		&\leq\| L (u_n) - L (v) \|_W\\
+		& = \| L (u_n - v) \|_W \\
+		& \leq M \| u_n - v \|_V
+	\end{split}
+	\]
+	Since the sequence $u : \mathbb{N} \to V$ converges to $v$, it follows that
+	\[
+	\lim_{n \to \infty} \| u_n - v \|_W = 0,
+	\]
+	and by a limit law it holds that also
+	\[
+	\lim_{n \to \infty} M \| u_n - v \|_W = 0.
+	\]
+	Since we also know that $\lim_{n \to \infty} 0 = 0$, it follows by the squeeze theorem that
+	\[
+	\lim_{n \to \infty} \| L (u_n) - L (v) \|_W = 0.
+	\]
+	Therefore, the sequence $(Lu_n)$ converges to $L v$. We have shown that $L$ is continuous in $v$.
+\end{proof}

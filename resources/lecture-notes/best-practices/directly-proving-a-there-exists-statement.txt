@@ -1,0 +1,20 @@
+To directly prove a statement 
+\begin{mcode}
+	\begin{split}
+		&\existstext a \in A,\\
+		&\quad\quad ( \dots )
+	\end{split}
+\end{mcode}
+you make a choice for $a$ and write
+\begin{mcode}
+	\text{Choose } a := \dots
+\end{mcode}
+Next, check that with you choice, indeed $a \in A$.
+If this is obvious, you can write
+\begin{mcode}
+	\text{Indeed, } a \in A.
+\end{mcode}
+Otherwise, if it is not immediately obvious that $a \in A$, write down a proof of this fact.
+
+After mentioning or proving that $a \in A$, you continue to prove $( \dots )$.
+If the proof of $a \in A$ was long, it is good to state first what you have to show, namely $( \dots )$.

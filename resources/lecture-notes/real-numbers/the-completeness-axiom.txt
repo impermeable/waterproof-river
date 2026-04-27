@@ -1,0 +1,114 @@
+In this section, we will one by one introduce the concepts that occur in the completeness axiom. 
+All these concepts make sense for any totally ordered field. Throughout this section, we will denote by $\mathbf{R}$ an arbitrary totally ordered field. We use the slight typographic difference between `$\mathbb{R}$' and `$\mathbf{R}$' to allow you to think of $\mathbf{R}$ as the real line, but in principle it could be another totally ordered field as well, such as the rational numbers $\mathbb{Q}$. However, as soon as you assume that a totally ordered field $\mathbf{R}$ satisfies the completeness axiom, then it is just the same as the real numbers $\mathbb{R}$.
+
+We first define what we mean by upper and lower bounds of subsets of a totally ordered field.
+
+\begin{definition}[Upper bound and lower bound]
+	We say a number $M \in \mathbf{R}$ is an \emph{upper bound} for a subset $A \subset \mathbf{R}$ if
+	\[
+	\begin{split}
+		&\foralltext a \in A,\\
+		&\qquad	a \leq M.
+	\end{split}
+	\]
+	
+	We say a number $m \in \mathbf{R}$ is a \emph{lower bound} for a subset $A \subset \mathbf{R}$ if 
+	\[
+	\begin{split}
+		&\foralltext a \in A\\
+		&\qquad m \leq a.
+	\end{split}
+	\]
+\end{definition}
+
+\begin{example}
+Let $A := (0, 2) \cup (3, 6)$ be a subset of $\mathbb{R}$. Then $8$ is an upper bound for $A$. Let us prove this according to best practices.
+
+We need to show that for all $a \in A$, $a \leq 8$.
+
+Let $a \in A$. We need to show that $a \leq 8$. Since $a \in (0, 2) \cup (3, 6)$, it indeed holds that $a \leq 8$.
+
+\includegraphics[width=\textwidth]{{\GraphicsFolder}example-upper-bound.pdf}
+%\includegraphics[width=\textwidth]{analysis/tex/figures/example-upper-bound.pdf}
+\end{example}
+
+Given the definition of upper and lower bounds, we define what it means for a set to be bounded from above, bounded from below and just bounded.
+
+\begin{definition}[bounded from above, bounded from below, bounded]
+	We say that a subset $A \subset \mathbf{R}$ is \emph{bounded from above} if there exists an $M \in \mathbf{R}$ such that $M$ is an upper bound for $A$.
+	
+	We say that a subset $A \subset \mathbf{R}$ is \emph{bounded from below} if there exists an $m \in \mathbf{R}$ such that $m$ is a lower bound for $A$.
+	
+	We say that a subset $A \subset \mathbf{R}$ is \emph{bounded} if $A$ is both bounded from above and bounded from below.	
+\end{definition}
+
+A \emph{least upper bound} is an upper bound that is smaller than or equal to any other upper bound.
+
+\begin{definition}[least upper bound a.k.a.~supremum]
+	Precisely, $M$ is a \emph{least upper bound} of a subset $A$ if both
+\begin{enumerate}
+	\item \label{it:lub-cond-1} $M$ is an upper bound
+	\item \label{it:lub-cond-2} For every upper bound $L \in \mathbf{R}$ of $A$, it holds that $M \leq L$.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Suppose both $M$ and $W$ are a least upper bound of a subset $A \subset \mathbf{R}$.
+Then $M = W$. In other words, the least upper bound is unique.
+\end{proposition}
+
+\begin{proof}
+	Since $M$ is a least upper bound, and $W$ is an upper bound, we know by item (\ref{it:lub-cond-2}) in the characterization of the least upper bound that $M \leq W$. Similarly, $W$ is a least upper bound, and $M$ is an upper bound, so $W \leq M$. It follows that $M = W$.
+\end{proof}
+
+\begin{definition}[The supremum]
+A different name for the least upper bound of a set $A \subset \mathbf{R}$ is the \emph{supremum} of $A$, which we also write as $\sup A$. 
+\end{definition}
+
+Given all the terminology defined above, we can now state the completeness axiom.
+
+\begin{axiom}[Completeness axiom]
+	\label{ax:completeness}
+	We say that a totally ordered field $\mathbf{R}$ satisfies the \emph{completeness axiom} if every non-empty subset of $\mathbf{R}$ that is bounded from above has a \emph{least upper bound}.	
+\end{axiom}
+
+As soon as the completeness axiom is satisfied, we can also derive that every nonempty subset that is bounded from below has a largest lower bound.
+
+\begin{lemma}
+	\label{le:exists-llb}
+	Every non-empty subset of the real line that is bounded from below has a \emph{largest lower bound}.
+\end{lemma}
+
+\begin{proof}
+	Let $A$ be a non-empty subset of the real line that is bounded from below.
+	We need to show that there exists an $m \in \mathbf{R}$ such that
+	\begin{enumerate}
+		\item \label{it:exists-inf-1} $m$ is a lower bound of $A$.
+		\item \label{it:exists-inf-2} for every lower bound $l$ of $A$, it holds that $l \leq m$.
+	\end{enumerate}
+	We define $B := - A$, where by $-A$ we mean
+	\[
+	-A := \{-a \ | \ a \in A \}.
+	\]
+	Then $B$ is nonempty, and $B$ is bounded from above.
+	Therefore, $B$ has a smallest upper bound $M = \sup B$.
+	We choose $m := - M$. We will show (\ref{it:exists-inf-1}) and (\ref{it:exists-inf-2}).
+	
+	We first show (\ref{it:exists-inf-1}), in other words we need to show that
+	\[
+	\begin{split}
+	& \foralltext a \in A \\
+	& \quad m \leq a.	
+	\end{split}
+	\]
+	Let $a \in A$. Because $M$ is the supremum of $B$, we know that for all $b \in B$, it holds that $b \leq M$. 
+	In particular, since $-a \in -A = B$, we know that $-a \leq M = -m$. Therefore indeed $m \leq a$.
+	
+	We now show (\ref{it:exists-inf-2}).
+	Let $l$ be a lower bound for $A$.
+	Then $-l$ is an upper bound for $-A = B$. Because $M$ is the supremum of $B$, we know that $M \leq -l$. Recall that $M = -m$. Therefore $-m \leq -l$ and $l \leq m$.
+\end{proof}
+
+\begin{definition}
+	We usually call the largest lower bound of a non-empty set $A \subset \mathbf{R}$ that is bounded from below the \emph{infimum} of $A$, and we denote it by $\inf A$.
+\end{definition}

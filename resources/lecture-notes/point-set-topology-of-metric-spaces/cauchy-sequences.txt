@@ -1,0 +1,99 @@
+Recall that the aim of this chapter and the next is to define subsequently stronger properties for subsets of a metric space: closedness, completeness and compactness. In the previous section, we have defined what it means for a subset of a metric space to be closed, and now we are slowly going to make our way towards the definition of \emph{complete} subsets. For that, we need the concept of \emph{Cauchy sequences}.
+
+\begin{definition}[Cauchy sequence]
+	Let $(X, \dist)$ be a metric space.
+	We say that a sequence $a: \mathbb{N} \to X$ is a Cauchy sequence if
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext N \in \mathbb{N},\\
+	&\quad\quad \foralltext m, n \geq N,\\
+	&\quad\quad\quad \dist(a_m, a_n) < \epsilon.  
+	\end{split}
+	\]
+\end{definition}
+
+\begin{proposition}
+	Every Cauchy sequence is bounded.	
+\end{proposition}
+
+\begin{proof}
+	We need to show that every Cauchy sequence is bounded.
+	So let $a : \mathbb{N} \to X$ be a Cauchy sequence.
+	We need to show that $a$ is bounded, i.e.~we need to show that
+	\[
+	\begin{split}
+	&\existstext p \in X,\\
+	&\quad\existstext M > 0,\\
+	&\quad\quad\foralltext n \in \mathbb{N},\\
+	&\quad\quad\quad \dist(a_n, p) \leq M. 
+	\end{split}
+	\]
+	Because $(a_n)$ is a Cauchy sequence, we know that there exists an $N \in \mathbb{N}$
+	such that for every $m, n \geq N$, it holds that $\dist(a_m, a_n) < 1$.
+	Choose $p := a_N$ and choose 
+	\[
+	M := \max(\dist(a_0, p), \dist(a_1, p), \dots, \dist(a_{N-1}, p) , 1).
+	\]
+	Let $n \in \mathbb{N}$.
+	Then
+	\[
+	\dist(a_n, p) \leq M.
+	\]
+\end{proof}
+
+\begin{proposition}
+	\label{pr:cauchy-seq-subseq}
+	Let $a : \mathbb{N} \to X$ be a Cauchy sequence and assume that $a$ has a subsequence converging to $p \in X$.
+	Then the sequence $a$ itself converges to $p$.	
+\end{proposition}
+
+\begin{proof}
+	Let $a : \mathbb{N} \to X$ be a Cauchy sequence and assume that $a$ has a subsequence $a \circ n$ converging to $p \in X$, where $n : \mathbb{N} \to \mathbb{N}$ is an index sequence.
+	We need to show that $a$ converges to $p$, i.e.~we need to show that
+	\[
+	\begin{split}
+	&\foralltext \epsilon > 0,\\
+	&\quad \existstext N \in \mathbb{N},\\
+	&\quad\quad \foralltext m \geq N,\\
+	&\quad\quad\quad \dist(a_m, p) < \epsilon.
+	\end{split}
+	\]
+	Let $\epsilon > 0$.
+	Because $a$ is a Cauchy sequence, there exists an $\ell_0$ such that for all $\ell, m \geq \ell_0$,
+	\[
+	\dist( a_\ell, a_m ) < \epsilon /2.
+	\]
+	Choose $N := \ell_0$.
+	Let $m \geq N$.
+	Because $a \circ n$ converges to $p$, there exists a $k_0 \in \mathbb{N}$ such that for all $k \geq k_0$
+	\[
+	\dist( a_{n_k}, p ) < \epsilon / 2.
+	\]
+	Because $n$ is an index sequence, there exists a $k \in \mathbb{N}$ such that $n_k \geq \ell_0$. 
+	We find by the triangle inequality that indeed
+	\[
+	\dist(a_m, p) \leq \dist(a_m, a_{n_k}) + \dist(a_{n_k}, p) < \epsilon/2 + \epsilon/2 = \epsilon.
+	\]
+\end{proof}
+
+\begin{proposition}
+	Let $(X, \dist)$ be a metric space.
+	Let $(x_n)$ be a converging sequence in $X$.
+	Then $(x_n)$ is a Cauchy sequence.	
+\end{proposition}
+
+\begin{proof}
+	Assume that $(x_n)$ is a converging sequence, converging to a point $p \in X$, say.
+	Let $\epsilon > 0$.
+	Because $(x_n)$ converges to $p$, there exists an $N_0 \in \mathbb{N}$ such that for all $m \geq N_0$, 
+	\[
+	\dist(x_m, p) < \epsilon / 2.
+	\]	
+	Choose such an $N_0$ and choose $N := N_0$.
+	Let $m, n \geq N$. 
+	Then 
+	\[
+	\dist(x_m, x_n) \leq \dist(x_m, p) + \dist(p, x_n) < \epsilon / 2 + \epsilon /2 = \epsilon.
+	\]
+\end{proof}

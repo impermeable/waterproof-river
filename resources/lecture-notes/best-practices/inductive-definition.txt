@@ -1,0 +1,15 @@
+\label{it:inductive-construction}
+
+Especially when constructing subsequences, we will often need \emph{inductive definitions} of sequences. If $X$ is a set, we might want to inductively define a sequence $f : \mathbb{N} \to X$. We can use the following template for this.
+
+\begin{mcode}
+	\begin{split}
+		& \text{We will inductively define a sequence } f : \mathbb{N} \to X.\\
+		& \quad\quad \textellipsis \textit{ possible auxiliary derivations } \textellipsis\\
+		& \quad \quad \text{Define } f(0) := \textellipsis \\
+		& \quad \quad \\
+		& \quad \quad \text{Let } k \in \mathbb{N} \text{ and assume } f(0), \dots, f(k) \text{ are defined }.\\
+		& \quad \quad \quad \quad \textellipsis \textit{ possible auxiliary derivations } \textellipsis \\
+		& \quad \quad \quad \quad \text{Define } f(k + 1) := \textellipsis
+	\end{split}
+\end{mcode}

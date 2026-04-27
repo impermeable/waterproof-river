@@ -1,0 +1,76 @@
+\begin{orange_exercise}
+\label{ex:compute-a-taylor-polynomial}
+Consider the function $f : \mathbb{R}^2 \to \mathbb{R}$ given by
+\[
+f((x_1, x_2)) := \sin\left( \frac{\pi}{2}
+\left((x_1)^2 + (x_2)\right)\right).
+\]
+\begin{enumerate}
+	\renewcommand{\theenumi}{\alph{enumi}}
+\item Show that $f$ is differentiable on $\mathbb{R}^2$ and compute the partial derivative functions
+\[
+\frac{\partial f}{\partial x_1} : \mathbb{R}^2 \to \mathbb{R} \quad \text{ and } \quad
+\frac{\partial f}{\partial x_2} : \mathbb{R}^2 \to \mathbb{R}.
+\]
+\item Show that all second order partial derivatives of $f$ exist, compute them, and show that they are continuous.
+\item Give the second-order Taylor polynomial $T_2 : \mathbb{R}^2 \to \mathbb{R}$ of $f$ around the point $(1, 2)$.
+\item Show that
+\[
+\lim_{(x_1, x_2) \to (1, 2)} \frac{|T_2(x) - f(x)|}
+{\|(x_1, x_2)  - (1, 2) \|_2^2} = 0.
+\]
+\end{enumerate}
+\end{orange_exercise}
+
+\begin{orange_exercise}
+\label{ex:derivs-2-lin-map}
+The aim of this exercise is essentially to provide a proof of Proposition \ref{pr:derivatives-symmetric-forms} in case $k = 2$. You can therefore not use this proposition in this exercise.
+
+Let $\mathcal{S}$ be a symmetric, $2$-linear map, from $V^{\times 2}$ to $W$. Now consider the map $f: V \to W$ given by
+\[
+f(v) := \mathcal{S} (v,v).
+\]
+
+\begin{enumerate}
+	\renewcommand{\theenumi}{\alph{enumi}}
+\item Show that $f$ is differentiable on $V$, and that for all $a \in V$, and all $u \in V$,
+\[
+(Df)_a(u) = 2 \mathcal{S}(u, a)
+\]
+\item Show that $f$ is twice differentiable on $V$, and that for all $a \in V$, and all $u \in V$,
+\[
+(D^2f)_a(u, u) = 2 \mathcal{S}(u, u).
+\]
+\end{enumerate}
+{\bf Note:} You can use that there exists a constant $K \geq 0$ such that for all $u, v \in V$ it holds that
+\[
+\| \mathcal{S}(u, v) \|_W \leq K \| u \|_V \| v \|_V
+\]
+{\it Some extra information: } Such a constant exists because we assume that $V$ and $W$ are finite-dimensional, and the smallest such constant is actually the norm $\| \mathcal{S} \|_{\mathsf{MLin}(V^{\times 2}, W)}$ of $\mathcal{S}$, that was introduced in (\ref{eq:norm-multilin}).
+\end{orange_exercise}
+
+\begin{orange_exercise}
+\label{ex:compute-limit-with-taylor-polynomial}
+Determine whether the following limit exists, and if so, determine its value:
+\[
+\lim_{(x_1, x_2) \to (0, 0)} \frac{\exp((x_1)^2 + (x_2)^2) - 1}{\sin((x_1)^2 + (x_2)^2)}
+\]
+\end{orange_exercise}
+
+\begin{orange_exercise}
+	\label{ex:derivatives-homogeneous-polynomials}
+Let $\alpha$ and $\beta$ be two $d$-dimensional multi-indices.
+\begin{enumerate}
+\renewcommand{\theenumi}{\alph{enumi}}
+\item Suppose that for all $i \in \{1, \dots, d\}$, it holds that $\alpha_i \leq \beta_i$. Give an expression for 
+\[
+\frac{\partial^{|\alpha|}}{\partial x^{\alpha}} x^\beta
+\]
+and prove that your expression is correct.
+{\bf Hint:} Make an induction argument on the order of $\alpha$. 
+\item Suppose that there is an $i \in \{1, \dots, d\}$ such that $\alpha_i > \beta_i$. Show that 
+\[
+\frac{\partial^{|\alpha|}}{\partial x^{\alpha}} x^\beta = 0.
+\]
+\end{enumerate}	
+\end{orange_exercise}

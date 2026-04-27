@@ -1,0 +1,15 @@
+Below we present a table with the most common notations around derivatives occurring in the main text. The notations are written down for functions $g : O \to W$ and $f : \Omega \to W$, where $O$ is an open subset of $\mathbb{R}$, $\Omega$ is an open subset of $V$, $(V, \|\cdot\|_V)$ is a $d$-dimensional normed vector space and $(W, \|\cdot\|_W)$ is an $m$-dimensional normed vector space, $v \in V$, $s \in O$ and $a \in \Omega$.
+
+\begin{tabular}{p{5em}p{15em}p{10em}}
+	{\bf Notation} & {\bf Meaning} & {\bf Type of object} \\
+	$g'(s)$ & The one-variable derivative of $g$ in the point $s$ & $W$\\
+	$g'$ & The one-variable derivative of $g$ as a function & $O \to W$ \\
+	$(Df)_a$ & The derivative of $f$ in the point $a$ & $\Lin(V, W)$ \\
+	$(Df)$  & The derivative of $f$ as a function & $\Omega \to \Lin(V, W)$ \\
+	$[Df]_a$ & The Jacobian of $f$ in the point $a$ & $\mathbb{R}^{m \times d}$\\
+	$(D_v f)_a$ & The directional derivative of $f$ in the point $a$ in the direction $v$ & $W$ \\
+	$(D_v f)$ & The directional derivative of $f$ in the direction $v$ as a function & $\Omega \to W$ \\
+	$\frac{\partial f}{\partial x_i}(a)$ & The $i$th partial derivative of $f$ in the point $a$ & $W$ \\
+	$\frac{\partial f}{\partial x_i}$ & The $i$th partial derivative of $f$ as a function & $\Omega \to W$ \\
+	$(D^n f)_a$ & The $n$th derivative of $f$ in the point $a$ & Symmetric, $n$-linear map \\
+\end{tabular}

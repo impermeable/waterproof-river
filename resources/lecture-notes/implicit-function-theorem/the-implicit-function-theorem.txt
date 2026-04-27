@@ -1,0 +1,307 @@
+We are now ready to formulate the implicit function theorem.
+
+\begin{theorem}[Implicit function theorem]
+	\label{th:implicit-function-theorem}
+	Let $\Omega \subset \mathbb{R}^{d + m}$ and let $f : \Omega \to \mathbb{R}^m$ be a function which is continuously differentiable.
+	Let $a \in \mathbb{R}^d$ and $b \in \mathbb{R}^m$ and assume that $(a, b) \in \Omega$ and $f((a, b)) = 0$.
+	
+	Suppose that $(\Dright f)_{(a, b)}$ is invertible (or equivalently, that the matrix $[\Dright f]_{(a, b)}$ is non-singular).
+	Then there exists an $r_1 > 0$ and an $r_2 > 0$, and a continuously differentiable function $g : B(a, r_1) \to \mathbb{R}^m$ such that for all $x \in B(a, r_1)$ and all $y \in B(b, r_2)$,
+	\[
+	f(x, y) = 0 \quad \text{ if and only if } \quad y = g(x).
+	\]
+	Moreover, for all $x \in B(a, r_1)$,
+	\begin{equation}
+		\label{eq:impl-func-form-deriv}
+	(Dg)_x = - (\Dright f)_{(x, g(x))}^{-1} \circ (\Dleft  f)_{(x, g(x))}.
+	\end{equation}
+\end{theorem}
+
+The expression for the derivative of $g$ is actually easy to derive when you already know that $g$ is differentiable. Because in that case, we can start from the equality
+\[
+f(x, g(x) ) = 0
+\]
+that holds for all $x \in \mathbb{R}^d$.
+We can define the function $h : \mathbb{R}^d \to \mathbb{R}^{d + m}$ by $h(x) = (x, g(x))$ and write for the previous equality for $x \in \mathbb{R}^d$ as
+\[
+f \circ h (x)= 0.
+\]
+Let $x \in \mathbb{R}^d$. By the chain rule we find that
+\[
+(D f)_{h(x)} \circ (Dh)_x = 0.
+\]
+Now, it follows for instance from Corollary \ref{co:components-differentiable-function-differentiable} on the differentiability of component functions, that for all $v \in \mathbb{R}^d$,
+\[
+(Dh)_x(v) = (v, (D g)_x(v)).
+\]
+Hence, for all $v \in \mathbb{R}^d$,
+\[
+\begin{split}
+0 &= (D f)_{h(x)} \circ (Dh)_x (v) = (Df)_{(x, g(x))}(v, (Dg)_x(v))\\
+&= (\Dleft f)_{(x, g(x))}(v) + (\Dright f)_{(x, g(x))}((Dg)_x(v)).
+\end{split}
+\]
+Therefore, we find that
+\[
+(\Dleft  f)_{( x, g(x))} + (\Dright  f)_{(x, g(x) )} \circ (Dg)_x = (Df)_{h(x)} \circ (D h)_x = 0.
+\]
+We then use that $(\Dright  f)_{(x, g(x))}$ is non-singular, multiply by its inverse, and conclude the expression (\ref{eq:impl-func-form-deriv}).
+
+The proof of this theorem is very technical, but the underlying idea is simple and very beautiful. Given an $x \in \mathbb{R}^d$ close to $a$, how do we find $y$ such that $f(x, y) = 0$? It won't be possible to find such a $y$ immediately, but let's first see what the guess $y^{(0)} := b$ will give us. We will then make an error, because $f(x, y^{(0)})$ will not be equal to $0$ in general. Therefore we will make a new guess, $y^{(1)}$ that aims to correct for the error. We will choose the difference $y^{(1)} - y^{(0)}$ in the way that would give us the exact solution if $f$ were in fact affine:
+\[
+- f(x, y^{(0)}) \approx (\Dright f)_{(a, b)} (y^{(1)} - y^{(0)}).
+\]
+Thus, we define
+\[
+y^{(1)} := y^{(0)} - (\Dright f)_{(a, b)}^{-1} \big(f(x, y^{(0)})\big)
+\]
+where you can see the important assumption that $(\Dright f)_{(a, b)}$ is non-singular coming in.
+
+Of course, in general $y^{(1)}$ will also not be the value we are looking for, i.e. in general $f(x, y^{(1)}) \neq 0$, but we can make a new guess $y^{(2)}$, solving for the update $y^{(2)} - y^{(1)}$ again acting as if $f$ were affine:
+\[
+- f(x, y^{(1)}) \approx (\Dright f)_{(a, b)} (y^{(2)} - y^{(1)}).
+\]
+Continuing in this fashion, we arrive at the following recursive scheme:
+\[
+y^{(n+1)} := y^{(n)} - (\Dright f)_{(a, b)}^{-1} \big(f(x, y^{(n)})\big)
+\]
+And that's basically it! We just need to show that this works (that this recursive scheme converges, and that the resulting solutions depend nicely on $x$). But this is exactly the virtue of the Banach fixed point theorem. In other words, we need to check that we can apply the Banach fixed point theorem, but if we can apply it then we indeed find a $y$ such that
+\[
+y = y - (\Dright f)_{(a, b)}^{-1} f(x, y) 
+\]
+from which it follows that indeed $f(x,y) = 0$.
+
+This finishes the intuition for the approach. To show that the involved map is indeed a contraction, we will need to use the Mean-Value Inequality.
+
+Now follows the full proof, but it may be good to skip the proof on first reading.
+
+\begin{proof}
+Right at the beginning of this proof, we choose two radii $r_1$ and $r_2$ according to the following criteria:
+
+\begin{enumerate}
+\item The Cartesian product $\overline{B}(a, r_1) \times \overline{B}(b, r_2)$ is contained in $\Omega$,
+
+\item for all $x \in \overline{B}(a, r_1)$ and all $y \in \overline{B}(b, r_2)$ we have
+\[
+\max(\| (\Dright  f)^{-1}_{(a, b)}\|_{\mathbb{R}^m \to \mathbb{R}^m}, 1) \| \mathsf{Err}_{(a, b)}^{f}((x, y))\|_2 < \frac{r_2}{3}
+\]
+\item for all $x \in \overline{B}(a, r_1)$ and all $y \in \overline{B}(b, r_2)$ we have
+\[
+\| (\Dright  f)^{-1}_{(a, b)}\|_{\mathbb{R}^m \to \mathbb{R}^m} \| (\Dleft  f)_{(a, b)}\|_{\mathbb{R}^d \to \mathbb{R}^m} \|x - a \|_2 < \frac{r_2}{3}
+\]
+\item \label{it:ift-cont-D2f} for all $x \in \overline{B}(a, r_1)$ and all $y \in \overline{B}(b, r_2)$ we have
+\[
+\| (\Dright f)^{-1}_{(a, b)} \|_{\mathbb{R}^m \to \mathbb{R}^m} \|(\Dright  f)_{(x, z)} - (\Dright  f)_{(a, b)} \|_{\mathbb{R}^m \to \mathbb{R}^m}  < \frac{1}{2}.
+\]
+\item \label{it:ift-D1-bound} For all $x \in \overline{B}(a, r_1)$ and all $y \in \overline{B}(b, r_2)$,
+\[ 
+\| (D_1f)_{(x, y)} \|_{\mathbb{R}^d\to \mathbb{R}^m} < 
+2 \| (D_1 f)_{(a, b)} \|_{\mathbb{R}^d \to \mathbb{R}^m}
+\]
+\end{enumerate}
+	
+For $x \in \overline{B}(a, r_1)$ we define $F^{(x)} : \overline{B}(b, r_2) \to \mathbb{R}^m$ by
+\[
+F^{(x)}(y) := y - (\Dright  f)_{(a, b)}^{-1} \big( f(x, y) \big).
+\]
+We will want to use the Banach fixed point theorem to the function $F^{(x)}$, and therefore we need to show that $F^{(x)}$ maps every element in $\overline{B}(b, r_2)$ back into $\overline{B}(b, r_2)$, and we need to check that $F^{(x)}$ is a contraction.
+
+We first check that $F^{(x)}$ maps $\overline{B}(b, r_2)$ back to $\overline{B}(b, r_2)$. We show a slightly stronger property, namely that $F^{(x)}$ maps $\overline{B}(b, r_2)$ to $B(b, 2 r_2/3)$. Indeed, by the criteria above, if $x \in \overline{B}(a, r_1)$ and $y \in \overline{B}(b, r_2)$ then
+\begin{equation}
+\label{eq:estimate-F-x-maps-ball-to-ball}
+\begin{split}
+	\| F^{(x)}(y) - b \|_{2}
+	&= \| y - b - (\Dright f)^{-1}_{(a, b)} \big(f(x, y) \big)\|_2\\
+	&= \| y - b - (\Dright f)^{-1}_{(a, b)} \big(f(a, b) + (\Dleft  f)_{(a, b)}(x - a) \\
+	&\qquad + (\Dright f)_{(a, b)}(y - b) + \mathsf{Err}^{f}_{(a, b)}((x, y)) \big)\|_2\\
+	&= \| -(\Dright  f)^{-1}_{(a, b)}\big((\Dleft  f)(x-a) + \mathsf{Err}_{(a, b)}^{f}((x, y)) \big) \|_2\\
+	&< \frac{2 r_2}{3}.
+\end{split}
+\end{equation}
+where we used the assumption that $f(a, b) = 0$.
+
+Next, we check that $F^{(x)} : \overline{B}(b, r_2) \to \overline{B}(b, r_2)$ is a contraction.
+
+We note that $F^{(x)}$ is continuously differentiable and
+\[
+(DF^{(x)})_{z} = I - (\Dright  f)^{-1}_{(a, b)} \circ (\Dright  f)_{(x, z)}.
+\]
+We compute
+\[
+\begin{split}
+&\|(D F^{(x)})_z \|_{\mathbb{R}^m \to \mathbb{R}^m}\\
+&= \| I - (\Dright  f)^{-1}_{(a, b)} \circ (\Dright  f)_{(x,z)} \|_{\mathbb{R}^m \to \mathbb{R}^m} \\
+&= \|I - (\Dright  f)^{-1}_{(a, b)} \circ ((\Dright  f)_{(a, b)} + (\Dright f)_{(x, z)} - (\Dright f)_{(a, b)}) \|_{\mathbb{R}^m \to \mathbb{R}^m} \\
+&= \|(\Dright f)^{-1}_{(a, b)} \circ ((\Dright  f)_{(x, z)} - (\Dright  f)_{(a, b)}) \|_{\mathbb{R}^m \to \mathbb{R}^m} \\
+&\leq \| (\Dright f)^{-1}_{(a, b)}\|_{\mathbb{R}^m \to \mathbb{R}^m}\| ((\Dright  f)_{(x, z)} - (\Dright  f)_{(a, b)}) \|_{\mathbb{R}^m \to \mathbb{R}^m}\\
+&< \frac{1}{2}
+\end{split}
+\]
+where we used criterion (\ref{it:ift-cont-D2f}) on the choice of $r_1$ and $r_2$.
+
+It follows by the Mean-Value Inequality that for every $x \in \overline{B}(a, r_1)$, the function $F^{(x)} : \overline{B}(b, r_2) \to \overline{B}(b, r_2)$ is a $(1/2)$-contraction.
+
+By the Banach fixed point theorem, the function $F^{(x)}$ has a unique fixed point. We define by $g : \overline{B}(a, r_1) \to \mathbb{R}^m$ the function that assigns to $x \in \overline{B}(r_1)$ the fixed point of $F^{(x)}$. Then for every $x \in \overline{B}(a, r_1)$,
+\[
+f(x, g(x)) = 0.
+\]
+
+We will now show that the function $g : B(a, r_1) \to \mathbb{R}^m$ is differentiable.
+Unfortunately and fortunately we need to do this in two steps. First we will show that $g$ is Lipschitz, and only then will we be able show that $g$ is differentiable.
+
+\paragraph{proof that the function $g: \overline{B}(a, r_1) \to \overline{B}(b, r_2)$ is Lipschitz.}
+To derive that $g$ is Lipschitz continuous, we take $u \in \overline{B}(a, r_1)$ and we are going to just use $g(u)$ as an initial condition for the fixed-point iteration of $F^{(x)}$.
+
+We would like to see how large is the difference
+\[
+F^{(x)}(g(u)) - g(u).
+\]
+Therefore we compute
+\[
+\begin{split}
+	F^{(x)}(g(u)) - g(u)
+	&= - (\Dright  f)_{(a, b)}^{-1} (f(x, g(u)))\\
+	&= - (\Dright  f)_{(a, b)}^{-1} \big( f(x, g(u)) - f(u, g(u)) \big)\\
+\end{split}
+\]
+where we used that $f(u, g(u)) = 0$. 
+
+Define
+\[
+M :=2 \| (\Dright  f)_{(a, b)}^{-1} \|_{\mathbb{R}^m \to \mathbb{R}^m} \sup_{(\sigma, \tau) \in \overline{B}(a, r_1)\times \overline{B}(b, r_2)}  \|(\Dleft f)_{(\sigma, \tau)} \|_{\mathbb{R}^m \to \mathbb{R}^m}
+\]
+which exists for instance by criterion \ref{it:ift-D1-bound} above.
+
+It follows by the Mean-Value Inequality that
+\[
+\| F^{(x)} (g(u)) - g(u) \|_{\mathbb{R}^m} \leq \frac{1}{2} M \| x - u \|_{\mathbb{R}^d}
+\] 
+
+By the estimate from the Banach fixed-point theorem, also
+\[
+\| g(x) - g(u) \|_{\mathbb{R}^m} \leq M \| x - u \|_{\mathbb{R}^d}.
+\]
+so that $g$ is indeed $M$-Lipschitz.
+
+\paragraph{proof that the function $g : B(b, r_2) \to B(b, r_2)$ is differentiable.}
+
+Let $u \in B(a, r_1)$ and define $v := g(u)$. Note that in fact, $v \in B(b, 2 r_2 / 3)$ by the estimate in (\ref{eq:estimate-F-x-maps-ball-to-ball}).
+
+We expect that the derivative of $g$ in the point $u$ would be
+\[
+(D g)_u = - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)}
+\]
+(as this expression can be derived from the chain rule assuming that $g$ is indeed differentiable).
+
+Therefore, we consider the error function
+\[
+\mathsf{Err}^g_u(x) := g(x) - g(u) + (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)}(x - u)
+\]
+and we need to show that
+\[
+\lim_{x \to u} \frac{\|\mathsf{Err}_u^g(x)\|_{\mathbb{R}^m}}{\| x - u \|_{\mathbb{R}^d}} = 0.
+\]
+
+We are now going to use 
+\[
+g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u)
+\]
+as the initial condition in the fixed-point iteration at $x$. Note that this is possible for $x$ close enough to $u$, since then this point is in $\overline{B}(b, r_2)$. We would like to see how large is the difference
+\[
+\begin{split}
+&F^{(x)}\big(\big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big) \big) \\
+&\quad  -  \big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big)
+\end{split}
+\]
+as by the estimate from  the Banach fixed-point theorem, this would immediately give us control over 
+\[
+g(x) - \big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big)
+\]
+as well.
+
+Therefore, we compute
+\[
+\begin{split}
+&F^{(x)}\big(\big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big) \big)\\
+&\quad  -  \big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big)\\
+&= - (\Dright  f)^{-1}_{(a, b)} \big( f(x, g(u) - (\Dright  f)^{-1}_{(u, v)}\circ (\Dleft  f)_{(u, v)} (x - u)) \big)\\
+&= - (\Dright  f)^{-1}_{(a, b)} \big( f(x, g(u) - (\Dright  f)^{-1}_{(u, v)}\circ (\Dleft  f)_{(u, v)} (x - u)) \\ 
+&\qquad - f(u, g(u)) \big)
+\end{split}
+\]
+where we used in the last line that $f(u, g(u)) = 0$. 
+Because $f$ is differentiable, we find
+\[
+\begin{split}
+&F^{(x)}\big(\big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big) \big)\\
+&\quad  -  \big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big)\\
+&=	- (\Dright  f)^{-1}_{(a, b)} \big( (\Dleft f)_{(u, v)}(x - u) \\
+&\qquad+ (\Dright f)_{(u, v)}(- (\Dright  f)^{-1}_{(u, v)}\circ (\Dleft  f)_{(u, v)} (x - u)) \\
+&\qquad + \mathsf{Err}^f_{(u, v)}( (x, g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u)) )\big)\\
+&=- (\Dright  f)^{-1}_{(a, b)} \big( \mathsf{Err}^f_{(u, v)}( (x, g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u)) \big)
+\end{split}
+\]
+
+It follows that
+\[
+\begin{split}
+&\| 
+F^{(x)}\big(\big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big) \big)\\
+&\quad  -  \big( g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) \big)\|_{\mathbb{R}^m}	\\
+&\leq \| (\Dright  f)^{-1}_{(a, b)} \|_{\mathbb{R}^m \to \mathbb{R}^m}\\&\quad \times
+\| \mathsf{Err}^f_{(u, v)}( (x, g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) ) ) \|_{\mathbb{R}^m}
+\end{split}
+\]
+
+By the estimate in the Banach fixed-point theorem, we find
+\[
+\begin{split}
+&\| \mathsf{Err}^g_a (x) \|_{\mathbb{R}^m}\\
+&=\|g(x) - (g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u))\|\\
+&\leq 2 \| (\Dright  f)^{-1}_{(a, b)} \|_{\mathbb{R}^m \to \mathbb{R}^m} \\&\quad\times \| \mathsf{Err}^f_{(u, v)}( (x, g(u) - (\Dright  f)^{-1}_{(u, v)} \circ (\Dleft  f)_{(u, v)} (x - u) ) ) \|_{\mathbb{R}^m}
+\end{split}
+\]
+so that, using the Lipschitz continuity of $g$,  it follows by the squeeze theorem that indeed
+\[
+\lim_{x \to a} \frac{\| \mathsf{Err}^g_a (x) \|_{\mathbb{R}^m}}{\|x - a \|_{\mathbb{R}^m}} = 0.
+\]
+\end{proof}
+
+\begin{example}
+	
+	Consider the function $f : \mathbb{R}^4 \to \mathbb{R}^2$ given by
+	\[ f(z_1, z_2, z_3, z_4) = \big(\ln(z_2 z_4) - \cos^2(z_3) , \exp(\sin(z_1) + z_2) + \cos(z_3)\big)\]
+	
+	We claim that there exist $r_1, r_2 > 0$ and a continuously differentiable function $g : B((-\pi/2, 1), r_1) \to \mathbb{R}^2$ such that for all points $(z_1, z_2) \in B((-\pi/2, 1), r_1)$ and all $(z_3, z_4) \in B((\pi/2, e))$ it holds that
+	\[ f(z_1, z_2, z_3, z_4 ) = (1, 1) \qquad \text{ if and only if } \qquad (z_3, z_4) = g(z_1, z_2).\]
+	
+		Define the map $F : \mathbb{R}^{2 + 2} \to \mathbb{R}^2$ by
+		\[
+		\begin{split}
+			&F((x_1, x_2, y_1, y_2)) = f((x_1, x_2, y_1, y_2)) - (1, 1) \\&= \left(\ln(x_2y_2) - \cos^2(y_1) - 1, \exp(\sin(x_1) + x_2) + \cos(y_1) - 1 \right)
+		\end{split}
+		\]
+		Then
+		\[ \begin{split}& [DF]_{(x_1, x_2, y_1, y_2)} \\ &= \left[ \begin{array}{cc|cc}0&\frac{1}{x_2} & \sin(2 y_1) & \frac{1}{y_2} \\\exp(\sin(x_1) +x_2) \cos(x_1)&\exp(\sin(x_1) + x_2)&-\sin(y_1)&0\end{array}\right]\end{split}\]
+		Note that all partial derivatives are continuous, as sums, compositions and multiples of standard functions, and therefore $F$ is continuously differentiable on the domain $\mathbb{R} \times (0, \infty) \times \mathbb{R} \times (0, \infty)$. 
+		
+		In particular, 
+		\[ [DF]_{(-\pi/2, 1, \pi/2, e)} = \left[ \begin{array}{cc|cc}0&1 & 0 & \frac{1}{e} \\0&1&-1&0\end{array}\right] \]
+		and
+		\[ [D_2F]_{(-\pi/2, 1, \pi/2, e)} = \left[ \begin{array}{cc} 0 & \frac{1}{e} \\-1&0\end{array}\right] \]
+		so that $\det [D_2 F]_{(-\pi/2, 1, \pi/2, e)} = 1/e \neq 0$. Therefore the Jacobian matrix $[D_2F]_{(-\pi/2, 1, \pi/2, e)}$ is non-singular.
+		
+		Note that $F((-\pi/2, 1, \pi/2, e)) = 0$.
+		
+		The conclusion now follows by the implicit function theorem.
+	
+	We now compute $[Dg]_{(-\pi/2, 1)}.$
+	
+		We know that
+		\[
+		\begin{split}
+		[D g] _{(\pi/2, 1)} &= - [D_2 F]_{(-\pi/2, 1, \pi/2, e)}^{-1} [D_1 F]_{(-\pi/2, 1, \pi/2, e)} \\&= -\left[ \begin{array}{cc} 0 & -1 \\e&0\end{array}\right] \left[ \begin{array}{cc} 0 & 1 \\0&1\end{array}\right] = \left[ \begin{array}{cc} 0 & 1 \\0&-e\end{array}\right] .
+		\end{split}
+		\]
+	
+\end{example}
