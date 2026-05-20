@@ -8,7 +8,8 @@ interface HintProps extends BasePromptElementProps {
     previousSuggestions: Array<{
         suggestion: string,
         error: string
-    }>
+    }>;
+    file: string
 }
 
 // TODO: Should we keep the separator? Would it work better if we ask for all the output in the form of a JSON file?
@@ -63,6 +64,9 @@ export class WaterproofHintPrompt extends PromptElement<HintProps> {
             - `withCursorMarker`: The full proof script in which the student is currently working, with a special marker added to indicate the position of the cursor of the student at which goals and help have been requested.<br/>
             <Tag name="jsonWithInformation">
             {this.props.information}
+            </Tag>
+            <Tag name="studentFile">
+            {this.props.file}
             </Tag>
             Your task is to generate the next step in the proof. This usually means one sentence or waterproof tactic, but in some cases more than one tactic or sentence may be supplied. The step should be concise and use Waterproof tactics only.
             <br/>

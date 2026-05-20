@@ -1,7 +1,7 @@
 import { renderPrompt } from "@vscode/prompt-tsx";
 import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace } from "vscode";
 import { WaterproofAPI } from "../api";
-import { HintPromptRewordForChat, HintPromptRewordForChat2, WaterproofHintPrompt } from "../prompts/hint";
+import { HintPromptRewordForChat2, WaterproofHintPrompt } from "../prompts/hint";
 import { goalsOrError, helpOrError, proofContextOrError } from "../apiUtils";
 
 
@@ -48,7 +48,8 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
             WaterproofHintPrompt,
             {
                 information: JSON.stringify(input),
-                previousSuggestions
+                previousSuggestions,
+                file: api.currentDocument().getText()
             },
             { modelMaxPromptTokens: model.maxInputTokens },
             model
