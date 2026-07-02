@@ -2,6 +2,7 @@ import { renderPrompt } from "@vscode/prompt-tsx";
 import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, languages, DiagnosticSeverity, Diagnostic, Range, Position, LanguageModelChat, lm, DiagnosticCollection } from "vscode";
 import { WaterproofSyntaxHelpPrompt } from "../prompts/syntaxHelp";
 import { WaterproofAPI } from "../api";
+import { getAutoModel } from "../defaultModel";
 
 
 export async function handleSyntaxHelp(api: WaterproofAPI, collection: DiagnosticCollection, request: ChatRequest | null, context: ChatContext | null, _stream: ChatResponseStream | null, token: CancellationToken) {
@@ -22,7 +23,7 @@ export async function handleSyntaxHelp(api: WaterproofAPI, collection: Diagnosti
     };
 
     // TODO: Hardcoded model
-    const model: LanguageModelChat = (request?.model !== undefined) ? request.model : (await lm.selectChatModels({id: "gpt-4.1"}))[0];
+    const model: LanguageModelChat = (request?.model !== undefined) ? request.model : await getAutoModel();
     
     // Determine if we were called via command (stream) or via toolcall (no stream)
     const usedViaCommand = _stream !== undefined;

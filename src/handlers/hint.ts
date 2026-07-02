@@ -1,8 +1,9 @@
 import { renderPrompt } from "@vscode/prompt-tsx";
-import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, lm, workspace } from "vscode";
+import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, workspace } from "vscode";
 import { WaterproofAPI } from "../api";
-import { HintPromptRewordForChat, HintPromptRewordForChat2, WaterproofHintPrompt } from "../prompts/hint";
+import { HintPromptRewordForChat2, WaterproofHintPrompt } from "../prompts/hint";
 import { goalsOrError, helpOrError, proofContextOrError } from "../apiUtils";
+import { getAutoModel } from "../defaultModel";
 
 
 export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null, context: ChatContext | null, _stream: ChatResponseStream | null, token: CancellationToken) {
@@ -19,7 +20,7 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
     };
 
     // TODO: Hardcoded model
-    const model: LanguageModelChat = (request !== null && request.model !== undefined) ? request.model : (await lm.selectChatModels({id: "gpt-4.1"}))[0];
+    const model: LanguageModelChat = (request !== null && request.model !== undefined) ? request.model : await getAutoModel();
 
     // Determine if we were called via command (stream) or via toolcall (no stream)
     const usedViaCommand = _stream !== undefined;

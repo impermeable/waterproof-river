@@ -2,6 +2,7 @@ import { CancellationToken, LanguageModelChat, LanguageModelTextPart, LanguageMo
 import { LectureNotesRetriever } from "../retrieval";
 import { renderPrompt } from "@vscode/prompt-tsx";
 import { WherePrompt } from "../prompts/where";
+import { getSmallUtilityModel } from "../defaultModel";
 
 export type TheoryToolInput = {
     question: string;
@@ -10,8 +11,7 @@ export type TheoryToolInput = {
 export class TheoryTool implements LanguageModelTool<TheoryToolInput> {
     constructor (private readonly retriever: LectureNotesRetriever) {}
     async invoke(options: LanguageModelToolInvocationOptions<TheoryToolInput>, token: CancellationToken) {
-        // TODO: Hardcoded model
-        const model: LanguageModelChat = (await lm.selectChatModels({id: "gpt-4.1"}))[0];
+        const model: LanguageModelChat = await getSmallUtilityModel();
             
         const result = await renderPrompt(
             WherePrompt,

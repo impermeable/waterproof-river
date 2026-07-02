@@ -3,6 +3,7 @@ import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, Langua
 import { WaterproofAPI } from "../api";
 import { WaterproofToWaterproofPrompt } from "../prompts/toWaterproof";
 import { extractProof } from "./util";
+import { getAutoModel } from "../defaultModel";
 
 
 export async function handleToWaterproof(api: WaterproofAPI, collection: DiagnosticCollection, request: ChatRequest, context: ChatContext, stream: ChatResponseStream, token: CancellationToken) {
@@ -10,7 +11,7 @@ export async function handleToWaterproof(api: WaterproofAPI, collection: Diagnos
     const maxAttempts = workspace.getConfiguration("waterproof").get<number>("maxGenerationAttempts") ?? 3;
 
     // TODO: Hardcoded model in the case that we are not executing via a command
-    const model: LanguageModelChat = (request !== null && request.model !== undefined) ? request.model : (await lm.selectChatModels({id: "gpt-4.1"}))[0];
+    const model: LanguageModelChat = (request !== null && request.model !== undefined) ? request.model : await getAutoModel();
 
     // TODO: Should we ask for the goal here? This may influence the ai too much and prime it to give answers instead of translating the 
     // students suggestion into waterproof
