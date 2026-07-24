@@ -202,7 +202,7 @@ export function activate(context: ExtensionContext) {
 	// Retrieve the version of the Waterproof vscode extension
 	const version = waterproofExtension.packageJSON["version"] as string;
 	// semver range for the Waterproof version we can work with.
-	const REQUIRED_WATERPROOF_VERSION = "=0.11.1";
+	const REQUIRED_WATERPROOF_VERSION = ">=0.11.2";
 	debugChannel.appendLine(`Waterproof extension version: ${version} (required range: ${REQUIRED_WATERPROOF_VERSION})`);
 	const sat = satisfies(version, REQUIRED_WATERPROOF_VERSION);
 	
