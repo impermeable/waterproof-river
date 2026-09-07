@@ -16,7 +16,7 @@ export class PreviousMistakes extends PromptElement<PreviousMistakesProps> {
 
         return (
             <>
-                Waterproof is able to verify the correctness of your suggestions by attempting to execute them. Here are some of your previous suggestions that resulted in errors:
+                Waterproof is able to verify the correctness of your suggestions by attempting to execute them. Here are some of your previous suggestions together with their verification outcomes:
                 { this.props.previousSuggestions.map((s, i) => (
                     <Tag name="suggestion" metadata={[["index", (i+1).toString()]]}>
                         <Tag name="yourOutput">{s.suggestion}</Tag>

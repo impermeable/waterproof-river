@@ -9,7 +9,9 @@ export class HintTool implements LanguageModelTool<null> {
         if (output === undefined) {
             return new LanguageModelToolResult([new LanguageModelTextPart("Could not get a verified hint output.")]);
         }
-        return new LanguageModelToolResult([new LanguageModelTextPart(output)]);
+        const prefix = "Generated the following hint for the student:\n<student-facing-hint>\n";
+        const suffix = "\n</student-facing-hint>\n";
+        return new LanguageModelToolResult([new LanguageModelTextPart(prefix + output + suffix)]);
     }
     async prepareInvocation(
         options: LanguageModelToolInvocationPrepareOptions<null>,

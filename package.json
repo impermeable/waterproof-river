@@ -108,9 +108,20 @@
       },
       {
         "name": "waterproof-tue_proof_context",
-        "modelDescription": "Returns the goals and proof script at the place of the user cursor. This tool should be used when the user mentions the current proof in a follow up question and the answer is dependent on the current proof state.",
+        "modelDescription": "Returns local goals and proof script at the place of the user cursor. This is focused context and may be incomplete for definitions/lemmas declared elsewhere in the file. Use this tool first when the answer depends on current proof state, and call waterproof-tue_file_context when broader file-level declarations are needed.",
         "displayName": "Proof Context",
         "toolReferenceName": "proofContext",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "waterproof-tue_file_context",
+        "modelDescription": "Returns the content of the current Waterproof file to recover definitions, notation, and helper lemmas that may not appear in local proof context. Use this after waterproof-tue_proof_context when information seems missing or ambiguous.",
+        "displayName": "File Context",
+        "toolReferenceName": "fileContext",
         "canBeReferencedInPrompt": true,
         "inputSchema": {
           "type": "object",

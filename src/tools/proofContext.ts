@@ -22,7 +22,8 @@ export class ProofContextTool implements LanguageModelTool<null> {
                 new LanguageModelTextPart(`The student is currently working on '${context.name}'.`),
                 new LanguageModelTextPart(`So far the statement and proof looks as follows:<context-student-proof>\n${context.withCursorMarker}\n</context-student-proof>`),
                 new LanguageModelTextPart(`The goal at the cursor position is: "${goals.currentGoal}"`),
-                new LanguageModelTextPart(`The hypotheses for this goal are:\n${hypString}`)
+                new LanguageModelTextPart(`The hypotheses for this goal are:\n${hypString}`),
+                new LanguageModelTextPart("IMPORTANT: This proof context is local to the current proof and cursor position. It may omit relevant definitions/lemmas declared elsewhere in the file. If you need broader context, call the waterproof-tue_file_context tool.")
             ]);
         } catch {
             // Inform the model that either proofContext or goals request failed

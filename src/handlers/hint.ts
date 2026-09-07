@@ -1,9 +1,64 @@
 import { renderPrompt } from "@vscode/prompt-tsx";
 import { ChatRequest, ChatContext, ChatResponseStream, CancellationToken, LanguageModelChat, workspace } from "vscode";
 import { WaterproofAPI } from "../api";
-import { HintPromptRewordForChat2, WaterproofHintPrompt } from "../prompts/hint";
+import { HintPromptRewordForChat, WaterproofHintPrompt } from "../prompts/hint";
 import { goalsOrError, helpOrError, proofContextOrError } from "../apiUtils";
 import { getAutoModel } from "../defaultModel";
+
+const MAX_HINT_FILE_CONTEXT_CHARS = 20000;
+
+type HintGenerationResponse = {
+    hint?: string;
+    step?: string;
+    possibleSteps?: string[];
+    tutorial?: string;
+};
+
+type StepVerificationResult = {
+    step: string;
+    worked: boolean;
+    error?: string;
+};
+
+function normalizeCandidateSteps(response: HintGenerationResponse): string[] {
+    const candidates: string[] = [];
+
+    if (typeof response.step === "string") {
+        candidates.push(response.step);
+    }
+
+    if (Array.isArray(response.possibleSteps)) {
+        for (const maybeStep of response.possibleSteps) {
+            if (typeof maybeStep === "string") {
+                candidates.push(maybeStep);
+            }
+        }
+    }
+
+    const deduplicated: string[] = [];
+    const seen = new Set<string>();
+    for (const candidate of candidates) {
+        const trimmed = candidate.trim();
+        if (trimmed.length === 0 || seen.has(trimmed)) {
+            continue;
+        }
+        seen.add(trimmed);
+        deduplicated.push(trimmed);
+    }
+
+    return deduplicated;
+}
+
+function formatVerificationResults(results: StepVerificationResult[]): string {
+    return results
+        .map((result, index) => {
+            if (result.worked) {
+                return `${index + 1}. SUCCESS\\nStep: ${result.step}`;
+            }
+            return `${index + 1}. FAILED\\nStep: ${result.step}\\nError: ${result.error ?? "Unknown error"}`;
+        })
+        .join("\\n\\n");
+}
 
 
 export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null, context: ChatContext | null, _stream: ChatResponseStream | null, token: CancellationToken) {
@@ -23,7 +78,7 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
     const model: LanguageModelChat = (request !== null && request.model !== undefined) ? request.model : await getAutoModel();
 
     // Determine if we were called via command (stream) or via toolcall (no stream)
-    const usedViaCommand = _stream !== undefined;
+    const usedViaCommand = _stream !== undefined && _stream !== null;
 
 
     let attemptCounter = 0;
@@ -35,12 +90,35 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
     const help = await helpOrError(api);
     const proofContext = await proofContextOrError(api, "<context>THE USER CURSOR IS PLACED HERE</context>");
 
-    const input = { ...goals, ...proofContext, helpOutput: help };
+    const currentDocument = api.currentDocument();
+    const fullFileText = currentDocument.getText();
+    const fileContextWasTruncated = fullFileText.length > MAX_HINT_FILE_CONTEXT_CHARS;
+    const fileContext = fileContextWasTruncated
+        ? fullFileText.slice(0, MAX_HINT_FILE_CONTEXT_CHARS)
+        : fullFileText;
+
+    const fileContextMeta = {
+        path: currentDocument.fileName,
+        truncated: fileContextWasTruncated,
+        maxChars: MAX_HINT_FILE_CONTEXT_CHARS,
+        originalLength: fullFileText.length,
+        note: "This contains file-level declarations that may be outside the current proof context."
+    };
+
+    const input = {
+        ...goals,
+        ...proofContext,
+        helpOutput: help,
+        fileContextMeta,
+        fileContext
+    };
 
     const previousSuggestions: Array<{suggestion: string, error: string}> = [];
 
-    let rObj: { hint: string, step: string, tutorial: string } | null = null;
+    let rObj: HintGenerationResponse | null = null;
     let strategy: string = "null";
+    let acceptedStep: string | null = null;
+    let acceptedStepVerifications: StepVerificationResult[] = [];
 
     // console.log("information", JSON.stringify(input));
 
@@ -63,73 +141,98 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
         for await (const fragment of resp.text) {
             result.push(fragment);
         }
-        
-        const rStrings = result.join("").split("-----");
-        if (rStrings.length < 2) {
+        const fullResponse = result.join("");
+        const separator = "-----";
+        const separatorIndex = fullResponse.indexOf(separator);
+        if (separatorIndex < 0) {
             attemptCounter++;
-            previousSuggestions.push({suggestion: result.join(""), error: "Could not find separator ----- in response, the response should be your strategy followed by the separator and finally followed by a properly formatted JSON object"});
+            previousSuggestions.push({
+                suggestion: fullResponse,
+                error: "Could not find separator ----- in response. The response should be your strategy followed by the separator and then a properly formatted JSON object containing `step`, `possibleSteps`, and `tutorial`."
+            });
             continue;
         }
 
-        strategy = rStrings[0].trim();
+        strategy = fullResponse.slice(0, separatorIndex).trim();
+        const jsonPart = fullResponse.slice(separatorIndex + separator.length).trim();
         
         try {
-            rObj = JSON.parse(rStrings[1].trim()) as { hint: string, step: string, tutorial: string };
+            rObj = JSON.parse(jsonPart) as HintGenerationResponse;
         } catch {
             rObj = null;
         }
 
-        stream.progress(`Asking Waterproof to verify correctness of the hint... (attempt ${attemptCounter + 1} of ${maxAttempts})`);
+        stream.progress(`Asking Waterproof to verify candidate steps for correctness... (attempt ${attemptCounter + 1} of ${maxAttempts})`);
 
         if (rObj === null) {
             attemptCounter++;
-            previousSuggestions.push({suggestion: rStrings.join("-----"), error: "Could not parse JSON response"});
+            previousSuggestions.push({suggestion: `${strategy}\n${separator}\n${jsonPart}`, error: "Could not parse JSON response"});
             continue;
         }
-    
-        if (rObj.step === undefined) {
+
+        const candidateSteps = normalizeCandidateSteps(rObj);
+        if (candidateSteps.length === 0) {
             attemptCounter++;
-            previousSuggestions.push({suggestion: rObj.step, error: "Missing 'step: string' field in the JSON response. 'step: string' should be the next step in the proof."});
+            previousSuggestions.push({
+                suggestion: JSON.stringify(rObj),
+                error: "Missing candidate steps. Provide a concrete `step` and a non-empty `possibleSteps: string[]` with valid Waterproof snippets."
+            });
             continue;
         }
 
-        // If we reach here, we have a valid suggestion
-        // We now verify it by trying to execute it in Waterproof
-    
-        let verification;
-        let verificationFailed = false;
-        let error = "";
-        try {
-            verification = await api.tryProof(rObj.step);
-        } catch(error_) {
-            verificationFailed = true;
-            error = `${error_}`;
+        const verificationResults: StepVerificationResult[] = [];
+        let firstSuccessfulStep: string | null = null;
+
+        // Verify all candidate steps so the model can get explicit feedback on each one.
+        for (const candidateStep of candidateSteps) {
+            try {
+                await api.tryProof(candidateStep);
+                verificationResults.push({ step: candidateStep, worked: true });
+                if (firstSuccessfulStep === null) {
+                    firstSuccessfulStep = candidateStep;
+                }
+            } catch (error_) {
+                verificationResults.push({
+                    step: candidateStep,
+                    worked: false,
+                    error: `${error_}`
+                });
+            }
         }
 
-        if (verificationFailed) {
+        if (firstSuccessfulStep === null) {
             attemptCounter++;
-            previousSuggestions.push({suggestion: rObj.step, error});
+            previousSuggestions.push({
+                suggestion: JSON.stringify({ strategy, ...rObj }),
+                error: `All provided candidate steps failed verification.\\n\\n${formatVerificationResults(verificationResults)}`
+            });
             continue;
         }
 
-        if (!verificationFailed) {
-            break;
-        }
+        acceptedStep = firstSuccessfulStep;
+        acceptedStepVerifications = verificationResults;
+        break;
 
     }
 
     let text = "";
     
     // If we reach here, the step was successfully executed or we ran out of attempts
-    if (rObj === null || strategy === null || attemptCounter >= maxAttempts) {
+    if (acceptedStep === null || rObj === null || attemptCounter >= maxAttempts) {
         text = "No valid next step could be found that Waterproof would accept.";
     } else {
-        text = `A valid next step was found that Waterproof accepted:\n\n\`\`\`\n ${rObj.step}\n\`\`\``;
+        const verificationSummary = acceptedStepVerifications.map((result, index) => {
+            if (result.worked) {
+                return `${index + 1}. Accepted by Waterproof: ${result.step}`;
+            }
+            return `${index + 1}. Rejected by Waterproof: ${result.step}\\n   Error: ${result.error ?? "Unknown error"}`;
+        }).join("\\n");
+        text = `A valid next step was found that Waterproof accepted:\n\n\`\`\`\n${acceptedStep}\n\`\`\`\n\nCandidate verification results:\n${verificationSummary}`;
     }
 
     if (usedViaCommand && request !== null && context !== null && _stream !== null) {
         const m = await renderPrompt(
-            HintPromptRewordForChat2,
+            HintPromptRewordForChat,
             {
                 strategy,
                 text,
@@ -145,7 +248,7 @@ export async function handleHelp(api: WaterproofAPI, request: ChatRequest | null
         }
     } else {
         const m = await renderPrompt(
-            HintPromptRewordForChat2,
+            HintPromptRewordForChat,
             {
                 strategy,
                 text,

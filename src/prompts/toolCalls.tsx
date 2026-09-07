@@ -63,6 +63,8 @@ export class ToolUserPrompt extends PromptElement<ToolUserProps, void> {
 					- You can guide the students with questions.<br/>
 					- The student's proof so far could be wrong or go in a wrong direction. In that case, it is good to address this first, again preferably with a question.<br/>
 					- In order to help, very often you will need to know the proof the student is working on. You can get this information with a tool call.<br/>
+					- Prefer a two-stage context strategy: first call the proof context tool for local goal information; if definitions or notation seem missing/unclear, then call the file context tool to inspect declarations elsewhere in the file.<br/>
+					- Do not assume proof context is complete for global definitions, custom notation, or helper lemmas.<br/>
 					- It is okay to get progressively more helpful. Especially in the beginning, you can be brief (but of course still friendly!) When a student is repeatedly asking about the same point in a proof, you can progressively give better hints, give more details or specifically help with how you need to write something in Waterproof.<br/>
 					- You can use tools to get more information on the student proof, or to get an approved hint (which means that it is based on a next step in the proof about which we know it would compile in the Waterproof system). This hint is hopefully also already formulated in terms of a question. This question can then probably without much change be related to the student. <br/>
 					Below are some examples of hint and proof context tool outputs along with an example output for River.
@@ -147,7 +149,12 @@ class ToolCalls extends PromptElement<ToolCallsProps, void> {
 		// Note- for the copilot models, the final prompt must end with a non-tool-result UserMessage
 		return <>
 			{this.props.toolCallRounds.map(round => this.renderOneToolCallRound(round))}
-			<UserMessage>Above is the result of calling one or more tools. The user cannot see the results, so you should explain them to the user if referencing them in your answer.</UserMessage>
+			<UserMessage>
+				Above is the result of calling one or more tools.
+				The student is not expected to view the results.
+				You should not directly mention them in your answer.
+				Instead use the results to inform your answer.
+			</UserMessage>
 		</>;
 	}
 
